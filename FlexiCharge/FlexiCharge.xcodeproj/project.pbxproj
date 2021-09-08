@@ -7,14 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D327CD6426E64D0D007FC380 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D327CD6326E64D0D007FC380 /* MapView.swift */; };
+		D327CD6626E65F33007FC380 /* IdentifyChargerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D327CD6526E65F32007FC380 /* IdentifyChargerView.swift */; };
 		D3D6D15226E6286500B77B16 /* FlexiChargeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D6D15126E6286500B77B16 /* FlexiChargeApp.swift */; };
-		D3D6D15426E6286500B77B16 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D6D15326E6286500B77B16 /* ContentView.swift */; };
 		D3D6D15626E6286700B77B16 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3D6D15526E6286700B77B16 /* Assets.xcassets */; };
 		D3D6D15926E6286700B77B16 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3D6D15826E6286700B77B16 /* Preview Assets.xcassets */; };
 		D3D6D15B26E6286700B77B16 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D6D15A26E6286700B77B16 /* Persistence.swift */; };
 		D3D6D15E26E6286700B77B16 /* FlexiCharge.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D3D6D15C26E6286700B77B16 /* FlexiCharge.xcdatamodeld */; };
 		D3D6D16926E6286800B77B16 /* FlexiChargeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D6D16826E6286800B77B16 /* FlexiChargeTests.swift */; };
 		D3D6D17426E6286800B77B16 /* FlexiChargeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D6D17326E6286800B77B16 /* FlexiChargeUITests.swift */; };
+		D3D6D18826E629BE00B77B16 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D6D18726E629BE00B77B16 /* ContentView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,9 +37,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D327CD6326E64D0D007FC380 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		D327CD6526E65F32007FC380 /* IdentifyChargerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifyChargerView.swift; sourceTree = "<group>"; };
 		D3D6D14E26E6286500B77B16 /* FlexiCharge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlexiCharge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3D6D15126E6286500B77B16 /* FlexiChargeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexiChargeApp.swift; sourceTree = "<group>"; };
-		D3D6D15326E6286500B77B16 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		D3D6D15526E6286700B77B16 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D3D6D15826E6286700B77B16 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		D3D6D15A26E6286700B77B16 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
@@ -49,6 +52,7 @@
 		D3D6D16F26E6286800B77B16 /* FlexiChargeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FlexiChargeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3D6D17326E6286800B77B16 /* FlexiChargeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexiChargeUITests.swift; sourceTree = "<group>"; };
 		D3D6D17526E6286800B77B16 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D3D6D18726E629BE00B77B16 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +80,37 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D311946726E9112E004DCFC8 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		D366298526E907C20082FAF1 /* Content */ = {
+			isa = PBXGroup;
+			children = (
+				D3D6D18726E629BE00B77B16 /* ContentView.swift */,
+			);
+			path = Content;
+			sourceTree = "<group>";
+		};
+		D366298626E907CE0082FAF1 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				D327CD6326E64D0D007FC380 /* MapView.swift */,
+			);
+			path = Map;
+			sourceTree = "<group>";
+		};
+		D366298726E907E60082FAF1 /* IdentifyCharger */ = {
+			isa = PBXGroup;
+			children = (
+				D327CD6526E65F32007FC380 /* IdentifyChargerView.swift */,
+			);
+			path = IdentifyCharger;
+			sourceTree = "<group>";
+		};
 		D3D6D14526E6286500B77B16 = {
 			isa = PBXGroup;
 			children = (
@@ -99,8 +134,9 @@
 		D3D6D15026E6286500B77B16 /* FlexiCharge */ = {
 			isa = PBXGroup;
 			children = (
+				D311946726E9112E004DCFC8 /* Models */,
+				D3D6D18C26E6403400B77B16 /* Views */,
 				D3D6D15126E6286500B77B16 /* FlexiChargeApp.swift */,
-				D3D6D15326E6286500B77B16 /* ContentView.swift */,
 				D3D6D15526E6286700B77B16 /* Assets.xcassets */,
 				D3D6D15A26E6286700B77B16 /* Persistence.swift */,
 				D3D6D15F26E6286700B77B16 /* Info.plist */,
@@ -134,6 +170,16 @@
 				D3D6D17526E6286800B77B16 /* Info.plist */,
 			);
 			path = FlexiChargeUITests;
+			sourceTree = "<group>";
+		};
+		D3D6D18C26E6403400B77B16 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D366298726E907E60082FAF1 /* IdentifyCharger */,
+				D366298626E907CE0082FAF1 /* Map */,
+				D366298526E907C20082FAF1 /* Content */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -266,9 +312,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				D3D6D15B26E6286700B77B16 /* Persistence.swift in Sources */,
-				D3D6D15426E6286500B77B16 /* ContentView.swift in Sources */,
 				D3D6D15E26E6286700B77B16 /* FlexiCharge.xcdatamodeld in Sources */,
+				D327CD6426E64D0D007FC380 /* MapView.swift in Sources */,
+				D3D6D18826E629BE00B77B16 /* ContentView.swift in Sources */,
 				D3D6D15226E6286500B77B16 /* FlexiChargeApp.swift in Sources */,
+				D327CD6626E65F33007FC380 /* IdentifyChargerView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -425,6 +473,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"FlexiCharge/Preview Content\"";
 				DEVELOPMENT_TEAM = 63ES69XEGU;
@@ -437,6 +486,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = AbstractConnoisseurs.FlexiCharge;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -447,6 +497,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"FlexiCharge/Preview Content\"";
 				DEVELOPMENT_TEAM = 63ES69XEGU;
@@ -459,6 +510,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = AbstractConnoisseurs.FlexiCharge;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
