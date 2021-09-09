@@ -13,16 +13,15 @@ struct IdentifyChargerView: View {
     @State private var username: String = ""
     @State private var isEditing: Bool = false
     @State private var chargerIdInput: String = ""
-    @State var value: CGFloat = 0
-    @State var keyboardHeight: CGFloat = 0
-    @State private var buttonText: String = " "
+    @State private var buttonText: String = ""
     @State private var buttonColor: Color = .white
     @State private var isButtonDisabled: Bool = true
-    @State private var buttonOpacity: Double = 0
-    @State private var buttonTextColor: Color = Color(.clear)
+    @State private var isButtonVisible: Double = 0
+    @State private var buttonTextColor: Color = .clear
+    @State var value: CGFloat = 0
+    @State var keyboardHeight: CGFloat = 0
 
 
-    
     var body: some View {
         ZStack (alignment: .top){
             RoundedRectangle(cornerRadius: 5)
@@ -30,7 +29,6 @@ struct IdentifyChargerView: View {
                 .frame(minHeight: 0, maxHeight: .infinity)
             VStack {
                 Image("menu-arrow").rotationEffect(.degrees(180))
-                
                 Text("Chargers Near Me")
                     .foregroundColor(.white)
                     .padding(.bottom, 40)
@@ -67,13 +65,12 @@ struct IdentifyChargerView: View {
                             validateChargerId()
                         })
                 }
-                
                 ZStack {
                     Text("Enter the Code Written on the Charger")
                         .foregroundColor(.white)
-                        .opacity(buttonOpacity == 1 ? 0 : 1)
+                        .opacity(isButtonVisible == 1 ? 0 : 1)
                     Button(action: {
-                        
+                        startCharging()
                     }){
                         Text(buttonText)
                             .font(Font.system(size: 20,weight: .bold, design: .default))
@@ -82,7 +79,7 @@ struct IdentifyChargerView: View {
                     .background(buttonColor)
                     .cornerRadius(5)
                     .disabled(isButtonDisabled)
-                    .opacity(buttonOpacity)
+                    .opacity(isButtonVisible)
                 }
             }.padding()
         }
@@ -90,19 +87,19 @@ struct IdentifyChargerView: View {
     // Makes sure the entered charger id is not too long or is not all integers
     func validateChargerId() {
         let limit: Int = 6
-        if buttonOpacity == 1 && chargerIdInput.count < limit  {
+        if isButtonVisible == 1 && chargerIdInput.count < limit {
             isButtonDisabled = true
-            buttonOpacity = 0
+            isButtonVisible = 0
         }
         if chargerIdInput.count > limit || Int(chargerIdInput) == nil && chargerIdInput.count > 0 {
             chargerIdInput.removeLast()
-        }else if chargerIdInput.count == limit{
+        } else if chargerIdInput.count == limit {
             let status = getChargerStatus(chargerId: Int(chargerIdInput)!)
             drawChargingButton(status: status)
         }
     }
     
-    func drawChargingButton(status:Int) {
+    func drawChargingButton(status: Int) {
         let notIdentified: Int = 0
         let success: Int = 1
         let occupied: Int = 2
@@ -111,37 +108,33 @@ struct IdentifyChargerView: View {
             buttonText = "Charger Not Identified"
             buttonColor = Color(red: 0.90, green: 0.90, blue: 0.90)
             isButtonDisabled = true
-            buttonOpacity = 1
+            isButtonVisible = 1
             buttonTextColor = Color(red: 0.30, green: 0.30, blue: 0.30)
-            
-        }
-        else if status == success {
+        } else if status == success {
             buttonText = "Begin Charging"
             buttonColor = Color(red: 0.47, green: 0.74, blue: 0.46)
             isButtonDisabled = false
-            buttonOpacity = 1
+            isButtonVisible = 1
             buttonTextColor = Color(red: 1.00, green: 1.00, blue: 1.00)
-        }
-        else if status == occupied {
+        } else if status == occupied {
             buttonText = "Charger Occupied"
             buttonColor = Color(red: 0.94, green: 0.38, blue: 0.28)
             isButtonDisabled = true
-            buttonOpacity = 1
+            isButtonVisible = 1
             buttonTextColor = Color(red: 1.00, green: 1.00, blue: 1.00)
-        }
-        else if status == outOfOrder {
+        } else if status == outOfOrder {
             buttonText = "Charger Out of Order"
             buttonColor = Color(red: 0.90, green: 0.90, blue: 0.90)
             isButtonDisabled = true
-            buttonOpacity = 1
+            isButtonVisible = 1
             buttonTextColor = Color(red: 0.30, green: 0.30, blue: 0.30)
         }
-    
     }
-
 }
+
 func startCharging(){
-    
+    //Add functionality to startChargingButton
+    //Send all selected options to API
 }
 
 struct IdentifyChargerView_Previews: PreviewProvider {
@@ -155,4 +148,3 @@ extension String {
         return String(self[index(startIndex, offsetBy: i)])
     }
 }
-
