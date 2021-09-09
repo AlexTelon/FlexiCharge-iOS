@@ -17,6 +17,7 @@
 		D3D6D16926E6286800B77B16 /* FlexiChargeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D6D16826E6286800B77B16 /* FlexiChargeTests.swift */; };
 		D3D6D17426E6286800B77B16 /* FlexiChargeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D6D17326E6286800B77B16 /* FlexiChargeUITests.swift */; };
 		D3D6D18826E629BE00B77B16 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D6D18726E629BE00B77B16 /* ContentView.swift */; };
+		FD8B4F1526EA11D400B0FDB5 /* IdentifyChargerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD8B4F1426EA11D400B0FDB5 /* IdentifyChargerViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		D3D6D17326E6286800B77B16 /* FlexiChargeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexiChargeUITests.swift; sourceTree = "<group>"; };
 		D3D6D17526E6286800B77B16 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D3D6D18726E629BE00B77B16 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		FD8B4F1426EA11D400B0FDB5 /* IdentifyChargerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifyChargerViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +109,7 @@
 			isa = PBXGroup;
 			children = (
 				D327CD6526E65F32007FC380 /* IdentifyChargerView.swift */,
+				FD8B4F1426EA11D400B0FDB5 /* IdentifyChargerViewModel.swift */,
 			);
 			path = IdentifyCharger;
 			sourceTree = "<group>";
@@ -313,6 +316,7 @@
 			files = (
 				D3D6D15B26E6286700B77B16 /* Persistence.swift in Sources */,
 				D3D6D15E26E6286700B77B16 /* FlexiCharge.xcdatamodeld in Sources */,
+				FD8B4F1526EA11D400B0FDB5 /* IdentifyChargerViewModel.swift in Sources */,
 				D327CD6426E64D0D007FC380 /* MapView.swift in Sources */,
 				D3D6D18826E629BE00B77B16 /* ContentView.swift in Sources */,
 				D3D6D15226E6286500B77B16 /* FlexiChargeApp.swift in Sources */,
