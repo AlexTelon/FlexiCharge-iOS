@@ -6,7 +6,7 @@
 //
 
 import Foundation
-let testChargers: [Int : Int] = [111111: 1, 123456: 2, 133777: 3]
+let testChargers: [Int: Int] = [111111: 1, 123456: 2, 133777: 3]
 
 
 func getChargerStatus(chargerId: Int) -> Int {

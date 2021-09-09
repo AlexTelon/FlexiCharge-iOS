@@ -21,9 +21,8 @@ struct IdentifyChargerView: View {
     @State var value: CGFloat = 0
     @State var keyboardHeight: CGFloat = 0
 
-
     var body: some View {
-        ZStack (alignment: .top){
+        ZStack(alignment: .top) {
             RoundedRectangle(cornerRadius: 5)
                 .fill(Color(red: 0.2, green: 0.2, blue: 0.2))
                 .frame(minHeight: 0, maxHeight: .infinity)
@@ -35,7 +34,7 @@ struct IdentifyChargerView: View {
                 ZStack {
                     HStack {
                         ForEach(0 ..< chargerIdLength) {i in
-                            ZStack (alignment: .bottom){
+                            ZStack(alignment: .bottom) {
                                 RoundedRectangle(cornerRadius: 5)
                                     .fill(Color.white)
                                     .frame(width: 34, height: 53)
@@ -53,6 +52,7 @@ struct IdentifyChargerView: View {
                             }
                         }
                     }.padding(.bottom, 40)
+
                     TextField("", text: $chargerIdInput)
                         .foregroundColor(.clear)
                         .background(Color.clear)
@@ -132,7 +132,7 @@ struct IdentifyChargerView: View {
     }
 }
 
-func startCharging(){
+func startCharging() {
     //Add functionality to startChargingButton
     //Send all selected options to API
 }

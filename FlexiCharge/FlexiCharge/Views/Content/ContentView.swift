@@ -18,7 +18,7 @@ struct ContentView: View {
     @GestureState private var gestureOffset: CGFloat = 0
     
     var body: some View {
-        ZStack (alignment: .bottom){
+        ZStack(alignment: .bottom) {
             MapView()
                 .frame(minHeight: 0, maxHeight: .infinity)
                 .edgesIgnoringSafeArea(.all)
@@ -38,7 +38,7 @@ struct ContentView: View {
                     Image("white")
                 }
             }.padding(.bottom, screenHeight * 0.05)
-            
+
             IdentifyChargerView()
                 .transition(.move(edge: .bottom))
                 .animation(.easeInOut(duration: 0.2))
@@ -51,7 +51,7 @@ struct ContentView: View {
                 })
                 .onEnded({value in
                     let maxHeight = screenHeight / 2
-                    withAnimation{
+                    withAnimation {
                         if -offset > maxHeight / 2 {
                             offset = -maxHeight
                         } else {
@@ -60,7 +60,7 @@ struct ContentView: View {
                     }
                     lastOffset = offset
                 }))
-                .onAppear{
+                .onAppear {
                     NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillShowNotification, object: nil, queue: .main) { data in
                         let height = data.userInfo![UIResponder.keyboardFrameEndUserInfoKey] as! NSValue
                         self.keyboardHeight = height.cgRectValue.height
@@ -71,7 +71,7 @@ struct ContentView: View {
                 }
         }.edgesIgnoringSafeArea(.bottom)
     }
-    func onChange(){
+    func onChange() {
         DispatchQueue.main.async {
             self.offset = gestureOffset + lastOffset
         }
