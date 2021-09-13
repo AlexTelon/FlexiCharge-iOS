@@ -19,6 +19,7 @@ struct LoginView: View {
     
     var body: some View {
         VStack {
+            // Gray design at the top of the screen
             ZStack {
                 Image("top-tilted-rectangle")
                     .resizable()
@@ -27,10 +28,12 @@ struct LoginView: View {
                     .foregroundColor(.white)
                     .font(Font.system(size: 44, weight: .bold, design: .default))
             }
+            // Login "form"
             VStack {
+                // Email input field
                 ZStack(alignment: .topLeading) {
                     TextField(emailPlaceholder, text: $emailInput)
-                        .frame(width: screenWidth * 0.8, height: inputHeight)
+                        .frame(height: inputHeight)
                         .offset(x: 8)
                         .overlay(RoundedRectangle(cornerRadius: inputCornerRadius).stroke())
                     Text(emailPlaceholder)
@@ -39,11 +42,11 @@ struct LoginView: View {
                         .background(Color.white)
                         .offset(x: 10, y: -10)
                         .opacity(emailInput.count > 0 ? 1 : 0)
-                }
-                .padding()
+                }.padding(.vertical)
+                // Password input field
                 ZStack(alignment: .topLeading) {
                     SecureField(passwordPlaceholder, text: $passwordInput)
-                        .frame(width: screenWidth * 0.8, height: inputHeight)
+                        .frame(height: inputHeight)
                         .offset(x: 8)
                         .overlay(RoundedRectangle(cornerRadius: inputCornerRadius).stroke())
                     Text(passwordPlaceholder)
@@ -52,11 +55,11 @@ struct LoginView: View {
                         .background(Color.white)
                         .offset(x: 10, y: -10)
                         .opacity(passwordInput.count > 0 ? 1 : 0)
-                }.padding()
+                }.padding(.vertical)
                 Spacer()
                 Spacer()
                 Button(action: {
-                    // Log in user
+                    // Log in user with entered credentials (emailInput & passwordInput)
                 }){
                     Text("Log in")
                         .font(Font.system(size: 20,weight: .bold, design: .default))
@@ -82,10 +85,6 @@ struct LoginView: View {
         .onTapGesture {
             hideKeyboard()
         }
-    }
-
-    func LoginDetails() -> (String, String) {
-        return (email: emailInput, password: passwordInput)
     }
     
     func hideKeyboard() {
