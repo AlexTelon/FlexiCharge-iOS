@@ -30,30 +30,33 @@ struct ContentView: View {
                 VStack {
                     HStack {
                         VStack {
-                            Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
+                            Button(action: {
+                                findUserOnMap()
+                            }, label: {
                                 ZStack {
                                     Circle()
                                         .fill(Color(red: 0.30, green: 0.30, blue: 0.30))
-                                        .frame(width: screenWidth * 0.20, height: screenWidth * 0.20)
+                                        .frame(width: screenWidth * 0.15, height: screenWidth * 0.15)
                                     Image("location-pin")
                                         .resizable()
-                                        .frame(width: 40, height: 50, alignment: .center)
+                                        .frame(width: screenWidth * 0.08, height: screenWidth * 0.10, alignment: .center)
                                 }
-
                             }).offset(x: screenWidth * -0.35)
                         }
                     }
                     HStack {
-                        Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
+                        Button(action: {
+                            cameraButton()
+                        }, label: {
                             ZStack {
                                 Circle()
                                     .fill(Color(red: 0.30, green: 0.30, blue: 0.30))
-                                    .frame(width: screenWidth * 0.20, height: screenWidth * 0.20)
+                                    .frame(width: screenWidth * 0.15, height: screenWidth * 0.15)
                                 Image(systemName: "camera.fill")
-                                    .font(Font.system(.largeTitle))
+                                    .font(Font.system(.title))
                                     .foregroundColor(.white)
                             }
-                        }).offset(x:screenWidth * -0.07)
+                        }).offset(x:screenWidth * -0.15)
                         Button(action: {
                             let maxHeight = screenHeight / 2
                             offset = -maxHeight
@@ -62,7 +65,7 @@ struct ContentView: View {
                             ZStack {
                                 Circle()
                                     .fill(Color(red: 0.30, green: 0.30, blue: 0.30))
-                                    .frame(width: screenWidth * 0.30, height: screenWidth * 0.30)
+                                    .frame(width: screenWidth * 0.20, height: screenWidth * 0.20)
                                 Image("white")
                             }
                         }
@@ -71,17 +74,16 @@ struct ContentView: View {
                                 ZStack {
                                     Circle()
                                         .fill(Color(red: 0.30, green: 0.30, blue: 0.30))
-                                        .frame(width: screenWidth * 0.20, height: screenWidth * 0.20)
+                                        .frame(width: screenWidth * 0.15, height: screenWidth * 0.15)
                                     Image("person")
                                         .resizable()
-                                        .frame(width: 50, height: 50, alignment: .center)
+                                        .frame(width: screenWidth * 0.10, height: screenWidth * 0.10, alignment: .center)
                                 }
                             }
-                        }.offset(x:screenWidth * 0.07)
+                        }.offset(x:screenWidth * 0.15)
                     }.padding(.bottom, screenHeight * 0.05)
                     .padding(.horizontal, screenWidth * 0.1)
                 }
-
                 IdentifyChargerView()
                     .transition(.move(edge: .bottom))
                     .animation(.easeInOut(duration: 0.2))
@@ -119,6 +121,12 @@ struct ContentView: View {
         DispatchQueue.main.async {
             self.offset = gestureOffset + lastOffset
         }
+    }
+    func cameraButton() {
+        // Function to open camera and and scan qrcode and return a charer id
+    }
+    func findUserOnMap() {
+        // Find the user on the map
     }
 }
 
