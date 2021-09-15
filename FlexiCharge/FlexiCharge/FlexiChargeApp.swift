@@ -13,7 +13,7 @@ struct FlexiChargeApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            RegisterAccountView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }
