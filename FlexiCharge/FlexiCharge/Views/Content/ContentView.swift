@@ -39,7 +39,7 @@ struct ContentView: View {
                                         .frame(width: screenWidth * 0.15, height: screenWidth * 0.15)
                                     Image("location-pin")
                                         .resizable()
-                                        .frame(width: screenWidth * 0.08, height: screenWidth * 0.10, alignment: .center)
+                                        .frame(width: screenWidth * 0.06, height: screenWidth * 0.08, alignment: .center)
                                 }
                             }).offset(x: screenWidth * -0.35)
                         }
@@ -53,7 +53,7 @@ struct ContentView: View {
                                     .fill(Color(red: 0.30, green: 0.30, blue: 0.30))
                                     .frame(width: screenWidth * 0.15, height: screenWidth * 0.15)
                                 Image(systemName: "camera.fill")
-                                    .font(Font.system(.title))
+                                    .font(Font.system(.title2))
                                     .foregroundColor(.white)
                             }
                         }).offset(x:screenWidth * -0.15)
@@ -77,7 +77,7 @@ struct ContentView: View {
                                         .frame(width: screenWidth * 0.15, height: screenWidth * 0.15)
                                     Image("person")
                                         .resizable()
-                                        .frame(width: screenWidth * 0.10, height: screenWidth * 0.10, alignment: .center)
+                                        .frame(width: screenWidth * 0.07, height: screenWidth * 0.07, alignment: .center)
                                 }
                             }
                         }.offset(x:screenWidth * 0.15)
