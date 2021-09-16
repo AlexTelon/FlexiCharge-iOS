@@ -20,6 +20,7 @@
 		D3D6D17426E6286800B77B16 /* FlexiChargeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D6D17326E6286800B77B16 /* FlexiChargeUITests.swift */; };
 		D3D6D18826E629BE00B77B16 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D6D18726E629BE00B77B16 /* ContentView.swift */; };
 		FD8B4F1526EA11D400B0FDB5 /* IdentifyChargerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD8B4F1426EA11D400B0FDB5 /* IdentifyChargerViewModel.swift */; };
+		FDDFFF4626EF7C7F004B8EE9 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDDFFF4526EF7C7F004B8EE9 /* SettingsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 		D3D6D17526E6286800B77B16 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D3D6D18726E629BE00B77B16 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		FD8B4F1426EA11D400B0FDB5 /* IdentifyChargerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifyChargerViewModel.swift; sourceTree = "<group>"; };
+		FDDFFF4526EF7C7F004B8EE9 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -192,11 +194,20 @@
 			isa = PBXGroup;
 			children = (
 				651A7A5926EF48C900A8A16D /* RegisterAccount */,
+				FDDFFF4426EF7C37004B8EE9 /* Settings */,
 				D366298726E907E60082FAF1 /* IdentifyCharger */,
 				D366298626E907CE0082FAF1 /* Map */,
 				D366298526E907C20082FAF1 /* Content */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		FDDFFF4426EF7C37004B8EE9 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				FDDFFF4526EF7C7F004B8EE9 /* SettingsView.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -329,6 +340,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D3D6D15B26E6286700B77B16 /* Persistence.swift in Sources */,
+				FDDFFF4626EF7C7F004B8EE9 /* SettingsView.swift in Sources */,
 				D3D6D15E26E6286700B77B16 /* FlexiCharge.xcdatamodeld in Sources */,
 				651A7A5B26EF490000A8A16D /* RegisterAccountView.swift in Sources */,
 				651A7A5D26EF4A0300A8A16D /* RegisterAccountViewModel.swift in Sources */,
