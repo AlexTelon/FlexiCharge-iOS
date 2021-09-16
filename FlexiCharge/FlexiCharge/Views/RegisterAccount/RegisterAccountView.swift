@@ -37,16 +37,7 @@ struct RegisterAccountView: View {
                 VStack{
                     /*----------Email----------*/
                     ZStack(alignment: .leading){
-                        TextField("Email", text: $email, onEditingChanged: { changed in
-                            if changed{
-                                /*
-                                if !validateEmail(email: email){
-                                    validEmail = false
-                                }else{
-                                    validEmail = true
-                                }*/
-                            }
-                        })
+                        TextField("Email", text: $email)
                         .frame(height: inputHeight)
                         .padding(.horizontal, 8)
                         .overlay(RoundedRectangle(cornerRadius: inputCornerRadius)
@@ -131,6 +122,7 @@ struct RegisterAccountView: View {
                             .foregroundColor(.red)
                             .padding(.bottom)
                         Button(action: {
+                            //TO BE DEVELOPED: register user if all validations are fine
                                 validationText = validateInputs(email: email, mobileNumber: mobileNumber, password: password, TOSCheckBox: tosCheckBox)
                             
                         }, label: {
