@@ -8,6 +8,7 @@
 import SwiftUI
 import CoreData
 import MapKit
+import CodeScanner
 
 struct ContentView: View {
     let screenHeight = UIScreen.main.bounds.size.height
@@ -15,7 +16,10 @@ struct ContentView: View {
     @State var offset: CGFloat = 0
     @State var lastOffset: CGFloat = 0
     @State var keyboardHeight: CGFloat = 0
+    @State private var isShowingScanner: Bool = false
+    @State private var notUrl: Bool = false
     @GestureState private var gestureOffset: CGFloat = 0
+    @Environment(\.openURL) var openURL
     
     var body: some View {
         NavigationView {
@@ -57,6 +61,9 @@ struct ContentView: View {
                                     .foregroundColor(.white)
                             }
                         }).offset(x:screenWidth * -0.15)
+                        .sheet(isPresented: $isShowingScanner) {
+                            CodeScannerView(codeTypes: [.qr], simulatedData: "QR scan", completion: self.handleScan).overlay(QROverlayView())
+                        }
                         Button(action: {
                             let maxHeight = screenHeight / 2
                             offset = -maxHeight
@@ -115,6 +122,13 @@ struct ContentView: View {
                         }
                     }
             }.edgesIgnoringSafeArea(.bottom)
+            .alert(isPresented: $notUrl) {
+                Alert(
+                    title: Text("URL not found"),
+                    message: Text("This QR code does not seem to be a valid URL."),
+                    dismissButton: .default(Text("Close"))
+                )
+            }
         }
     }
     func onChange() {
@@ -124,9 +138,28 @@ struct ContentView: View {
     }
     func cameraButton() {
         // Function to open camera and and scan qrcode and return a charer id
+        self.isShowingScanner = true
     }
     func findUserOnMap() {
         // Find the user on the map
+    }
+    
+    func handleScan(result: Result<String, CodeScannerView.ScanError>) {
+        self.isShowingScanner = false
+       
+        switch result {
+        case .success(let details):
+//            let details = code
+            if URL(string: details) != nil {
+                openURL(URL(string: details)!)
+            } else {
+                notUrl = true
+            }
+            print("QR CODE DETAILS", details)
+        case .failure(_):
+            print("Scanning failed")
+            notUrl = true
+        }
     }
 }
 
