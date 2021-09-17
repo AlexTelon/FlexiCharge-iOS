@@ -15,11 +15,6 @@ struct EmailSentView: View {
     let inputCornerRadius: CGFloat = 5
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
-//    init(email: String, shouldPopToRootView: Bool) {
-//        self.email = email
-//        self.shouldPopToRootView = shouldPopToRootView
-//    }
-    
     var body: some View {
         VStack {
             // Gray design at the top of the screen
@@ -44,8 +39,6 @@ struct EmailSentView: View {
                 Spacer()
                 Spacer()
                 Button(action: {
-                    // TODO: navigate back to login screen
-                    //self.presentationMode.wrappedValue.dismiss()
                     self.shouldPopToRootView = false
                 }, label: {
                     Text("Back to log in")
@@ -75,6 +68,7 @@ struct EmailSentView: View {
     }
 }
 
+// This is the preview that for now is commented out because of an error with Binding variables.
 //struct EmailSentView_Previews: PreviewProvider {
 //    static var previews: some View {
 //        EmailSentView(email: "Jill.Valentine@starrs.gov", shouldPopToRootView: false)
