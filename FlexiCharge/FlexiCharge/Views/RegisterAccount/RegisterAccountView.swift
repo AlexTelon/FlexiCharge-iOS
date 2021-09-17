@@ -135,8 +135,9 @@ struct RegisterAccountView: View {
                         
                         HStack{
                             Text("Already have an account?")
-                            Text("Sign in")
-                                .foregroundColor(Color(red: 0.47, green: 0.74, blue: 0.46))
+                            NavigationLink(destination: ContentView()) {
+                                Text("Sign in")
+                            }.foregroundColor(Color(red: 0.47, green: 0.74, blue: 0.46))
                         }
                         Text("Continue as Guest")
                             .foregroundColor(Color(red: 0.47, green: 0.74, blue: 0.46))
