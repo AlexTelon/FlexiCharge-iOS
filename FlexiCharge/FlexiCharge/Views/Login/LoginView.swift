@@ -9,15 +9,18 @@ import SwiftUI
 
 struct LoginView: View {
     let screenHeight = UIScreen.main.bounds.size.height
-        let screenWidth = UIScreen.main.bounds.size.width
-        let inputHeight: CGFloat = 48
-        let inputCornerRadius: CGFloat = 5
-        let emailPlaceholder: String = "Email"
-        let passwordPlaceholder: String = "Password"
-        @State private var emailInput: String = ""
-        @State private var passwordInput: String = ""
-        
-        var body: some View {
+    let screenWidth = UIScreen.main.bounds.size.width
+    let inputHeight: CGFloat = 48
+    let inputCornerRadius: CGFloat = 5
+    let emailPlaceholder: String = "Email"
+    let passwordPlaceholder: String = "Password"
+    @State private var emailInput: String = ""
+    @State private var passwordInput: String = ""
+    @State var isActive: Bool = false
+    
+    
+    var body: some View {
+        NavigationView {
             VStack {
                 // Gray design at the top of the screen
                 ZStack {
@@ -58,9 +61,7 @@ struct LoginView: View {
                     }.padding(.vertical)
                     Spacer()
                     Spacer()
-                    Button(action: {
-                        // Log in user with entered credentials (emailInput & passwordInput)
-                    }){
+                    NavigationLink(destination: ContentView()) {
                         Text("Log in")
                             .font(Font.system(size: 20,weight: .bold, design: .default))
                     }
@@ -69,11 +70,12 @@ struct LoginView: View {
                     .foregroundColor(.white)
                     .cornerRadius(5)
                     .padding()
-                    // embed below Text in a navigation link for forgot password
-                    Text("I forgot my password")
-                        .font(Font.system(size: 13,weight: .bold, design: .default))
-                        .foregroundColor(Color(red: 0.47, green: 0.74, blue: 0.46))
-                    // read comment above
+                    NavigationLink(destination: RecoverPasswordView(rootIsActive: $isActive), isActive: self.$isActive) {
+                        Text("I forgot my password")
+                            .font(Font.system(size: 13,weight: .bold, design: .default))
+                            .foregroundColor(Color(red: 0.47, green: 0.74, blue: 0.46))
+                    }
+                    .isDetailLink(false)
                     Spacer()
                 }
                 .frame(width: screenWidth * 0.8)
@@ -85,11 +87,12 @@ struct LoginView: View {
             .onTapGesture {
                 hideKeyboard()
             }
-        }
-        
-        func hideKeyboard() {
-            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-        }
+        }.navigationBarHidden(true)
+    }
+    
+    func hideKeyboard() {
+        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+    }
 }
 
 struct LoginView_Previews: PreviewProvider {
