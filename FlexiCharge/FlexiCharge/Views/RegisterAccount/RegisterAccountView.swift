@@ -126,17 +126,21 @@ struct RegisterAccountView: View {
                                 validationText = validateInputs(email: email, mobileNumber: mobileNumber, password: password, TOSCheckBox: tosCheckBox)
                             
                         }, label: {
-                            Text("Register")
-                                .frame(width: screenWidth * 0.8, height: inputHeight)
-                                .foregroundColor(.white)
-                                .background(Rectangle().fill(Color(red: 0.47, green: 0.74, blue: 0.46)))
-                                .padding(.bottom)
+                            NavigationLink(destination: LoginView()) {
+                                Text("Register")
+                                    .frame(width: screenWidth * 0.8, height: inputHeight)
+                                    .foregroundColor(.white)
+                                    .background(Rectangle().fill(Color(red: 0.47, green: 0.74, blue: 0.46)))
+                                    .padding(.bottom)
+                            }
                         })
                         
                         HStack{
                             Text("Already have an account?")
-                            Text("Sign in")
-                                .foregroundColor(Color(red: 0.47, green: 0.74, blue: 0.46))
+                            NavigationLink(destination: LoginView()) {
+                                Text("Sign in")
+                                    .foregroundColor(Color(red: 0.47, green: 0.74, blue: 0.46))
+                            }
                         }
                         Text("Continue as Guest")
                             .foregroundColor(Color(red: 0.47, green: 0.74, blue: 0.46))

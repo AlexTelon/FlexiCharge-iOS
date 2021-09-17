@@ -8,14 +8,12 @@
 import SwiftUI
 
 struct EmailSentView: View {
+    @Binding var email: String
+    @Binding var shouldPopToRootView: Bool
     let screenWidth = UIScreen.main.bounds.size.width
     let inputHeight: CGFloat = 48
     let inputCornerRadius: CGFloat = 5
-    let email: String
-    
-    init(email: String) {
-        self.email = email
-    }
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     var body: some View {
         VStack {
@@ -41,7 +39,7 @@ struct EmailSentView: View {
                 Spacer()
                 Spacer()
                 Button(action: {
-                    // TODO: navigate back to login screen
+                    self.shouldPopToRootView = false
                 }, label: {
                     Text("Back to log in")
                         .font(Font.system(size: 20,weight: .bold, design: .default))
@@ -65,13 +63,14 @@ struct EmailSentView: View {
             }
             .frame(width: screenWidth * 0.8)
         }
-        .edgesIgnoringSafeArea(.top)
         .navigationBarHidden(true)
+        .edgesIgnoringSafeArea(.top)
     }
 }
 
-struct EmailSentView_Previews: PreviewProvider {
-    static var previews: some View {
-        EmailSentView(email: "Jill.Valentine@starrs.gov")
-    }
-}
+// This is the preview that for now is commented out because of an error with Binding variables.
+//struct EmailSentView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        EmailSentView(email: "Jill.Valentine@starrs.gov", shouldPopToRootView: false)
+//    }
+//}

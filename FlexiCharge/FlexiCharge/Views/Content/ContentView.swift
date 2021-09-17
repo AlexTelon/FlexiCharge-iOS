@@ -19,7 +19,7 @@ struct ContentView: View {
     
     var body: some View {
         NavigationView {
-        ZStack(alignment: .bottom) {
+            ZStack(alignment: .bottom) {
                 MapView()
                     .frame(minHeight: 0, maxHeight: .infinity)
                     .edgesIgnoringSafeArea(.all)
@@ -90,7 +90,7 @@ struct ContentView: View {
                     .offset(y: screenHeight - self.keyboardHeight)
                     .offset(y: -offset > 0 ? -offset <= screenHeight ? offset : -screenHeight : 0)
                     .gesture(DragGesture().updating($gestureOffset, body: {
-                                                        value, out, _ in
+                        value, out, _ in
                         out = value.translation.height
                         onChange()
                     })
@@ -115,7 +115,7 @@ struct ContentView: View {
                         }
                     }
             }.edgesIgnoringSafeArea(.bottom)
-        }
+        }.navigationBarHidden(true)
     }
     func onChange() {
         DispatchQueue.main.async {
