@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -17,6 +17,8 @@
 		D334B13526EF9ABE000D31E9 /* RecoverPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D334B13426EF9ABE000D31E9 /* RecoverPasswordView.swift */; };
 		D334B13726EFBBAA000D31E9 /* EmailSentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D334B13626EFBBAA000D31E9 /* EmailSentView.swift */; };
 		D3A2033E26F4846B007B0D90 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A2033D26F4846B007B0D90 /* LoginView.swift */; };
+		D3A2033226F22411007B0D90 /* CodeScanner in Frameworks */ = {isa = PBXBuildFile; productRef = D3A2033126F22411007B0D90 /* CodeScanner */; };
+		D3A2033826F24025007B0D90 /* QROverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A2033726F24025007B0D90 /* QROverlayView.swift */; };
 		D3D6D15226E6286500B77B16 /* FlexiChargeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D6D15126E6286500B77B16 /* FlexiChargeApp.swift */; };
 		D3D6D15626E6286700B77B16 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3D6D15526E6286700B77B16 /* Assets.xcassets */; };
 		D3D6D15926E6286700B77B16 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3D6D15826E6286700B77B16 /* Preview Assets.xcassets */; };
@@ -57,6 +59,7 @@
 		D334B13426EF9ABE000D31E9 /* RecoverPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoverPasswordView.swift; sourceTree = "<group>"; };
 		D334B13626EFBBAA000D31E9 /* EmailSentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailSentView.swift; sourceTree = "<group>"; };
 		D3A2033D26F4846B007B0D90 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		D3A2033726F24025007B0D90 /* QROverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QROverlayView.swift; sourceTree = "<group>"; };
 		D3D6D14E26E6286500B77B16 /* FlexiCharge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlexiCharge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3D6D15126E6286500B77B16 /* FlexiChargeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexiChargeApp.swift; sourceTree = "<group>"; };
 		D3D6D15526E6286700B77B16 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -80,6 +83,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D3A2033226F22411007B0D90 /* CodeScanner in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -168,6 +172,14 @@
 			path = Login;
 			sourceTree = "<group>";
 		};
+		D3A2033626F2400C007B0D90 /* QR */ = {
+			isa = PBXGroup;
+			children = (
+				D3A2033726F24025007B0D90 /* QROverlayView.swift */,
+			);
+			path = QR;
+			sourceTree = "<group>";
+		};
 		D3D6D14526E6286500B77B16 = {
 			isa = PBXGroup;
 			children = (
@@ -235,6 +247,7 @@
 				651A7A5E26F879CC00A8A16D /* SetupInvoice */,
 				D3A2033C26F4845C007B0D90 /* Login */,
 				651A7A5926EF48C900A8A16D /* RegisterAccount */,
+				D3A2033626F2400C007B0D90 /* QR */,
 				FDDFFF4426EF7C37004B8EE9 /* Settings */,
 				D334B13326EF9AAA000D31E9 /* RecoverPassword */,
 				D366298726E907E60082FAF1 /* IdentifyCharger */,
@@ -268,6 +281,9 @@
 			dependencies = (
 			);
 			name = FlexiCharge;
+			packageProductDependencies = (
+				D3A2033126F22411007B0D90 /* CodeScanner */,
+			);
 			productName = FlexiCharge;
 			productReference = D3D6D14E26E6286500B77B16 /* FlexiCharge.app */;
 			productType = "com.apple.product-type.application";
@@ -339,6 +355,9 @@
 				Base,
 			);
 			mainGroup = D3D6D14526E6286500B77B16;
+			packageReferences = (
+				D3A2033026F22411007B0D90 /* XCRemoteSwiftPackageReference "CodeScanner" */,
+			);
 			productRefGroup = D3D6D14F26E6286500B77B16 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -388,6 +407,7 @@
 				651A7A5D26EF4A0300A8A16D /* RegisterAccountViewModel.swift in Sources */,
 				65F14A3B26F88BF800C9B443 /* SSNApi.swift in Sources */,
 				D334B13526EF9ABE000D31E9 /* RecoverPasswordView.swift in Sources */,
+				D3A2033826F24025007B0D90 /* QROverlayView.swift in Sources */,
 				FD8B4F1526EA11D400B0FDB5 /* IdentifyChargerViewModel.swift in Sources */,
 				65F14A3926F8872A00C9B443 /* SetupUpInvoiceViewModel.swift in Sources */,
 				D334B13726EFBBAA000D31E9 /* EmailSentView.swift in Sources */,
@@ -720,6 +740,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		D3A2033026F22411007B0D90 /* XCRemoteSwiftPackageReference "CodeScanner" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/twostraws/CodeScanner";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.7;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		D3A2033126F22411007B0D90 /* CodeScanner */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D3A2033026F22411007B0D90 /* XCRemoteSwiftPackageReference "CodeScanner" */;
+			productName = CodeScanner;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		D3D6D15C26E6286700B77B16 /* FlexiCharge.xcdatamodeld */ = {
