@@ -43,6 +43,7 @@ struct SettingsView: View {
             VStack() {
                 Group {
                     /*----------Charging History----------*/
+                    // Change navigationling to correct page once it is created
                     NavigationLink(destination: LoginView()) {
                         HStack {
                             Text("Charging History")
@@ -56,6 +57,7 @@ struct SettingsView: View {
                         .frame(height: 1)
                         .background(Color(red: 0.90, green: 0.90, blue: 0.90))
                     /*----------Invoices----------*/
+                    // Change navigationling to correct page once it is created
                     NavigationLink(destination: ContentView()) {
                         HStack {
                             Text("Invoices")
@@ -69,6 +71,7 @@ struct SettingsView: View {
                         .frame(height: 1)
                         .background(Color(red: 0.90, green: 0.90, blue: 0.90))
                     /*----------Account Settings----------*/
+                    // Change navigationling to correct page once it is created
                     NavigationLink(destination: ContentView()) {
                         HStack {
                             Text("Account Settings")
@@ -82,6 +85,7 @@ struct SettingsView: View {
                         .frame(height: 1)
                         .background(Color(red: 0.90, green: 0.90, blue: 0.90))
                     /*----------Name and Address----------*/
+                    // Change navigationling to correct page once it is created
                     NavigationLink(destination: ContentView()) {
                         HStack {
                             Text("Name and Address")
@@ -95,6 +99,7 @@ struct SettingsView: View {
                         .frame(height: 1)
                         .background(Color(red: 0.90, green: 0.90, blue: 0.90))
                     /*----------About----------*/
+                    // Change navigationling to correct page once it is created
                     NavigationLink(destination: ContentView()) {
                         HStack {
                             Text("About")
