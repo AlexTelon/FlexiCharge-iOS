@@ -16,9 +16,9 @@
 		D327CD6626E65F33007FC380 /* IdentifyChargerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D327CD6526E65F32007FC380 /* IdentifyChargerView.swift */; };
 		D334B13526EF9ABE000D31E9 /* RecoverPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D334B13426EF9ABE000D31E9 /* RecoverPasswordView.swift */; };
 		D334B13726EFBBAA000D31E9 /* EmailSentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D334B13626EFBBAA000D31E9 /* EmailSentView.swift */; };
-		D3A2033E26F4846B007B0D90 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A2033D26F4846B007B0D90 /* LoginView.swift */; };
 		D3A2033226F22411007B0D90 /* CodeScanner in Frameworks */ = {isa = PBXBuildFile; productRef = D3A2033126F22411007B0D90 /* CodeScanner */; };
 		D3A2033826F24025007B0D90 /* QROverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A2033726F24025007B0D90 /* QROverlayView.swift */; };
+		D3A2033E26F4846B007B0D90 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A2033D26F4846B007B0D90 /* LoginView.swift */; };
 		D3D6D15226E6286500B77B16 /* FlexiChargeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D6D15126E6286500B77B16 /* FlexiChargeApp.swift */; };
 		D3D6D15626E6286700B77B16 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3D6D15526E6286700B77B16 /* Assets.xcassets */; };
 		D3D6D15926E6286700B77B16 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3D6D15826E6286700B77B16 /* Preview Assets.xcassets */; };
@@ -28,6 +28,7 @@
 		D3D6D17426E6286800B77B16 /* FlexiChargeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D6D17326E6286800B77B16 /* FlexiChargeUITests.swift */; };
 		D3D6D18826E629BE00B77B16 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D6D18726E629BE00B77B16 /* ContentView.swift */; };
 		FD8B4F1526EA11D400B0FDB5 /* IdentifyChargerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD8B4F1426EA11D400B0FDB5 /* IdentifyChargerViewModel.swift */; };
+		FD9BB76C26F8BC7600CBE7E5 /* ChargingInProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD9BB76B26F8BC7600CBE7E5 /* ChargingInProgressView.swift */; };
 		FDDFFF4626EF7C7F004B8EE9 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDDFFF4526EF7C7F004B8EE9 /* SettingsView.swift */; };
 /* End PBXBuildFile section */
 
@@ -58,8 +59,8 @@
 		D327CD6526E65F32007FC380 /* IdentifyChargerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifyChargerView.swift; sourceTree = "<group>"; };
 		D334B13426EF9ABE000D31E9 /* RecoverPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoverPasswordView.swift; sourceTree = "<group>"; };
 		D334B13626EFBBAA000D31E9 /* EmailSentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailSentView.swift; sourceTree = "<group>"; };
-		D3A2033D26F4846B007B0D90 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		D3A2033726F24025007B0D90 /* QROverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QROverlayView.swift; sourceTree = "<group>"; };
+		D3A2033D26F4846B007B0D90 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		D3D6D14E26E6286500B77B16 /* FlexiCharge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlexiCharge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3D6D15126E6286500B77B16 /* FlexiChargeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexiChargeApp.swift; sourceTree = "<group>"; };
 		D3D6D15526E6286700B77B16 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -75,6 +76,7 @@
 		D3D6D17526E6286800B77B16 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D3D6D18726E629BE00B77B16 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		FD8B4F1426EA11D400B0FDB5 /* IdentifyChargerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifyChargerViewModel.swift; sourceTree = "<group>"; };
+		FD9BB76B26F8BC7600CBE7E5 /* ChargingInProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChargingInProgressView.swift; sourceTree = "<group>"; };
 		FDDFFF4526EF7C7F004B8EE9 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -164,20 +166,20 @@
 			path = IdentifyCharger;
 			sourceTree = "<group>";
 		};
-		D3A2033C26F4845C007B0D90 /* Login */ = {
-			isa = PBXGroup;
-			children = (
-				D3A2033D26F4846B007B0D90 /* LoginView.swift */,
-			);
-			path = Login;
-			sourceTree = "<group>";
-		};
 		D3A2033626F2400C007B0D90 /* QR */ = {
 			isa = PBXGroup;
 			children = (
 				D3A2033726F24025007B0D90 /* QROverlayView.swift */,
 			);
 			path = QR;
+			sourceTree = "<group>";
+		};
+		D3A2033C26F4845C007B0D90 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				D3A2033D26F4846B007B0D90 /* LoginView.swift */,
+			);
+			path = Login;
 			sourceTree = "<group>";
 		};
 		D3D6D14526E6286500B77B16 = {
@@ -244,6 +246,7 @@
 		D3D6D18C26E6403400B77B16 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				FD9BB76A26F8BC1C00CBE7E5 /* ChargingInProgress */,
 				651A7A5E26F879CC00A8A16D /* SetupInvoice */,
 				D3A2033C26F4845C007B0D90 /* Login */,
 				651A7A5926EF48C900A8A16D /* RegisterAccount */,
@@ -255,6 +258,14 @@
 				D366298526E907C20082FAF1 /* Content */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		FD9BB76A26F8BC1C00CBE7E5 /* ChargingInProgress */ = {
+			isa = PBXGroup;
+			children = (
+				FD9BB76B26F8BC7600CBE7E5 /* ChargingInProgressView.swift */,
+			);
+			path = ChargingInProgress;
 			sourceTree = "<group>";
 		};
 		FDDFFF4426EF7C37004B8EE9 /* Settings */ = {
@@ -413,6 +424,7 @@
 				D334B13726EFBBAA000D31E9 /* EmailSentView.swift in Sources */,
 				D327CD6426E64D0D007FC380 /* MapView.swift in Sources */,
 				D3D6D18826E629BE00B77B16 /* ContentView.swift in Sources */,
+				FD9BB76C26F8BC7600CBE7E5 /* ChargingInProgressView.swift in Sources */,
 				651A7A6026F879F000A8A16D /* SetUpInvoiceView.swift in Sources */,
 				D3A2033E26F4846B007B0D90 /* LoginView.swift in Sources */,
 				D3D6D15226E6286500B77B16 /* FlexiChargeApp.swift in Sources */,

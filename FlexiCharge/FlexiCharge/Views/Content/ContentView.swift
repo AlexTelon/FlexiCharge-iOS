@@ -13,6 +13,7 @@ import CodeScanner
 struct ContentView: View {
     let screenHeight = UIScreen.main.bounds.size.height
     let screenWidth = UIScreen.main.bounds.size.width
+    @State var isChargingInProgress: Bool = false
     @State var offset: CGFloat = 0
     @State var lastOffset: CGFloat = 0
     @State var keyboardHeight: CGFloat = 0
@@ -31,6 +32,10 @@ struct ContentView: View {
                         offset = 0
                         UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
                     }
+                ChargingInProgressView()
+                    .transition(.move(edge: .top))
+                    .animation(.easeInOut(duration: 0.2))
+                    .offset(y: isChargingInProgress ? -screenHeight*0.70: -screenHeight)
                 VStack {
                     HStack {
                         VStack {
@@ -91,7 +96,7 @@ struct ContentView: View {
                     }.padding(.bottom, screenHeight * 0.05)
                     .padding(.horizontal, screenWidth * 0.1)
                 }
-                IdentifyChargerView()
+                IdentifyChargerView(isChargingInProgress: $isChargingInProgress)
                     .transition(.move(edge: .bottom))
                     .animation(.easeInOut(duration: 0.2))
                     .offset(y: screenHeight - self.keyboardHeight)

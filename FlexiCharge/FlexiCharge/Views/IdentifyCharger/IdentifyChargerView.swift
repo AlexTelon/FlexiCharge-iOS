@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct IdentifyChargerView: View {
+    @Binding var isChargingInProgress: Bool
     let screenHeight = UIScreen.main.bounds.size.height
     @State private var chargerIdLength: Int = 6
     @State private var username: String = ""
@@ -20,6 +21,10 @@ struct IdentifyChargerView: View {
     @State private var buttonTextColor: Color = .clear
     @State var value: CGFloat = 0
     @State var keyboardHeight: CGFloat = 0
+    
+    init(isChargingInProgress: Binding<Bool>) {
+        self._isChargingInProgress = isChargingInProgress
+    }
 
     var body: some View {
         ZStack(alignment: .top) {
@@ -130,16 +135,18 @@ struct IdentifyChargerView: View {
             buttonTextColor = Color(red: 0.30, green: 0.30, blue: 0.30)
         }
     }
+    func startCharging() {
+        isChargingInProgress = true
+        //Add functionality to startChargingButton
+        //Send all selected options to API
+    }
 }
 
-func startCharging() {
-    //Add functionality to startChargingButton
-    //Send all selected options to API
-}
+
 
 struct IdentifyChargerView_Previews: PreviewProvider {
     static var previews: some View {
-        IdentifyChargerView()
+        IdentifyChargerView(isChargingInProgress: .constant(true))
     }
 }
 
