@@ -17,10 +17,6 @@ struct ChargerTest: Decodable {
     var status: Int
 }
 
-struct ChargerListTest: Decodable {
-    var results:  [ChargerTest]
-}
-
 class ChargerAPI {
     var didChange = PassthroughSubject<ChargerAPI, Never>()
     var chargers = [ChargerTest](){
