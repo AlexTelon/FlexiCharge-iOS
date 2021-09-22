@@ -13,6 +13,9 @@
 		D327CD6626E65F33007FC380 /* IdentifyChargerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D327CD6526E65F32007FC380 /* IdentifyChargerView.swift */; };
 		D334B13526EF9ABE000D31E9 /* RecoverPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D334B13426EF9ABE000D31E9 /* RecoverPasswordView.swift */; };
 		D334B13726EFBBAA000D31E9 /* EmailSentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D334B13626EFBBAA000D31E9 /* EmailSentView.swift */; };
+		D34A1AC126F52E89001EB5D2 /* ChargerRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34A1AC026F52E89001EB5D2 /* ChargerRowView.swift */; };
+		D34A1AC326F53D0E001EB5D2 /* ChargerHub.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34A1AC226F53D0E001EB5D2 /* ChargerHub.swift */; };
+		D34A1AC526F54304001EB5D2 /* ChargerList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34A1AC426F54304001EB5D2 /* ChargerList.swift */; };
 		D3A2033E26F4846B007B0D90 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A2033D26F4846B007B0D90 /* LoginView.swift */; };
 		D3D6D15226E6286500B77B16 /* FlexiChargeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D6D15126E6286500B77B16 /* FlexiChargeApp.swift */; };
 		D3D6D15626E6286700B77B16 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3D6D15526E6286700B77B16 /* Assets.xcassets */; };
@@ -50,6 +53,9 @@
 		D327CD6526E65F32007FC380 /* IdentifyChargerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifyChargerView.swift; sourceTree = "<group>"; };
 		D334B13426EF9ABE000D31E9 /* RecoverPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoverPasswordView.swift; sourceTree = "<group>"; };
 		D334B13626EFBBAA000D31E9 /* EmailSentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailSentView.swift; sourceTree = "<group>"; };
+		D34A1AC026F52E89001EB5D2 /* ChargerRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChargerRowView.swift; sourceTree = "<group>"; };
+		D34A1AC226F53D0E001EB5D2 /* ChargerHub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChargerHub.swift; sourceTree = "<group>"; };
+		D34A1AC426F54304001EB5D2 /* ChargerList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChargerList.swift; sourceTree = "<group>"; };
 		D3A2033D26F4846B007B0D90 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		D3D6D14E26E6286500B77B16 /* FlexiCharge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlexiCharge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3D6D15126E6286500B77B16 /* FlexiChargeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexiChargeApp.swift; sourceTree = "<group>"; };
@@ -140,6 +146,9 @@
 			children = (
 				D327CD6526E65F32007FC380 /* IdentifyChargerView.swift */,
 				FD8B4F1426EA11D400B0FDB5 /* IdentifyChargerViewModel.swift */,
+				D34A1AC026F52E89001EB5D2 /* ChargerRowView.swift */,
+				D34A1AC226F53D0E001EB5D2 /* ChargerHub.swift */,
+				D34A1AC426F54304001EB5D2 /* ChargerList.swift */,
 			);
 			path = IdentifyCharger;
 			sourceTree = "<group>";
@@ -366,10 +375,13 @@
 			files = (
 				D3D6D15B26E6286700B77B16 /* Persistence.swift in Sources */,
 				FDDFFF4626EF7C7F004B8EE9 /* SettingsView.swift in Sources */,
+				D34A1AC126F52E89001EB5D2 /* ChargerRowView.swift in Sources */,
 				D3D6D15E26E6286700B77B16 /* FlexiCharge.xcdatamodeld in Sources */,
+				D34A1AC526F54304001EB5D2 /* ChargerList.swift in Sources */,
 				651A7A5B26EF490000A8A16D /* RegisterAccountView.swift in Sources */,
 				651A7A5D26EF4A0300A8A16D /* RegisterAccountViewModel.swift in Sources */,
 				D334B13526EF9ABE000D31E9 /* RecoverPasswordView.swift in Sources */,
+				D34A1AC326F53D0E001EB5D2 /* ChargerHub.swift in Sources */,
 				FD8B4F1526EA11D400B0FDB5 /* IdentifyChargerViewModel.swift in Sources */,
 				D334B13726EFBBAA000D31E9 /* EmailSentView.swift in Sources */,
 				D327CD6426E64D0D007FC380 /* MapView.swift in Sources */,
