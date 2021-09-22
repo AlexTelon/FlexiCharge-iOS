@@ -130,7 +130,7 @@ struct ContentView: View {
                 }.edgesIgnoringSafeArea(.bottom)
                 .navigationBarHidden(true)
             }.background(Color(red: 0.2, green: 0.2, blue: 0.2).ignoresSafeArea(.all))
-        }
+        }.navigationBarHidden(true)
     }
     func onChange() {
         DispatchQueue.main.async {
