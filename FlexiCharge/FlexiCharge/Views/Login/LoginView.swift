@@ -17,7 +17,8 @@ struct LoginView: View {
     @State private var emailInput: String = ""
     @State private var passwordInput: String = ""
     @State var isActive: Bool = false
-    
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+
     
     var body: some View {
         NavigationView {
@@ -27,9 +28,27 @@ struct LoginView: View {
                     Image("top-tilted-rectangle")
                         .resizable()
                         .scaledToFit()
-                    Text("Log In")
-                        .foregroundColor(.white)
-                        .font(Font.system(size: 44, weight: .bold, design: .default))
+                    HStack {
+                        Button(action: {
+                            self.presentationMode.wrappedValue.dismiss()
+                        }) {
+                            Image("menu-arrow").rotationEffect(.degrees(90))
+                                .aspectRatio(contentMode: .fit)
+                                .foregroundColor(.white)
+                                .frame(alignment: .leading)
+                        }
+                        Spacer()
+                        Text("Log In")
+                            .foregroundColor(.white)
+                            .font(Font.system(size: 44, weight: .bold, design: .default))
+                            .scaledToFill()
+                            .minimumScaleFactor(0.5)
+                            .lineLimit(1)
+                        Spacer()
+                        Image("menu-arrow")
+                            .hidden()
+                    }.frame(width: screenWidth * 0.95, alignment: .center)
+                    .offset(y: -screenHeight * 0.03)
                 }
                 // Login "form"
                 VStack {
@@ -80,6 +99,8 @@ struct LoginView: View {
                 }
                 .frame(width: screenWidth * 0.8)
             }
+            .navigationBarBackButtonHidden(true)
+            .navigationBarHidden(true)
             .edgesIgnoringSafeArea(.all)
             .frame(minHeight: 0, maxHeight: .infinity)
             .disableAutocorrection(true)
@@ -87,7 +108,9 @@ struct LoginView: View {
             .onTapGesture {
                 hideKeyboard()
             }
-        }.navigationBarHidden(true)
+        }
+        .navigationBarBackButtonHidden(true)
+        .navigationBarHidden(true)
     }
     
     func hideKeyboard() {

@@ -29,10 +29,18 @@ struct RegisterAccountView: View {
                     Image("topShapeRegister")
                         .resizable()
                         .scaledToFit()
-                    Text("Register")
-                        .foregroundColor(.white)
-                        .font(.largeTitle.weight(.heavy))
-                        .padding()
+                    HStack {
+                        Spacer()
+                        Text("Register")
+                            .foregroundColor(.white)
+                            .font(Font.system(size: 40, weight: .bold, design: .default))
+                            .scaledToFill()
+                            .minimumScaleFactor(0.5)
+                            .lineLimit(1)
+                            .frame(width: screenWidth * 0.8, alignment: .center)
+                        Spacer()
+                    }.frame(width: screenWidth * 0.95)
+                    .offset(y: -screenHeight * 0.03)
                 }
                 VStack{
                     /*----------Email----------*/

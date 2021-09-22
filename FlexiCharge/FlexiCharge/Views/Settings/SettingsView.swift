@@ -13,23 +13,6 @@ struct SettingsView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     /*----------Header and custom back button----------*/
-    var BackButton : some View {
-        HStack {
-            Button(action: {
-                self.presentationMode.wrappedValue.dismiss()
-            }) {
-                Image("menu-arrow").rotationEffect(.degrees(90))
-                    .aspectRatio(contentMode: .fit)
-                    .foregroundColor(.white)
-            }
-            Text("Profile & Settings")
-                .foregroundColor(.white)
-                .font(Font.system(size: 40, weight: .bold, design: .default))
-                .scaledToFill()
-                .minimumScaleFactor(0.5)
-                .lineLimit(1)
-        }.frame(width: screenWidth * 0.8)
-    }
     
     var body: some View {
         VStack {
@@ -38,12 +21,33 @@ struct SettingsView: View {
                 Image("top-tilted-rectangle")
                     .resizable()
                     .scaledToFit()
+                /*----------Custom Backbutton----------*/
+                HStack {
+                    Button(action: {
+                        self.presentationMode.wrappedValue.dismiss()
+                    }) {
+                        Image("menu-arrow").rotationEffect(.degrees(90))
+                            .aspectRatio(contentMode: .fit)
+                            .foregroundColor(.white)
+                            .frame(alignment: .leading)
+                    }
+                    Spacer()
+                    Text("Profile & Settings")
+                        .foregroundColor(.white)
+                        .font(Font.system(size: 40, weight: .bold, design: .default))
+                        .scaledToFill()
+                        .minimumScaleFactor(0.5)
+                        .lineLimit(1)
+                        .frame(width: screenWidth * 0.8, alignment: .center)
+                    Spacer()
+                }.frame(width: screenWidth * 0.95)
+                .offset(y: -screenHeight * 0.03)
             }
             /*----------List of options----------*/
             VStack() {
                 Group {
                     /*----------Charging History----------*/
-                    // Change navigationling to correct page once it is created
+                    // Change NavigationLink to correct page once it is created
                     NavigationLink(destination: LoginView()) {
                         HStack {
                             Text("Charging History")
@@ -51,13 +55,13 @@ struct SettingsView: View {
                                 .foregroundColor(.black)
                             Spacer()
                             Image("menu-arrow-black")
-                        }.frame(width: screenWidth * 0.8, height: screenHeight*0.05, alignment: .bottom)
+                        }.frame(width: screenWidth * 0.8, height: screenHeight * 0.05, alignment: .bottom)
                     }
                     Divider()
                         .frame(height: 1)
                         .background(Color(red: 0.90, green: 0.90, blue: 0.90))
                     /*----------Invoices----------*/
-                    // Change navigationling to correct page once it is created
+                    // Change NavigationLink to correct page once it is created
                     NavigationLink(destination: ContentView()) {
                         HStack {
                             Text("Invoices")
@@ -65,13 +69,13 @@ struct SettingsView: View {
                                 .foregroundColor(.black)
                             Spacer()
                             Image("menu-arrow-black")
-                        }.frame(width: screenWidth * 0.8, height: screenHeight*0.05, alignment: .bottom)
+                        }.frame(width: screenWidth * 0.8, height: screenHeight * 0.05, alignment: .bottom)
                     }
                     Divider()
                         .frame(height: 1)
                         .background(Color(red: 0.90, green: 0.90, blue: 0.90))
                     /*----------Account Settings----------*/
-                    // Change navigationling to correct page once it is created
+                    // Change NavigationLink to correct page once it is created
                     NavigationLink(destination: ContentView()) {
                         HStack {
                             Text("Account Settings")
@@ -79,13 +83,13 @@ struct SettingsView: View {
                                 .foregroundColor(.black)
                             Spacer()
                             Image("menu-arrow-black")
-                        }.frame(width: screenWidth * 0.8, height: screenHeight*0.05, alignment: .bottom)
+                        }.frame(width: screenWidth * 0.8, height: screenHeight * 0.05, alignment: .bottom)
                     }
                     Divider()
                         .frame(height: 1)
                         .background(Color(red: 0.90, green: 0.90, blue: 0.90))
                     /*----------Name and Address----------*/
-                    // Change navigationling to correct page once it is created
+                    // Change NavigationLink to correct page once it is created
                     NavigationLink(destination: ContentView()) {
                         HStack {
                             Text("Name and Address")
@@ -93,13 +97,13 @@ struct SettingsView: View {
                                 .foregroundColor(.black)
                             Spacer()
                             Image("menu-arrow-black")
-                        }.frame(width: screenWidth * 0.8, height: screenHeight*0.05, alignment: .bottom)
+                        }.frame(width: screenWidth * 0.8, height: screenHeight * 0.05, alignment: .bottom)
                     }
                     Divider()
                         .frame(height: 1)
                         .background(Color(red: 0.90, green: 0.90, blue: 0.90))
                     /*----------About----------*/
-                    // Change navigationling to correct page once it is created
+                    // Change NavigationLink to correct page once it is created
                     NavigationLink(destination: ContentView()) {
                         HStack {
                             Text("About")
@@ -107,7 +111,7 @@ struct SettingsView: View {
                                 .foregroundColor(.black)
                             Spacer()
                             Image("menu-arrow-black")
-                        }.frame(width: screenWidth * 0.8, height: screenHeight*0.05, alignment: .bottom)
+                        }.frame(width: screenWidth * 0.8, height: screenHeight * 0.05, alignment: .bottom)
                     }
                     Divider()
                         .frame(height: 1)
@@ -131,7 +135,7 @@ struct SettingsView: View {
         .edgesIgnoringSafeArea(.top)
         .frame(minHeight: 0, maxHeight: screenHeight, alignment: .bottom)
         .navigationBarBackButtonHidden(true)
-        .navigationBarItems(leading: BackButton)
+        .navigationBarHidden(true)
     }
 }
 
