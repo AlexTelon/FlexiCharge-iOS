@@ -9,6 +9,8 @@ import SwiftUI
 
 struct IdentifyChargerView: View {
     @Binding var isChargingInProgress: Bool
+    @Binding var chargingInProgressID: Int
+    @Binding var chargers: ChargerAPI
     let screenHeight = UIScreen.main.bounds.size.height
     @State private var chargerIdLength: Int = 6
     @State private var username: String = ""
@@ -22,8 +24,10 @@ struct IdentifyChargerView: View {
     @State var value: CGFloat = 0
     @State var keyboardHeight: CGFloat = 0
     
-    init(isChargingInProgress: Binding<Bool>) {
+    init(isChargingInProgress: Binding<Bool>, chargingInProgressID: Binding<Int>, chargers: Binding<ChargerAPI>) {
         self._isChargingInProgress = isChargingInProgress
+        self._chargingInProgressID = chargingInProgressID
+        self._chargers = chargers
     }
 
     var body: some View {
@@ -83,7 +87,7 @@ struct IdentifyChargerView: View {
                     }.frame(width: 300, height: 53, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                     .background(buttonColor)
                     .cornerRadius(5)
-                    .disabled(isButtonDisabled)
+                    .disabled(false)
                     .opacity(isButtonVisible)
                 }
             }.padding()
@@ -99,23 +103,16 @@ struct IdentifyChargerView: View {
         if chargerIdInput.count > limit || Int(chargerIdInput) == nil && chargerIdInput.count > 0 {
             chargerIdInput.removeLast()
         } else if chargerIdInput.count == limit {
-            let status = getChargerStatus(chargerId: Int(chargerIdInput)!)
+            let status = getChargerStatus(chargers: chargers, chargerId: Int(chargerIdInput)!)
             drawChargingButton(status: status)
         }
     }
     
     func drawChargingButton(status: Int) {
-        let notIdentified: Int = 0
-        let success: Int = 1
-        let occupied: Int = 2
-        let outOfOrder: Int = 3
-        if status == notIdentified {
-            buttonText = "Charger Not Identified"
-            buttonColor = Color(red: 0.90, green: 0.90, blue: 0.90)
-            isButtonDisabled = true
-            isButtonVisible = 1
-            buttonTextColor = Color(red: 0.30, green: 0.30, blue: 0.30)
-        } else if status == success {
+        let occupied: Int = 0
+        let available: Int = 1
+        let outOfOrder: Int = 2
+        if status == available {
             buttonText = "Begin Charging"
             buttonColor = Color(red: 0.47, green: 0.74, blue: 0.46)
             isButtonDisabled = false
@@ -133,10 +130,19 @@ struct IdentifyChargerView: View {
             isButtonDisabled = true
             isButtonVisible = 1
             buttonTextColor = Color(red: 0.30, green: 0.30, blue: 0.30)
+        } else {
+            buttonText = "Charger Not Identified"
+            buttonColor = Color(red: 0.90, green: 0.90, blue: 0.90)
+            isButtonDisabled = true
+            isButtonVisible = 1
+            buttonTextColor = Color(red: 0.30, green: 0.30, blue: 0.30)
         }
     }
     func startCharging() {
+        ChargerAPI().beginCharging(chargerID: Int(chargerIdInput)!)
         isChargingInProgress = true
+        chargingInProgressID = Int(chargerIdInput)!
+        
         //Add functionality to startChargingButton
         //Send all selected options to API
     }
@@ -146,7 +152,7 @@ struct IdentifyChargerView: View {
 
 struct IdentifyChargerView_Previews: PreviewProvider {
     static var previews: some View {
-        IdentifyChargerView(isChargingInProgress: .constant(true))
+        IdentifyChargerView(isChargingInProgress: .constant(true), chargingInProgressID: .constant(0), chargers: .constant(ChargerAPI()))
     }
 }
 
