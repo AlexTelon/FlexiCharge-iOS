@@ -75,9 +75,9 @@ struct RecoverPasswordView: View {
                 // TODO: send email to recover  password
                 Text("Send")
                     .font(Font.system(size: 20,weight: .bold, design: .default))
+                    .frame(width: screenWidth * 0.8, height: 48)
             }
             .isDetailLink(false)
-            .frame(width: screenWidth * 0.8, height: 48)
             .background(Color(red: 0.47, green: 0.74, blue: 0.46))
             .foregroundColor(.white)
             .cornerRadius(5)
@@ -91,9 +91,9 @@ struct RecoverPasswordView: View {
     }
 }
 
-//struct RecoverPasswordView_Previews: PreviewProvider {
-//    @Binding var rootIsActive: Bool
-//    static var previews: some View {
-//        RecoverPasswordView()
-//    }
-//}
+struct RecoverPasswordView_Previews: PreviewProvider {
+    @Binding var rootIsActive: Bool
+    static var previews: some View {
+        RecoverPasswordView(rootIsActive: .constant(false))
+    }
+}

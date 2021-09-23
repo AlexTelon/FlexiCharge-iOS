@@ -43,8 +43,8 @@ struct EmailSentView: View {
                 }, label: {
                     Text("Back to log in")
                         .font(Font.system(size: 20,weight: .bold, design: .default))
+                        .frame(width: screenWidth * 0.8, height: 48)
                 })
-                .frame(width: screenWidth * 0.8, height: 48)
                 .background(Color(red: 0.47, green: 0.74, blue: 0.46))
                 .foregroundColor(.white)
                 .cornerRadius(5)
