@@ -8,9 +8,11 @@
 import SwiftUI
 
 struct IdentifyChargerView: View {
+    @Binding var isShowingListOfChargers: Bool
     @Binding var isChargingInProgress: Bool
     @Binding var chargingInProgressID: Int
     @Binding var chargers: ChargerAPI
+    let screenWidth = UIScreen.main.bounds.size.width
     let screenHeight = UIScreen.main.bounds.size.height
     @State private var chargerIdLength: Int = 6
     @State private var username: String = ""
@@ -21,10 +23,14 @@ struct IdentifyChargerView: View {
     @State private var isButtonDisabled: Bool = true
     @State private var isButtonVisible: Double = 0
     @State private var buttonTextColor: Color = .clear
+    @State var listOfChargersHeight: CGFloat = 0.0
     @State var value: CGFloat = 0
     @State var keyboardHeight: CGFloat = 0
     
-    init(isChargingInProgress: Binding<Bool>, chargingInProgressID: Binding<Int>, chargers: Binding<ChargerAPI>) {
+    
+    init(isChargingInProgress: Binding<Bool>, chargingInProgressID: Binding<Int>, chargers: Binding<ChargerAPI>, isShowingListOfChargers: Binding<Bool>) {
+        UITableView.appearance().backgroundColor = UIColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 1)
+        self._isShowingListOfChargers = isShowingListOfChargers
         self._isChargingInProgress = isChargingInProgress
         self._chargingInProgressID = chargingInProgressID
         self._chargers = chargers
@@ -36,10 +42,17 @@ struct IdentifyChargerView: View {
                 .fill(Color(red: 0.2, green: 0.2, blue: 0.2))
                 .frame(minHeight: 0, maxHeight: .infinity)
             VStack {
-                Image("menu-arrow").rotationEffect(.degrees(180))
+                Button(action: {
+                    isShowingListOfChargers.toggle()
+                }) {
+                    Image("menu-arrow").rotationEffect(.degrees(isShowingListOfChargers ? 0 : 180))
+                }
                 Text("Chargers Near Me")
                     .foregroundColor(.white)
-                    .padding(.bottom, 40)
+                    .opacity(isShowingListOfChargers ? 0 : 1)
+                ChargerList(isShowingListOfChargers: $isShowingListOfChargers)
+                Text("Spacing").hidden()
+                
                 ZStack {
                     HStack {
                         ForEach(0 ..< chargerIdLength) {i in
@@ -47,7 +60,7 @@ struct IdentifyChargerView: View {
                                 RoundedRectangle(cornerRadius: 5)
                                     .fill(Color.white)
                                     .frame(width: 34, height: 53)
-                                    .padding(.horizontal, 8)
+                                    .padding(.horizontal, screenWidth * 0.01)
                                 RoundedRectangle(cornerRadius: 2)
                                     .fill(Color(red: 0.90, green: 0.90, blue: 0.90))
                                     .frame(width: 24, height: 2)
@@ -61,7 +74,7 @@ struct IdentifyChargerView: View {
                             }
                         }
                     }.padding(.bottom, 40)
-
+                    
                     TextField("", text: $chargerIdInput)
                         .foregroundColor(.clear)
                         .background(Color.clear)
@@ -78,19 +91,24 @@ struct IdentifyChargerView: View {
                     Text("Enter the Code Written on the Charger")
                         .foregroundColor(.white)
                         .opacity(isButtonVisible == 1 ? 0 : 1)
+                        .offset(y: -35)
                     Button(action: {
                         startCharging()
                     }){
                         Text(buttonText)
                             .font(Font.system(size: 20,weight: .bold, design: .default))
                             .foregroundColor(buttonTextColor)
-                    }.frame(width: 300, height: 53, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                    }.frame(width: screenWidth * 0.8, height: 53, alignment: .center)
                     .background(buttonColor)
                     .cornerRadius(5)
-                    .disabled(false)
+                    .disabled(isButtonDisabled)
                     .opacity(isButtonVisible)
+                    .offset(y: -25)
                 }
-            }.padding()
+            }
+            .frame(width: screenWidth * 0.8)
+            .padding(.vertical)
+            .padding(.horizontal, 12)
         }
     }
     // Makes sure the entered charger id is not too long or is not all integers
@@ -151,8 +169,9 @@ struct IdentifyChargerView: View {
 
 
 struct IdentifyChargerView_Previews: PreviewProvider {
+    @State var preview = false
     static var previews: some View {
-        IdentifyChargerView(isChargingInProgress: .constant(true), chargingInProgressID: .constant(0), chargers: .constant(ChargerAPI()))
+        IdentifyChargerView(isChargingInProgress: .constant(true), chargingInProgressID: .constant(0), chargers: .constant(ChargerAPI()), isShowingListOfChargers: .constant(false))
     }
 }
 
