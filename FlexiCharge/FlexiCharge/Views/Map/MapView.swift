@@ -9,14 +9,17 @@ import SwiftUI
 import MapKit
 
 struct MapView: View {
+    @Binding var chargers: ChargerAPI
     @StateObject private var manager = LocationManager()
-    @State private var chargers = ChargerAPI()
     let chargerStatusPins = ["occupied-charger-pin", "available-charger-pin"]
 
     @State private var region = MKCoordinateRegion(
             center: CLLocationCoordinate2D(latitude: 57.778568, longitude: 14.163727),
             span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
         )
+    init(chargers: Binding<ChargerAPI>) {
+        self._chargers = chargers
+    }
 
     // This region variable is only for the simulator to get the location of Jönköping.
     // For user location you should use $manager.region below instead.
@@ -35,6 +38,6 @@ struct MapView: View {
 
 struct MapView_Previews: PreviewProvider {
     static var previews: some View {
-        MapView()
+        MapView(chargers: .constant(ChargerAPI()))
     }
 }

@@ -10,6 +10,7 @@ import SwiftUI
 struct ChargingInProgressView: View {
     @Binding var isShowingDisconnentButton: Bool
     @Binding var isChargingInProgress: Bool
+    @Binding var chargingInProgressID: Int
     let screenHeight = UIScreen.main.bounds.size.height
     let screenWidth = UIScreen.main.bounds.size.width
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
@@ -99,6 +100,7 @@ struct ChargingInProgressView: View {
                         }
                         Button(action: {
                             isChargingInProgress = false
+                            ChargerAPI().stopCharging(chargerID: chargingInProgressID)
                         }, label: {
                             Text(charge == 100 ? "Stop Charging" : "Disconnect").foregroundColor(.white)
                                 .frame(minWidth: 0, maxWidth: .infinity)
@@ -136,6 +138,6 @@ struct ChargingInProgressView: View {
 
 struct ChargingInProgressView_Previews: PreviewProvider {
     static var previews: some View {
-        ChargingInProgressView(isShowingDisconnentButton: .constant(false), isChargingInProgress: .constant(true))
+        ChargingInProgressView(isShowingDisconnentButton: .constant(false), isChargingInProgress: .constant(true), chargingInProgressID: .constant(0))
     }
 }
