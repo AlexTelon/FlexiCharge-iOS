@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ChargingInProgressView: View {
-    @Binding var isShowingDissconentButton: Bool
+    @Binding var isShowingDisconnentButton: Bool
     @Binding var isChargingInProgress: Bool
     let screenHeight = UIScreen.main.bounds.size.height
     let screenWidth = UIScreen.main.bounds.size.width
@@ -89,12 +89,12 @@ struct ChargingInProgressView: View {
                     }
                     VStack{
                         VStack {
-                            Text(isShowingDissconentButton == true ? "" : "Pull down to disconnect").foregroundColor(.white)
+                            Text(isShowingDisconnentButton == true ? "" : "Pull down to disconnect").foregroundColor(.white)
                                 .font(Font.system(size: 10, design: .default))
                             Button(action: {
-                                isShowingDissconentButton = true
+                                isShowingDisconnentButton = true
                             }, label: {
-                                Image("menu-arrow").frame(maxHeight: isShowingDissconentButton == true ? 0: 20 )
+                                Image("menu-arrow").frame(maxHeight: isShowingDisconnentButton == true ? 0: 20 )
                             }).animation(.none)
                         }
                         Button(action: {
@@ -106,8 +106,8 @@ struct ChargingInProgressView: View {
                                 .padding()
                                 .overlay(
                                     RoundedRectangle(cornerRadius: 25)
-                                        .stroke(Color.white, lineWidth: 1)).frame(maxHeight: isShowingDissconentButton == true ? 50: 0 )
-                        }).zIndex(isShowingDissconentButton == true ? 2: -1)
+                                        .stroke(Color.white, lineWidth: 1)).frame(maxHeight: isShowingDisconnentButton == true ? 50: 0 )
+                        }).zIndex(isShowingDisconnentButton == true ? 2: -1)
                     }
                 }.frame(width: screenWidth * 0.85, height: screenHeight * 0.35)
             }
@@ -136,6 +136,6 @@ struct ChargingInProgressView: View {
 
 struct ChargingInProgressView_Previews: PreviewProvider {
     static var previews: some View {
-        ChargingInProgressView(isShowingDissconentButton: .constant(false), isChargingInProgress: .constant(true))
+        ChargingInProgressView(isShowingDisconnentButton: .constant(false), isChargingInProgress: .constant(true))
     }
 }
