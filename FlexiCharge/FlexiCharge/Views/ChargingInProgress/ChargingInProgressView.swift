@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ChargingInProgressView: View {
+    @Binding var isShowingDissconentButton: Bool
+    @Binding var isChargingInProgress: Bool
     let screenHeight = UIScreen.main.bounds.size.height
     let screenWidth = UIScreen.main.bounds.size.width
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
@@ -19,16 +21,16 @@ struct ChargingInProgressView: View {
     
     
     var body: some View {
-        ZStack {
-            ZStack(alignment: .top) {
+        ZStack(alignment: .bottom) {
+            ZStack(alignment: .bottom) {
                 RoundedRectangle(cornerRadius: 5)
                     .fill(Color(red: 0.2, green: 0.2, blue: 0.2))
-                    .frame(minHeight: 0, maxHeight: screenHeight * 0.3)
+                    .frame(minHeight: 0, maxHeight: screenHeight * 0.4)
                 VStack {
                     Text(charge == 100 ? "Fully Charged" : "Charging in Progress").foregroundColor(.white)
                         .font(Font.system(size: 20, weight: .bold, design: .default))
                         .padding()
-                    HStack{
+                    HStack {
                         //Charging loading screen
                         ZStack {
                             Circle()
@@ -60,7 +62,7 @@ struct ChargingInProgressView: View {
                         }.frame(width: 70, height: 70)
                         Spacer()
                         //Charging information
-                        VStack{
+                        VStack {
                             HStack {
                                 Spacer()
                                 Image("location-pin")
@@ -85,36 +87,55 @@ struct ChargingInProgressView: View {
                             }
                         }.frame(width: screenWidth * 0.65)
                     }
-                    Text("Pull down to disconnect").foregroundColor(.white)
-                        .font(Font.system(size: 10, design: .default))
-                    Image("menu-arrow").padding(.bottom)
-                }.frame(width: screenWidth * 0.85, height: screenHeight * 0.25)
-                .padding()
-                .zIndex(1.0)
+                    VStack{
+                        VStack {
+                            Text(isShowingDissconentButton == true ? "" : "Pull down to disconnect").foregroundColor(.white)
+                                .font(Font.system(size: 10, design: .default))
+                            Button(action: {
+                                isShowingDissconentButton = true
+                            }, label: {
+                                Image("menu-arrow").frame(maxHeight: isShowingDissconentButton == true ? 0: 20 )
+                            }).animation(.none)
+                        }
+                        Button(action: {
+                            isChargingInProgress = false
+                        }, label: {
+                            Text(charge == 100 ? "Stop Charging" : "Disconnect").foregroundColor(.white)
+                                .frame(minWidth: 0, maxWidth: .infinity)
+                                .font(.system(size: 18))
+                                .padding()
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 25)
+                                        .stroke(Color.white, lineWidth: 1)).frame(maxHeight: isShowingDissconentButton == true ? 50: 0 )
+                        }).zIndex(isShowingDissconentButton == true ? 2: -1)
+                    }
+                }.frame(width: screenWidth * 0.85, height: screenHeight * 0.35)
             }
-            ZStack(alignment: .center) {
-                RoundedRectangle(cornerRadius: 5)
-                    .fill(Color(red: 0.2, green: 0.2, blue: 0.2))
-                    .frame(minHeight: 0, maxHeight: screenHeight * 0.3)
-                VStack {
-                    Text("Charging Started")
-                        .foregroundColor(.white)
-                        .font(Font.system(size: 20, weight: .bold, design: .default))
-                    HStack {
-                        Image("logoIconColor")
-                        Spacer()
-                        Image("arrow-white")
-                        Spacer()
-                        Image("chargeStarting")
-                    }.frame(width: screenWidth * 0.6)
-                }
-            }.animation(.easeInOut(duration: 1))
+            
+            //Loadingscreen Work in progress
+//            ZStack(alignment: .center) {
+//                RoundedRectangle(cornerRadius: 5)
+//                    .fill(Color(red: 0.2, green: 0.2, blue: 0.2))
+//                    .frame(minHeight: 0, maxHeight: screenHeight * 0.3)
+//                VStack {
+//                    Text("Charging Started")
+//                        .foregroundColor(.white)
+//                        .font(Font.system(size: 20, weight: .bold, design: .default))
+//                    HStack {
+//                        Image("logoIconColor")
+//                        Spacer()
+//                        Image("arrow-white")
+//                        Spacer()
+//                        Image("chargeStarting")
+//                    }.frame(width: screenWidth * 0.6)
+//                }
+//            }.animation(.easeInOut(duration: 1))
         }
     }
 }
 
 struct ChargingInProgressView_Previews: PreviewProvider {
     static var previews: some View {
-        ChargingInProgressView()
+        ChargingInProgressView(isShowingDissconentButton: .constant(false), isChargingInProgress: .constant(true))
     }
 }
