@@ -11,11 +11,11 @@
 		651A7A5D26EF4A0300A8A16D /* RegisterAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651A7A5C26EF4A0300A8A16D /* RegisterAccountViewModel.swift */; };
 		651A7A6026F879F000A8A16D /* SetUpInvoiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651A7A5F26F879F000A8A16D /* SetUpInvoiceView.swift */; };
 		65F14A3926F8872A00C9B443 /* SetupUpInvoiceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F14A3826F8872A00C9B443 /* SetupUpInvoiceViewModel.swift */; };
-		65F14A3B26F88BF800C9B443 /* SSNApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F14A3A26F88BF800C9B443 /* SSNApi.swift */; };
 		D327CD6426E64D0D007FC380 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D327CD6326E64D0D007FC380 /* MapView.swift */; };
 		D327CD6626E65F33007FC380 /* IdentifyChargerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D327CD6526E65F32007FC380 /* IdentifyChargerView.swift */; };
 		D334B13526EF9ABE000D31E9 /* RecoverPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D334B13426EF9ABE000D31E9 /* RecoverPasswordView.swift */; };
 		D334B13726EFBBAA000D31E9 /* EmailSentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D334B13626EFBBAA000D31E9 /* EmailSentView.swift */; };
+		D3A1D66A26FB3B0900B71BCA /* ChargerAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A1D66926FB3B0900B71BCA /* ChargerAPI.swift */; };
 		D3A2033226F22411007B0D90 /* CodeScanner in Frameworks */ = {isa = PBXBuildFile; productRef = D3A2033126F22411007B0D90 /* CodeScanner */; };
 		D3A2033826F24025007B0D90 /* QROverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A2033726F24025007B0D90 /* QROverlayView.swift */; };
 		D3A2033E26F4846B007B0D90 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A2033D26F4846B007B0D90 /* LoginView.swift */; };
@@ -54,11 +54,11 @@
 		651A7A5C26EF4A0300A8A16D /* RegisterAccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterAccountViewModel.swift; sourceTree = "<group>"; };
 		651A7A5F26F879F000A8A16D /* SetUpInvoiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUpInvoiceView.swift; sourceTree = "<group>"; };
 		65F14A3826F8872A00C9B443 /* SetupUpInvoiceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupUpInvoiceViewModel.swift; sourceTree = "<group>"; };
-		65F14A3A26F88BF800C9B443 /* SSNApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SSNApi.swift; path = FlexiCharge/Views/SetupInvoice/SSNApi.swift; sourceTree = SOURCE_ROOT; };
 		D327CD6326E64D0D007FC380 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		D327CD6526E65F32007FC380 /* IdentifyChargerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifyChargerView.swift; sourceTree = "<group>"; };
 		D334B13426EF9ABE000D31E9 /* RecoverPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoverPasswordView.swift; sourceTree = "<group>"; };
 		D334B13626EFBBAA000D31E9 /* EmailSentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailSentView.swift; sourceTree = "<group>"; };
+		D3A1D66926FB3B0900B71BCA /* ChargerAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ChargerAPI.swift; path = FlexiCharge/Views/IdentifyCharger/ChargerAPI.swift; sourceTree = SOURCE_ROOT; };
 		D3A2033726F24025007B0D90 /* QROverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QROverlayView.swift; sourceTree = "<group>"; };
 		D3A2033D26F4846B007B0D90 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		D3D6D14E26E6286500B77B16 /* FlexiCharge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlexiCharge.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -127,7 +127,7 @@
 		D311946726E9112E004DCFC8 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				65F14A3A26F88BF800C9B443 /* SSNApi.swift */,
+				D3A1D66926FB3B0900B71BCA /* ChargerAPI.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -416,7 +416,7 @@
 				D3D6D15E26E6286700B77B16 /* FlexiCharge.xcdatamodeld in Sources */,
 				651A7A5B26EF490000A8A16D /* RegisterAccountView.swift in Sources */,
 				651A7A5D26EF4A0300A8A16D /* RegisterAccountViewModel.swift in Sources */,
-				65F14A3B26F88BF800C9B443 /* SSNApi.swift in Sources */,
+				D3A1D66A26FB3B0900B71BCA /* ChargerAPI.swift in Sources */,
 				D334B13526EF9ABE000D31E9 /* RecoverPasswordView.swift in Sources */,
 				D3A2033826F24025007B0D90 /* QROverlayView.swift in Sources */,
 				FD8B4F1526EA11D400B0FDB5 /* IdentifyChargerViewModel.swift in Sources */,
