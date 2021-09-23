@@ -8,16 +8,24 @@
 import SwiftUI
 import CoreData
 import MapKit
+import CodeScanner
 
 struct ContentView: View {
     let screenHeight = UIScreen.main.bounds.size.height
     let screenWidth = UIScreen.main.bounds.size.width
     let listHeight: CGFloat
+    @State var isShowingListOfChargers: Bool = false
+    @State var isChargingInProgress: Bool = false
+    @State var chargingInProgressID: Int = 0
+    @State var isShowingDisconnentButton: Bool = false
     @State var offset: CGFloat = 0
     @State var lastOffset: CGFloat = 0
     @State var keyboardHeight: CGFloat = 0
-    @State var isShowingListOfChargers: Bool = false
+    @State private var chargers = ChargerAPI()
+    @State private var isShowingScanner: Bool = false
+    @State private var notUrl: Bool = false
     @GestureState private var gestureOffset: CGFloat = 0
+    @Environment(\.openURL) var openURL
     
     init() {
         UITableView.appearance().backgroundColor = UIColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 1)
@@ -28,7 +36,7 @@ struct ContentView: View {
         NavigationView {
             Group {
                 ZStack(alignment: .bottom) {
-                    MapView()
+                    MapView(chargers: $chargers)
                         .frame(minHeight: 0, maxHeight: .infinity)
                         .edgesIgnoringSafeArea(.all)
                         .onTapGesture {
@@ -36,6 +44,10 @@ struct ContentView: View {
                             isShowingListOfChargers = false
                             hideKeyboard()
                         }
+                    ChargingInProgressView(isShowingDisconnentButton: $isShowingDisconnentButton, isChargingInProgress: $isChargingInProgress, chargingInProgressID: $chargingInProgressID)
+                        .transition(.move(edge: .top))
+                        .animation(.easeInOut(duration: 0.2))
+                        .offset(y: isChargingInProgress ? -screenHeight * 0.67: -screenHeight)
                     VStack {
                         HStack {
                             VStack {
@@ -65,7 +77,10 @@ struct ContentView: View {
                                         .font(Font.system(.title2))
                                         .foregroundColor(.white)
                                 }
-                            }).offset(x: screenWidth * -0.15)
+                            }).offset(x:screenWidth * -0.15)
+                            .sheet(isPresented: $isShowingScanner) {
+                                CodeScannerView(codeTypes: [.qr], simulatedData: "QR scan", completion: self.handleScan).overlay(QROverlayView())
+                            }
                             Button(action: {
                                 let maxHeight = screenHeight / 2.5
                                 offset = -maxHeight
@@ -94,7 +109,7 @@ struct ContentView: View {
                         .padding(.horizontal, screenWidth * 0.1)
                     }
                     let conditionOffset = self.offset + screenHeight - self.keyboardHeight
-                    IdentifyChargerView(isShowingListOfChargers: $isShowingListOfChargers)
+                    IdentifyChargerView(isChargingInProgress: $isChargingInProgress, chargingInProgressID: $chargingInProgressID, chargers: $chargers, isShowingListOfChargers: $isShowingListOfChargers )
                         .transition(.move(edge: .bottom))
                         .animation(.easeInOut(duration: 0.2))
                         .offset(y: isShowingListOfChargers ? conditionOffset - listHeight  : conditionOffset)
@@ -132,6 +147,7 @@ struct ContentView: View {
             }.background(Color(red: 0.2, green: 0.2, blue: 0.2).ignoresSafeArea(.all))
         }.navigationBarHidden(true)
     }
+    
     func onChange() {
         DispatchQueue.main.async {
             self.offset = gestureOffset + lastOffset
@@ -139,6 +155,7 @@ struct ContentView: View {
     }
     func cameraButton() {
         // Function to open camera and and scan qrcode and return a charer id
+        self.isShowingScanner = true
     }
     func findUserOnMap() {
         // Find the user on the map
@@ -146,6 +163,24 @@ struct ContentView: View {
     
     func hideKeyboard() {
         UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+    }
+    
+    func handleScan(result: Result<String, CodeScannerView.ScanError>) {
+        self.isShowingScanner = false
+        
+        switch result {
+        case .success(let details):
+            //            let details = code
+            if URL(string: details) != nil {
+                openURL(URL(string: details)!)
+            } else {
+                notUrl = true
+            }
+            print("QR CODE DETAILS", details)
+        case .failure(_):
+            print("Scanning failed")
+            notUrl = true
+        }
     }
 }
 

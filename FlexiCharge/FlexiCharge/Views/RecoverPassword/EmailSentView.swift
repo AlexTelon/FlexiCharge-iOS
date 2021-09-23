@@ -67,10 +67,3 @@ struct EmailSentView: View {
         .edgesIgnoringSafeArea(.top)
     }
 }
-
-// This is the preview that for now is commented out because of an error with Binding variables.
-//struct EmailSentView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        EmailSentView(email: "Jill.Valentine@starrs.gov", shouldPopToRootView: false)
-//    }
-//}
