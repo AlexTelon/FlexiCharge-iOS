@@ -109,7 +109,7 @@ struct ContentView: View {
                         .padding(.horizontal, screenWidth * 0.1)
                     }
                     let conditionOffset = self.offset + screenHeight - self.keyboardHeight
-                    IdentifyChargerView(isChargingInProgress: $isChargingInProgress, chargingInProgressID: $chargingInProgressID, chargers: $chargers, isShowingListOfChargers: $isShowingListOfChargers )
+                    IdentifyChargerView(isChargingInProgress: $isChargingInProgress, chargingInProgressID: $chargingInProgressID, chargers: $chargers, isShowingListOfChargers: $isShowingListOfChargers, offset: $offset)
                         .transition(.move(edge: .bottom))
                         .animation(.easeInOut(duration: 0.2))
                         .offset(y: isShowingListOfChargers ? conditionOffset - listHeight  : conditionOffset)

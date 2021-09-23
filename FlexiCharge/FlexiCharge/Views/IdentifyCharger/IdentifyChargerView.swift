@@ -12,6 +12,7 @@ struct IdentifyChargerView: View {
     @Binding var isChargingInProgress: Bool
     @Binding var chargingInProgressID: Int
     @Binding var chargers: ChargerAPI
+    @Binding var offset: CGFloat
     let screenWidth = UIScreen.main.bounds.size.width
     let screenHeight = UIScreen.main.bounds.size.height
     @State private var chargerIdLength: Int = 6
@@ -28,12 +29,13 @@ struct IdentifyChargerView: View {
     @State var keyboardHeight: CGFloat = 0
     
     
-    init(isChargingInProgress: Binding<Bool>, chargingInProgressID: Binding<Int>, chargers: Binding<ChargerAPI>, isShowingListOfChargers: Binding<Bool>) {
+    init(isChargingInProgress: Binding<Bool>, chargingInProgressID: Binding<Int>, chargers: Binding<ChargerAPI>, isShowingListOfChargers: Binding<Bool>, offset: Binding<CGFloat>) {
         UITableView.appearance().backgroundColor = UIColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 1)
         self._isShowingListOfChargers = isShowingListOfChargers
         self._isChargingInProgress = isChargingInProgress
         self._chargingInProgressID = chargingInProgressID
         self._chargers = chargers
+        self._offset = offset
     }
 
     var body: some View {
@@ -101,7 +103,7 @@ struct IdentifyChargerView: View {
                     }.frame(width: screenWidth * 0.8, height: 53, alignment: .center)
                     .background(buttonColor)
                     .cornerRadius(5)
-                    .disabled(isButtonDisabled)
+                    .disabled(false)
                     .opacity(isButtonVisible)
                     .offset(y: -25)
                 }
@@ -156,11 +158,17 @@ struct IdentifyChargerView: View {
             buttonTextColor = Color(red: 0.30, green: 0.30, blue: 0.30)
         }
     }
+    
+    func hideKeyboard() {
+        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+    }
+    
     func startCharging() {
         ChargerAPI().beginCharging(chargerID: Int(chargerIdInput)!)
         isChargingInProgress = true
         chargingInProgressID = Int(chargerIdInput)!
-        
+        offset = 0
+        hideKeyboard()
         //Add functionality to startChargingButton
         //Send all selected options to API
     }
@@ -171,7 +179,7 @@ struct IdentifyChargerView: View {
 struct IdentifyChargerView_Previews: PreviewProvider {
     @State var preview = false
     static var previews: some View {
-        IdentifyChargerView(isChargingInProgress: .constant(true), chargingInProgressID: .constant(0), chargers: .constant(ChargerAPI()), isShowingListOfChargers: .constant(false))
+        IdentifyChargerView(isChargingInProgress: .constant(true), chargingInProgressID: .constant(0), chargers: .constant(ChargerAPI()), isShowingListOfChargers: .constant(false), offset: .constant(0))
     }
 }
 
