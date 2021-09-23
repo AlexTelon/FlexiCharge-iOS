@@ -6,11 +6,13 @@
 //
 
 import Foundation
+let testChargers: [Int: Int] = [111111: 1, 123456: 2, 133777: 3]
 
-func getChargerStatus(chargers: ChargerAPI, chargerId: Int) -> Int {
-    let notIdentified: Int = 5
-    if let charger = chargers.result.first(where: {$0.chargerID == chargerId}) {
-        return charger.status
+
+func getChargerStatus(chargerId: Int) -> Int {
+    let notIdentified: Int = 0
+    if testChargers[chargerId] == nil {
+            return notIdentified
     }
-    return notIdentified
+    return testChargers[chargerId]!
 }
