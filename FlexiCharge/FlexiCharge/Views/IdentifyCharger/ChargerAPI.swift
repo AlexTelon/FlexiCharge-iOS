@@ -9,17 +9,21 @@ import Foundation
 import Combine
 import SwiftUI
 
-struct ChargerTest: Decodable {
+struct ChargerTest: Decodable, Identifiable {
     var chargerID: Int
     var location: [CGFloat]
     var chargePointID: Int
     var serialNumber: String
     var status: Int
+    
+    var id: Int {
+        chargerID
+    }
 }
 
 class ChargerAPI {
     var didChange = PassthroughSubject<ChargerAPI, Never>()
-    var chargers = [ChargerTest](){
+    var result = [ChargerTest](){
         didSet {
             didChange.send(self)
         }
@@ -33,7 +37,7 @@ class ChargerAPI {
             let decodedData = try! JSONDecoder().decode([ChargerTest].self, from: data)
             
             DispatchQueue.main.async {
-                self.chargers = decodedData
+                self.result = decodedData
             }
             print(decodedData)
         }.resume()
