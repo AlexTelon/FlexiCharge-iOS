@@ -116,7 +116,7 @@ struct SettingsView: View {
                     Divider()
                         .frame(height: 1)
                         .background(Color(red: 0.90, green: 0.90, blue: 0.90))
-                }
+                }.frame(width: screenWidth * 0.8)
                 Spacer()
                 /*----------Log out button----------*/
                 Button(action: {
