@@ -27,7 +27,7 @@ struct MapView: View {
                 coordinate: CLLocationCoordinate2D(latitude: CLLocationDegrees(charger.location[0]), longitude: CLLocationDegrees(charger.location[1])),
                 anchorPoint: CGPoint(x: 0.5, y: 0.5)
             ) {
-                Image(charger.status > 1 ? "not-identified-charger-pin" : chargerStatusPins[charger.status])
+                Image(charger.status > 1 ? "unkown-status-charger-pin" : chargerStatusPins[charger.status])
             }
         }
     }
