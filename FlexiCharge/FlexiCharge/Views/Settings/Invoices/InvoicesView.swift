@@ -20,12 +20,12 @@ struct InvoicesView: View {
     }
     
     var body: some View {
-        VStack{
-            ZStack{
+        VStack {
+            ZStack {
                 Image("top-tilted-rectangle")
                     .resizable()
                     .scaledToFit()
-                HStack (alignment: .center){
+                HStack (alignment: .center) {
                     Button(action: {
                         self.presentationMode.wrappedValue.dismiss()
                     }) {
@@ -64,7 +64,7 @@ struct InvoicesView: View {
                 .padding()
             }
             //User has set up invoicing and can view payments to come
-            else if isInvoiceSetUp && !isInvoiceEmpty{
+            else if isInvoiceSetUp && !isInvoiceEmpty {
                 let invoice = getInvoice()
                 let cost = String(invoice.cost)
                 let invoiceInfo = getInvoiceInfo()
@@ -90,23 +90,23 @@ struct InvoicesView: View {
                                     .offset(y: 20)
                                 }
                                 .frame(width: screenWidth * 0.8, alignment: .top)
-                                HStack{
+                                HStack {
                                     Text(cost + " kr")
                                         .font(Font.system(size: 20, design: .default))
                                         .foregroundColor(.black)
                                     Spacer()
                                 }
-                                .frame(width: screenWidth * 0.8, height: screenHeight*0.04, alignment: .bottom)
+                                .frame(width: screenWidth * 0.8, height: screenHeight * 0.04, alignment: .bottom)
                                 .offset(y: -20)
                                 /*Invoice information*/
-                                if showMore{
+                                if showMore {
                                     HStack{
                                         Text(invoiceInfo.location)
                                             .font(Font.system(size: 20, weight: .thin, design: .default))
                                             .foregroundColor(.black)
                                         Spacer()
                                     }
-                                    .frame(width: screenWidth * 0.8, height: screenHeight*0.05, alignment: .bottom)
+                                    .frame(width: screenWidth * 0.8, height: screenHeight * 0.05, alignment: .bottom)
                                     .offset(y: -20)
                                     .transition(.move(edge: .leading))
                                     .animation(.easeInOut(duration: 0.25))
