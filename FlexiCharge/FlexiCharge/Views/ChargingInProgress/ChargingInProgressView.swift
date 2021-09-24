@@ -14,7 +14,7 @@ struct ChargingInProgressView: View {
     let screenHeight = UIScreen.main.bounds.size.height
     let screenWidth = UIScreen.main.bounds.size.width
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-    @State private var charge: Double = 100
+    @State private var charge: Double = 36.0
     private let gradient = LinearGradient(
         gradient: Gradient(colors: [Color(red: 0.25, green: 0.61, blue: 0.41), Color(red: 0.76, green: 0.83, blue: 0.20)]),
         startPoint: .top,
