@@ -47,7 +47,8 @@ struct ContentView: View {
                     ChargingInProgressView(isShowingDisconnentButton: $isShowingDisconnentButton, isChargingInProgress: $isChargingInProgress, chargingInProgressID: $chargingInProgressID)
                         .transition(.move(edge: .top))
                         .animation(.easeInOut(duration: 0.2))
-                        .offset(y: isChargingInProgress ? -screenHeight * 0.67: -screenHeight)
+                        .offset(y: isChargingInProgress ? -screenHeight * 0.68 : -screenHeight)
+                        .offset(y: isShowingDisconnentButton && isChargingInProgress ? 50 : 0)
                     VStack {
                         HStack {
                             VStack {
