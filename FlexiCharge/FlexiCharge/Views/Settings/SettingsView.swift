@@ -62,7 +62,7 @@ struct SettingsView: View {
                         .background(Color(red: 0.90, green: 0.90, blue: 0.90))
                     /*----------Invoices----------*/
                     // Change NavigationLink to correct page once it is created
-                    NavigationLink(destination: ContentView()) {
+                    NavigationLink(destination: InvoicesView()) {
                         HStack {
                             Text("Invoices")
                                 .font(Font.system(size: 20, design: .default))
