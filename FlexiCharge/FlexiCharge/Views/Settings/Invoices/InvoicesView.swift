@@ -71,12 +71,12 @@ struct InvoicesView: View {
                 Spacer()
                 Text("View your charging history for each month,\n Delivered to you as a single invoice.")
                     .multilineTextAlignment(.center)
-                ScrollView{
+                ScrollView {
                     ForEach(0 ..< 1) {i in
-                        VStack{
+                        VStack {
                             Group {
                                 /*Invoices*/
-                                HStack{
+                                HStack {
                                     Text(invoice.monthYear)
                                         .font(Font.system(size: 20, weight: .thin, design: .default))
                                         .foregroundColor(.black)
@@ -99,18 +99,19 @@ struct InvoicesView: View {
                                 .frame(width: screenWidth * 0.8, height: screenHeight * 0.04, alignment: .bottom)
                                 .offset(y: -20)
                                 /*Invoice information*/
-                                if showMore {
-                                    HStack{
+//                                if showMore {
+                                    HStack {
                                         Text(invoiceInfo.location)
                                             .font(Font.system(size: 20, weight: .thin, design: .default))
                                             .foregroundColor(.black)
                                         Spacer()
                                     }
-                                    .frame(width: screenWidth * 0.8, height: screenHeight * 0.05, alignment: .bottom)
+                                    .frame(width: screenWidth * 0.8, height: showMore ? screenHeight * 0.05 : 0, alignment: .bottom)
+                                    .opacity(showMore ? 1 : 0)
                                     .offset(y: -20)
-                                    .transition(.move(edge: .leading))
+                                    .transition(.move(edge: .top))
                                     .animation(.easeInOut(duration: 0.25))
-                                }
+//                                }
                             }
                             Divider()
                             .frame(width: screenWidth * 0.8, height: 1)
