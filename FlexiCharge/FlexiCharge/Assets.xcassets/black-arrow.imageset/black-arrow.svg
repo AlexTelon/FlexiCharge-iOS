@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="12px" height="21px" viewBox="0 0 12 21" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Fill 1</title>
+    <g id="App-Design" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Profile-and-settings" transform="translate(-327.000000, -242.000000)" fill="#212121">
+            <g id="Group" transform="translate(35.500000, 240.000000)">
+                <polygon id="Fill-1" transform="translate(297.500000, 12.500000) scale(-1, 1) rotate(90.000000) translate(-297.500000, -12.500000) " points="306.638812 6.5 297.499885 15.7467626 288.360957 6.5 287 7.87610478 297.5 18.5 308 7.87610478"></polygon>
+            </g>
+        </g>
+    </g>
+</svg>
