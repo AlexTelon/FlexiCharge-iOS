@@ -60,6 +60,7 @@ struct ChargerHubView: View {
     @State private var boxMinX: CGFloat = 0
     @State private var boxMaxX: CGFloat = 0
     @State private var selectedCharger: ChargerTest?
+    @State private var selectedPayment: String?
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     var body: some View {
@@ -165,7 +166,13 @@ struct ChargerHubView: View {
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .padding()
-                }.frame(maxHeight: 48)
+                }
+                .frame(maxHeight: 48)
+                .border(selectedPayment == PaymentOptions.PAY_NOW ? Color(red: 0.47, green: 0.74, blue: 0.46) : Color.clear, width: 3)
+                .cornerRadius(5)
+                .onTapGesture {
+                    self.selectedPayment = PaymentOptions.PAY_NOW
+                }
                 ZStack {
                     RoundedRectangle(cornerRadius: 5)
                         .fill(Color.white)
@@ -175,7 +182,13 @@ struct ChargerHubView: View {
                         Text("Invoice")
                             .font(.system(size: 12))
                     }
-                }.frame(maxHeight: 48)
+                }
+                .frame(maxHeight: 48)
+                .border(selectedPayment == PaymentOptions.INVOICE ? Color(red: 0.47, green: 0.74, blue: 0.46) : Color.clear, width: 3)
+                .cornerRadius(5)
+                .onTapGesture {
+                    self.selectedPayment = PaymentOptions.INVOICE
+                }
             }
             .frame(maxWidth: screenWidth * 0.82)
             .foregroundColor(.black)
@@ -191,4 +204,9 @@ struct ChargerHubView_Previews: PreviewProvider {
     static var previews: some View {
         ChargerHubView(chargerHub: ChargerHub(id: 2, chargerLocationName: "Asecs Röd Entre, Jönköping ", chargers: [ChargerTest(chargerID: 111111, location: [12.12, 12.12], chargePointID: 1, serialNumber: "miabsginaow", status: 0)], distance: "1.1km"), chargerIdInput: .constant(""))
     }
+}
+
+struct PaymentOptions {
+    static let PAY_NOW = "PAY_NOW"
+    static let INVOICE = "INVOICE"
 }
