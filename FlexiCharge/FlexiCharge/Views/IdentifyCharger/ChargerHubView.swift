@@ -165,7 +165,7 @@ struct ChargerHubView: View {
                     Image("klarna-logo")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
-                        .padding()
+                        .padding(.horizontal, 30)
                 }
                 .frame(maxHeight: 48)
                 .border(selectedPayment == PaymentOptions.PAY_NOW ? Color(red: 0.47, green: 0.74, blue: 0.46) : Color.clear, width: 3)
