@@ -37,22 +37,15 @@ struct IdentifyChargerView: View {
         self._chargers = chargers
         self._offset = offset
     }
-
+    
     var body: some View {
         ZStack(alignment: .top) {
             RoundedRectangle(cornerRadius: 5)
                 .fill(Color(red: 0.2, green: 0.2, blue: 0.2))
                 .frame(minHeight: 0, maxHeight: .infinity)
             VStack {
-                Button(action: {
-                    isShowingListOfChargers.toggle()
-                }) {
-                    Image("menu-arrow").rotationEffect(.degrees(isShowingListOfChargers ? 0 : 180))
-                }
-                Text("Chargers Near Me")
-                    .foregroundColor(.white)
-                    .opacity(isShowingListOfChargers ? 0 : 1)
-                ChargerList(isShowingListOfChargers: $isShowingListOfChargers)
+                
+                ChargerList(isShowingListOfChargers: $isShowingListOfChargers, chargers: chargers.result)
                 Text("Spacing").hidden()
                 
                 ZStack {

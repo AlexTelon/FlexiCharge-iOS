@@ -19,6 +19,7 @@
 		D34A1AC326F53D0E001EB5D2 /* ChargerHub.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34A1AC226F53D0E001EB5D2 /* ChargerHub.swift */; };
 		D34A1AC526F54304001EB5D2 /* ChargerList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34A1AC426F54304001EB5D2 /* ChargerList.swift */; };
 		D35844E826FB6AB1004F5790 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35844E726FB6AB1004F5790 /* LocationManager.swift */; };
+		D3666B2C26FF313100AAA876 /* ChargerHubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3666B2B26FF313100AAA876 /* ChargerHubView.swift */; };
 		D3A1D66A26FB3B0900B71BCA /* ChargerAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A1D66926FB3B0900B71BCA /* ChargerAPI.swift */; };
 		D3A2033226F22411007B0D90 /* CodeScanner in Frameworks */ = {isa = PBXBuildFile; productRef = D3A2033126F22411007B0D90 /* CodeScanner */; };
 		D3A2033826F24025007B0D90 /* QROverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A2033726F24025007B0D90 /* QROverlayView.swift */; };
@@ -66,6 +67,7 @@
 		D34A1AC226F53D0E001EB5D2 /* ChargerHub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChargerHub.swift; sourceTree = "<group>"; };
 		D34A1AC426F54304001EB5D2 /* ChargerList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChargerList.swift; sourceTree = "<group>"; };
 		D35844E726FB6AB1004F5790 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		D3666B2B26FF313100AAA876 /* ChargerHubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChargerHubView.swift; sourceTree = "<group>"; };
 		D3A1D66926FB3B0900B71BCA /* ChargerAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ChargerAPI.swift; path = FlexiCharge/Views/IdentifyCharger/ChargerAPI.swift; sourceTree = SOURCE_ROOT; };
 		D3A2033726F24025007B0D90 /* QROverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QROverlayView.swift; sourceTree = "<group>"; };
 		D3A2033D26F4846B007B0D90 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -174,6 +176,7 @@
 				D34A1AC026F52E89001EB5D2 /* ChargerRowView.swift */,
 				D34A1AC226F53D0E001EB5D2 /* ChargerHub.swift */,
 				D34A1AC426F54304001EB5D2 /* ChargerList.swift */,
+				D3666B2B26FF313100AAA876 /* ChargerHubView.swift */,
 			);
 			path = IdentifyCharger;
 			sourceTree = "<group>";
@@ -424,6 +427,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D3D6D15B26E6286700B77B16 /* Persistence.swift in Sources */,
+				D3666B2C26FF313100AAA876 /* ChargerHubView.swift in Sources */,
 				FDDFFF4626EF7C7F004B8EE9 /* SettingsView.swift in Sources */,
 				D34A1AC126F52E89001EB5D2 /* ChargerRowView.swift in Sources */,
 				D3D6D15E26E6286700B77B16 /* FlexiCharge.xcdatamodeld in Sources */,
