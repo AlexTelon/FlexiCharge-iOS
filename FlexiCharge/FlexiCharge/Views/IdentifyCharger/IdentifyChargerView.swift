@@ -45,7 +45,7 @@ struct IdentifyChargerView: View {
                 .frame(minHeight: 0, maxHeight: .infinity)
             VStack {
                 
-                ChargerList(isShowingListOfChargers: $isShowingListOfChargers, chargers: chargers.result)
+                ChargerList(isShowingListOfChargers: $isShowingListOfChargers, chargers: chargers.result, chargerIdInput: $chargerIdInput)
                 Text("Spacing").hidden()
                 
                 ZStack {

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ChargerList: View {
     @Binding var isShowingListOfChargers: Bool
+    @Binding var chargerIdInput: String
     var chargers: [ChargerTest]
     let screenHeight = UIScreen.main.bounds.size.height
     let listHeight: CGFloat
@@ -17,9 +18,10 @@ struct ChargerList: View {
     @State var menuHeight: CGFloat = 0
     
     
-    init(isShowingListOfChargers: Binding<Bool>, chargers: [ChargerTest]) {
+    init(isShowingListOfChargers: Binding<Bool>, chargers: [ChargerTest], chargerIdInput: Binding<String>) {
         UITableView.appearance().backgroundColor = UIColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 1)
         self._isShowingListOfChargers = isShowingListOfChargers
+        self._chargerIdInput = chargerIdInput
         self.listHeight = screenHeight / 4
         self.chargers = chargers
         self.chargerHubs  = [
@@ -57,7 +59,7 @@ struct ChargerList: View {
                     List {
                         ForEach(chargerHubs) { chargerHub in
                             ZStack {
-                                NavigationLink(destination: ChargerHubView(chargerHub: chargerHub)) {
+                                NavigationLink(destination: ChargerHubView(chargerHub: chargerHub, chargerIdInput: $chargerIdInput)) {
                                     ChargerRowView(chargerHub: chargerHub)
                                 }
                             }
@@ -80,12 +82,11 @@ struct ChargerList: View {
 
 struct ChargerList_Previews: PreviewProvider {
     static var previews: some View {
-        ChargerList(isShowingListOfChargers: .constant(true), chargers: [ChargerTest(chargerID: 999999, location: [57.123, 57.123], chargePointID: 9, serialNumber: "jdiwamgoineawiug", status: 1)])
+        ChargerList(isShowingListOfChargers: .constant(true), chargers: [ChargerTest(chargerID: 999999, location: [57.123, 57.123], chargePointID: 9, serialNumber: "jdiwamgoineawiug", status: 1)], chargerIdInput: .constant(""))
     }
 }
 
 struct ContentLengthPreference: PreferenceKey {
-    var value2: CGFloat
     static var defaultValue: CGFloat { 0 }
     
     static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {

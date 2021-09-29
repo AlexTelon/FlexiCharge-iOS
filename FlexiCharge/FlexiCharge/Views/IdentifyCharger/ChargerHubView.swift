@@ -8,21 +8,17 @@
 import SwiftUI
 
 struct ChargerInfoBox: View {
-    /*@Binding*/ var charger: ChargerTest
+    var charger: ChargerTest
     let chargerStatus = ["Occupied", "Available", "Out of order"]
     let chargerStatusColors = [Color(red: 0.94, green: 0.38, blue: 0.28), Color(red: 0.47, green: 0.74, blue: 0.46)]
     @State public var boxHeight: CGFloat = 0
-    
-//    init(charger: Binding<ChargerTest>) {
-//        self._charger = charger
-//    }
     
     var body: some View {
         ZStack(alignment: .top) {
             RoundedRectangle(cornerRadius: 5)
                 .fill(Color.white)
                 .frame(height: boxHeight)
-                
+            
             HStack(spacing: 20) {
                 VStack {
                     Image("cable-dark")
@@ -38,15 +34,14 @@ struct ChargerInfoBox: View {
                 }
             }.overlay(GeometryReader { proxy in
                 Color
-                   .clear
-                   .preference(key: ContentLengthPreference.self,
-                               value: proxy.size.height) // <-- this
-              })
-            .onPreferenceChange(ContentLengthPreference.self) { value in // <-- this
-                    DispatchQueue.main.async {
-                       self.boxHeight = value + 12
-                    }
-                  }
+                    .clear
+                    .preference(key: ContentLengthPreference.self, value: proxy.size.height)
+            })
+            .onPreferenceChange(ContentLengthPreference.self) { value in
+                DispatchQueue.main.async {
+                    self.boxHeight = value + 12
+                }
+            }
             .font(.system(size: 11))
             .foregroundColor(.black)
             .padding(5)
@@ -56,12 +51,15 @@ struct ChargerInfoBox: View {
 
 struct ChargerHubView: View {
     var chargerHub: ChargerHub
+    @Binding var chargerIdInput: String
+    
     let screenWidth = UIScreen.main.bounds.size.width
     let screenHeight = UIScreen.main.bounds.size.height
     @State var chargerBoxMinX: CGFloat = 0
     @State var chargerBoxMaxX: CGFloat = 0
     @State private var boxMinX: CGFloat = 0
     @State private var boxMaxX: CGFloat = 0
+    @State private var selectedCharger: ChargerTest?
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     var body: some View {
@@ -107,6 +105,12 @@ struct ChargerHubView: View {
                 HStack(spacing: 20) {
                     ForEach(chargerHub.chargers) { charger in
                         ChargerInfoBox(charger: charger)
+                            .border(selectedCharger?.chargerID == charger.chargerID ? Color(red: 0.47, green: 0.74, blue: 0.46) : Color.clear, width: 3)
+                            .cornerRadius(5)
+                            .onTapGesture {
+                                self.selectedCharger = charger
+                                self.chargerIdInput = String(charger.chargerID)
+                            }
                     }
                 }
                 .overlay(GeometryReader { proxy in
@@ -185,6 +189,6 @@ struct ChargerHubView: View {
 
 struct ChargerHubView_Previews: PreviewProvider {
     static var previews: some View {
-        ChargerHubView(chargerHub: ChargerHub(id: 2, chargerLocationName: "Asecs Röd Entre, Jönköping ", chargers: [ChargerTest(chargerID: 111111, location: [12.12, 12.12], chargePointID: 1, serialNumber: "miabsginaow", status: 0)], distance: "1.1km"))
+        ChargerHubView(chargerHub: ChargerHub(id: 2, chargerLocationName: "Asecs Röd Entre, Jönköping ", chargers: [ChargerTest(chargerID: 111111, location: [12.12, 12.12], chargePointID: 1, serialNumber: "miabsginaow", status: 0)], distance: "1.1km"), chargerIdInput: .constant(""))
     }
 }
