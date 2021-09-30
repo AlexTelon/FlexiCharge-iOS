@@ -30,7 +30,7 @@ struct ChargerRowView: View {
                             .padding(.top, 1)
                     } else {
                         ForEach(1...chargerHub.chargers.count, id: \.self) { _ in
-                            Image("Cable")
+                            Image("cable-light")
                                 .resizable()
                                 .frame(width: 22, height: 20)
                                 .padding(.top, -4)
@@ -49,9 +49,7 @@ struct ChargerRowView: View {
 struct ChargerRowView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            ChargerRowView(chargerHub: ChargerHub(id: 1, chargerLocationName: "Kungsgatan 1a, Jönköping", chargers: [
-                Charger(id: 123456, type: 2, kW: 7, krPerkWh: 3.00, availability: "Available")
-            ], distance: "400m"))
+            ChargerRowView(chargerHub: ChargerHub(id: 1, chargerLocationName: "Kungsgatan 1a, Jönköping", chargers: ChargerAPI().result, distance: "400m"))
         }
     }
 }

@@ -9,18 +9,6 @@ import Foundation
 import Combine
 import SwiftUI
 
-struct ChargerTest: Decodable, Identifiable {
-    var chargerID: Int
-    var location: [CGFloat]
-    var chargePointID: Int
-    var serialNumber: String
-    var status: Int
-    
-    var id: Int {
-        chargerID
-    }
-}
-
 class ChargerAPI {
     var didChange = PassthroughSubject<ChargerAPI, Never>()
     var result = [ChargerTest]() {
