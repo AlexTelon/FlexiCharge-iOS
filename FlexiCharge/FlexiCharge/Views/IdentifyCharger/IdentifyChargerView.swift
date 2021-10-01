@@ -96,7 +96,7 @@ struct IdentifyChargerView: View {
                     }.frame(width: screenWidth * 0.8, height: 53, alignment: .center)
                     .background(buttonColor)
                     .cornerRadius(5)
-                    .disabled(false)
+                    .disabled(isButtonDisabled)
                     .opacity(isButtonVisible)
                     .offset(y: -25)
                 }

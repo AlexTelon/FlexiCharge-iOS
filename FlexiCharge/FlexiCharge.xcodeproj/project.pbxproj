@@ -10,6 +10,8 @@
 		651A7A5B26EF490000A8A16D /* RegisterAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651A7A5A26EF490000A8A16D /* RegisterAccountView.swift */; };
 		651A7A5D26EF4A0300A8A16D /* RegisterAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651A7A5C26EF4A0300A8A16D /* RegisterAccountViewModel.swift */; };
 		651A7A6026F879F000A8A16D /* SetUpInvoiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651A7A5F26F879F000A8A16D /* SetUpInvoiceView.swift */; };
+		6592EDF92701BC6900AFB3A1 /* InvoicesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6592EDF82701BC6900AFB3A1 /* InvoicesView.swift */; };
+		6592EDFB2701BCB200AFB3A1 /* InvoicesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6592EDFA2701BCB200AFB3A1 /* InvoicesViewModel.swift */; };
 		65F14A3926F8872A00C9B443 /* SetupUpInvoiceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F14A3826F8872A00C9B443 /* SetupUpInvoiceViewModel.swift */; };
 		D327CD6426E64D0D007FC380 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D327CD6326E64D0D007FC380 /* MapView.swift */; };
 		D327CD6626E65F33007FC380 /* IdentifyChargerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D327CD6526E65F32007FC380 /* IdentifyChargerView.swift */; };
@@ -58,6 +60,8 @@
 		651A7A5A26EF490000A8A16D /* RegisterAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterAccountView.swift; sourceTree = "<group>"; };
 		651A7A5C26EF4A0300A8A16D /* RegisterAccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterAccountViewModel.swift; sourceTree = "<group>"; };
 		651A7A5F26F879F000A8A16D /* SetUpInvoiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUpInvoiceView.swift; sourceTree = "<group>"; };
+		6592EDF82701BC6900AFB3A1 /* InvoicesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvoicesView.swift; sourceTree = "<group>"; };
+		6592EDFA2701BCB200AFB3A1 /* InvoicesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvoicesViewModel.swift; sourceTree = "<group>"; };
 		65F14A3826F8872A00C9B443 /* SetupUpInvoiceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupUpInvoiceViewModel.swift; sourceTree = "<group>"; };
 		D327CD6326E64D0D007FC380 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		D327CD6526E65F32007FC380 /* IdentifyChargerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifyChargerView.swift; sourceTree = "<group>"; };
@@ -132,6 +136,15 @@
 				65F14A3826F8872A00C9B443 /* SetupUpInvoiceViewModel.swift */,
 			);
 			path = SetupInvoice;
+			sourceTree = "<group>";
+		};
+		6592EDF62701BBF900AFB3A1 /* Invoices */ = {
+			isa = PBXGroup;
+			children = (
+				6592EDF82701BC6900AFB3A1 /* InvoicesView.swift */,
+				6592EDFA2701BCB200AFB3A1 /* InvoicesViewModel.swift */,
+			);
+			path = Invoices;
 			sourceTree = "<group>";
 		};
 		D311946726E9112E004DCFC8 /* Models */ = {
@@ -262,7 +275,6 @@
 			isa = PBXGroup;
 			children = (
 				FD9BB76A26F8BC1C00CBE7E5 /* ChargingInProgress */,
-				651A7A5E26F879CC00A8A16D /* SetupInvoice */,
 				D3A2033C26F4845C007B0D90 /* Login */,
 				651A7A5926EF48C900A8A16D /* RegisterAccount */,
 				D3A2033626F2400C007B0D90 /* QR */,
@@ -286,6 +298,8 @@
 		FDDFFF4426EF7C37004B8EE9 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				6592EDF62701BBF900AFB3A1 /* Invoices */,
+				651A7A5E26F879CC00A8A16D /* SetupInvoice */,
 				FDDFFF4526EF7C7F004B8EE9 /* SettingsView.swift */,
 			);
 			path = Settings;
@@ -431,7 +445,9 @@
 				FDDFFF4626EF7C7F004B8EE9 /* SettingsView.swift in Sources */,
 				D34A1AC126F52E89001EB5D2 /* ChargerRowView.swift in Sources */,
 				D3D6D15E26E6286700B77B16 /* FlexiCharge.xcdatamodeld in Sources */,
+				6592EDF92701BC6900AFB3A1 /* InvoicesView.swift in Sources */,
 				D34A1AC526F54304001EB5D2 /* ChargerList.swift in Sources */,
+				6592EDFB2701BCB200AFB3A1 /* InvoicesViewModel.swift in Sources */,
 				651A7A5B26EF490000A8A16D /* RegisterAccountView.swift in Sources */,
 				651A7A5D26EF4A0300A8A16D /* RegisterAccountViewModel.swift in Sources */,
 				D3A1D66A26FB3B0900B71BCA /* ChargerAPI.swift in Sources */,
