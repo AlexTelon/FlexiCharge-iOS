@@ -61,7 +61,8 @@ struct ChargerHubView: View {
     @State private var boxMaxX: CGFloat = 0
     @State private var selectedCharger: ChargerTest?
     @State private var selectedPayment: String?
-    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @Environment(\.presentationMode) /*static*/ var presentationMode: Binding<PresentationMode>
+    // Static above is for a feature in the future
     
     var body: some View {
         VStack {
