@@ -29,10 +29,18 @@ struct RegisterAccountView: View {
                     Image("topShapeRegister")
                         .resizable()
                         .scaledToFit()
-                    Text("Register")
-                        .foregroundColor(.white)
-                        .font(.largeTitle.weight(.heavy))
-                        .padding()
+                    HStack {
+                        Spacer()
+                        Text("Register")
+                            .foregroundColor(.white)
+                            .font(Font.system(size: 40, weight: .bold, design: .default))
+                            .scaledToFill()
+                            .minimumScaleFactor(0.5)
+                            .lineLimit(1)
+                            .frame(width: screenWidth * 0.8, alignment: .center)
+                        Spacer()
+                    }.frame(width: screenWidth * 0.95)
+                    .offset(y: -screenHeight * 0.03)
                 }
                 VStack{
                     /*----------Email----------*/
@@ -126,17 +134,22 @@ struct RegisterAccountView: View {
                                 validationText = validateInputs(email: email, mobileNumber: mobileNumber, password: password, TOSCheckBox: tosCheckBox)
                             
                         }, label: {
-                            Text("Register")
-                                .frame(width: screenWidth * 0.8, height: inputHeight)
-                                .foregroundColor(.white)
-                                .background(Rectangle().fill(Color(red: 0.47, green: 0.74, blue: 0.46)))
-                                .padding(.bottom)
+                            NavigationLink(destination: LoginView()) {
+                                Text("Register")
+                                    .frame(width: screenWidth * 0.8, height: inputHeight)
+                                    .font(Font.system(size: 20,weight: .bold, design: .default))
+                            }
                         })
-                        
+                        .foregroundColor(.white)
+                        .background(Rectangle().fill(Color(red: 0.47, green: 0.74, blue: 0.46)))
+                        .cornerRadius(5)
+                        Text("Spacer").hidden()
                         HStack{
                             Text("Already have an account?")
-                            Text("Sign in")
-                                .foregroundColor(Color(red: 0.47, green: 0.74, blue: 0.46))
+                            NavigationLink(destination: LoginView()) {
+                                Text("Sign in")
+                                    .foregroundColor(Color(red: 0.47, green: 0.74, blue: 0.46))
+                            }
                         }
                         Text("Continue as Guest")
                             .foregroundColor(Color(red: 0.47, green: 0.74, blue: 0.46))

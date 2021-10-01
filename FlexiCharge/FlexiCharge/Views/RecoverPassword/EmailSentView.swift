@@ -8,14 +8,12 @@
 import SwiftUI
 
 struct EmailSentView: View {
+    @Binding var email: String
+    @Binding var shouldPopToRootView: Bool
     let screenWidth = UIScreen.main.bounds.size.width
     let inputHeight: CGFloat = 48
     let inputCornerRadius: CGFloat = 5
-    let email: String
-    
-    init(email: String) {
-        self.email = email
-    }
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     var body: some View {
         VStack {
@@ -41,12 +39,12 @@ struct EmailSentView: View {
                 Spacer()
                 Spacer()
                 Button(action: {
-                    // TODO: navigate back to login screen
+                    self.shouldPopToRootView = false
                 }, label: {
                     Text("Back to log in")
                         .font(Font.system(size: 20,weight: .bold, design: .default))
+                        .frame(width: screenWidth * 0.8, height: 48)
                 })
-                .frame(width: screenWidth * 0.8, height: 48)
                 .background(Color(red: 0.47, green: 0.74, blue: 0.46))
                 .foregroundColor(.white)
                 .cornerRadius(5)
@@ -65,13 +63,7 @@ struct EmailSentView: View {
             }
             .frame(width: screenWidth * 0.8)
         }
-        .edgesIgnoringSafeArea(.top)
         .navigationBarHidden(true)
-    }
-}
-
-struct EmailSentView_Previews: PreviewProvider {
-    static var previews: some View {
-        EmailSentView(email: "Jill.Valentine@starrs.gov")
+        .edgesIgnoringSafeArea(.top)
     }
 }
