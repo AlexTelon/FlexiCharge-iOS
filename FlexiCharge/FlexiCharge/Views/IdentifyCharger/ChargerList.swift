@@ -11,7 +11,6 @@ struct ChargerList: View {
     @Binding var isShowingListOfChargers: Bool
     @Binding var chargerIdInput: String
     var chargers: [ChargerTest]
-    let screenHeight = UIScreen.main.bounds.size.height
     let listHeight: CGFloat
     let rowHeight: CGFloat = 50 + 12
     let chargerHubs: [ChargerHub]
@@ -22,7 +21,7 @@ struct ChargerList: View {
         UITableView.appearance().backgroundColor = UIColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 1)
         self._isShowingListOfChargers = isShowingListOfChargers
         self._chargerIdInput = chargerIdInput
-        self.listHeight = screenHeight / 4
+        self.listHeight = UsefulValues.screenHeight / 4
         self.chargers = chargers
         self.chargerHubs  = [
             ChargerHub(id: 2, chargerLocationName: "Asecs Röd Entre, Jönköping", chargers: self.chargers, distance: "1.1km"),

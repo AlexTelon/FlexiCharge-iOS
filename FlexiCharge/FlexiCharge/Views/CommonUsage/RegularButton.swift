@@ -13,9 +13,6 @@ struct RegularButton: View {
     var foregroundColor: Color
     var backgroundColor: Color
     
-    let screenHeight = UIScreen.main.bounds.size.height
-    let screenWidth = UIScreen.main.bounds.size.width
-    
     init(action: @escaping () -> Void, text: String, foregroundColor: Color, backgroundColor: Color) {
         self.action = action
         self.text =  text
@@ -28,7 +25,7 @@ struct RegularButton: View {
             action()
         }, label: {
             Text(text)
-                .frame(width: screenWidth * 0.8, alignment: .center)
+                .frame(width: UsefulValues.screenWidth * 0.8, alignment: .center)
                 .frame(maxHeight: 48)
         })
         .foregroundColor(foregroundColor)

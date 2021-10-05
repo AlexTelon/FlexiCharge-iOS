@@ -8,8 +8,6 @@
 import SwiftUI
 
 struct LoginView: View {
-    let screenHeight = UIScreen.main.bounds.size.height
-    let screenWidth = UIScreen.main.bounds.size.width
     let inputHeight: CGFloat = 48
     let inputCornerRadius: CGFloat = 5
     let emailPlaceholder: String = "Email"
@@ -48,8 +46,8 @@ struct LoginView: View {
                             Spacer()
                             Image("menu-arrow")
                                 .hidden()
-                        }.frame(width: screenWidth * 0.95, alignment: .center)
-                        .offset(y: -screenHeight * 0.03)
+                        }.frame(width: UsefulValues.screenWidth * 0.95, alignment: .center)
+                        .offset(y: -UsefulValues.screenHeight * 0.03)
                     }
                     // Login "form"
                     VStack {
@@ -77,7 +75,7 @@ struct LoginView: View {
                         .isDetailLink(false)
                         Spacer()
                     }
-                    .frame(width: screenWidth * 0.8)
+                    .frame(width: UsefulValues.screenWidth * 0.8)
                 }
                 .edgesIgnoringSafeArea(.all)
                 .frame(minHeight: 0, maxHeight: .infinity)

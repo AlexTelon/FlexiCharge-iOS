@@ -11,8 +11,6 @@ struct ChargingInProgressView: View {
     @Binding var isShowingDisconnentButton: Bool
     @Binding var isChargingInProgress: Bool
     @Binding var chargingInProgressID: Int
-    let screenHeight = UIScreen.main.bounds.size.height
-    let screenWidth = UIScreen.main.bounds.size.width
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     @State private var charge: Double = 36.0
     private let gradient = LinearGradient(
@@ -26,7 +24,7 @@ struct ChargingInProgressView: View {
             ZStack(alignment: .bottom) {
                 RoundedRectangle(cornerRadius: 5)
                     .fill(Color.primaryDarkGray)
-                    .frame(minHeight: 0, maxHeight: screenHeight * 0.4)
+                    .frame(minHeight: 0, maxHeight: UsefulValues.screenHeight * 0.4)
                 VStack {
                     Text(charge == 100 ? "Fully Charged" : "Charging in Progress").foregroundColor(.white)
                         .font(Font.system(size: 20, weight: .bold, design: .default))
@@ -90,7 +88,7 @@ struct ChargingInProgressView: View {
                             }
                         }
                         .font(Font.system(size: 18, design: .default))
-                        .frame(width: screenWidth * 0.65)
+                        .frame(width: UsefulValues.screenWidth * 0.65)
                     }
                     VStack{
                         VStack {
@@ -119,14 +117,14 @@ struct ChargingInProgressView: View {
                         .zIndex(isShowingDisconnentButton ? 2: -1)
                         Text("Spacer").hidden()
                     }
-                }.frame(width: screenWidth * 0.85)
+                }.frame(width: UsefulValues.screenWidth * 0.85)
             }
             
             //Loadingscreen Work in progress
             //            ZStack(alignment: .center) {
             //                RoundedRectangle(cornerRadius: 5)
             //                    .fill(Color.primaryDarkGray)
-            //                    .frame(minHeight: 0, maxHeight: screenHeight * 0.3)
+            //                    .frame(minHeight: 0, maxHeight: UsefulValues.screenHeight * 0.3)
             //                VStack {
             //                    Text("Charging Started")
             //                        .foregroundColor(.white)
@@ -137,7 +135,7 @@ struct ChargingInProgressView: View {
             //                        Image("arrow-white")
             //                        Spacer()
             //                        Image("chargeStarting")
-            //                    }.frame(width: screenWidth * 0.6)
+            //                    }.frame(width: UsefulValues.screenWidth * 0.6)
             //                }
             //            }.animation(.easeInOut(duration: 1))
         }

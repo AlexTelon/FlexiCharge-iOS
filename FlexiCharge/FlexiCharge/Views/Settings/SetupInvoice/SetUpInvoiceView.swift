@@ -8,9 +8,6 @@
 import SwiftUI
 
 struct SetUpInvoiceView: View {
-    let screenWidth =  UIScreen.main.bounds.size.width
-    let screenHeight = UIScreen.main.bounds.size.height
-    
     @State private var name: String = ""
     @State private var address: String = ""
     @State private var postcode: String = ""
@@ -66,7 +63,7 @@ struct SetUpInvoiceView: View {
                             NavigationLink(destination: SettingsView()) {
                                 Text("Continue")
                                     .font(Font.system(size: 20,weight: .bold, design: .default))
-                                    .frame(width: screenWidth * 0.8, height: inputHeight)
+                                    .frame(width: UsefulValues.screenWidth * 0.8, height: inputHeight)
                                     .foregroundColor(.white)
                                     .background(RoundedRectangle(cornerRadius: inputCornerRadius)
                                                     .fill(Color.primaryGreen))
@@ -87,7 +84,7 @@ struct SetUpInvoiceView: View {
                 }
                 .padding(.bottom)
             }
-            .frame(width: screenWidth * 0.8)
+            .frame(width: UsefulValues.screenWidth * 0.8)
             Spacer()
         }
         .edgesIgnoringSafeArea(.top)

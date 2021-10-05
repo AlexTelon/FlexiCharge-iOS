@@ -9,9 +9,6 @@ import SwiftUI
 
 struct RecoverPasswordView: View {
     @Binding var rootIsActive: Bool
-    
-    let screenWidth = UIScreen.main.bounds.size.width
-    let screenHeight = UIScreen.main.bounds.size.height
 
     let inputHeight: CGFloat = 48
     let inputCornerRadius: CGFloat = 5
@@ -48,8 +45,8 @@ struct RecoverPasswordView: View {
                     Spacer()
                     Image("menu-arrow")
                         .hidden()
-                }.frame(width: screenWidth * 0.95, alignment: .center)
-                .offset(y: -screenHeight * 0.03)
+                }.frame(width: UsefulValues.screenWidth * 0.95, alignment: .center)
+                .offset(y: -UsefulValues.screenHeight * 0.03)
             }
             RegularTextField(input: $emailInput, placeholder: "Email", keyboardType: .emailAddress)
             Text("Please provide the email address you used to register.\nWe will send you an email\nwith a link to reset your password")
@@ -57,7 +54,7 @@ struct RecoverPasswordView: View {
                 .font(.subheadline)
                 .padding(.top)
                 .padding(.horizontal, 2)
-                .frame(width: screenWidth * 0.8)
+                .frame(width: UsefulValues.screenWidth * 0.8)
             Spacer()
             Spacer()
             NavigationLink(destination: EmailSentView(email: $emailInput, shouldPopToRootView: $rootIsActive), tag: 1, selection: $selection) {

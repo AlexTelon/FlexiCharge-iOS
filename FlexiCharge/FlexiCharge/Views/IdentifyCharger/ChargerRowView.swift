@@ -9,7 +9,6 @@ import SwiftUI
 
 struct ChargerRowView: View {
     var chargerHub: ChargerHub
-    let screenWidth = UIScreen.main.bounds.size.width
     
     var body: some View {
         ZStack(alignment: .topLeading) {

@@ -52,8 +52,6 @@ struct ChargerHubView: View {
     var chargerHub: ChargerHub
     @Binding var chargerIdInput: String
     
-    let screenWidth = UIScreen.main.bounds.size.width
-    let screenHeight = UIScreen.main.bounds.size.height
     @State var chargerBoxMinX: CGFloat = 0
     @State var chargerBoxMaxX: CGFloat = 0
     @State private var boxMinX: CGFloat = 0
@@ -83,7 +81,7 @@ struct ChargerHubView: View {
                     .minimumScaleFactor(0.5)
                     .lineLimit(1)
                 Spacer()
-            }.frame(width: screenWidth * 0.82)
+            }.frame(width: UsefulValues.screenWidth * 0.82)
             HStack {
                 ZStack {
                     Image("location-pin")
@@ -158,7 +156,7 @@ struct ChargerHubView: View {
             Text("Payment")
                 .font(.system(size: 17))
                 .foregroundColor(.white)
-            HStack(spacing: screenWidth * 0.04) {
+            HStack(spacing: UsefulValues.screenWidth * 0.04) {
                 ZStack {
                     RoundedRectangle(cornerRadius: 5)
                         .fill(Color.white)
@@ -190,7 +188,7 @@ struct ChargerHubView: View {
                     self.selectedPayment = PaymentOptions.INVOICE
                 }
             }
-            .frame(maxWidth: screenWidth * 0.82)
+            .frame(maxWidth: UsefulValues.screenWidth * 0.82)
             .foregroundColor(.black)
             Spacer()
         }

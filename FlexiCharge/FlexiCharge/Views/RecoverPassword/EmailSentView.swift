@@ -10,7 +10,6 @@ import SwiftUI
 struct EmailSentView: View {
     @Binding var email: String
     @Binding var shouldPopToRootView: Bool
-    let screenWidth = UIScreen.main.bounds.size.width
     let inputHeight: CGFloat = 48
     let inputCornerRadius: CGFloat = 5
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
@@ -54,7 +53,7 @@ struct EmailSentView: View {
                 .font(.subheadline)
                 Spacer()
             }
-            .frame(width: screenWidth * 0.8)
+            .frame(width: UsefulValues.screenWidth * 0.8)
         }
         .navigationBarHidden(true)
         .edgesIgnoringSafeArea(.top)

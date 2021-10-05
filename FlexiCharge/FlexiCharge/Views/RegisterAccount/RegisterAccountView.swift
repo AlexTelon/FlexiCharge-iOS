@@ -8,9 +8,6 @@
 import SwiftUI
 
 struct RegisterAccountView: View {
-    let screenWidth =  UIScreen.main.bounds.size.width
-    let screenHeight = UIScreen.main.bounds.size.height
-    
     @State private var email: String = ""
     @State private var mobileNumber = ""
     @State private var password: String = ""
@@ -38,10 +35,10 @@ struct RegisterAccountView: View {
                             .scaledToFill()
                             .minimumScaleFactor(0.5)
                             .lineLimit(1)
-                            .frame(width: screenWidth * 0.8, alignment: .center)
+                            .frame(width: UsefulValues.screenWidth * 0.8, alignment: .center)
                         Spacer()
-                    }.frame(width: screenWidth * 0.95)
-                    .offset(y: -screenHeight * 0.03)
+                    }.frame(width: UsefulValues.screenWidth * 0.95)
+                    .offset(y: -UsefulValues.screenHeight * 0.03)
                 }
                 VStack{
                     /*----------Email----------*/
@@ -99,7 +96,7 @@ struct RegisterAccountView: View {
                     }
                     .padding(.bottom)
                 }
-                .frame(width: screenWidth * 0.8)
+                .frame(width: UsefulValues.screenWidth * 0.8)
                 Spacer()
             }
             .edgesIgnoringSafeArea(.top)
