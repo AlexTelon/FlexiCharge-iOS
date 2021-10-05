@@ -45,7 +45,7 @@ struct EmailSentView: View {
                         .font(Font.system(size: 20,weight: .bold, design: .default))
                         .frame(width: screenWidth * 0.8, height: 48)
                 })
-                .background(Color(red: 0.47, green: 0.74, blue: 0.46))
+                .background(Color.primaryGreen)
                 .foregroundColor(.white)
                 .cornerRadius(5)
                 .padding()
@@ -55,7 +55,7 @@ struct EmailSentView: View {
                         // TODO: send a new recover email
                     }, label: {
                         Text("Send Again")
-                            .foregroundColor(Color(red: 0.47, green: 0.74, blue: 0.46))
+                            .foregroundColor(Color.primaryGreen)
                     })
                 }
                 .font(.subheadline)

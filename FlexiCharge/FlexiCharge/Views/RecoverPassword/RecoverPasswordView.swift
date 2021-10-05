@@ -78,7 +78,7 @@ struct RecoverPasswordView: View {
                     .frame(width: screenWidth * 0.8, height: 48)
             }
             .isDetailLink(false)
-            .background(Color(red: 0.47, green: 0.74, blue: 0.46))
+            .background(Color.primaryGreen)
             .foregroundColor(.white)
             .cornerRadius(5)
             .padding()

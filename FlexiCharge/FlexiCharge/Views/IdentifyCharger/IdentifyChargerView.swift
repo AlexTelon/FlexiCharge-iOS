@@ -41,7 +41,7 @@ struct IdentifyChargerView: View {
     var body: some View {
         ZStack(alignment: .top) {
             RoundedRectangle(cornerRadius: 5)
-                .fill(Color(red: 0.2, green: 0.2, blue: 0.2))
+                .fill(Color.primaryDarkGray)
                 .frame(minHeight: 0, maxHeight: .infinity)
             VStack {
                 
@@ -57,7 +57,7 @@ struct IdentifyChargerView: View {
                                     .frame(width: 34, height: 53)
                                     .padding(.horizontal, screenWidth * 0.01)
                                 RoundedRectangle(cornerRadius: 2)
-                                    .fill(Color(red: 0.90, green: 0.90, blue: 0.90))
+                                    .fill(Color.primaryLightGray)
                                     .frame(width: 24, height: 2)
                                     .padding(.bottom, 7)
                                 Text(chargerIdInput.count > i ? chargerIdInput[i] : "")
@@ -127,28 +127,28 @@ struct IdentifyChargerView: View {
         let outOfOrder: Int = 2
         if status == available {
             buttonText = "Begin Charging"
-            buttonColor = Color(red: 0.47, green: 0.74, blue: 0.46)
+            buttonColor = Color.primaryGreen
             isButtonDisabled = false
             isButtonVisible = 1
             buttonTextColor = Color(red: 1.00, green: 1.00, blue: 1.00)
         } else if status == occupied {
             buttonText = "Charger Occupied"
-            buttonColor = Color(red: 0.94, green: 0.38, blue: 0.28)
+            buttonColor = Color.primaryRed
             isButtonDisabled = true
             isButtonVisible = 1
             buttonTextColor = Color(red: 1.00, green: 1.00, blue: 1.00)
         } else if status == outOfOrder {
             buttonText = "Charger Out of Order"
-            buttonColor = Color(red: 0.90, green: 0.90, blue: 0.90)
+            buttonColor = Color.primaryLightGray
             isButtonDisabled = true
             isButtonVisible = 1
-            buttonTextColor = Color(red: 0.30, green: 0.30, blue: 0.30)
+            buttonTextColor = Color.menuButtonGray
         } else {
             buttonText = "Charger Not Identified"
-            buttonColor = Color(red: 0.90, green: 0.90, blue: 0.90)
+            buttonColor = Color.primaryLightGray
             isButtonDisabled = true
             isButtonVisible = 1
-            buttonTextColor = Color(red: 0.30, green: 0.30, blue: 0.30)
+            buttonTextColor = Color.menuButtonGray
         }
     }
     

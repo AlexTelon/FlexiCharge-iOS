@@ -25,7 +25,7 @@ struct ChargingInProgressView: View {
         ZStack(alignment: .bottom) {
             ZStack(alignment: .bottom) {
                 RoundedRectangle(cornerRadius: 5)
-                    .fill(Color(red: 0.2, green: 0.2, blue: 0.2))
+                    .fill(Color.primaryDarkGray)
                     .frame(minHeight: 0, maxHeight: screenHeight * 0.4)
                 VStack {
                     Text(charge == 100 ? "Fully Charged" : "Charging in Progress").foregroundColor(.white)
@@ -125,7 +125,7 @@ struct ChargingInProgressView: View {
             //Loadingscreen Work in progress
             //            ZStack(alignment: .center) {
             //                RoundedRectangle(cornerRadius: 5)
-            //                    .fill(Color(red: 0.2, green: 0.2, blue: 0.2))
+            //                    .fill(Color.primaryDarkGray)
             //                    .frame(minHeight: 0, maxHeight: screenHeight * 0.3)
             //                VStack {
             //                    Text("Charging Started")

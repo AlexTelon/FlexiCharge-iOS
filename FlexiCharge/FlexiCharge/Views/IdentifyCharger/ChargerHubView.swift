@@ -10,7 +10,7 @@ import SwiftUI
 struct ChargerInfoBox: View {
     var charger: ChargerTest
     let chargerStatus = ["Occupied", "Available", "Out of order"]
-    let chargerStatusColors = [Color(red: 0.94, green: 0.38, blue: 0.28), Color(red: 0.47, green: 0.74, blue: 0.46)]
+    let chargerStatusColors = [Color.primaryRed, Color.primaryGreen]
     @State public var boxHeight: CGFloat = 0
     
     var body: some View {
@@ -91,13 +91,13 @@ struct ChargerHubView: View {
                         .resizable()
                         .scaledToFit()
                         .frame(height: 18)
-                        .foregroundColor(Color(red: 0.47, green: 0.74, blue: 0.46))
-                        .overlay(Color(red: 0.47, green: 0.74, blue: 0.46).blendMode(.sourceAtop))
+                        .foregroundColor(Color.primaryGreen)
+                        .overlay(Color.primaryGreen.blendMode(.sourceAtop))
                 }
                 .drawingGroup(opaque: false)
                 Text("Current Location")
                     .font(.system(size: 13))
-                    .foregroundColor(Color(red: 0.47, green: 0.74, blue: 0.46))
+                    .foregroundColor(Color.primaryGreen)
                 Rectangle()
                     .fill(Color.black)
                     .frame(width: boxMinX)
@@ -107,7 +107,7 @@ struct ChargerHubView: View {
                 HStack(spacing: 20) {
                     ForEach(chargerHub.chargers) { charger in
                         ChargerInfoBox(charger: charger)
-                            .border(selectedCharger?.chargerID == charger.chargerID ? Color(red: 0.47, green: 0.74, blue: 0.46) : Color.clear, width: 3)
+                            .border(selectedCharger?.chargerID == charger.chargerID ? Color.primaryGreen : Color.clear, width: 3)
                             .cornerRadius(5)
                             .onTapGesture {
                                 self.selectedCharger = charger
@@ -169,7 +169,7 @@ struct ChargerHubView: View {
                         .padding(.horizontal, 30)
                 }
                 .frame(maxHeight: 48)
-                .border(selectedPayment == PaymentOptions.PAY_NOW ? Color(red: 0.47, green: 0.74, blue: 0.46) : Color.clear, width: 3)
+                .border(selectedPayment == PaymentOptions.PAY_NOW ? Color.primaryGreen : Color.clear, width: 3)
                 .cornerRadius(5)
                 .onTapGesture {
                     self.selectedPayment = PaymentOptions.PAY_NOW
@@ -185,7 +185,7 @@ struct ChargerHubView: View {
                     }
                 }
                 .frame(maxHeight: 48)
-                .border(selectedPayment == PaymentOptions.INVOICE ? Color(red: 0.47, green: 0.74, blue: 0.46) : Color.clear, width: 3)
+                .border(selectedPayment == PaymentOptions.INVOICE ? Color.primaryGreen : Color.clear, width: 3)
                 .cornerRadius(5)
                 .onTapGesture {
                     self.selectedPayment = PaymentOptions.INVOICE
@@ -195,7 +195,7 @@ struct ChargerHubView: View {
             .foregroundColor(.black)
             Spacer()
         }
-        .background(Color(red: 0.2, green: 0.2, blue: 0.2))
+        .background(Color.primaryDarkGray)
         .navigationBarHidden(true)
     }
 }

@@ -124,7 +124,7 @@ struct SetUpInvoiceView: View {
                                     .frame(width: screenWidth * 0.8, height: inputHeight)
                                     .foregroundColor(.white)
                                     .background(RoundedRectangle(cornerRadius: inputCornerRadius)
-                                                    .fill(Color(red: 0.47, green: 0.74, blue: 0.46)))
+                                                    .fill(Color.primaryGreen))
                                     .padding(.bottom)
                             }
                         })
@@ -132,7 +132,7 @@ struct SetUpInvoiceView: View {
                         NavigationLink(destination: ContentView()) {
                             Text("No Thanks")
                                 .font(Font.system(size: 15,weight: .bold, design: .default))
-                                .foregroundColor(Color(red: 0.94, green: 0.38, blue: 0.28))
+                                .foregroundColor(Color.primaryRed)
                         }
                     Text("If you chose not to invoice,\n you will be asked to pay each time using Swish.")
                         .multilineTextAlignment(.center)

@@ -14,7 +14,7 @@ struct ChargerRowView: View {
     var body: some View {
         ZStack(alignment: .topLeading) {
             Rectangle()
-                .fill(Color(red: 0.2, green: 0.2, blue: 0.2))
+                .fill(Color.primaryDarkGray)
                 .frame(height: 50)
             VStack(alignment: .leading) {
                 HStack {
@@ -25,7 +25,7 @@ struct ChargerRowView: View {
                 HStack {
                     if chargerHub.chargers.count == 0 {
                         Text("No Chargers Available")
-                            .foregroundColor(Color(red: 0.94, green: 0.38, blue: 0.28))
+                            .foregroundColor(Color.primaryRed)
                             .font(.caption)
                             .padding(.top, 1)
                     } else {

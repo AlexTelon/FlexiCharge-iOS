@@ -59,7 +59,7 @@ struct SettingsView: View {
                     }
                     Divider()
                         .frame(height: 1)
-                        .background(Color(red: 0.90, green: 0.90, blue: 0.90))
+                        .background(Color.primaryLightGray)
                     /*----------Invoices----------*/
                     // Change NavigationLink to correct page once it is created
                     NavigationLink(destination: InvoicesView()) {
@@ -73,7 +73,7 @@ struct SettingsView: View {
                     }
                     Divider()
                         .frame(height: 1)
-                        .background(Color(red: 0.90, green: 0.90, blue: 0.90))
+                        .background(Color.primaryLightGray)
                     /*----------Account Settings----------*/
                     // Change NavigationLink to correct page once it is created
                     NavigationLink(destination: ContentView()) {
@@ -87,7 +87,7 @@ struct SettingsView: View {
                     }
                     Divider()
                         .frame(height: 1)
-                        .background(Color(red: 0.90, green: 0.90, blue: 0.90))
+                        .background(Color.primaryLightGray)
                     /*----------Name and Address----------*/
                     // Change NavigationLink to correct page once it is created
                     NavigationLink(destination: ContentView()) {
@@ -101,7 +101,7 @@ struct SettingsView: View {
                     }
                     Divider()
                         .frame(height: 1)
-                        .background(Color(red: 0.90, green: 0.90, blue: 0.90))
+                        .background(Color.primaryLightGray)
                     /*----------About----------*/
                     // Change NavigationLink to correct page once it is created
                     NavigationLink(destination: ContentView()) {
@@ -115,7 +115,7 @@ struct SettingsView: View {
                     }
                     Divider()
                         .frame(height: 1)
-                        .background(Color(red: 0.90, green: 0.90, blue: 0.90))
+                        .background(Color.primaryLightGray)
                 }.frame(width: screenWidth * 0.8)
                 Spacer()
                 /*----------Log out button----------*/
@@ -126,7 +126,7 @@ struct SettingsView: View {
                         .font(Font.system(size: 20, weight: .bold, design:.default))
                         .frame(width: screenWidth * 0.8, height: 48)
                 })
-                .background(Color(red: 0.94, green: 0.38, blue: 0.28))
+                .background(Color.primaryRed)
                 .foregroundColor(.white)
                 .cornerRadius(5)
                 Text("Spacing").hidden()

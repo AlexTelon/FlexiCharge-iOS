@@ -57,7 +57,7 @@ struct ContentView: View {
                                 }, label: {
                                     ZStack {
                                         Circle()
-                                            .fill(Color(red: 0.30, green: 0.30, blue: 0.30))
+                                            .fill(Color.menuButtonGray)
                                             .frame(width: screenWidth * 0.15, height: screenWidth * 0.15)
                                         Image("location-pin")
                                             .resizable()
@@ -72,7 +72,7 @@ struct ContentView: View {
                             }, label: {
                                 ZStack {
                                     Circle()
-                                        .fill(Color(red: 0.30, green: 0.30, blue: 0.30))
+                                        .fill(Color.menuButtonGray)
                                         .frame(width: screenWidth * 0.15, height: screenWidth * 0.15)
                                     Image(systemName: "camera.fill")
                                         .font(Font.system(.title2))
@@ -89,7 +89,7 @@ struct ContentView: View {
                             }){
                                 ZStack {
                                     Circle()
-                                        .fill(Color(red: 0.30, green: 0.30, blue: 0.30))
+                                        .fill(Color.menuButtonGray)
                                         .frame(width: screenWidth * 0.20, height: screenWidth * 0.20)
                                     Image("white")
                                 }
@@ -98,7 +98,7 @@ struct ContentView: View {
                                 NavigationLink(destination: SettingsView()) {
                                     ZStack {
                                         Circle()
-                                            .fill(Color(red: 0.30, green: 0.30, blue: 0.30))
+                                            .fill(Color.menuButtonGray)
                                             .frame(width: screenWidth * 0.15, height: screenWidth * 0.15)
                                         Image("person")
                                             .resizable()
@@ -145,7 +145,7 @@ struct ContentView: View {
                         }
                 }.edgesIgnoringSafeArea(.bottom)
                 .navigationBarHidden(true)
-            }.background(Color(red: 0.2, green: 0.2, blue: 0.2).ignoresSafeArea(.all))
+            }.background(Color.primaryDarkGray.ignoresSafeArea(.all))
         }.navigationBarHidden(true)
     }
     
