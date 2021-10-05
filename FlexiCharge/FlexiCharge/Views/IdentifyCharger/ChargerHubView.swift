@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ChargerInfoBox: View {
     var charger: ChargerTest
-    var chargerStatusColor = [StatusConstants.AVAILABLE: Color.green, StatusConstants.PREPARING: Color.gray, StatusConstants.CHARGING: Color.red, StatusConstants.SUSPENDEDEVSE: Color.gray, StatusConstants.SUSPENDEDEV: Color.gray, StatusConstants.FINISHING: Color.gray, StatusConstants.RESERVED: Color.gray, StatusConstants.UNAVAILABLE: Color.gray, StatusConstants.FAULTED: Color.gray]
+    var chargerStatusColor = [StatusConstants.AVAILABLE: Color.primaryGreen, StatusConstants.PREPARING: Color.gray, StatusConstants.CHARGING: Color.primaryRed, StatusConstants.SUSPENDEDEVSE: Color.primaryDarkGray, StatusConstants.SUSPENDEDEV: Color.primaryDarkGray, StatusConstants.FINISHING: Color.primaryDarkGray, StatusConstants.RESERVED: Color.primaryDarkGray, StatusConstants.UNAVAILABLE: Color.primaryDarkGray, StatusConstants.FAULTED: Color.primaryDarkGray]
     @State public var boxHeight: CGFloat = 0
     
     var body: some View {

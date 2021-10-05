@@ -176,12 +176,6 @@ struct IdentifyChargerView_Previews: PreviewProvider {
     }
 }
 
-extension String {
-    subscript(i: Int) -> String {
-        return String(self[index(startIndex, offsetBy: i)])
-    }
-}
-
 struct StatusConstants {
     static let AVAILABLE = "Available"
     static let PREPARING = "Occupied"
