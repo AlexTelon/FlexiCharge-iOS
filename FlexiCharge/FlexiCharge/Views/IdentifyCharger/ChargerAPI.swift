@@ -41,8 +41,8 @@ class ChargerAPI {
             "Accept": "application/json"
         ]
         
-        let jsonDictionary: [String: Int] = [
-            "status": 0,
+        let jsonDictionary: [String: String] = [
+            "status": StatusConstants.CHARGING,
         ]
         
         let data = try! JSONSerialization.data(withJSONObject: jsonDictionary, options: .prettyPrinted)
@@ -76,8 +76,8 @@ class ChargerAPI {
             "Accept": "application/json"
         ]
         
-        let jsonDictionary: [String: Int] = [
-            "status": 1,
+        let jsonDictionary: [String: String] = [
+            "status": StatusConstants.AVAILABLE,
         ]
         
         let data = try! JSONSerialization.data(withJSONObject: jsonDictionary, options: .prettyPrinted)
