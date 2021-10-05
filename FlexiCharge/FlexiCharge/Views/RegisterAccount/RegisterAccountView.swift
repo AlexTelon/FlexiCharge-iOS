@@ -135,14 +135,10 @@ struct RegisterAccountView: View {
                             
                         }, label: {
                             NavigationLink(destination: LoginView()) {
-                                Text("Register")
-                                    .frame(width: screenWidth * 0.8, height: inputHeight)
-                                    .font(Font.system(size: 20,weight: .bold, design: .default))
+                                RegularButton(text: "Register", foregroundColor: Color.white, backgroundColor: Color.primaryGreen)
                             }
                         })
-                        .foregroundColor(.white)
-                        .background(Rectangle().fill(Color.primaryGreen))
-                        .cornerRadius(5)
+
                         Text("Spacer").hidden()
                         HStack{
                             Text("Already have an account?")

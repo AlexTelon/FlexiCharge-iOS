@@ -81,13 +81,8 @@ struct LoginView: View {
                     Spacer()
                     Spacer()
                     NavigationLink(destination: ContentView()) {
-                        Text("Log in")
-                            .font(Font.system(size: 20,weight: .bold, design: .default))
-                            .frame(width: screenWidth * 0.8, height: 48)
+                        RegularButton(text: "Log in", foregroundColor: Color.white, backgroundColor: Color.primaryGreen)
                     }
-                    .background(Color.primaryGreen)
-                    .foregroundColor(.white)
-                    .cornerRadius(5)
                     Text("Spacer").hidden()
                     NavigationLink(destination: RecoverPasswordView(rootIsActive: $isActive), isActive: self.$isActive) {
                         Text("I forgot my password")
