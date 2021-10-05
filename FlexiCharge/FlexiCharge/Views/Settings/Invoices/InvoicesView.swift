@@ -58,7 +58,7 @@ struct InvoicesView: View {
                     .font(Font.system(size: 20,weight: .bold, design: .default))
             }
                 .frame(width: screenWidth * 0.8, height: 48)
-                .background(Color(red: 0.47, green: 0.74, blue: 0.46))
+                .background(Color.primaryGreen)
                 .foregroundColor(.white)
                 .cornerRadius(5)
                 .padding()
@@ -115,7 +115,7 @@ struct InvoicesView: View {
                             }
                             Divider()
                             .frame(width: screenWidth * 0.8, height: 1)
-                            .background(Color(red: 0.90, green: 0.90, blue: 0.90))
+                            .background(Color.primaryLightGray)
                                 .offset(y: -20)
                                 .transition(.move(edge: .top))
                                 .animation(.easeInOut(duration: 0.25))

@@ -65,13 +65,13 @@ struct ChargerList: View {
                             }
                             .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
                         }
-                        .listRowBackground(Color(red: 0.2, green: 0.2, blue: 0.2))
-                        .background(Color(red: 0.2, green: 0.2, blue: 0.2))
+                        .listRowBackground(Color.primaryDarkGray)
+                        .background(Color.primaryDarkGray)
                     }
                     .listStyle(InsetListStyle())
                 }
             }
-            .background(Color(red: 0.2, green: 0.2, blue: 0.2))
+            .background(Color.primaryDarkGray)
             .navigationBarHidden(true)
             .animation(.none)
         }

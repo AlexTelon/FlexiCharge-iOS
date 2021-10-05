@@ -141,18 +141,18 @@ struct RegisterAccountView: View {
                             }
                         })
                         .foregroundColor(.white)
-                        .background(Rectangle().fill(Color(red: 0.47, green: 0.74, blue: 0.46)))
+                        .background(Rectangle().fill(Color.primaryGreen))
                         .cornerRadius(5)
                         Text("Spacer").hidden()
                         HStack{
                             Text("Already have an account?")
                             NavigationLink(destination: LoginView()) {
                                 Text("Sign in")
-                                    .foregroundColor(Color(red: 0.47, green: 0.74, blue: 0.46))
+                                    .foregroundColor(Color.primaryGreen)
                             }
                         }
                         Text("Continue as Guest")
-                            .foregroundColor(Color(red: 0.47, green: 0.74, blue: 0.46))
+                            .foregroundColor(Color.primaryGreen)
                             .padding()
                     }
                     .padding(.bottom)
