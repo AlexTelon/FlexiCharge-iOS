@@ -24,7 +24,7 @@ struct SetUpInvoiceView: View {
     var body: some View {
         //Limits the postcode to 5
         let postcodeLimit = Binding<String>(
-            get: { postcode},
+            get: { postcode },
             set: { postcode =  String($0.prefix(5)) }
         )
         VStack() {
@@ -43,72 +43,17 @@ struct SetUpInvoiceView: View {
                         .multilineTextAlignment(.center)
                         .font(.footnote)
                     /*----------Name----------*/
-                    ZStack(alignment: .leading){
-                        TextField("Name", text: $name)
-                        .frame(height: inputHeight)
-                        .padding(.horizontal, 8)
-                        .overlay(RoundedRectangle(cornerRadius: inputCornerRadius)
-                                    .stroke()
-                        )
+                    RegularTextField(input: $name, placeholder: "Name", keyboardType: .default)
                         .padding(.top)
-                        Text("Name")
-                            .foregroundColor(.black)
-                            .padding(.horizontal, 5)
-                            .background(Color.white)
-                            .offset(x: 10, y: -15)
-                            .opacity(name.count > 0 ? 1 : 0)
-                    }
                     /*----------Address----------*/
-                    ZStack(alignment: .leading){
-                        TextField("Address", text: $address)
-                        .frame(height: inputHeight)
-                        .padding(.horizontal, 8)
-                        .overlay(RoundedRectangle(cornerRadius: inputCornerRadius)
-                                    .stroke()
-                        )
+                    RegularTextField(input: $address, placeholder: "Address", keyboardType: .default)
                         .padding(.top)
-                        Text("Address")
-                            .foregroundColor(.black)
-                            .padding(.horizontal, 5)
-                            .background(Color.white)
-                            .offset(x: 10, y: -15)
-                            .opacity(address.count > 0 ? 1 : 0)
-                            .keyboardType(.decimalPad)
-                    }
                     /*----------Postcode----------*/
-                    ZStack(alignment: .leading){
-                        TextField("Postcode", text: postcodeLimit)
-                            .frame(height: inputHeight)
-                            .padding(.horizontal, 8)
-                            .overlay(RoundedRectangle(cornerRadius: inputCornerRadius)
-                                        .stroke()
-                            )
-                            .padding(.top)
-                            Text("Postcode")
-                                .foregroundColor(.black)
-                                .padding(.horizontal, 5)
-                                .background(Color.white)
-                                .offset(x: 10, y: -15)
-                                .opacity(postcode.count > 0 ? 1 : 0)
-                                .keyboardType(.decimalPad)
-                    }
-                    /*----------Town----------*/
-                    ZStack(alignment: .leading){
-                        TextField("Town", text: $town)
-                        .frame(height: inputHeight)
-                        .padding(.horizontal, 8)
-                        .overlay(RoundedRectangle(cornerRadius: inputCornerRadius)
-                                    .stroke()
-                        )
+                    RegularTextField(input: postcodeLimit, placeholder: "Postcode", keyboardType: .numberPad)
                         .padding(.top)
-                        Text("Town")
-                            .foregroundColor(.black)
-                            .padding(.horizontal, 5)
-                            .background(Color.white)
-                            .offset(x: 10, y: -15)
-                            .opacity(town.count > 0 ? 1 : 0)
-                            .keyboardType(.decimalPad)
-                    }
+                    /*----------Town----------*/
+                    RegularTextField(input: $town, placeholder: "Town", keyboardType: .default)
+                        .padding(.top)
                     Spacer()
                     /*----------Register button and the following text----------*/
                     VStack{
@@ -134,11 +79,11 @@ struct SetUpInvoiceView: View {
                                 .font(Font.system(size: 15,weight: .bold, design: .default))
                                 .foregroundColor(Color.primaryRed)
                         }
-                    Text("If you chose not to invoice,\n you will be asked to pay each time using Swish.")
+                    Text("If you choose not to invoice,\n you will be asked to pay each time using Swish.")
                         .multilineTextAlignment(.center)
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                         .font(.footnote)
-                        .padding()
+                        
                 }
                 .padding(.bottom)
             }

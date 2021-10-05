@@ -1,5 +1,5 @@
 //
-//  RegularTextField.swift
+//  SecureTextField.swift
 //  FlexiCharge
 //
 //  Created by Filip Flodén on 2021-10-05.
@@ -7,14 +7,14 @@
 
 import SwiftUI
 
-struct RegularTextField: View {
+struct SecureTextField: View {
     @Binding var input: String
     var placeholder: String
     var keyboardType: UIKeyboardType
     
     var body: some View {
         ZStack(alignment: .topLeading) {
-            TextField(placeholder, text: $input)
+            SecureField(placeholder, text: $input)
                 .keyboardType(keyboardType)
                 .frame(width: UsefulValues.screenWidth * 0.8, height: 48)
                 .offset(x: 8)
@@ -29,8 +29,8 @@ struct RegularTextField: View {
     }
 }
 
-struct RegularTextField_Previews: PreviewProvider {
+struct SecureTextField_Previews: PreviewProvider {
     static var previews: some View {
-        RegularTextField(input: .constant("Text"), placeholder: "Placeholder", keyboardType: .emailAddress)
+        SecureTextField(input: .constant("Secure text"), placeholder: "Placeholder", keyboardType: .default)
     }
 }

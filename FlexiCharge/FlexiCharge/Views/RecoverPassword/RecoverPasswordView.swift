@@ -51,19 +51,7 @@ struct RecoverPasswordView: View {
                 }.frame(width: screenWidth * 0.95, alignment: .center)
                 .offset(y: -screenHeight * 0.03)
             }
-            ZStack(alignment: .topLeading) {
-                TextField(emailPlaceholder, text: $emailInput)
-                    .keyboardType(.emailAddress)
-                    .frame(width: screenWidth * 0.8, height: inputHeight)
-                    .offset(x: 8)
-                    .overlay(RoundedRectangle(cornerRadius: inputCornerRadius).stroke())
-                Text(emailPlaceholder)
-                    .foregroundColor(.black)
-                    .padding(.horizontal, 5)
-                    .background(Color.white)
-                    .offset(x: 10, y: -10)
-                    .opacity(emailInput.count > 0 ? 1 : 0)
-            }
+            RegularTextField(input: $emailInput, placeholder: "Email", keyboardType: .emailAddress)
             Text("Please provide the email address you used to register.\nWe will send you an email\nwith a link to reset your password")
                 .multilineTextAlignment(.center)
                 .font(.subheadline)

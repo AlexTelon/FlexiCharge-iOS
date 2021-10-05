@@ -54,31 +54,11 @@ struct LoginView: View {
                     // Login "form"
                     VStack {
                         // Email input field
-                        ZStack(alignment: .topLeading) {
-                            TextField(emailPlaceholder, text: $emailInput)
-                                .frame(height: inputHeight)
-                                .offset(x: 8)
-                                .overlay(RoundedRectangle(cornerRadius: inputCornerRadius).stroke())
-                            Text(emailPlaceholder)
-                                .foregroundColor(.black)
-                                .padding(.horizontal, 5)
-                                .background(Color.white)
-                                .offset(x: 10, y: -10)
-                                .opacity(emailInput.count > 0 ? 1 : 0)
-                        }.padding(.vertical)
+                        RegularTextField(input: $emailInput, placeholder: "Email", keyboardType: .emailAddress)
+                            .padding(.vertical)
                         // Password input field
-                        ZStack(alignment: .topLeading) {
-                            SecureField(passwordPlaceholder, text: $passwordInput)
-                                .frame(height: inputHeight)
-                                .offset(x: 8)
-                                .overlay(RoundedRectangle(cornerRadius: inputCornerRadius).stroke())
-                            Text(passwordPlaceholder)
-                                .foregroundColor(.black)
-                                .padding(.horizontal, 5)
-                                .background(Color.white)
-                                .offset(x: 10, y: -10)
-                                .opacity(passwordInput.count > 0 ? 1 : 0)
-                        }.padding(.vertical)
+                        SecureTextField(input: $passwordInput, placeholder: "Password", keyboardType: .default)
+                            .padding(.vertical)
                         Spacer()
                         Spacer()
                         NavigationLink(destination: ContentView(), tag: 1, selection: $selection) {

@@ -26,6 +26,7 @@
 		D388D13F270C5AB2005C1927 /* RegularButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D388D13E270C5AB2005C1927 /* RegularButton.swift */; };
 		D388D141270C7598005C1927 /* RegularTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D388D140270C7598005C1927 /* RegularTextField.swift */; };
 		D388D144270C777C005C1927 /* UsefulValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = D388D143270C777C005C1927 /* UsefulValues.swift */; };
+		D388D146270C79CF005C1927 /* SecureTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D388D145270C79CF005C1927 /* SecureTextField.swift */; };
 		D3A1D66A26FB3B0900B71BCA /* ChargerAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A1D66926FB3B0900B71BCA /* ChargerAPI.swift */; };
 		D3A2033226F22411007B0D90 /* CodeScanner in Frameworks */ = {isa = PBXBuildFile; productRef = D3A2033126F22411007B0D90 /* CodeScanner */; };
 		D3A2033826F24025007B0D90 /* QROverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A2033726F24025007B0D90 /* QROverlayView.swift */; };
@@ -80,6 +81,7 @@
 		D388D13E270C5AB2005C1927 /* RegularButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegularButton.swift; sourceTree = "<group>"; };
 		D388D140270C7598005C1927 /* RegularTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegularTextField.swift; sourceTree = "<group>"; };
 		D388D143270C777C005C1927 /* UsefulValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsefulValues.swift; sourceTree = "<group>"; };
+		D388D145270C79CF005C1927 /* SecureTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureTextField.swift; sourceTree = "<group>"; };
 		D3A1D66926FB3B0900B71BCA /* ChargerAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ChargerAPI.swift; path = FlexiCharge/Views/IdentifyCharger/ChargerAPI.swift; sourceTree = SOURCE_ROOT; };
 		D3A2033726F24025007B0D90 /* QROverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QROverlayView.swift; sourceTree = "<group>"; };
 		D3A2033D26F4846B007B0D90 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -215,6 +217,7 @@
 			children = (
 				D388D13E270C5AB2005C1927 /* RegularButton.swift */,
 				D388D140270C7598005C1927 /* RegularTextField.swift */,
+				D388D145270C79CF005C1927 /* SecureTextField.swift */,
 			);
 			path = CommonUsage;
 			sourceTree = "<group>";
@@ -482,6 +485,7 @@
 				FDDFFF4626EF7C7F004B8EE9 /* SettingsView.swift in Sources */,
 				D34A1AC126F52E89001EB5D2 /* ChargerRowView.swift in Sources */,
 				D3D6D15E26E6286700B77B16 /* FlexiCharge.xcdatamodeld in Sources */,
+				D388D146270C79CF005C1927 /* SecureTextField.swift in Sources */,
 				6592EDF92701BC6900AFB3A1 /* InvoicesView.swift in Sources */,
 				D34A1AC526F54304001EB5D2 /* ChargerList.swift in Sources */,
 				6592EDFB2701BCB200AFB3A1 /* InvoicesViewModel.swift in Sources */,

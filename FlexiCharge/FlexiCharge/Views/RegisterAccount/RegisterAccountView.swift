@@ -45,70 +45,17 @@ struct RegisterAccountView: View {
                 }
                 VStack{
                     /*----------Email----------*/
-                    ZStack(alignment: .leading){
-                        TextField("Email", text: $email)
-                            .frame(height: inputHeight)
-                            .padding(.horizontal, 8)
-                            .overlay(RoundedRectangle(cornerRadius: inputCornerRadius)
-                                        .stroke()
-                            )
-                            .padding(.top)
-                        Text("Email")
-                            .foregroundColor(.black)
-                            .padding(.horizontal, 5)
-                            .background(Color.white)
-                            .offset(x: 10, y: -15)
-                            .opacity(email.count > 0 ? 1 : 0)
-                    }
+                    RegularTextField(input: $email, placeholder: "Email", keyboardType: .emailAddress)
+                        .padding(.top)
                     /*----------Mobile number----------*/
-                    ZStack(alignment: .leading){
-                        TextField("Mobile number", text: $mobileNumber)
-                            .frame(height: inputHeight)
-                            .padding(.horizontal, 8)
-                            .overlay(RoundedRectangle(cornerRadius: inputCornerRadius)
-                                        .stroke()
-                            )
-                            .padding(.top)
-                        Text("Mobile number")
-                            .foregroundColor(.black)
-                            .padding(.horizontal, 5)
-                            .background(Color.white)
-                            .offset(x: 10, y: -15)
-                            .opacity(mobileNumber.count > 0 ? 1 : 0)
-                            .keyboardType(.decimalPad)
-                    }
+                    RegularTextField(input: $mobileNumber, placeholder: "Mobile number", keyboardType: .numberPad)
+                        .padding(.top)
                     /*----------Password----------*/
-                    ZStack(alignment: .leading){
-                        SecureField ("Password", text: $password)
-                            .frame(height: inputHeight)
-                            .padding(.horizontal, 8)
-                            .overlay(RoundedRectangle(cornerRadius: inputCornerRadius)
-                                        .stroke()
-                            )
-                            .padding(.top)
-                        Text("Password")
-                            .foregroundColor(.black)
-                            .padding(.horizontal, 5)
-                            .background(Color.white)
-                            .offset(x: 10, y: -15)
-                            .opacity(password.count > 0 ? 1 : 0)
-                    }
-                    /*----------Repeat password----------
-                     ZStack(alignment: .leading){
-                     SecureField("Repeat password", text: $repeatPassword)
-                     .frame(height: inputHeight)
-                     .padding(.horizontal, 8)
-                     .overlay(RoundedRectangle(cornerRadius: inputCornerRadius)
-                     .stroke()
-                     )
-                     .padding(.top)
-                     Text("Repeat password")
-                     .foregroundColor(.black)
-                     .padding(.horizontal, 5)
-                     .background(Color.white)
-                     .offset(x: 10, y: -15)
-                     .opacity(repeatPassword.count > 0 ? 1 : 0)
-                     }*/
+                    SecureTextField(input: $password, placeholder: "Password", keyboardType: .default)
+                        .padding(.top)
+                    /*----------Repeat password----------*/
+                    /* SecureTextField(input: $repeatPassword, placeholder: "Repeat password", keyboardType: .default)
+                        .padding(.top) */
                     /*----------Checkbox----------*/
                     HStack{
                         Button(action: {tosCheckBox.toggle()}, label: {
