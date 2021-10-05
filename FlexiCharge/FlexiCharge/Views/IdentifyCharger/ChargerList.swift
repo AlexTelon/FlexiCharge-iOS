@@ -82,7 +82,7 @@ struct ChargerList: View {
 
 struct ChargerList_Previews: PreviewProvider {
     static var previews: some View {
-        ChargerList(isShowingListOfChargers: .constant(true), chargers: [ChargerTest(chargerID: 999999, location: [57.123, 57.123], chargePointID: 9, serialNumber: "jdiwamgoineawiug", status: 1)], chargerIdInput: .constant(""))
+        ChargerList(isShowingListOfChargers: .constant(true), chargers: [ChargerTest(chargerID: 999999, location: [57.123, 57.123], chargePointID: 9, serialNumber: "jdiwamgoineawiug", status: "Available")], chargerIdInput: .constant(""))
     }
 }
 

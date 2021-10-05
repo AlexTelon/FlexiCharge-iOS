@@ -121,23 +121,20 @@ struct IdentifyChargerView: View {
         }
     }
     
-    func drawChargingButton(status: Int) {
-        let occupied: Int = 0
-        let available: Int = 1
-        let outOfOrder: Int = 2
-        if status == available {
+    func drawChargingButton(status: String) {
+        if status == StatusConstants.AVAILABLE {
             buttonText = "Begin Charging"
             buttonColor = Color.primaryGreen
             isButtonDisabled = false
             isButtonVisible = 1
             buttonTextColor = Color(red: 1.00, green: 1.00, blue: 1.00)
-        } else if status == occupied {
+        } else if status == StatusConstants.CHARGING {
             buttonText = "Charger Occupied"
             buttonColor = Color.primaryRed
             isButtonDisabled = true
             isButtonVisible = 1
             buttonTextColor = Color(red: 1.00, green: 1.00, blue: 1.00)
-        } else if status == outOfOrder {
+        } else if status == StatusConstants.FAULTED {
             buttonText = "Charger Out of Order"
             buttonColor = Color.primaryLightGray
             isButtonDisabled = true
@@ -183,4 +180,16 @@ extension String {
     subscript(i: Int) -> String {
         return String(self[index(startIndex, offsetBy: i)])
     }
+}
+
+struct StatusConstants {
+    static let AVAILABLE = "Available"
+    static let PREPARING = "Occupied"
+    static let CHARGING = "Charging"
+    static let SUSPENDEDEVSE = "SuspendedEVSE"
+    static let SUSPENDEDEV = "SuspendedEV"
+    static let FINISHING = "Finishing"
+    static let RESERVED = "Reserved"
+    static let UNAVAILABLE = "Unavailable"
+    static let FAULTED = "Faulted"
 }

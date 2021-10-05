@@ -21,7 +21,7 @@ struct ChargerTest: Decodable, Identifiable {
     var location: [CGFloat]
     var chargePointID: Int
     var serialNumber: String
-    var status: Int
+    var status: String
     
     var id: Int {
         chargerID

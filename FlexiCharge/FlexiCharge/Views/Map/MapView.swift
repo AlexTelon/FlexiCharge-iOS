@@ -11,7 +11,7 @@ import MapKit
 struct MapView: View {
     @Binding var chargers: ChargerAPI
     @StateObject private var manager = LocationManager()
-    let chargerStatusPins = ["occupied-charger-pin", "available-charger-pin"]
+    let chargerStatusPins = [StatusConstants.AVAILABLE: "available-charger-pin", StatusConstants.PREPARING: "unkown-status-charger-pin", StatusConstants.CHARGING: "occupied-charger-pin", StatusConstants.SUSPENDEDEVSE: "unkown-status-charger-pin", StatusConstants.SUSPENDEDEV: "unkown-status-charger-pin", StatusConstants.FINISHING: "unkown-status-charger-pin", StatusConstants.RESERVED: "unkown-status-charger-pin", StatusConstants.UNAVAILABLE: "unkown-status-charger-pin", StatusConstants.FAULTED: "unkown-status-charger-pin"]
     
     @State private var region = MKCoordinateRegion(
         center: CLLocationCoordinate2D(latitude: 57.778568, longitude: 14.163727),
@@ -32,7 +32,7 @@ struct MapView: View {
                     longitude: CLLocationDegrees(charger.location[1])),
                 anchorPoint: CGPoint(x: 0.5, y: 0.5)
             ) {
-                Image(charger.status > 1 ? "unkown-status-charger-pin" : chargerStatusPins[charger.status])
+                Image(chargerStatusPins[charger.status]!)
             }
         }
     }

@@ -9,8 +9,7 @@ import SwiftUI
 
 struct ChargerInfoBox: View {
     var charger: ChargerTest
-    let chargerStatus = ["Occupied", "Available", "Out of order"]
-    let chargerStatusColors = [Color.primaryRed, Color.primaryGreen]
+    var chargerStatusColor = [StatusConstants.AVAILABLE: Color.green, StatusConstants.PREPARING: Color.gray, StatusConstants.CHARGING: Color.red, StatusConstants.SUSPENDEDEVSE: Color.gray, StatusConstants.SUSPENDEDEV: Color.gray, StatusConstants.FINISHING: Color.gray, StatusConstants.RESERVED: Color.gray, StatusConstants.UNAVAILABLE: Color.gray, StatusConstants.FAULTED: Color.gray]
     @State public var boxHeight: CGFloat = 0
     
     var body: some View {
@@ -28,8 +27,8 @@ struct ChargerInfoBox: View {
                     Text(String(charger.chargerID))
                     Text("AC 7kW")
                     Text("3.00 kr/kWh")
-                    Text(charger.status <= 1 ? chargerStatus[charger.status] : "Not identified")
-                        .foregroundColor(charger.status <= 2 ? chargerStatusColors[charger.status] : .gray)
+                    Text(charger.status)
+                        .foregroundColor(chargerStatusColor[charger.status])
                         .padding(.top, 4)
                 }
             }.overlay(GeometryReader { proxy in
@@ -203,7 +202,7 @@ struct ChargerHubView: View {
 
 struct ChargerHubView_Previews: PreviewProvider {
     static var previews: some View {
-        ChargerHubView(chargerHub: ChargerHub(id: 2, chargerLocationName: "Asecs Röd Entre, Jönköping ", chargers: [ChargerTest(chargerID: 111111, location: [12.12, 12.12], chargePointID: 1, serialNumber: "miabsginaow", status: 0)], distance: "1.1km"), chargerIdInput: .constant(""))
+        ChargerHubView(chargerHub: ChargerHub(id: 2, chargerLocationName: "Asecs Röd Entre, Jönköping ", chargers: [ChargerTest(chargerID: 111111, location: [12.12, 12.12], chargePointID: 1, serialNumber: "miabsginaow", status: "Occupied")], distance: "1.1km"), chargerIdInput: .constant(""))
     }
 }
 
