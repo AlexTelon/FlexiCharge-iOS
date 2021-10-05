@@ -17,6 +17,7 @@ struct RecoverPasswordView: View {
     let inputCornerRadius: CGFloat = 5
     let emailPlaceholder: String = "Email"
     @State private var emailInput: String = ""
+    @State private var selection: Int? = nil
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
 
     
@@ -71,16 +72,12 @@ struct RecoverPasswordView: View {
                 .frame(width: screenWidth * 0.8)
             Spacer()
             Spacer()
-            NavigationLink(destination: EmailSentView(email: $emailInput, shouldPopToRootView: $rootIsActive)) {
+            NavigationLink(destination: EmailSentView(email: $emailInput, shouldPopToRootView: $rootIsActive), tag: 1, selection: $selection) {
                 // TODO: send email to recover  password
-                Text("Send")
-                    .font(Font.system(size: 20,weight: .bold, design: .default))
-                    .frame(width: screenWidth * 0.8, height: 48)
-            }
-            .isDetailLink(false)
-            .background(Color.primaryGreen)
-            .foregroundColor(.white)
-            .cornerRadius(5)
+                RegularButton(action: {
+                    self.selection = 1
+                }, text: "Send", foregroundColor: Color.white, backgroundColor: Color.primaryGreen)
+            }.background(RoundedRectangle(cornerRadius: 5).fill(Color.primaryGreen))
             .padding()
             Spacer()
         }.edgesIgnoringSafeArea(.top)

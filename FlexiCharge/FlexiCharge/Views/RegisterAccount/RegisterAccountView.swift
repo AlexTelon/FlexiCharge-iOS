@@ -21,7 +21,8 @@ struct RegisterAccountView: View {
     @State private var tosCheckBox: Bool = false
     @State private var validEmail: Bool = false
     @State private var validationText: String = ""
-     
+    @State private var selection: Int? = nil
+    
     var body: some View {
         NavigationView{
             VStack() {
@@ -46,12 +47,12 @@ struct RegisterAccountView: View {
                     /*----------Email----------*/
                     ZStack(alignment: .leading){
                         TextField("Email", text: $email)
-                        .frame(height: inputHeight)
-                        .padding(.horizontal, 8)
-                        .overlay(RoundedRectangle(cornerRadius: inputCornerRadius)
-                                    .stroke()
-                        )
-                        .padding(.top)
+                            .frame(height: inputHeight)
+                            .padding(.horizontal, 8)
+                            .overlay(RoundedRectangle(cornerRadius: inputCornerRadius)
+                                        .stroke()
+                            )
+                            .padding(.top)
                         Text("Email")
                             .foregroundColor(.black)
                             .padding(.horizontal, 5)
@@ -62,12 +63,12 @@ struct RegisterAccountView: View {
                     /*----------Mobile number----------*/
                     ZStack(alignment: .leading){
                         TextField("Mobile number", text: $mobileNumber)
-                        .frame(height: inputHeight)
-                        .padding(.horizontal, 8)
-                        .overlay(RoundedRectangle(cornerRadius: inputCornerRadius)
-                                    .stroke()
-                        )
-                        .padding(.top)
+                            .frame(height: inputHeight)
+                            .padding(.horizontal, 8)
+                            .overlay(RoundedRectangle(cornerRadius: inputCornerRadius)
+                                        .stroke()
+                            )
+                            .padding(.top)
                         Text("Mobile number")
                             .foregroundColor(.black)
                             .padding(.horizontal, 5)
@@ -93,21 +94,21 @@ struct RegisterAccountView: View {
                             .opacity(password.count > 0 ? 1 : 0)
                     }
                     /*----------Repeat password----------
-                    ZStack(alignment: .leading){
-                        SecureField("Repeat password", text: $repeatPassword)
-                            .frame(height: inputHeight)
-                            .padding(.horizontal, 8)
-                            .overlay(RoundedRectangle(cornerRadius: inputCornerRadius)
-                                        .stroke()
-                            )
-                            .padding(.top)
-                        Text("Repeat password")
-                            .foregroundColor(.black)
-                            .padding(.horizontal, 5)
-                            .background(Color.white)
-                            .offset(x: 10, y: -15)
-                            .opacity(repeatPassword.count > 0 ? 1 : 0)
-                    }*/
+                     ZStack(alignment: .leading){
+                     SecureField("Repeat password", text: $repeatPassword)
+                     .frame(height: inputHeight)
+                     .padding(.horizontal, 8)
+                     .overlay(RoundedRectangle(cornerRadius: inputCornerRadius)
+                     .stroke()
+                     )
+                     .padding(.top)
+                     Text("Repeat password")
+                     .foregroundColor(.black)
+                     .padding(.horizontal, 5)
+                     .background(Color.white)
+                     .offset(x: 10, y: -15)
+                     .opacity(repeatPassword.count > 0 ? 1 : 0)
+                     }*/
                     /*----------Checkbox----------*/
                     HStack{
                         Button(action: {tosCheckBox.toggle()}, label: {
@@ -129,16 +130,14 @@ struct RegisterAccountView: View {
                         Text(validationText)
                             .foregroundColor(.red)
                             .padding(.bottom)
-                        Button(action: {
-                            //TO BE DEVELOPED: register user if all validations are fine
+                        //TO BE DEVELOPED: register user if all validations are fine
+                        NavigationLink(destination: LoginView(), tag: 1, selection: $selection) {
+                            RegularButton(action: {
+                                //TO BE DEVELOPED: register user if all validations are fine
                                 validationText = validateInputs(email: email, mobileNumber: mobileNumber, password: password, TOSCheckBox: tosCheckBox)
-                            
-                        }, label: {
-                            NavigationLink(destination: LoginView()) {
-                                RegularButton(text: "Register", foregroundColor: Color.white, backgroundColor: Color.primaryGreen)
-                            }
-                        })
-
+                                self.selection = 1
+                            }, text: "Register", foregroundColor: Color.white, backgroundColor: Color.primaryGreen)
+                        }.background(RoundedRectangle(cornerRadius: 5).fill(Color.primaryGreen))
                         Text("Spacer").hidden()
                         HStack{
                             Text("Already have an account?")

@@ -87,15 +87,9 @@ struct IdentifyChargerView: View {
                         .foregroundColor(.white)
                         .opacity(isButtonVisible == 1 ? 0 : 1)
                         .offset(y: -35)
-                    Button(action: {
+                    RegularButton(action: {
                         startCharging()
-                    }){
-                        Text(buttonText)
-                            .font(Font.system(size: 20,weight: .bold, design: .default))
-                            .foregroundColor(buttonTextColor)
-                    }.frame(width: screenWidth * 0.8, height: 53, alignment: .center)
-                    .background(buttonColor)
-                    .cornerRadius(5)
+                    }, text: buttonText, foregroundColor: buttonTextColor, backgroundColor: buttonColor)
                     .disabled(isButtonDisabled)
                     .opacity(isButtonVisible)
                     .offset(y: -25)
@@ -186,4 +180,10 @@ struct StatusConstants {
     static let RESERVED = "Reserved"
     static let UNAVAILABLE = "Unavailable"
     static let FAULTED = "Faulted"
+}
+
+extension String {
+    subscript(i: Int) -> String {
+        return String(self[index(startIndex, offsetBy: i)])
+    }
 }
