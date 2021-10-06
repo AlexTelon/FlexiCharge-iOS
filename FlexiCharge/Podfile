@@ -1,0 +1,19 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+
+target 'FlexiCharge' do
+  use_frameworks!
+  pod 'KlarnaMobileSDK' 
+
+  # Pods for FlexiCharge
+
+  target 'FlexiChargeTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+  target 'FlexiChargeUITests' do
+    # Pods for testing
+  end
+
+end

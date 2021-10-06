@@ -7,12 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B6A900E016EC9D8FDC1FC14 /* Pods_FlexiCharge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F26807352CAAABE2B9F491F /* Pods_FlexiCharge.framework */; };
 		651A7A5B26EF490000A8A16D /* RegisterAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651A7A5A26EF490000A8A16D /* RegisterAccountView.swift */; };
 		651A7A5D26EF4A0300A8A16D /* RegisterAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651A7A5C26EF4A0300A8A16D /* RegisterAccountViewModel.swift */; };
 		651A7A6026F879F000A8A16D /* SetUpInvoiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651A7A5F26F879F000A8A16D /* SetUpInvoiceView.swift */; };
 		6592EDF92701BC6900AFB3A1 /* InvoicesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6592EDF82701BC6900AFB3A1 /* InvoicesView.swift */; };
 		6592EDFB2701BCB200AFB3A1 /* InvoicesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6592EDFA2701BCB200AFB3A1 /* InvoicesViewModel.swift */; };
 		65F14A3926F8872A00C9B443 /* SetupUpInvoiceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F14A3826F8872A00C9B443 /* SetupUpInvoiceViewModel.swift */; };
+		7025C1764F1C93593C4F664A /* Pods_FlexiCharge_FlexiChargeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9896E208C3D6BA4F37579F4 /* Pods_FlexiCharge_FlexiChargeUITests.framework */; };
+		C0A9820B55727305EA9A054E /* Pods_FlexiChargeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E31C422AFC456ACC6A18D7F4 /* Pods_FlexiChargeTests.framework */; };
 		D327CD6426E64D0D007FC380 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D327CD6326E64D0D007FC380 /* MapView.swift */; };
 		D327CD6626E65F33007FC380 /* IdentifyChargerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D327CD6526E65F32007FC380 /* IdentifyChargerView.swift */; };
 		D334B13526EF9ABE000D31E9 /* RecoverPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D334B13426EF9ABE000D31E9 /* RecoverPasswordView.swift */; };
@@ -35,8 +38,12 @@
 		D3D6D16926E6286800B77B16 /* FlexiChargeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D6D16826E6286800B77B16 /* FlexiChargeTests.swift */; };
 		D3D6D17426E6286800B77B16 /* FlexiChargeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D6D17326E6286800B77B16 /* FlexiChargeUITests.swift */; };
 		D3D6D18826E629BE00B77B16 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D6D18726E629BE00B77B16 /* ContentView.swift */; };
+		FD58562A270DA9490003F109 /* KlarnaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD585629270DA9490003F109 /* KlarnaView.swift */; };
+		FD58562C270DA97E0003F109 /* KlarnaViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD58562B270DA97E0003F109 /* KlarnaViewModel.swift */; };
 		FD8B4F1526EA11D400B0FDB5 /* IdentifyChargerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD8B4F1426EA11D400B0FDB5 /* IdentifyChargerViewModel.swift */; };
 		FD9BB76C26F8BC7600CBE7E5 /* ChargingInProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD9BB76B26F8BC7600CBE7E5 /* ChargingInProgressView.swift */; };
+		FDC10174270DB0C7006C7964 /* KlarnaUiViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC10173270DB0C7006C7964 /* KlarnaUiViewExtensions.swift */; };
+		FDC10179270DC1F2006C7964 /* TestKlarnaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC10178270DC1F2006C7964 /* TestKlarnaView.swift */; };
 		FDDFFF4626EF7C7F004B8EE9 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDDFFF4526EF7C7F004B8EE9 /* SettingsView.swift */; };
 /* End PBXBuildFile section */
 
@@ -58,12 +65,20 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0716857FDA5640DEF5A63427 /* Pods-FlexiCharge-FlexiChargeUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlexiCharge-FlexiChargeUITests.debug.xcconfig"; path = "Target Support Files/Pods-FlexiCharge-FlexiChargeUITests/Pods-FlexiCharge-FlexiChargeUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		27786D414B377C72DF54E3F9 /* Pods-FlexiChargeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlexiChargeTests.debug.xcconfig"; path = "Target Support Files/Pods-FlexiChargeTests/Pods-FlexiChargeTests.debug.xcconfig"; sourceTree = "<group>"; };
+		281ECBFB2618E5BA80E3AC78 /* Pods-FlexiCharge.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlexiCharge.release.xcconfig"; path = "Target Support Files/Pods-FlexiCharge/Pods-FlexiCharge.release.xcconfig"; sourceTree = "<group>"; };
+		412F01C4D9E092C2FE4651D3 /* Pods-FlexiCharge.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlexiCharge.debug.xcconfig"; path = "Target Support Files/Pods-FlexiCharge/Pods-FlexiCharge.debug.xcconfig"; sourceTree = "<group>"; };
+		649BD4D3BAFBC914FFFB9BC9 /* Pods-FlexiCharge-FlexiChargeUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlexiCharge-FlexiChargeUITests.release.xcconfig"; path = "Target Support Files/Pods-FlexiCharge-FlexiChargeUITests/Pods-FlexiCharge-FlexiChargeUITests.release.xcconfig"; sourceTree = "<group>"; };
 		651A7A5A26EF490000A8A16D /* RegisterAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterAccountView.swift; sourceTree = "<group>"; };
 		651A7A5C26EF4A0300A8A16D /* RegisterAccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterAccountViewModel.swift; sourceTree = "<group>"; };
 		651A7A5F26F879F000A8A16D /* SetUpInvoiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUpInvoiceView.swift; sourceTree = "<group>"; };
 		6592EDF82701BC6900AFB3A1 /* InvoicesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvoicesView.swift; sourceTree = "<group>"; };
 		6592EDFA2701BCB200AFB3A1 /* InvoicesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvoicesViewModel.swift; sourceTree = "<group>"; };
 		65F14A3826F8872A00C9B443 /* SetupUpInvoiceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupUpInvoiceViewModel.swift; sourceTree = "<group>"; };
+		6F26807352CAAABE2B9F491F /* Pods_FlexiCharge.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FlexiCharge.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9EA7C744D62087865F2DE335 /* Pods-FlexiChargeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlexiChargeTests.release.xcconfig"; path = "Target Support Files/Pods-FlexiChargeTests/Pods-FlexiChargeTests.release.xcconfig"; sourceTree = "<group>"; };
+		B9896E208C3D6BA4F37579F4 /* Pods_FlexiCharge_FlexiChargeUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FlexiCharge_FlexiChargeUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D327CD6326E64D0D007FC380 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		D327CD6526E65F32007FC380 /* IdentifyChargerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifyChargerView.swift; sourceTree = "<group>"; };
 		D334B13426EF9ABE000D31E9 /* RecoverPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoverPasswordView.swift; sourceTree = "<group>"; };
@@ -91,8 +106,13 @@
 		D3D6D17326E6286800B77B16 /* FlexiChargeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexiChargeUITests.swift; sourceTree = "<group>"; };
 		D3D6D17526E6286800B77B16 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D3D6D18726E629BE00B77B16 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		E31C422AFC456ACC6A18D7F4 /* Pods_FlexiChargeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FlexiChargeTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FD585629270DA9490003F109 /* KlarnaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KlarnaView.swift; sourceTree = "<group>"; };
+		FD58562B270DA97E0003F109 /* KlarnaViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KlarnaViewModel.swift; sourceTree = "<group>"; };
 		FD8B4F1426EA11D400B0FDB5 /* IdentifyChargerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifyChargerViewModel.swift; sourceTree = "<group>"; };
 		FD9BB76B26F8BC7600CBE7E5 /* ChargingInProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChargingInProgressView.swift; sourceTree = "<group>"; };
+		FDC10173270DB0C7006C7964 /* KlarnaUiViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KlarnaUiViewExtensions.swift; sourceTree = "<group>"; };
+		FDC10178270DC1F2006C7964 /* TestKlarnaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestKlarnaView.swift; sourceTree = "<group>"; };
 		FDDFFF4526EF7C7F004B8EE9 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -102,6 +122,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D3A2033226F22411007B0D90 /* CodeScanner in Frameworks */,
+				0B6A900E016EC9D8FDC1FC14 /* Pods_FlexiCharge.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -109,6 +130,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C0A9820B55727305EA9A054E /* Pods_FlexiChargeTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -116,12 +138,26 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7025C1764F1C93593C4F664A /* Pods_FlexiCharge_FlexiChargeUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		031B3CFDDD4BE26737B87EEC /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				412F01C4D9E092C2FE4651D3 /* Pods-FlexiCharge.debug.xcconfig */,
+				281ECBFB2618E5BA80E3AC78 /* Pods-FlexiCharge.release.xcconfig */,
+				0716857FDA5640DEF5A63427 /* Pods-FlexiCharge-FlexiChargeUITests.debug.xcconfig */,
+				649BD4D3BAFBC914FFFB9BC9 /* Pods-FlexiCharge-FlexiChargeUITests.release.xcconfig */,
+				27786D414B377C72DF54E3F9 /* Pods-FlexiChargeTests.debug.xcconfig */,
+				9EA7C744D62087865F2DE335 /* Pods-FlexiChargeTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		651A7A5926EF48C900A8A16D /* RegisterAccount */ = {
 			isa = PBXGroup;
 			children = (
@@ -147,6 +183,16 @@
 				6592EDFA2701BCB200AFB3A1 /* InvoicesViewModel.swift */,
 			);
 			path = Invoices;
+			sourceTree = "<group>";
+		};
+		76B5140C24B486EAC5F53587 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6F26807352CAAABE2B9F491F /* Pods_FlexiCharge.framework */,
+				B9896E208C3D6BA4F37579F4 /* Pods_FlexiCharge_FlexiChargeUITests.framework */,
+				E31C422AFC456ACC6A18D7F4 /* Pods_FlexiChargeTests.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		D311946726E9112E004DCFC8 /* Models */ = {
@@ -227,6 +273,8 @@
 				D3D6D16726E6286800B77B16 /* FlexiChargeTests */,
 				D3D6D17226E6286800B77B16 /* FlexiChargeUITests */,
 				D3D6D14F26E6286500B77B16 /* Products */,
+				031B3CFDDD4BE26737B87EEC /* Pods */,
+				76B5140C24B486EAC5F53587 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -285,6 +333,8 @@
 		D3D6D18C26E6403400B77B16 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				FDC10177270DC1D2006C7964 /* TestKlarnaViewa */,
+				FD585628270DA8BB0003F109 /* KlarnaPayments */,
 				FD9BB76A26F8BC1C00CBE7E5 /* ChargingInProgress */,
 				D3A2033C26F4845C007B0D90 /* Login */,
 				651A7A5926EF48C900A8A16D /* RegisterAccount */,
@@ -298,12 +348,30 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		FD585628270DA8BB0003F109 /* KlarnaPayments */ = {
+			isa = PBXGroup;
+			children = (
+				FD585629270DA9490003F109 /* KlarnaView.swift */,
+				FD58562B270DA97E0003F109 /* KlarnaViewModel.swift */,
+				FDC10173270DB0C7006C7964 /* KlarnaUiViewExtensions.swift */,
+			);
+			path = KlarnaPayments;
+			sourceTree = "<group>";
+		};
 		FD9BB76A26F8BC1C00CBE7E5 /* ChargingInProgress */ = {
 			isa = PBXGroup;
 			children = (
 				FD9BB76B26F8BC7600CBE7E5 /* ChargingInProgressView.swift */,
 			);
 			path = ChargingInProgress;
+			sourceTree = "<group>";
+		};
+		FDC10177270DC1D2006C7964 /* TestKlarnaViewa */ = {
+			isa = PBXGroup;
+			children = (
+				FDC10178270DC1F2006C7964 /* TestKlarnaView.swift */,
+			);
+			path = TestKlarnaViewa;
 			sourceTree = "<group>";
 		};
 		FDDFFF4426EF7C37004B8EE9 /* Settings */ = {
@@ -323,9 +391,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D3D6D17826E6286800B77B16 /* Build configuration list for PBXNativeTarget "FlexiCharge" */;
 			buildPhases = (
+				1117B48E2481B91D96F61A4B /* [CP] Check Pods Manifest.lock */,
 				D3D6D14A26E6286500B77B16 /* Sources */,
 				D3D6D14B26E6286500B77B16 /* Frameworks */,
 				D3D6D14C26E6286500B77B16 /* Resources */,
+				F66651079154B7A442CB4AB5 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -343,6 +413,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D3D6D17B26E6286800B77B16 /* Build configuration list for PBXNativeTarget "FlexiChargeTests" */;
 			buildPhases = (
+				6F7525A50DF7885A727F112C /* [CP] Check Pods Manifest.lock */,
 				D3D6D16026E6286800B77B16 /* Sources */,
 				D3D6D16126E6286800B77B16 /* Frameworks */,
 				D3D6D16226E6286800B77B16 /* Resources */,
@@ -361,9 +432,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D3D6D17E26E6286800B77B16 /* Build configuration list for PBXNativeTarget "FlexiChargeUITests" */;
 			buildPhases = (
+				B509EB4D7332B3D39D971F06 /* [CP] Check Pods Manifest.lock */,
 				D3D6D16B26E6286800B77B16 /* Sources */,
 				D3D6D16C26E6286800B77B16 /* Frameworks */,
 				D3D6D16D26E6286800B77B16 /* Resources */,
+				D71A51D20A2B7C990C179183 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -446,6 +519,109 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		1117B48E2481B91D96F61A4B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-FlexiCharge-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6F7525A50DF7885A727F112C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-FlexiChargeTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B509EB4D7332B3D39D971F06 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-FlexiCharge-FlexiChargeUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D71A51D20A2B7C990C179183 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FlexiCharge-FlexiChargeUITests/Pods-FlexiCharge-FlexiChargeUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FlexiCharge-FlexiChargeUITests/Pods-FlexiCharge-FlexiChargeUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FlexiCharge-FlexiChargeUITests/Pods-FlexiCharge-FlexiChargeUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F66651079154B7A442CB4AB5 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FlexiCharge/Pods-FlexiCharge-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FlexiCharge/Pods-FlexiCharge-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FlexiCharge/Pods-FlexiCharge-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		D3D6D14A26E6286500B77B16 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -466,16 +642,20 @@
 				D34A1AC326F53D0E001EB5D2 /* ChargerHub.swift in Sources */,
 				D3A2033826F24025007B0D90 /* QROverlayView.swift in Sources */,
 				D35844E826FB6AB1004F5790 /* LocationManager.swift in Sources */,
+				FDC10179270DC1F2006C7964 /* TestKlarnaView.swift in Sources */,
 				FD8B4F1526EA11D400B0FDB5 /* IdentifyChargerViewModel.swift in Sources */,
 				65F14A3926F8872A00C9B443 /* SetupUpInvoiceViewModel.swift in Sources */,
+				FD58562C270DA97E0003F109 /* KlarnaViewModel.swift in Sources */,
 				D334B13726EFBBAA000D31E9 /* EmailSentView.swift in Sources */,
 				D327CD6426E64D0D007FC380 /* MapView.swift in Sources */,
 				D3D6D18826E629BE00B77B16 /* ContentView.swift in Sources */,
 				FD9BB76C26F8BC7600CBE7E5 /* ChargingInProgressView.swift in Sources */,
+				FDC10174270DB0C7006C7964 /* KlarnaUiViewExtensions.swift in Sources */,
 				D388D13C2706ED85005C1927 /* Extensions.swift in Sources */,
 				651A7A6026F879F000A8A16D /* SetUpInvoiceView.swift in Sources */,
 				D3A2033E26F4846B007B0D90 /* LoginView.swift in Sources */,
 				D3D6D15226E6286500B77B16 /* FlexiChargeApp.swift in Sources */,
+				FD58562A270DA9490003F109 /* KlarnaView.swift in Sources */,
 				D327CD6626E65F33007FC380 /* IdentifyChargerView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -630,6 +810,7 @@
 		};
 		D3D6D17926E6286800B77B16 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 412F01C4D9E092C2FE4651D3 /* Pods-FlexiCharge.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -654,6 +835,7 @@
 		};
 		D3D6D17A26E6286800B77B16 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 281ECBFB2618E5BA80E3AC78 /* Pods-FlexiCharge.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -678,6 +860,7 @@
 		};
 		D3D6D17C26E6286800B77B16 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 27786D414B377C72DF54E3F9 /* Pods-FlexiChargeTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -700,6 +883,7 @@
 		};
 		D3D6D17D26E6286800B77B16 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9EA7C744D62087865F2DE335 /* Pods-FlexiChargeTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -722,6 +906,7 @@
 		};
 		D3D6D17F26E6286800B77B16 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0716857FDA5640DEF5A63427 /* Pods-FlexiCharge-FlexiChargeUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -742,6 +927,7 @@
 		};
 		D3D6D18026E6286800B77B16 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 649BD4D3BAFBC914FFFB9BC9 /* Pods-FlexiCharge-FlexiChargeUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

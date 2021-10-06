@@ -48,7 +48,7 @@ struct SettingsView: View {
                 Group {
                     /*----------Charging History----------*/
                     // Change NavigationLink to correct page once it is created
-                    NavigationLink(destination: LoginView()) {
+                    NavigationLink(destination: TestKlarnaView()) {
                         HStack {
                             Text("Charging History")
                                 .font(Font.system(size: 20, design: .default))

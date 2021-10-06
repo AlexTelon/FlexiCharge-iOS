@@ -1,0 +1,20 @@
+PODS:
+  - KlarnaMobileSDK (2.0.44):
+    - KlarnaMobileSDK/full (= 2.0.44)
+  - KlarnaMobileSDK/full (2.0.44):
+    - KlarnaMobileSDK/xcode-12.3-fat-full
+  - KlarnaMobileSDK/xcode-12.3-fat-full (2.0.44)
+
+DEPENDENCIES:
+  - KlarnaMobileSDK
+
+SPEC REPOS:
+  trunk:
+    - KlarnaMobileSDK
+
+SPEC CHECKSUMS:
+  KlarnaMobileSDK: 34db5e9e4492649c4c30d2955cbbf6ab9bfc316c
+
+PODFILE CHECKSUM: 143c79690a8ba4e83d315eca8796972f66fda90b
+
+COCOAPODS: 1.11.2
