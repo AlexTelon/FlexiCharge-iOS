@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ChargerInfoBox: View {
-    var charger: ChargerTest
+    var charger: Charger
     var chargerStatusColor = [StatusConstants.AVAILABLE: Color.primaryGreen, StatusConstants.PREPARING: Color.gray, StatusConstants.CHARGING: Color.primaryRed, StatusConstants.SUSPENDEDEVSE: Color.primaryDarkGray, StatusConstants.SUSPENDEDEV: Color.primaryDarkGray, StatusConstants.FINISHING: Color.primaryDarkGray, StatusConstants.RESERVED: Color.primaryDarkGray, StatusConstants.UNAVAILABLE: Color.primaryDarkGray, StatusConstants.FAULTED: Color.primaryDarkGray]
     @State public var boxHeight: CGFloat = 0
     
@@ -56,7 +56,7 @@ struct ChargerHubView: View {
     @State var chargerBoxMaxX: CGFloat = 0
     @State private var boxMinX: CGFloat = 0
     @State private var boxMaxX: CGFloat = 0
-    @State private var selectedCharger: ChargerTest?
+    @State private var selectedCharger: Charger?
     @State private var selectedPayment: String?
     @Environment(\.presentationMode) /*static*/ var presentationMode: Binding<PresentationMode>
     // Static above is for a feature in the future
@@ -200,7 +200,7 @@ struct ChargerHubView: View {
 
 struct ChargerHubView_Previews: PreviewProvider {
     static var previews: some View {
-        ChargerHubView(chargerHub: ChargerHub(id: 2, chargerLocationName: "Asecs Röd Entre, Jönköping ", chargers: [ChargerTest(chargerID: 111111, location: [12.12, 12.12], chargePointID: 1, serialNumber: "miabsginaow", status: "Occupied")], distance: "1.1km"), chargerIdInput: .constant(""))
+        ChargerHubView(chargerHub: ChargerHub(id: 2, chargerLocationName: "Asecs Röd Entre, Jönköping ", chargers: [Charger(chargerID: 111111, location: [12.12, 12.12], chargePointID: 1, serialNumber: "miabsginaow", status: "Occupied")], distance: "1.1km"), chargerIdInput: .constant(""))
     }
 }
 

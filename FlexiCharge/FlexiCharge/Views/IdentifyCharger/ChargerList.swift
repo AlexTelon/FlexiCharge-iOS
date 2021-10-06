@@ -10,14 +10,15 @@ import SwiftUI
 struct ChargerList: View {
     @Binding var isShowingListOfChargers: Bool
     @Binding var chargerIdInput: String
-    var chargers: [ChargerTest]
+    var chargers: [Charger]
+    let screenHeight = UIScreen.main.bounds.size.height
     let listHeight: CGFloat
     let rowHeight: CGFloat = 50 + 12
     let chargerHubs: [ChargerHub]
     @State var menuHeight: CGFloat = 0
     
     
-    init(isShowingListOfChargers: Binding<Bool>, chargers: [ChargerTest], chargerIdInput: Binding<String>) {
+    init(isShowingListOfChargers: Binding<Bool>, chargers: [Charger], chargerIdInput: Binding<String>) {
         UITableView.appearance().backgroundColor = UIColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 1)
         self._isShowingListOfChargers = isShowingListOfChargers
         self._chargerIdInput = chargerIdInput
@@ -81,7 +82,7 @@ struct ChargerList: View {
 
 struct ChargerList_Previews: PreviewProvider {
     static var previews: some View {
-        ChargerList(isShowingListOfChargers: .constant(true), chargers: [ChargerTest(chargerID: 999999, location: [57.123, 57.123], chargePointID: 9, serialNumber: "jdiwamgoineawiug", status: "Available")], chargerIdInput: .constant(""))
+        ChargerList(isShowingListOfChargers: .constant(true), chargers: [Charger(chargerID: 999999, location: [57.123, 57.123], chargePointID: 9, serialNumber: "jdiwamgoineawiug", status: "Available")], chargerIdInput: .constant(""))
     }
 }
 

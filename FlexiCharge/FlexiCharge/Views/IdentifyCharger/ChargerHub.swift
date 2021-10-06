@@ -12,11 +12,11 @@ import SwiftUI
 struct ChargerHub: Identifiable {
     var id: Int
     var chargerLocationName: String
-    var chargers: [ChargerTest]
+    var chargers: [Charger]
     var distance: String
 }
 
-struct ChargerTest: Decodable, Identifiable {
+struct Charger: Decodable, Identifiable {
     var chargerID: Int
     var location: [CGFloat]
     var chargePointID: Int

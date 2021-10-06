@@ -12,6 +12,8 @@ import CodeScanner
 
 struct ContentView: View {
     let listHeight: CGFloat
+    
+    @State var results = [Charger]()
     @State var isShowingListOfChargers: Bool = false
     @State var isChargingInProgress: Bool = false
     @State var chargingInProgressID: Int = 0
@@ -19,9 +21,12 @@ struct ContentView: View {
     @State var offset: CGFloat = 0
     @State var lastOffset: CGFloat = 0
     @State var keyboardHeight: CGFloat = 0
-    @State private var chargers = ChargerAPI()
+    @State var update = false
+    @State var result = [Charger]()
+    
     @State private var isShowingScanner: Bool = false
     @State private var notUrl: Bool = false
+    
     @GestureState private var gestureOffset: CGFloat = 0
     @Environment(\.openURL) var openURL
     
@@ -34,7 +39,7 @@ struct ContentView: View {
         NavigationView {
             Group {
                 ZStack(alignment: .bottom) {
-                    MapView(chargers: $chargers)
+                    MapView(chargers: $result)
                         .frame(minHeight: 0, maxHeight: .infinity)
                         .edgesIgnoringSafeArea(.all)
                         .onTapGesture {
@@ -108,7 +113,7 @@ struct ContentView: View {
                         .padding(.horizontal, UsefulValues.screenWidth * 0.1)
                     }
                     let conditionOffset = self.offset + UsefulValues.screenHeight - self.keyboardHeight
-                    IdentifyChargerView(isChargingInProgress: $isChargingInProgress, chargingInProgressID: $chargingInProgressID, chargers: $chargers, isShowingListOfChargers: $isShowingListOfChargers, offset: $offset)
+                    IdentifyChargerView(isChargingInProgress: $isChargingInProgress, chargingInProgressID: $chargingInProgressID, chargers: $result, isShowingListOfChargers: $isShowingListOfChargers, offset: $offset)
                         .transition(.move(edge: .bottom))
                         .animation(.easeInOut(duration: 0.2))
                         .offset(y: isShowingListOfChargers ? conditionOffset - listHeight  : conditionOffset)
@@ -145,6 +150,10 @@ struct ContentView: View {
                 .navigationBarHidden(true)
             }.background(Color.primaryDarkGray.ignoresSafeArea(.all))
         }.navigationBarHidden(true)
+        .onAppear(perform: loadData)
+        .onChange(of: isChargingInProgress, perform: { _ in
+            loadData()
+        })
     }
     
     func onChange() {
@@ -180,6 +189,20 @@ struct ContentView: View {
             print("Scanning failed")
             notUrl = true
         }
+    }
+    
+    func loadData() {
+        // Fetches all chargers
+        guard let url = URL(string: "http://54.220.194.65:8080/chargers") else { return }
+        URLSession.shared.dataTask(with: url) { (data, _, _) in
+            guard let data = data else { return }
+            let decodedData = try! JSONDecoder().decode([Charger].self, from: data)
+            
+            DispatchQueue.main.async {
+                self.result = decodedData
+            }
+            print(decodedData)
+        }.resume()
     }
 }
 

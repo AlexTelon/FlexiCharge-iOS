@@ -10,25 +10,9 @@ import Combine
 import SwiftUI
 
 class ChargerAPI {
-    var didChange = PassthroughSubject<ChargerAPI, Never>()
-    var result = [ChargerTest]() {
-        didSet {
-            didChange.send(self)
-        }
-    }
     
     init() {
-        // Fetches all chargers
-        guard let url = URL(string: "http://54.220.194.65:8080/chargers") else { return }
-        URLSession.shared.dataTask(with: url) { (data, _, _) in
-            guard let data = data else { return }
-            let decodedData = try! JSONDecoder().decode([ChargerTest].self, from: data)
-            
-            DispatchQueue.main.async {
-                self.result = decodedData
-            }
-            print(decodedData)
-        }.resume()
+
     }
     
     func beginCharging(chargerID: Int) {
@@ -63,6 +47,7 @@ class ChargerAPI {
                     print("Response JSON data = \(responseJSONData)")
                 }
             }
+//            ContentView().loadData()
         }.resume()
     }
     
@@ -98,10 +83,7 @@ class ChargerAPI {
                     print("Response JSON data = \(responseJSONData)")
                 }
             }
+//            ContentView().loadData()
         }.resume()
     }
-}
-
-struct ChargerResult: Decodable {
-    var results: [ChargerTest]
 }
