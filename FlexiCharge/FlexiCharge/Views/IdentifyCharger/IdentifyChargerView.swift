@@ -147,6 +147,7 @@ struct IdentifyChargerView: View {
     
     func startCharging() {
         ChargerAPI().beginCharging(chargerID: Int(chargerIdInput)!)
+//        print(response)
         isChargingInProgress = true
         chargingInProgressID = Int(chargerIdInput)!
         // TODO: Something  like this  line below needs to dismiss the chargerhubview on startCharging
