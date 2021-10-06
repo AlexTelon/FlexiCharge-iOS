@@ -47,7 +47,6 @@ class ChargerAPI {
                     print("Response JSON data = \(responseJSONData)")
                 }
             }
-//            ContentView().loadData()
         }.resume()
     }
     
@@ -83,7 +82,6 @@ class ChargerAPI {
                     print("Response JSON data = \(responseJSONData)")
                 }
             }
-//            ContentView().loadData()
         }.resume()
     }
 }
