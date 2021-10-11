@@ -26,7 +26,7 @@ struct RegularButton: View {
         }, label: {
             Text(text)
                 .frame(width: UsefulValues.screenWidth * 0.8, alignment: .center)
-                .frame(maxHeight: 48)
+                .frame(height: 48)
         })
         .foregroundColor(foregroundColor)
         .background(RoundedRectangle(cornerRadius: 5).fill(backgroundColor))

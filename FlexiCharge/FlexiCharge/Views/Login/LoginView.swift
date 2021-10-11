@@ -17,11 +17,12 @@ struct LoginView: View {
     @State var isActive: Bool = false
     @State var selection: Int? = nil
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-
+    
     
     var body: some View {
         NavigationView {
-            VStack {
+            ScrollView {
+                VStack {
                     // Gray design at the top of the screen
                     ZStack {
                         Image("top-tilted-rectangle")
@@ -47,7 +48,7 @@ struct LoginView: View {
                             Image("menu-arrow")
                                 .hidden()
                         }.frame(width: UsefulValues.screenWidth * 0.95, alignment: .center)
-                        .offset(y: -UsefulValues.screenHeight * 0.03)
+                            .offset(y: -UsefulValues.screenHeight * 0.03)
                     }
                     // Login "form"
                     VStack {
@@ -76,14 +77,16 @@ struct LoginView: View {
                         Spacer()
                     }
                     .frame(width: UsefulValues.screenWidth * 0.8)
-                }
-                .edgesIgnoringSafeArea(.all)
-                .frame(minHeight: 0, maxHeight: .infinity)
-                .disableAutocorrection(true)
-                .autocapitalization(.none)
-                .onTapGesture {
-                    hideKeyboard()
+                }.frame(height: UsefulValues.screenHeight)
             }
+            .edgesIgnoringSafeArea(.top)
+            .frame(minHeight: 0, maxHeight: .infinity)
+            .disableAutocorrection(true)
+            .autocapitalization(.none)
+            .onTapGesture {
+                hideKeyboard()
+            }
+            .navigationBarHidden(true)
         }
         .navigationBarBackButtonHidden(true)
         .navigationBarHidden(true)

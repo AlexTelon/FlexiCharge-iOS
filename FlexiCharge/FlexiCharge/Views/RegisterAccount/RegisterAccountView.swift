@@ -22,84 +22,85 @@ struct RegisterAccountView: View {
     
     var body: some View {
         NavigationView{
-            VStack() {
-                ZStack(){
-                    Image("topShapeRegister")
-                        .resizable()
-                        .scaledToFit()
-                    HStack {
-                        Spacer()
-                        Text("Register")
-                            .foregroundColor(.white)
-                            .font(Font.system(size: 40, weight: .bold, design: .default))
-                            .scaledToFill()
-                            .minimumScaleFactor(0.5)
-                            .lineLimit(1)
-                            .frame(width: UsefulValues.screenWidth * 0.8, alignment: .center)
-                        Spacer()
-                    }.frame(width: UsefulValues.screenWidth * 0.95)
-                    .offset(y: -UsefulValues.screenHeight * 0.03)
-                }
-                VStack{
-                    /*----------Email----------*/
-                    RegularTextField(input: $email, placeholder: "Email", keyboardType: .emailAddress)
-                        .padding(.top)
-                    /*----------Mobile number----------*/
-                    RegularTextField(input: $mobileNumber, placeholder: "Mobile number", keyboardType: .numberPad)
-                        .padding(.top)
-                    /*----------Password----------*/
-                    SecureTextField(input: $password, placeholder: "Password", keyboardType: .default)
-                        .padding(.top)
-                    /*----------Repeat password----------*/
-                    /* SecureTextField(input: $repeatPassword, placeholder: "Repeat password", keyboardType: .default)
-                        .padding(.top) */
-                    /*----------Checkbox----------*/
-                    HStack{
-                        Button(action: {tosCheckBox.toggle()}, label: {
-                            Image(systemName: tosCheckBox ? "checkmark" : "")
-                                .frame(width: 30, height: 30)
-                                .overlay(Rectangle()
-                                            .stroke()
-                                )
-                                .foregroundColor(.black)
-                        })
-                        Text("I agree to the terms and conditions")
-                            .font(.subheadline)
-                        Spacer()
-                    }
-                    .padding(.top)
-                    Spacer()
-                    /*----------Register button and the following text----------*/
-                    VStack{
-                        Text(validationText)
-                            .foregroundColor(.red)
-                            .padding(.bottom)
-                        //TO BE DEVELOPED: register user if all validations are fine
-                        NavigationLink(destination: LoginView(), tag: 1, selection: $selection) {
-                            RegularButton(action: {
-                                //TO BE DEVELOPED: register user if all validations are fine
-                                validationText = validateInputs(email: email, mobileNumber: mobileNumber, password: password, TOSCheckBox: tosCheckBox)
-                                self.selection = 1
-                            }, text: "Register", foregroundColor: Color.white, backgroundColor: Color.primaryGreen)
-                        }.background(RoundedRectangle(cornerRadius: 5).fill(Color.primaryGreen))
-                        Text("Spacer").hidden()
-                        HStack{
-                            Text("Already have an account?")
-                            NavigationLink(destination: LoginView()) {
-                                Text("Sign in")
-                                    .foregroundColor(Color.primaryGreen)
-                            }
+            ScrollView {
+                VStack {
+                    ZStack {
+                        Image("topShapeRegister")
+                            .resizable()
+                            .scaledToFit()
+                        HStack {
+                            Spacer()
+                            Text("Register")
+                                .foregroundColor(.white)
+                                .font(Font.system(size: 40, weight: .bold, design: .default))
+                                .scaledToFill()
+                                .minimumScaleFactor(0.5)
+                                .lineLimit(1)
+                                .frame(width: UsefulValues.screenWidth * 0.8, alignment: .center)
+                            Spacer()
                         }
-                        Text("Continue as Guest")
-                            .foregroundColor(Color.primaryGreen)
-                            .padding()
+                        .offset(y: -UsefulValues.screenHeight * 0.03)
                     }
-                    .padding(.bottom)
-                }
-                .frame(width: UsefulValues.screenWidth * 0.8)
-                Spacer()
-            }
-            .edgesIgnoringSafeArea(.top)
+                    VStack{
+                        /*----------Email----------*/
+                        RegularTextField(input: $email, placeholder: "Email", keyboardType: .emailAddress)
+                            .padding(.top)
+                        /*----------Mobile number----------*/
+                        RegularTextField(input: $mobileNumber, placeholder: "Mobile number", keyboardType: .numberPad)
+                            .padding(.top)
+                        /*----------Password----------*/
+                        SecureTextField(input: $password, placeholder: "Password", keyboardType: .default)
+                            .padding(.top)
+                        /*----------Repeat password----------*/
+                        /* SecureTextField(input: $repeatPassword, placeholder: "Repeat password", keyboardType: .default)
+                         .padding(.top) */
+                        /*----------Checkbox----------*/
+                        HStack{
+                            Button(action: {tosCheckBox.toggle()}, label: {
+                                Image(systemName: tosCheckBox ? "checkmark" : "")
+                                    .frame(width: 30, height: 30)
+                                    .overlay(Rectangle()
+                                                .stroke()
+                                    )
+                                    .foregroundColor(.black)
+                            })
+                            Text("I agree to the terms and conditions")
+                                .font(.subheadline)
+                            Spacer()
+                        }
+                        .padding(.top)
+                        Spacer()
+                        /*----------Register button and the following text----------*/
+                        VStack{
+                            Text(validationText)
+                                .foregroundColor(.red)
+                                .padding(.bottom)
+                            //TO BE DEVELOPED: register user if all validations are fine
+                            NavigationLink(destination: LoginView(), tag: 1, selection: $selection) {
+                                RegularButton(action: {
+                                    //TO BE DEVELOPED: register user if all validations are fine
+                                    validationText = validateInputs(email: email, mobileNumber: mobileNumber, password: password, TOSCheckBox: tosCheckBox)
+                                    self.selection = 1
+                                }, text: "Register", foregroundColor: Color.white, backgroundColor: Color.primaryGreen)
+                            }.background(RoundedRectangle(cornerRadius: 5).fill(Color.primaryGreen))
+                            Text("Spacer").hidden()
+                            HStack{
+                                Text("Already have an account?")
+                                NavigationLink(destination: LoginView()) {
+                                    Text("Sign in")
+                                        .foregroundColor(Color.primaryGreen)
+                                }
+                            }
+                            Text("Continue as Guest")
+                                .foregroundColor(Color.primaryGreen)
+                                .padding()
+                        }
+                        Spacer()
+                    }
+                    .frame(width: UsefulValues.screenWidth * 0.8)
+                }.frame(height: UsefulValues.screenHeight)
+            }.edgesIgnoringSafeArea(.top)
+            .navigationBarHidden(true)
         }
         .autocapitalization(.none)
         .disableAutocorrection(true)
