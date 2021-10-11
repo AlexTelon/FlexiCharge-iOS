@@ -47,8 +47,9 @@ struct LoginView: View {
                             Spacer()
                             Image("menu-arrow")
                                 .hidden()
-                        }.frame(width: UsefulValues.screenWidth * 0.95, alignment: .center)
-                            .offset(y: -UsefulValues.screenHeight * 0.03)
+                        }
+                        .frame(width: UsefulValues.screenWidth * 0.95, alignment: .center)
+                        .offset(y: -UsefulValues.screenHeight * 0.03)
                     }
                     // Login "form"
                     VStack {
