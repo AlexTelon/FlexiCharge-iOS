@@ -13,7 +13,72 @@ final class KlarnaSDKIntegration {
 
     private(set) var paymentView: KlarnaPaymentView?
     
-    var client_token = "eyJhbGciOiJSUzI1NiIsImtpZCI6IjgyMzA1ZWJjLWI4MTEtMzYzNy1hYTRjLTY2ZWNhMTg3NGYzZCJ9.eyJzZXNzaW9uX2lkIjoiOGZhNzk0NGYtNTAwNC0xMzY2LWE2NmYtOTBlMzk4MTg1MzRmIiwiYmFzZV91cmwiOiJodHRwczovL2pzLnBsYXlncm91bmQua2xhcm5hLmNvbS9ldS9rcC9sZWdhY3kvcGF5bWVudHMiLCJkZXNpZ24iOiJrbGFybmEiLCJsYW5ndWFnZSI6InN2IiwicHVyY2hhc2VfY291bnRyeSI6IlNFIiwiZW52aXJvbm1lbnQiOiJwbGF5Z3JvdW5kIiwibWVyY2hhbnRfbmFtZSI6IllvdXIgYnVzaW5lc3MgbmFtZSIsInNlc3Npb25fdHlwZSI6IlBBWU1FTlRTIiwiY2xpZW50X2V2ZW50X2Jhc2VfdXJsIjoiaHR0cHM6Ly9ldS5wbGF5Z3JvdW5kLmtsYXJuYWV2dC5jb20iLCJleHBlcmltZW50cyI6W3sibmFtZSI6ImluLWFwcC1zZGstbmV3LWludGVybmFsLWJyb3dzZXIiLCJ2YXJpYXRlIjoibmV3LWludGVybmFsLWJyb3dzZXItZW5hYmxlIiwicGFyYW1ldGVycyI6eyJ2YXJpYXRlX2lkIjoibmV3LWludGVybmFsLWJyb3dzZXItZW5hYmxlIn19LHsibmFtZSI6ImluLWFwcC1zZGstY2FyZC1zY2FubmluZyIsInZhcmlhdGUiOiJjYXJkLXNjYW5uaW5nLWVuYWJsZSIsInBhcmFtZXRlcnMiOnsidmFyaWF0ZV9pZCI6ImNhcmQtc2Nhbm5pbmctZW5hYmxlIn19XX0.kmtnqPderO5-mfphr3nSbv9VkRJpUUz1C23EtCB-ZjxGTZVLkK0v_7_xRoStTXz3-ZGnykUFqZNhOyXa26TLob9sD_PRikDSMJBscI4DrlCO7M52t-D-taITXC5NxRVigeTAQyptLA9ZVpc-YeD25fEyzbPlLa4MlxhxLqVztKrYhJixttmfI-RhuqIpWz3MjTpbNTkvN5LjLTBVUv0j2O-OlRSXjIAF74U4ngOrJpquEUbBWKnj8W5gKHbltaDXn1GFysDLkOIXLFXVhkaQPV4ZnRVfpinEwHNKhupugD2m07ecoKv9Rah4y4JTrexUHuAz4IB7yFJvsIDhlecgkQ"
+    var result: AnyObject
+
+    init() {
+        
+        guard let url = URL(string: "http://54.220.194.65:8080/transactions/session") else { return }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.allHTTPHeaderFields = [
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+        ]
+        
+        let jsonDictionary: [String: Any] = [
+            "userID": "2i3h52-3kn34k6-2k3n5",
+            "chargerID": 100002
+        ]
+        
+        let data = try! JSONSerialization.data(withJSONObject: jsonDictionary, options: .prettyPrinted)
+        
+        URLSession.shared.uploadTask(with: request, from: data) { (responseData, response, error) in
+            if let error = error {
+                print("Error making POST request: \(error.localizedDescription)")
+                return
+            }
+            
+            if let responseCode = (response as? HTTPURLResponse)?.statusCode, let responseData = responseData {
+                guard responseCode == 201 else {
+                    print("Invalid response code: \(responseCode)")
+                    return
+                }
+                
+                if let responseJSONData = try? JSONSerialization.jsonObject(with: responseData, options: .allowFragments) {
+                    print("Response JSON data = \(responseJSONData)")
+                    
+                    
+                    self.result = responseJSONData as AnyObject
+                }
+            }
+        }.resume()
+    }
+    
+    struct KlarnaSession: Decodable {
+        var transactionID: Int?
+        var userID: String?
+        var chargerID: Int?
+        var pricePerKwh: String?
+        var session_id: String?
+        var client_token: String?
+        var payment_method_categories: [PaymentMethod?]?
+        var paymentConfirmed: Bool?
+        var isKlarnaPayment: Bool?
+        var timestamp: Int?
+        var kwhTransfered: Int?
+        var currentChargePercentage: Int?
+        var paymentID: Int?
+    }
+    struct PaymentMethod: Decodable {
+        var identifier: String?
+        var name: String?
+        var assetsUrl: [AssetUrls?]?
+    }
+    struct AssetUrls: Decodable {
+        var descriptive: String?
+        var standard: String?
+    }
     
     public func createPaymentView() {
         //        guard let clientToken = clientToken else {
@@ -34,7 +99,7 @@ final class KlarnaSDKIntegration {
         //            }
         
         self.paymentView = KlarnaPaymentView(category: "pay_now", eventListener: self)
-        self.paymentView!.initialize(clientToken: client_token, returnUrl: URL(string:"flexiChargeUrl://")!)
+        self.paymentView!.initialize(clientToken: , returnUrl: URL(string:"flexiChargeUrl://")!)
     }
 }
 
@@ -87,7 +152,8 @@ extension KlarnaSDKIntegration: KlarnaPaymentEventListener {
 
         if let token = authToken {
             // finalization is successful, backend may create order
-        }    }
+        }
+    }
     
     func klarnaResized(paymentView: KlarnaPaymentView, to newHeight: CGFloat) {
         print("KlarnaPaymentViewDelegate paymentView resizedToHeight: \(newHeight)")
@@ -97,5 +163,4 @@ extension KlarnaSDKIntegration: KlarnaPaymentEventListener {
         print("KlarnaPaymentViewDelegate paymentView failedWithError: \(error.debugDescription)")
     }
 }
-
 
