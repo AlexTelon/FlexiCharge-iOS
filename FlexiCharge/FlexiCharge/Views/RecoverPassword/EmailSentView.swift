@@ -12,7 +12,6 @@ struct EmailSentView: View {
     @Binding var shouldPopToRootView: Bool
     let inputHeight: CGFloat = 48
     let inputCornerRadius: CGFloat = 5
-    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     var body: some View {
         VStack {
