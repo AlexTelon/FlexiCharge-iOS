@@ -91,9 +91,11 @@ struct RegisterAccountView: View {
                                         .foregroundColor(Color.primaryGreen)
                                 }
                             }
-                            Text("Continue as Guest")
-                                .foregroundColor(Color.primaryGreen)
-                                .padding()
+                            NavigationLink(destination: ContentView()) {
+                                Text("Continue as Guest")
+                                    .foregroundColor(Color.primaryGreen)
+                                    .padding()
+                            }
                         }
                         Spacer()
                     }
