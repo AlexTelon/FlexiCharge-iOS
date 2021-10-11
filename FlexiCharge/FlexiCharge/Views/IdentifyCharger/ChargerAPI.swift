@@ -11,14 +11,12 @@ import SwiftUI
 
 class ChargerAPI {
     
-    var response: Any? = nil
-    
     init() {
         
     }
     
-    func beginCharging(chargerID: Int) -> Any {
-        guard let url = URL(string: "http://54.220.194.65:8080/reservations/" + String(chargerID)) else { return "Not a valid URL" }
+    func beginCharging(chargerID: Int) {
+        guard let url = URL(string: "http://54.220.194.65:8080/reservations/" + String(chargerID)) else { return }
         
         var request = URLRequest(url: url)
         request.httpMethod = "PUT"
@@ -46,17 +44,14 @@ class ChargerAPI {
             if let responseCode = (response as? HTTPURLResponse)?.statusCode, let responseData = responseData {
                 guard responseCode == 200 else {
                     print("Invalid response code: \(responseCode)")
-//                    self.response = responseCode
                     return
                 }
                 
                 if let responseJSONData = try? JSONSerialization.jsonObject(with: responseData, options: .allowFragments) {
                     print("Response JSON data = \(responseJSONData)")
-//                    self.response = responseJSONData
                 }
             }
         }.resume()
-        return "test"
     }
     
     func stopCharging(chargerID: Int) {

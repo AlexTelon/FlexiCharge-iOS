@@ -8,8 +8,6 @@
 import Foundation
 
 func getChargerStatus(chargers: [Charger], chargerId: Int) -> String {
-    if let charger = chargers.first(where: {$0.chargerID == chargerId}) {
-        return charger.status
-    }
-    return "nil"
+    guard let charger = chargers.first(where: {$0.chargerID == chargerId}) else { return "No charger found"}
+    return charger.status
 }

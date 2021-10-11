@@ -201,7 +201,6 @@ struct ContentView: View {
             DispatchQueue.main.async {
                 self.result = decodedData
             }
-            print(decodedData)
         }.resume()
     }
 }

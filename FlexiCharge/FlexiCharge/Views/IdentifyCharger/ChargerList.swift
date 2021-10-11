@@ -11,7 +11,6 @@ struct ChargerList: View {
     @Binding var isShowingListOfChargers: Bool
     @Binding var chargerIdInput: String
     var chargers: [Charger]
-    let screenHeight = UIScreen.main.bounds.size.height
     let listHeight: CGFloat
     let rowHeight: CGFloat = 50 + 12
     let chargerHubs: [ChargerHub]
