@@ -83,10 +83,10 @@ struct LoginView: View {
             .frame(minHeight: 0, maxHeight: .infinity)
             .disableAutocorrection(true)
             .autocapitalization(.none)
+            .navigationBarHidden(true)
             .onTapGesture {
                 hideKeyboard()
             }
-            .navigationBarHidden(true)
         }
         .navigationBarBackButtonHidden(true)
         .navigationBarHidden(true)

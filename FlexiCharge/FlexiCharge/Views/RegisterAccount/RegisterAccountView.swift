@@ -99,11 +99,19 @@ struct RegisterAccountView: View {
                     }
                     .frame(width: UsefulValues.screenWidth * 0.8)
                 }.frame(height: UsefulValues.screenHeight)
-            }.edgesIgnoringSafeArea(.top)
+            }
+            .edgesIgnoringSafeArea(.top)
             .navigationBarHidden(true)
+            .onTapGesture {
+                hideKeyboard()
+            }
         }
         .autocapitalization(.none)
         .disableAutocorrection(true)
+    }
+    
+    func hideKeyboard() {
+        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
     }
 }
 
