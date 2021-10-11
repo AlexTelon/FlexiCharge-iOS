@@ -55,16 +55,39 @@ extension KlarnaSDKIntegration: KlarnaPaymentEventListener {
     func klarnaLoadedPaymentReview(paymentView: KlarnaPaymentView) {}
     
     func klarnaAuthorized(paymentView: KlarnaPaymentView, approved: Bool, authToken: String?, finalizeRequired: Bool) {
-        //        authorizationToken = authToken
+        if approved == true {
+            // the authorization was successful
+        } else {
+            // user is not approved or might require finalization
+        }
+
+        if let token = authToken {
+            // authorization is successful, backend may create order
+        }
     }
     
     func klarnaReauthorized(paymentView: KlarnaPaymentView, approved: Bool, authToken: String?) {
-        //        authorizationToken = authToken
+        if approved == true {
+            // the authorization was successful
+        } else {
+            // user is not approved or might require finalization
+        }
+
+        if let token = authToken {
+            // authorization is successful, backend may create order
+        }
     }
     
     func klarnaFinalized(paymentView: KlarnaPaymentView, approved: Bool, authToken: String?) {
-        //        authorizationToken = authToken
-    }
+        if approved == true {
+            // the finalization was successful
+        } else {
+            // user is not approved or might require finalization
+        }
+
+        if let token = authToken {
+            // finalization is successful, backend may create order
+        }    }
     
     func klarnaResized(paymentView: KlarnaPaymentView, to newHeight: CGFloat) {
         print("KlarnaPaymentViewDelegate paymentView resizedToHeight: \(newHeight)")
