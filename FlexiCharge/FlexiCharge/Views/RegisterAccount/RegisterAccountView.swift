@@ -8,9 +8,6 @@
 import SwiftUI
 
 struct RegisterAccountView: View {
-    let screenWidth =  UIScreen.main.bounds.size.width
-    let screenHeight = UIScreen.main.bounds.size.height
-    
     @State private var email: String = ""
     @State private var mobileNumber = ""
     @State private var password: String = ""
@@ -21,7 +18,8 @@ struct RegisterAccountView: View {
     @State private var tosCheckBox: Bool = false
     @State private var validEmail: Bool = false
     @State private var validationText: String = ""
-     
+    @State private var selection: Int? = nil
+    
     var body: some View {
         NavigationView{
             VStack() {
@@ -37,77 +35,24 @@ struct RegisterAccountView: View {
                             .scaledToFill()
                             .minimumScaleFactor(0.5)
                             .lineLimit(1)
-                            .frame(width: screenWidth * 0.8, alignment: .center)
+                            .frame(width: UsefulValues.screenWidth * 0.8, alignment: .center)
                         Spacer()
-                    }.frame(width: screenWidth * 0.95)
-                    .offset(y: -screenHeight * 0.03)
+                    }.frame(width: UsefulValues.screenWidth * 0.95)
+                    .offset(y: -UsefulValues.screenHeight * 0.03)
                 }
                 VStack{
                     /*----------Email----------*/
-                    ZStack(alignment: .leading){
-                        TextField("Email", text: $email)
-                        .frame(height: inputHeight)
-                        .padding(.horizontal, 8)
-                        .overlay(RoundedRectangle(cornerRadius: inputCornerRadius)
-                                    .stroke()
-                        )
+                    RegularTextField(input: $email, placeholder: "Email", keyboardType: .emailAddress)
                         .padding(.top)
-                        Text("Email")
-                            .foregroundColor(.black)
-                            .padding(.horizontal, 5)
-                            .background(Color.white)
-                            .offset(x: 10, y: -15)
-                            .opacity(email.count > 0 ? 1 : 0)
-                    }
                     /*----------Mobile number----------*/
-                    ZStack(alignment: .leading){
-                        TextField("Mobile number", text: $mobileNumber)
-                        .frame(height: inputHeight)
-                        .padding(.horizontal, 8)
-                        .overlay(RoundedRectangle(cornerRadius: inputCornerRadius)
-                                    .stroke()
-                        )
+                    RegularTextField(input: $mobileNumber, placeholder: "Mobile number", keyboardType: .numberPad)
                         .padding(.top)
-                        Text("Mobile number")
-                            .foregroundColor(.black)
-                            .padding(.horizontal, 5)
-                            .background(Color.white)
-                            .offset(x: 10, y: -15)
-                            .opacity(mobileNumber.count > 0 ? 1 : 0)
-                            .keyboardType(.decimalPad)
-                    }
                     /*----------Password----------*/
-                    ZStack(alignment: .leading){
-                        SecureField ("Password", text: $password)
-                            .frame(height: inputHeight)
-                            .padding(.horizontal, 8)
-                            .overlay(RoundedRectangle(cornerRadius: inputCornerRadius)
-                                        .stroke()
-                            )
-                            .padding(.top)
-                        Text("Password")
-                            .foregroundColor(.black)
-                            .padding(.horizontal, 5)
-                            .background(Color.white)
-                            .offset(x: 10, y: -15)
-                            .opacity(password.count > 0 ? 1 : 0)
-                    }
-                    /*----------Repeat password----------
-                    ZStack(alignment: .leading){
-                        SecureField("Repeat password", text: $repeatPassword)
-                            .frame(height: inputHeight)
-                            .padding(.horizontal, 8)
-                            .overlay(RoundedRectangle(cornerRadius: inputCornerRadius)
-                                        .stroke()
-                            )
-                            .padding(.top)
-                        Text("Repeat password")
-                            .foregroundColor(.black)
-                            .padding(.horizontal, 5)
-                            .background(Color.white)
-                            .offset(x: 10, y: -15)
-                            .opacity(repeatPassword.count > 0 ? 1 : 0)
-                    }*/
+                    SecureTextField(input: $password, placeholder: "Password", keyboardType: .default)
+                        .padding(.top)
+                    /*----------Repeat password----------*/
+                    /* SecureTextField(input: $repeatPassword, placeholder: "Repeat password", keyboardType: .default)
+                        .padding(.top) */
                     /*----------Checkbox----------*/
                     HStack{
                         Button(action: {tosCheckBox.toggle()}, label: {
@@ -129,20 +74,14 @@ struct RegisterAccountView: View {
                         Text(validationText)
                             .foregroundColor(.red)
                             .padding(.bottom)
-                        Button(action: {
-                            //TO BE DEVELOPED: register user if all validations are fine
+                        //TO BE DEVELOPED: register user if all validations are fine
+                        NavigationLink(destination: LoginView(), tag: 1, selection: $selection) {
+                            RegularButton(action: {
+                                //TO BE DEVELOPED: register user if all validations are fine
                                 validationText = validateInputs(email: email, mobileNumber: mobileNumber, password: password, TOSCheckBox: tosCheckBox)
-                            
-                        }, label: {
-                            NavigationLink(destination: LoginView()) {
-                                Text("Register")
-                                    .frame(width: screenWidth * 0.8, height: inputHeight)
-                                    .font(Font.system(size: 20,weight: .bold, design: .default))
-                            }
-                        })
-                        .foregroundColor(.white)
-                        .background(Rectangle().fill(Color.primaryGreen))
-                        .cornerRadius(5)
+                                self.selection = 1
+                            }, text: "Register", foregroundColor: Color.white, backgroundColor: Color.primaryGreen)
+                        }.background(RoundedRectangle(cornerRadius: 5).fill(Color.primaryGreen))
                         Text("Spacer").hidden()
                         HStack{
                             Text("Already have an account?")
@@ -157,7 +96,7 @@ struct RegisterAccountView: View {
                     }
                     .padding(.bottom)
                 }
-                .frame(width: screenWidth * 0.8)
+                .frame(width: UsefulValues.screenWidth * 0.8)
                 Spacer()
             }
             .edgesIgnoringSafeArea(.top)

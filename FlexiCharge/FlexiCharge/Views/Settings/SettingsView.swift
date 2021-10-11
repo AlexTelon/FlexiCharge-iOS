@@ -8,8 +8,6 @@
 import SwiftUI
 
 struct SettingsView: View {
-    let screenHeight = UIScreen.main.bounds.size.height
-    let screenWidth = UIScreen.main.bounds.size.width
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     /*----------Header and custom back button----------*/
@@ -38,10 +36,10 @@ struct SettingsView: View {
                         .scaledToFill()
                         .minimumScaleFactor(0.5)
                         .lineLimit(1)
-                        .frame(width: screenWidth * 0.8, alignment: .center)
+                        .frame(width: UsefulValues.screenWidth * 0.8, alignment: .center)
                     Spacer()
-                }.frame(width: screenWidth * 0.95)
-                .offset(y: -screenHeight * 0.03)
+                }.frame(width: UsefulValues.screenWidth * 0.95)
+                .offset(y: -UsefulValues.screenHeight * 0.03)
             }
             /*----------List of options----------*/
             VStack() {
@@ -55,7 +53,7 @@ struct SettingsView: View {
                                 .foregroundColor(.black)
                             Spacer()
                             Image("menu-arrow-black")
-                        }.frame(width: screenWidth * 0.8, height: screenHeight * 0.05, alignment: .bottom)
+                        }.frame(width: UsefulValues.screenWidth * 0.8, height: UsefulValues.screenHeight * 0.05, alignment: .bottom)
                     }
                     Divider()
                         .frame(height: 1)
@@ -69,7 +67,7 @@ struct SettingsView: View {
                                 .foregroundColor(.black)
                             Spacer()
                             Image("menu-arrow-black")
-                        }.frame(width: screenWidth * 0.8, height: screenHeight * 0.05, alignment: .bottom)
+                        }.frame(width: UsefulValues.screenWidth * 0.8, height: UsefulValues.screenHeight * 0.05, alignment: .bottom)
                     }
                     Divider()
                         .frame(height: 1)
@@ -83,7 +81,7 @@ struct SettingsView: View {
                                 .foregroundColor(.black)
                             Spacer()
                             Image("menu-arrow-black")
-                        }.frame(width: screenWidth * 0.8, height: screenHeight * 0.05, alignment: .bottom)
+                        }.frame(width: UsefulValues.screenWidth * 0.8, height: UsefulValues.screenHeight * 0.05, alignment: .bottom)
                     }
                     Divider()
                         .frame(height: 1)
@@ -97,7 +95,7 @@ struct SettingsView: View {
                                 .foregroundColor(.black)
                             Spacer()
                             Image("menu-arrow-black")
-                        }.frame(width: screenWidth * 0.8, height: screenHeight * 0.05, alignment: .bottom)
+                        }.frame(width: UsefulValues.screenWidth * 0.8, height: UsefulValues.screenHeight * 0.05, alignment: .bottom)
                     }
                     Divider()
                         .frame(height: 1)
@@ -111,12 +109,12 @@ struct SettingsView: View {
                                 .foregroundColor(.black)
                             Spacer()
                             Image("menu-arrow-black")
-                        }.frame(width: screenWidth * 0.8, height: screenHeight * 0.05, alignment: .bottom)
+                        }.frame(width: UsefulValues.screenWidth * 0.8, height: UsefulValues.screenHeight * 0.05, alignment: .bottom)
                     }
                     Divider()
                         .frame(height: 1)
                         .background(Color.primaryLightGray)
-                }.frame(width: screenWidth * 0.8)
+                }.frame(width: UsefulValues.screenWidth * 0.8)
                 Spacer()
                 /*----------Log out button----------*/
                 Button(action: {
@@ -124,7 +122,7 @@ struct SettingsView: View {
                 }, label: {
                     Text("Log out")
                         .font(Font.system(size: 20, weight: .bold, design:.default))
-                        .frame(width: screenWidth * 0.8, height: 48)
+                        .frame(width: UsefulValues.screenWidth * 0.8, height: 48)
                 })
                 .background(Color.primaryRed)
                 .foregroundColor(.white)
@@ -133,7 +131,7 @@ struct SettingsView: View {
             }
         }
         .edgesIgnoringSafeArea(.top)
-        .frame(minHeight: 0, maxHeight: screenHeight, alignment: .bottom)
+        .frame(minHeight: 0, maxHeight: UsefulValues.screenHeight, alignment: .bottom)
         .navigationBarBackButtonHidden(true)
         .navigationBarHidden(true)
     }

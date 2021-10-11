@@ -7,9 +7,7 @@
 
 import Foundation
 
-func getChargerStatus(chargers: ChargerAPI, chargerId: Int) -> String {
-    if let charger = chargers.result.first(where: {$0.chargerID == chargerId}) {
-        return charger.status
-    }
-    return "nil"
+func getChargerStatus(chargers: [Charger], chargerId: Int) -> String {
+    guard let charger = chargers.first(where: {$0.chargerID == chargerId}) else { return "No charger found"}
+    return charger.status
 }

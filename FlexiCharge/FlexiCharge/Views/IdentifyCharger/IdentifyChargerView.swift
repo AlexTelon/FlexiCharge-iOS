@@ -11,10 +11,8 @@ struct IdentifyChargerView: View {
     @Binding var isShowingListOfChargers: Bool
     @Binding var isChargingInProgress: Bool
     @Binding var chargingInProgressID: Int
-    @Binding var chargers: ChargerAPI
+    @Binding var chargers: [Charger]
     @Binding var offset: CGFloat
-    let screenWidth = UIScreen.main.bounds.size.width
-    let screenHeight = UIScreen.main.bounds.size.height
     @State private var chargerIdLength: Int = 6
     @State private var username: String = ""
     @State private var isEditing: Bool = false
@@ -29,7 +27,7 @@ struct IdentifyChargerView: View {
     @State var keyboardHeight: CGFloat = 0
     
     
-    init(isChargingInProgress: Binding<Bool>, chargingInProgressID: Binding<Int>, chargers: Binding<ChargerAPI>, isShowingListOfChargers: Binding<Bool>, offset: Binding<CGFloat>) {
+    init(isChargingInProgress: Binding<Bool>, chargingInProgressID: Binding<Int>, chargers: Binding<[Charger]>, isShowingListOfChargers: Binding<Bool>, offset: Binding<CGFloat>) {
         UITableView.appearance().backgroundColor = UIColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 1)
         self._isShowingListOfChargers = isShowingListOfChargers
         self._isChargingInProgress = isChargingInProgress
@@ -45,7 +43,7 @@ struct IdentifyChargerView: View {
                 .frame(minHeight: 0, maxHeight: .infinity)
             VStack {
                 
-                ChargerList(isShowingListOfChargers: $isShowingListOfChargers, chargers: chargers.result, chargerIdInput: $chargerIdInput)
+                ChargerList(isShowingListOfChargers: $isShowingListOfChargers, chargers: chargers, chargerIdInput: $chargerIdInput)
                 Text("Spacing").hidden()
                 
                 ZStack {
@@ -55,7 +53,7 @@ struct IdentifyChargerView: View {
                                 RoundedRectangle(cornerRadius: 5)
                                     .fill(Color.white)
                                     .frame(width: 34, height: 53)
-                                    .padding(.horizontal, screenWidth * 0.01)
+                                    .padding(.horizontal, UsefulValues.screenWidth * 0.01)
                                 RoundedRectangle(cornerRadius: 2)
                                     .fill(Color.primaryLightGray)
                                     .frame(width: 24, height: 2)
@@ -87,21 +85,15 @@ struct IdentifyChargerView: View {
                         .foregroundColor(.white)
                         .opacity(isButtonVisible == 1 ? 0 : 1)
                         .offset(y: -35)
-                    Button(action: {
+                    RegularButton(action: {
                         startCharging()
-                    }){
-                        Text(buttonText)
-                            .font(Font.system(size: 20,weight: .bold, design: .default))
-                            .foregroundColor(buttonTextColor)
-                    }.frame(width: screenWidth * 0.8, height: 53, alignment: .center)
-                    .background(buttonColor)
-                    .cornerRadius(5)
+                    }, text: buttonText, foregroundColor: buttonTextColor, backgroundColor: buttonColor)
                     .disabled(isButtonDisabled)
                     .opacity(isButtonVisible)
                     .offset(y: -25)
                 }
             }
-            .frame(width: screenWidth * 0.8)
+            .frame(width: UsefulValues.screenWidth * 0.8)
             .padding(.vertical)
             .padding(.horizontal, 12)
         }
@@ -172,7 +164,7 @@ struct IdentifyChargerView: View {
 struct IdentifyChargerView_Previews: PreviewProvider {
     @State var preview = false
     static var previews: some View {
-        IdentifyChargerView(isChargingInProgress: .constant(true), chargingInProgressID: .constant(0), chargers: .constant(ChargerAPI()), isShowingListOfChargers: .constant(false), offset: .constant(0))
+        IdentifyChargerView(isChargingInProgress: .constant(true), chargingInProgressID: .constant(0), chargers: .constant([Charger(chargerID: 999999, location: [57.778568, 14.163727], chargePointID: 9, serialNumber: "%&(/K€OLC:VP", status: "Available")]), isShowingListOfChargers: .constant(false), offset: .constant(0))
     }
 }
 
@@ -186,4 +178,10 @@ struct StatusConstants {
     static let RESERVED = "Reserved"
     static let UNAVAILABLE = "Unavailable"
     static let FAULTED = "Faulted"
+}
+
+extension String {
+    subscript(i: Int) -> String {
+        return String(self[index(startIndex, offsetBy: i)])
+    }
 }

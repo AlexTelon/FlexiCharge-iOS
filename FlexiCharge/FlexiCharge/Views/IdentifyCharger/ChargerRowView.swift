@@ -9,7 +9,6 @@ import SwiftUI
 
 struct ChargerRowView: View {
     var chargerHub: ChargerHub
-    let screenWidth = UIScreen.main.bounds.size.width
     
     var body: some View {
         ZStack(alignment: .topLeading) {
@@ -49,7 +48,7 @@ struct ChargerRowView: View {
 struct ChargerRowView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            ChargerRowView(chargerHub: ChargerHub(id: 1, chargerLocationName: "Kungsgatan 1a, Jönköping", chargers: ChargerAPI().result, distance: "400m"))
+            ChargerRowView(chargerHub: ChargerHub(id: 1, chargerLocationName: "Kungsgatan 1a, Jönköping", chargers: [Charger(chargerID: 999999, location: [57.778568, 14.163727], chargePointID: 9, serialNumber: "%&(/K€OLC:VP", status: "Available")], distance: "400m"))
         }
     }
 }

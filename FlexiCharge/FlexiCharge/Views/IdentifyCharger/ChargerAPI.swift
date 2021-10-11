@@ -10,29 +10,13 @@ import Combine
 import SwiftUI
 
 class ChargerAPI {
-    var didChange = PassthroughSubject<ChargerAPI, Never>()
-    var result = [ChargerTest]() {
-        didSet {
-            didChange.send(self)
-        }
-    }
     
     init() {
-        // Fetches all chargers
-        guard let url = URL(string: "http://54.220.194.65:8080/chargers") else { return }
-        URLSession.shared.dataTask(with: url) { (data, _, _) in
-            guard let data = data else { return }
-            let decodedData = try! JSONDecoder().decode([ChargerTest].self, from: data)
-            
-            DispatchQueue.main.async {
-                self.result = decodedData
-            }
-            print(decodedData)
-        }.resume()
+        
     }
     
     func beginCharging(chargerID: Int) {
-        guard let url = URL(string: "http://54.220.194.65:8080/chargers/" + String(chargerID)) else { return }
+        guard let url = URL(string: "http://54.220.194.65:8080/reservations/" + String(chargerID)) else { return }
         
         var request = URLRequest(url: url)
         request.httpMethod = "PUT"
@@ -42,7 +26,11 @@ class ChargerAPI {
         ]
         
         let jsonDictionary: [String: String] = [
-            "status": StatusConstants.CHARGING,
+            "chargerId": String(chargerID),
+            "connectorId": "1",
+            "idTag": "1",
+            "reservationId": "1",
+            "parentIdTag": "1"
         ]
         
         let data = try! JSONSerialization.data(withJSONObject: jsonDictionary, options: .prettyPrinted)
@@ -100,8 +88,4 @@ class ChargerAPI {
             }
         }.resume()
     }
-}
-
-struct ChargerResult: Decodable {
-    var results: [ChargerTest]
 }

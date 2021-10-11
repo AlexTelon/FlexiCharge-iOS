@@ -15,9 +15,3 @@ extension Color {
     static let menuButtonGray = Color("menu-button-gray")
     static let primaryLightGray = Color("primary-light-gray")
 }
-
-extension String {
-    subscript(i: Int) -> String {
-        return String(self[index(startIndex, offsetBy: i)])
-    }
-}
