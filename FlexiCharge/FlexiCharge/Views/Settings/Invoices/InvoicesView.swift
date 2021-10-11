@@ -8,8 +8,6 @@
 import SwiftUI
 
 struct InvoicesView: View {
-    let screenHeight = UIScreen.main.bounds.size.height
-    let screenWidth = UIScreen.main.bounds.size.width
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     var isInvoiceSetUp: Bool = true
     var isInvoiceEmpty: Bool = false
@@ -44,7 +42,7 @@ struct InvoicesView: View {
                     //Very nice way to center text
                     Text("|||||||").hidden()
                 }
-                .frame(width: screenWidth * 0.8)
+                .frame(width: UsefulValues.screenWidth * 0.8)
             }
             
             //User has not set up their invoicing
@@ -57,7 +55,7 @@ struct InvoicesView: View {
                 Text("Do it now")
                     .font(Font.system(size: 20,weight: .bold, design: .default))
             }
-                .frame(width: screenWidth * 0.8, height: 48)
+            .frame(width: UsefulValues.screenWidth * 0.8, height: 48)
                 .background(Color.primaryGreen)
                 .foregroundColor(.white)
                 .cornerRadius(5)
@@ -89,14 +87,14 @@ struct InvoicesView: View {
                                     })
                                     .offset(y: 20)
                                 }
-                                .frame(width: screenWidth * 0.8, alignment: .top)
+                                .frame(width: UsefulValues.screenWidth * 0.8, alignment: .top)
                                 HStack {
                                     Text(cost + " kr")
                                         .font(Font.system(size: 20, design: .default))
                                         .foregroundColor(.black)
                                     Spacer()
                                 }
-                                .frame(width: screenWidth * 0.8, height: screenHeight * 0.04, alignment: .bottom)
+                                .frame(width: UsefulValues.screenWidth * 0.8, height: UsefulValues.screenHeight * 0.04, alignment: .bottom)
                                 .offset(y: -20)
                                 /*Invoice information*/
 //                                if showMore {
@@ -106,7 +104,7 @@ struct InvoicesView: View {
                                             .foregroundColor(.black)
                                         Spacer()
                                     }
-                                    .frame(width: screenWidth * 0.8, height: showMore ? screenHeight * 0.05 : 0, alignment: .bottom)
+                                    .frame(width: UsefulValues.screenWidth * 0.8, height: showMore ? UsefulValues.screenHeight * 0.05 : 0, alignment: .bottom)
                                     .opacity(showMore ? 1 : 0)
                                     .offset(y: -20)
                                     .transition(.move(edge: .top))
@@ -114,7 +112,7 @@ struct InvoicesView: View {
 //                                }
                             }
                             Divider()
-                            .frame(width: screenWidth * 0.8, height: 1)
+                                .frame(width: UsefulValues.screenWidth * 0.8, height: 1)
                             .background(Color.primaryLightGray)
                                 .offset(y: -20)
                                 .transition(.move(edge: .top))
@@ -130,7 +128,7 @@ struct InvoicesView: View {
                 Spacer()
                 Text("Your invoice will become available after\n your first month of charging.")
                     .multilineTextAlignment(.center)
-                    .frame(width: screenWidth * 0.8)
+                    .frame(width: UsefulValues.screenWidth * 0.8)
                 Spacer()
             }
         }

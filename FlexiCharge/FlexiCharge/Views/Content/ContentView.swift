@@ -11,8 +11,6 @@ import MapKit
 import CodeScanner
 
 struct ContentView: View {
-    let screenHeight = UIScreen.main.bounds.size.height
-    let screenWidth = UIScreen.main.bounds.size.width
     let listHeight: CGFloat
     @State var isShowingListOfChargers: Bool = false
     @State var isChargingInProgress: Bool = false
@@ -29,7 +27,7 @@ struct ContentView: View {
     
     init() {
         UITableView.appearance().backgroundColor = UIColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 1)
-        self.listHeight = screenHeight / 4
+        self.listHeight = UsefulValues.screenHeight / 4
     }
     
     var body: some View {
@@ -47,7 +45,7 @@ struct ContentView: View {
                     ChargingInProgressView(isShowingDisconnentButton: $isShowingDisconnentButton, isChargingInProgress: $isChargingInProgress, chargingInProgressID: $chargingInProgressID)
                         .transition(.move(edge: .top))
                         .animation(.easeInOut(duration: 0.2))
-                        .offset(y: isChargingInProgress ? -screenHeight * 0.66 : -screenHeight)
+                        .offset(y: isChargingInProgress ? -UsefulValues.screenHeight * 0.66 : -UsefulValues.screenHeight)
                         .offset(y: isShowingDisconnentButton && isChargingInProgress ? 50 : 0)
                     VStack {
                         HStack {
@@ -58,12 +56,12 @@ struct ContentView: View {
                                     ZStack {
                                         Circle()
                                             .fill(Color.menuButtonGray)
-                                            .frame(width: screenWidth * 0.15, height: screenWidth * 0.15)
+                                            .frame(width: UsefulValues.screenWidth * 0.15, height: UsefulValues.screenWidth * 0.15)
                                         Image("location-pin")
                                             .resizable()
-                                            .frame(width: screenWidth * 0.06, height: screenWidth * 0.08, alignment: .center)
+                                            .frame(width: UsefulValues.screenWidth * 0.06, height: UsefulValues.screenWidth * 0.08, alignment: .center)
                                     }
-                                }).offset(x: screenWidth * -0.35)
+                                }).offset(x: UsefulValues.screenWidth * -0.35)
                             }
                         }
                         HStack {
@@ -73,24 +71,24 @@ struct ContentView: View {
                                 ZStack {
                                     Circle()
                                         .fill(Color.menuButtonGray)
-                                        .frame(width: screenWidth * 0.15, height: screenWidth * 0.15)
+                                        .frame(width: UsefulValues.screenWidth * 0.15, height: UsefulValues.screenWidth * 0.15)
                                     Image(systemName: "camera.fill")
                                         .font(Font.system(.title2))
                                         .foregroundColor(.white)
                                 }
-                            }).offset(x:screenWidth * -0.15)
+                            }).offset(x: UsefulValues.screenWidth * -0.15)
                             .sheet(isPresented: $isShowingScanner) {
                                 CodeScannerView(codeTypes: [.qr], simulatedData: "QR scan", completion: self.handleScan).overlay(QROverlayView())
                             }
                             Button(action: {
-                                let maxHeight = screenHeight / 2.5
+                                let maxHeight = UsefulValues.screenHeight / 2.5
                                 offset = -maxHeight
                                 lastOffset = offset
                             }){
                                 ZStack {
                                     Circle()
                                         .fill(Color.menuButtonGray)
-                                        .frame(width: screenWidth * 0.20, height: screenWidth * 0.20)
+                                        .frame(width: UsefulValues.screenWidth * 0.20, height: UsefulValues.screenWidth * 0.20)
                                     Image("white")
                                 }
                             }
@@ -99,17 +97,17 @@ struct ContentView: View {
                                     ZStack {
                                         Circle()
                                             .fill(Color.menuButtonGray)
-                                            .frame(width: screenWidth * 0.15, height: screenWidth * 0.15)
+                                            .frame(width: UsefulValues.screenWidth * 0.15, height: UsefulValues.screenWidth * 0.15)
                                         Image("person")
                                             .resizable()
-                                            .frame(width: screenWidth * 0.07, height: screenWidth * 0.07, alignment: .center)
+                                            .frame(width: UsefulValues.screenWidth * 0.07, height: UsefulValues.screenWidth * 0.07, alignment: .center)
                                     }
                                 }
-                            }.offset(x:screenWidth * 0.15)
-                        }.padding(.bottom, screenHeight * 0.05)
-                        .padding(.horizontal, screenWidth * 0.1)
+                            }.offset(x: UsefulValues.screenWidth * 0.15)
+                        }.padding(.bottom, UsefulValues.screenHeight * 0.05)
+                        .padding(.horizontal, UsefulValues.screenWidth * 0.1)
                     }
-                    let conditionOffset = self.offset + screenHeight - self.keyboardHeight
+                    let conditionOffset = self.offset + UsefulValues.screenHeight - self.keyboardHeight
                     IdentifyChargerView(isChargingInProgress: $isChargingInProgress, chargingInProgressID: $chargingInProgressID, chargers: $chargers, isShowingListOfChargers: $isShowingListOfChargers, offset: $offset)
                         .transition(.move(edge: .bottom))
                         .animation(.easeInOut(duration: 0.2))
@@ -122,7 +120,7 @@ struct ContentView: View {
                             onChange()
                         })
                         .onEnded({value in
-                            let maxHeight = screenHeight / 2.5
+                            let maxHeight = UsefulValues.screenHeight / 2.5
                             withAnimation {
                                 if -offset > maxHeight / 2 {
                                     offset = -maxHeight

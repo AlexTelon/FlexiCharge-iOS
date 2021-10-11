@@ -10,7 +10,6 @@ import SwiftUI
 struct EmailSentView: View {
     @Binding var email: String
     @Binding var shouldPopToRootView: Bool
-    let screenWidth = UIScreen.main.bounds.size.width
     let inputHeight: CGFloat = 48
     let inputCornerRadius: CGFloat = 5
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
@@ -38,16 +37,9 @@ struct EmailSentView: View {
                     .padding(.vertical)
                 Spacer()
                 Spacer()
-                Button(action: {
+                RegularButton(action: {
                     self.shouldPopToRootView = false
-                }, label: {
-                    Text("Back to log in")
-                        .font(Font.system(size: 20,weight: .bold, design: .default))
-                        .frame(width: screenWidth * 0.8, height: 48)
-                })
-                .background(Color.primaryGreen)
-                .foregroundColor(.white)
-                .cornerRadius(5)
+                }, text: "Back to log in", foregroundColor: Color.white, backgroundColor: Color.primaryGreen)
                 .padding()
                 HStack {
                     Text("I didn’t get my email :(")
@@ -61,7 +53,7 @@ struct EmailSentView: View {
                 .font(.subheadline)
                 Spacer()
             }
-            .frame(width: screenWidth * 0.8)
+            .frame(width: UsefulValues.screenWidth * 0.8)
         }
         .navigationBarHidden(true)
         .edgesIgnoringSafeArea(.top)

@@ -13,8 +13,6 @@ struct IdentifyChargerView: View {
     @Binding var chargingInProgressID: Int
     @Binding var chargers: ChargerAPI
     @Binding var offset: CGFloat
-    let screenWidth = UIScreen.main.bounds.size.width
-    let screenHeight = UIScreen.main.bounds.size.height
     @State private var chargerIdLength: Int = 6
     @State private var username: String = ""
     @State private var isEditing: Bool = false
@@ -55,7 +53,7 @@ struct IdentifyChargerView: View {
                                 RoundedRectangle(cornerRadius: 5)
                                     .fill(Color.white)
                                     .frame(width: 34, height: 53)
-                                    .padding(.horizontal, screenWidth * 0.01)
+                                    .padding(.horizontal, UsefulValues.screenWidth * 0.01)
                                 RoundedRectangle(cornerRadius: 2)
                                     .fill(Color.primaryLightGray)
                                     .frame(width: 24, height: 2)
@@ -87,21 +85,15 @@ struct IdentifyChargerView: View {
                         .foregroundColor(.white)
                         .opacity(isButtonVisible == 1 ? 0 : 1)
                         .offset(y: -35)
-                    Button(action: {
+                    RegularButton(action: {
                         startCharging()
-                    }){
-                        Text(buttonText)
-                            .font(Font.system(size: 20,weight: .bold, design: .default))
-                            .foregroundColor(buttonTextColor)
-                    }.frame(width: screenWidth * 0.8, height: 53, alignment: .center)
-                    .background(buttonColor)
-                    .cornerRadius(5)
+                    }, text: buttonText, foregroundColor: buttonTextColor, backgroundColor: buttonColor)
                     .disabled(isButtonDisabled)
                     .opacity(isButtonVisible)
                     .offset(y: -25)
                 }
             }
-            .frame(width: screenWidth * 0.8)
+            .frame(width: UsefulValues.screenWidth * 0.8)
             .padding(.vertical)
             .padding(.horizontal, 12)
         }
@@ -186,4 +178,10 @@ struct StatusConstants {
     static let RESERVED = "Reserved"
     static let UNAVAILABLE = "Unavailable"
     static let FAULTED = "Faulted"
+}
+
+extension String {
+    subscript(i: Int) -> String {
+        return String(self[index(startIndex, offsetBy: i)])
+    }
 }
