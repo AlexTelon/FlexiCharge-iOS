@@ -12,6 +12,7 @@ struct EmailSentView: View {
     @Binding var shouldPopToRootView: Bool
     let inputHeight: CGFloat = 48
     let inputCornerRadius: CGFloat = 5
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     var body: some View {
         VStack {
@@ -37,6 +38,7 @@ struct EmailSentView: View {
                 Spacer()
                 Spacer()
                 RegularButton(action: {
+                    self.presentationMode.wrappedValue.dismiss()
                     self.shouldPopToRootView = false
                 }, text: "Back to log in", foregroundColor: Color.white, backgroundColor: Color.primaryGreen)
                 .padding()
