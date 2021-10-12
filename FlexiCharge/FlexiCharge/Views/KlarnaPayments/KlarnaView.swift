@@ -15,28 +15,40 @@ public protocol ViewControllerDelegate: class {
 
 
 struct KlarnaView: View {
-    var isPresented: Binding<Bool>
+    @Binding var isPresented: Bool
+    @Binding var klarnaMessage: String
 
-    private var sdkIntegration: KlarnaSDKIntegration = KlarnaSDKIntegration()
+    @ObservedObject var sdkIntegration: KlarnaSDKIntegration = KlarnaSDKIntegration()
 
-    init(isPresented: Binding<Bool>) {
-        self.isPresented = isPresented
+    init(isPresented: Binding<Bool>, klarnaMessage: Binding<String>) {
+        self._isPresented = isPresented
+        self._klarnaMessage = klarnaMessage
         sdkIntegration.getKlarnaSession()
     }
     
     var body: some View {
         VStack {
+            Spacer()
+            Image("klarna-logo-pink")
+            Spacer()
             ProgressView().progressViewStyle(CircularProgressViewStyle())
-        }
+            Spacer()
+            Spacer()
+        }.onChange(of: sdkIntegration.isKlarnaPaymentDone, perform: { _ in
+            klarnaMessage = sdkIntegration.klarnaMessage
+            print("identifier", klarnaMessage)
+            isPresented = false
+        })
     }
 }
 
 
 struct ViewController: UIViewControllerRepresentable, View {
     @Binding var isPresented: Bool
+    @Binding var klarnaMessage: String
 
     func makeUIViewController(context: UIViewControllerRepresentableContext<ViewController>) -> UIHostingController<KlarnaView> {
-        return UIHostingController(rootView: KlarnaView(isPresented: $isPresented))
+        return UIHostingController(rootView: KlarnaView(isPresented: $isPresented, klarnaMessage: $klarnaMessage))
     }
 
     func updateUIViewController(_ uiViewController: UIHostingController<KlarnaView>, context: UIViewControllerRepresentableContext<ViewController>) {
