@@ -671,7 +671,7 @@
 				DEVELOPMENT_TEAM = 63ES69XEGU;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = FlexiCharge/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.7;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -695,7 +695,7 @@
 				DEVELOPMENT_TEAM = 63ES69XEGU;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = FlexiCharge/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.7;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
