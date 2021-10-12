@@ -70,6 +70,13 @@ struct RecoverPasswordView: View {
         .disableAutocorrection(true)
         .navigationBarBackButtonHidden(true)
         .navigationBarHidden(true)
+        .onTapGesture {
+            hideKeyboard()
+        }
+    }
+    
+    func hideKeyboard() {
+        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
     }
 }
 

@@ -51,6 +51,7 @@ struct ChargerInfoBox: View {
 struct ChargerHubView: View {
     var chargerHub: ChargerHub
     @Binding var chargerIdInput: String
+    @Binding var isShowingListOfChargers: Bool
     
     @State var chargerBoxMinX: CGFloat = 0
     @State var chargerBoxMaxX: CGFloat = 0
@@ -58,8 +59,7 @@ struct ChargerHubView: View {
     @State private var boxMaxX: CGFloat = 0
     @State private var selectedCharger: Charger?
     @State private var selectedPayment: String?
-    @Environment(\.presentationMode) /*static*/ var presentationMode: Binding<PresentationMode>
-    // Static above is for a feature in the future
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     var body: some View {
         VStack {
@@ -192,6 +192,9 @@ struct ChargerHubView: View {
             .foregroundColor(.black)
             Spacer()
         }
+        .onChange(of: isShowingListOfChargers, perform: { _ in
+            self.presentationMode.wrappedValue.dismiss()
+        })
         .background(Color.primaryDarkGray)
         .navigationBarHidden(true)
     }
@@ -200,7 +203,7 @@ struct ChargerHubView: View {
 
 struct ChargerHubView_Previews: PreviewProvider {
     static var previews: some View {
-        ChargerHubView(chargerHub: ChargerHub(id: 2, chargerLocationName: "Asecs Röd Entre, Jönköping ", chargers: [Charger(chargerID: 111111, location: [12.12, 12.12], chargePointID: 1, serialNumber: "miabsginaow", status: "Occupied")], distance: "1.1km"), chargerIdInput: .constant(""))
+        ChargerHubView(chargerHub: ChargerHub(id: 2, chargerLocationName: "Asecs Röd Entre, Jönköping ", chargers: [Charger(chargerID: 111111, location: [12.12, 12.12], chargePointID: 1, serialNumber: "miabsginaow", status: "Occupied")], distance: "1.1km"), chargerIdInput: .constant(""), isShowingListOfChargers: .constant(false))
     }
 }
 

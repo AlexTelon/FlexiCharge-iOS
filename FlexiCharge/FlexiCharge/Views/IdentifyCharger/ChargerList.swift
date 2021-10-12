@@ -58,7 +58,7 @@ struct ChargerList: View {
                     List {
                         ForEach(chargerHubs) { chargerHub in
                             ZStack {
-                                NavigationLink(destination: ChargerHubView(chargerHub: chargerHub, chargerIdInput: $chargerIdInput)) {
+                                NavigationLink(destination: ChargerHubView(chargerHub: chargerHub, chargerIdInput: $chargerIdInput, isShowingListOfChargers: $isShowingListOfChargers)) {
                                     ChargerRowView(chargerHub: chargerHub)
                                 }
                             }

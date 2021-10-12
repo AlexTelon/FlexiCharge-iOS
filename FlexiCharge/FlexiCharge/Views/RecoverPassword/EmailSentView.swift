@@ -38,6 +38,7 @@ struct EmailSentView: View {
                 Spacer()
                 Spacer()
                 RegularButton(action: {
+                    self.presentationMode.wrappedValue.dismiss()
                     self.shouldPopToRootView = false
                 }, text: "Back to log in", foregroundColor: Color.white, backgroundColor: Color.primaryGreen)
                 .padding()

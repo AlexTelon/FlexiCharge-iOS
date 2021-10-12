@@ -149,8 +149,6 @@ struct IdentifyChargerView: View {
         ChargerAPI().beginCharging(chargerID: Int(chargerIdInput)!)
         isChargingInProgress = true
         chargingInProgressID = Int(chargerIdInput)!
-        // TODO: Something  like this  line below needs to dismiss the chargerhubview on startCharging
-        // ChargerHubView.presentationMode.wrappedValue.dismiss()
         offset = 0
         isShowingListOfChargers = false
         hideKeyboard()
