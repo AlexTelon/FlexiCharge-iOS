@@ -12,13 +12,14 @@ Below is a short summary and visualization of the FlexiCharge mobile iOS applica
 <hr>
 <h2 id="mainView">The main view</h2>
 The main view of the app consists of pins, showing where the chargers are located, and different colors indicating their status.
-![image](https://user-images.githubusercontent.com/57836852/136952352-58e3a096-b405-4798-927b-cdfa234dafb6.png)
+<img src="https://user-images.githubusercontent.com/57836852/136952352-58e3a096-b405-4798-927b-cdfa234dafb6.png" width="250" height="500">
 
 <h2 id="startCharging">Charging</h2>
-Pressing the big button at the bottom will present the user with a list chargers and let the user start charging. You can either enter an ID manually, or simply choose one presented from the list.
-![image](https://user-images.githubusercontent.com/57836852/136955106-acf04bf8-3366-40dc-8d02-fab98f15ccb4.png)
-![image](https://user-images.githubusercontent.com/57836852/136955473-37a51479-c756-4b0e-848b-b3e68cd82c00.png)
-
+Pressing the big button at the bottom will present the user with a list chargers and let the user start charging. You can either enter an ID manually, or simply choose one presented from the list.'
+<p float="left">
+<img src="https://user-images.githubusercontent.com/57836852/136955106-acf04bf8-3366-40dc-8d02-fab98f15ccb4.png" width="250" height="500" float="left">
+<img src="https://user-images.githubusercontent.com/57836852/136959592-ff20732a-33dc-449b-944f-eb6ea4bc31b9.png" width="250" height="500" float="right">
+</p>
 <h2 id="payments">Payments</h2>
 Payments will be done mainly using Klarna.
 
