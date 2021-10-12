@@ -14,6 +14,8 @@ struct IdentifyChargerView: View {
     @Binding var chargingInProgressID: Int
     @Binding var chargers: [Charger]
     @Binding var offset: CGFloat
+    @State private var chargerResponse: Bool = false
+    @State private var chargerResponseMessage: String = ""
     @State private var chargerIdLength: Int = 6
     @State private var username: String = ""
     @State private var isEditing: Bool = false
@@ -98,6 +100,9 @@ struct IdentifyChargerView: View {
             .frame(width: UsefulValues.screenWidth * 0.8)
             .padding(.vertical)
             .padding(.horizontal, 12)
+            .alert(isPresented: $chargerResponse) {
+                Alert(title: Text(chargerResponseMessage), message: Text("Something went wrong"), dismissButton: .default(Text("Dismiss")){chargerResponse = false})
+                        }
         }
     }
     // Makes sure the entered charger id is not too long or is not all integers
@@ -148,19 +153,23 @@ struct IdentifyChargerView: View {
     }
     
     func startCharging() {
-        let ChargerStatus = ChargerAPI().beginCharging(chargerID: Int(chargerIdInput)!)
-        if ChargerStatus != "Accepted" {
+        ChargerAPI().beginCharging(chargerID: Int(chargerIdInput)!) { response in
+            if response != "Accepted" {
+                chargerResponseMessage = response
+                chargerResponse = true
+            } else {
+                isKlarnaPresented = true
+//                isChargingInProgress = true
+//                chargingInProgressID = Int(chargerIdInput)!
+//                // TODO: Something  like this  line below needs to dismiss the chargerhubview on startCharging
+//                // ChargerHubView.presentationMode.wrappedValue.dismiss()
+//                offset = 0
+//                isShowingListOfChargers = false
+//                hideKeyboard()
+                //Add functionality to startChargingButton
+                //Send all selected options to API
+            }
         }
-        isKlarnaPresented = true
-        isChargingInProgress = true
-        chargingInProgressID = Int(chargerIdInput)!
-        // TODO: Something  like this  line below needs to dismiss the chargerhubview on startCharging
-        // ChargerHubView.presentationMode.wrappedValue.dismiss()
-        offset = 0
-        isShowingListOfChargers = false
-        hideKeyboard()
-        //Add functionality to startChargingButton
-        //Send all selected options to API
     }
 }
 
