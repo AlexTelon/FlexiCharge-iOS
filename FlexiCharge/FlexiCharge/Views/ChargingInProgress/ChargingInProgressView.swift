@@ -42,7 +42,7 @@ struct ChargingInProgressView: View {
                                 HStack {
                                     Text("S").hidden()
                                         .font(Font.system(size: 10, design: .default))
-                                    Text("\(charge, specifier: "%.f")")
+//                                    Text("\(charge, specifier: "%.f")")
                                         .foregroundColor(.white)
                                         .font(Font.system(size: 32, design: .default))
                                         .offset(y: -8)

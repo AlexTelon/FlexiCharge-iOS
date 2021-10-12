@@ -833,6 +833,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
@@ -849,15 +850,15 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"FlexiCharge/Preview Content\"";
-				DEVELOPMENT_TEAM = 63ES69XEGU;
+				DEVELOPMENT_TEAM = S87W9XZJ58;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = FlexiCharge/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.7;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = AbstractConnoisseurs.FlexiCharge;
+				PRODUCT_BUNDLE_IDENTIFIER = AbstractConnoisseurs1.FlexiCharge;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
@@ -874,15 +875,15 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"FlexiCharge/Preview Content\"";
-				DEVELOPMENT_TEAM = 63ES69XEGU;
+				DEVELOPMENT_TEAM = S87W9XZJ58;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = FlexiCharge/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.7;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = AbstractConnoisseurs.FlexiCharge;
+				PRODUCT_BUNDLE_IDENTIFIER = AbstractConnoisseurs1.FlexiCharge;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;

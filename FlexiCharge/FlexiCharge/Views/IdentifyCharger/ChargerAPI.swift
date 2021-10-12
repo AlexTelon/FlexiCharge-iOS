@@ -10,13 +10,15 @@ import Combine
 import SwiftUI
 
 class ChargerAPI {
+    var chargerStatus: String = ""
+
     
     init() {
         
     }
     
-    func beginCharging(chargerID: Int) {
-        guard let url = URL(string: "http://54.220.194.65:8080/reservations/" + String(chargerID)) else { return }
+    func beginCharging(chargerID: Int) -> String {
+        guard let url = URL(string: "http://54.220.194.65:8080/reservations/" + String(chargerID)) else { return "Not valid URL"}
         
         var request = URLRequest(url: url)
         request.httpMethod = "PUT"
@@ -32,9 +34,7 @@ class ChargerAPI {
             "reservationId": "1",
             "parentIdTag": "1"
         ]
-        
         let data = try! JSONSerialization.data(withJSONObject: jsonDictionary, options: .prettyPrinted)
-        
         URLSession.shared.uploadTask(with: request, from: data) { (responseData, response, error) in
             if let error = error {
                 print("Error making PUT request: \(error.localizedDescription)")
@@ -47,11 +47,13 @@ class ChargerAPI {
                     return
                 }
                 
-                if let responseJSONData = try? JSONSerialization.jsonObject(with: responseData, options: .allowFragments) {
+                if let responseJSONData = try? JSONSerialization.data(withJSONObject: responseData, options: .fragmentsAllowed) {
+                    self.chargerStatus = responseData as! String
                     print("Response JSON data = \(responseJSONData)")
                 }
             }
         }.resume()
+        return self.chargerStatus
     }
     
     func stopCharging(chargerID: Int) {

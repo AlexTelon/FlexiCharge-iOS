@@ -13,9 +13,9 @@ final class KlarnaSDKIntegration {
 
     private(set) var paymentView: KlarnaPaymentView?
     
-    var result: AnyObject
+    var result: AnyObject?
 
-    init() {
+    func getKlarnaSession() {
         
         guard let url = URL(string: "http://54.220.194.65:8080/transactions/session") else { return }
         
@@ -49,7 +49,10 @@ final class KlarnaSDKIntegration {
                     print("Response JSON data = \(responseJSONData)")
                     
                     
-                    self.result = responseJSONData as AnyObject
+                    DispatchQueue.main.async {
+                        self.result = responseJSONData as AnyObject
+                        self.createPaymentView()
+                    }
                 }
             }
         }.resume()
@@ -81,25 +84,50 @@ final class KlarnaSDKIntegration {
     }
     
     public func createPaymentView() {
-        //        guard let clientToken = clientToken else {
-        //            print("SDKIntegration createPaymentView: Client token was not set!")
-        //            return
-        //        }
-        
-        //        guard !categories.isEmpty else {
-        //            print("SDKIntegration createPaymentView: No payment method categories returned!")
-        //            return
-        //        }
-        
-        //        let category = self.categories[currentCategoryIndex]
-        //
-        //        DispatchQueue.main.async { [weak self] in
-        //            guard let self = self else {
-        //                fatalError("`self` does not exist!")
-        //            }
-        
+
         self.paymentView = KlarnaPaymentView(category: "pay_now", eventListener: self)
-        self.paymentView!.initialize(clientToken: , returnUrl: URL(string:"flexiChargeUrl://")!)
+        self.paymentView!.initialize(clientToken: result!["client_token"] as! String, returnUrl: URL(string:"flexiChargeUrl://")!)
+    }
+    
+    func SendKlarnaToken(transactionID: Int, authorization_token: String){
+        guard let url = URL(string: "http://54.220.194.65:8080/transactions/order") else { return }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.allHTTPHeaderFields = [
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+        ]
+        
+        let jsonDictionary: [String: Any] = [
+            "transactionID": transactionID,
+            "authorization_token": authorization_token
+        ]
+        
+        let data = try! JSONSerialization.data(withJSONObject: jsonDictionary, options: .prettyPrinted)
+        
+        URLSession.shared.uploadTask(with: request, from: data) { (responseData, response, error) in
+            if let error = error {
+                print("Error making POST request: \(error.localizedDescription)")
+                return
+            }
+            
+            
+            if let responseCode = (response as? HTTPURLResponse)?.statusCode, let responseData = responseData {
+                print("yoyomaddafkka", responseCode)
+
+                guard responseCode == 201 else {
+                    print("Invalid response code: \(responseCode)")
+                    return
+                }
+                
+                if let responseJSONData = try? JSONSerialization.jsonObject(with: responseData, options: .allowFragments) {
+                    print("Response JSON data = \(responseJSONData)")
+                    
+                }
+            }
+        }.resume()
+        
     }
 }
 
@@ -113,11 +141,12 @@ extension KlarnaSDKIntegration: KlarnaPaymentEventListener {
     
     
     func klarnaLoaded(paymentView: KlarnaPaymentView) {
-        print("Wheyoow")
         paymentView.authorize()
     }
     
-    func klarnaLoadedPaymentReview(paymentView: KlarnaPaymentView) {}
+    func klarnaLoadedPaymentReview(paymentView: KlarnaPaymentView) {
+        
+    }
     
     func klarnaAuthorized(paymentView: KlarnaPaymentView, approved: Bool, authToken: String?, finalizeRequired: Bool) {
         if approved == true {
@@ -127,6 +156,9 @@ extension KlarnaSDKIntegration: KlarnaPaymentEventListener {
         }
 
         if let token = authToken {
+            let transactionID = result!["transactionID"] as! Int
+            SendKlarnaToken(transactionID: transactionID, authorization_token: token)
+
             // authorization is successful, backend may create order
         }
     }
@@ -137,7 +169,6 @@ extension KlarnaSDKIntegration: KlarnaPaymentEventListener {
         } else {
             // user is not approved or might require finalization
         }
-
         if let token = authToken {
             // authorization is successful, backend may create order
         }
@@ -149,7 +180,6 @@ extension KlarnaSDKIntegration: KlarnaPaymentEventListener {
         } else {
             // user is not approved or might require finalization
         }
-
         if let token = authToken {
             // finalization is successful, backend may create order
         }

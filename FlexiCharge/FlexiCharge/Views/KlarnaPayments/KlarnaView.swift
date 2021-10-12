@@ -15,25 +15,28 @@ public protocol ViewControllerDelegate: class {
 
 
 struct KlarnaView: View {
+    var isPresented: Binding<Bool>
+
     private var sdkIntegration: KlarnaSDKIntegration = KlarnaSDKIntegration()
 
-    init() {
-        sdkIntegration.createPaymentView()
+    init(isPresented: Binding<Bool>) {
+        self.isPresented = isPresented
+        sdkIntegration.getKlarnaSession()
     }
     
     var body: some View {
         VStack {
-            
+            ProgressView().progressViewStyle(CircularProgressViewStyle())
         }
     }
 }
 
 
-struct ViewController: UIViewControllerRepresentable {
-
+struct ViewController: UIViewControllerRepresentable, View {
+    @Binding var isPresented: Bool
 
     func makeUIViewController(context: UIViewControllerRepresentableContext<ViewController>) -> UIHostingController<KlarnaView> {
-        return UIHostingController(rootView: KlarnaView())
+        return UIHostingController(rootView: KlarnaView(isPresented: $isPresented))
     }
 
     func updateUIViewController(_ uiViewController: UIHostingController<KlarnaView>, context: UIViewControllerRepresentableContext<ViewController>) {
