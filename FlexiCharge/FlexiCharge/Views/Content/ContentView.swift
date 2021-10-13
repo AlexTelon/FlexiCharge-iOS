@@ -94,7 +94,7 @@ struct ContentView: View {
                                     Circle()
                                         .fill(Color.menuButtonGray)
                                         .frame(width: UsefulValues.screenWidth * 0.20, height: UsefulValues.screenWidth * 0.20)
-                                    Image("white")
+                                    Image("flexi-charge-logo-light")
                                 }
                             }
                             ZStack {
