@@ -27,8 +27,11 @@ struct ContentView: View {
     @State private var isShowingScanner: Bool = false
     @State private var notUrl: Bool = false
     
+    @State var centerUser: Bool = false
     @GestureState private var gestureOffset: CGFloat = 0
     @Environment(\.openURL) var openURL
+    
+    @State var findUser: Bool = false
     
     init() {
         UITableView.appearance().backgroundColor = UIColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 1)
@@ -39,7 +42,7 @@ struct ContentView: View {
         NavigationView {
             Group {
                 ZStack(alignment: .bottom) {
-                    MapView(chargers: $result)
+                    MapView(chargers: $result, centerUser: $centerUser)
                         .frame(minHeight: 0, maxHeight: .infinity)
                         .edgesIgnoringSafeArea(.all)
                         .onTapGesture {
@@ -167,6 +170,7 @@ struct ContentView: View {
     }
     func findUserOnMap() {
         // Find the user on the map
+        centerUser.toggle()
     }
     
     func hideKeyboard() {
@@ -202,6 +206,9 @@ struct ContentView: View {
                 self.result = decodedData
             }
         }.resume()
+    }
+    struct Location {
+        var isUserCentered: Bool = false
     }
 }
 
