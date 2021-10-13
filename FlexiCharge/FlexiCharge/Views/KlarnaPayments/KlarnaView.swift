@@ -35,7 +35,6 @@ struct KlarnaView: View {
             Spacer()
         }.onChange(of: sdkIntegration.isKlarnaPaymentDone, perform: { _ in
             klarnaStatus = sdkIntegration.klarnaStatus
-            print("identifier", klarnaStatus)
             isPresented = false
         })
     }

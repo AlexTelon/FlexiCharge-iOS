@@ -15,10 +15,6 @@ final class KlarnaSDKIntegration: ObservableObject {
     private(set) var paymentView: KlarnaPaymentView?
     var result: AnyObject?
     
-    init() {
-        
-    }
-    
     func getKlarnaSession() {
         guard let url = URL(string: "http://54.220.194.65:8080/transactions/session") else { return }
         var request = URLRequest(url: url)
@@ -34,16 +30,13 @@ final class KlarnaSDKIntegration: ObservableObject {
         let data = try! JSONSerialization.data(withJSONObject: jsonDictionary, options: .prettyPrinted)
         URLSession.shared.uploadTask(with: request, from: data) { (responseData, response, error) in
             if let error = error {
-                print("Error making POST request: \(error.localizedDescription)")
                 return
             }
             if let responseCode = (response as? HTTPURLResponse)?.statusCode, let responseData = responseData {
                 guard responseCode == 201 else {
-                    print("Invalid response code: \(responseCode)")
                     return
                 }
                 if let responseJSONData = try? JSONSerialization.jsonObject(with: responseData, options: .allowFragments) {
-                    print("Response JSON data = \(responseJSONData)")
                     DispatchQueue.main.async {
                         self.result = responseJSONData as AnyObject
                         self.createPaymentView()
@@ -73,18 +66,15 @@ final class KlarnaSDKIntegration: ObservableObject {
         let data = try! JSONSerialization.data(withJSONObject: jsonDictionary, options: .prettyPrinted)
         URLSession.shared.uploadTask(with: request, from: data) { (responseData, response, error) in
             if let error = error {
-                print("Error making POST request: \(error.localizedDescription)")
                 return
             }
             if let responseCode = (response as? HTTPURLResponse)?.statusCode, let responseData = responseData {
                 guard responseCode == 201 else {
-                    print("Invalid response code: \(responseCode)")
                     let responseCodeAsString = String(responseCode)
                     completion(responseCodeAsString)
                     return
                 }
                 if let responseJSONData = try? JSONSerialization.jsonObject(with: responseData, options: .allowFragments) {
-                    print("Response JSON data = \(responseJSONData)")
                     DispatchQueue.main.async {
                         let responseDataAsString = responseJSONData as! String
                         completion(responseDataAsString)
@@ -149,11 +139,9 @@ extension KlarnaSDKIntegration: KlarnaPaymentEventListener {
     }
     
     func klarnaResized(paymentView: KlarnaPaymentView, to newHeight: CGFloat) {
-        print("KlarnaPaymentViewDelegate paymentView resizedToHeight: \(newHeight)")
     }
     
     func klarnaFailed(inPaymentView paymentView: KlarnaPaymentView, withError error: KlarnaPaymentError) {
-        print("KlarnaPaymentViewDelegate paymentView failedWithError: \(error.debugDescription)")
         DispatchQueue.main.async {
             self.klarnaStatus = error.message
         }

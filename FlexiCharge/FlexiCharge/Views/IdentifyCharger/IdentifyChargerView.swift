@@ -176,8 +176,6 @@ struct IdentifyChargerView: View {
                 showAlert = true
             } else {
                 isKlarnaPresented = true
-                //Add functionality to startChargingButton
-                //Send all selected options to API
             }
         }
     }

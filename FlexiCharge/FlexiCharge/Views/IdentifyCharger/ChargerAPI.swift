@@ -36,21 +36,18 @@ class ChargerAPI {
         ]
         let data = try! JSONSerialization.data(withJSONObject: jsonDictionary, options: .prettyPrinted)
         URLSession.shared.uploadTask(with: request, from: data) { (responseData, response, error) in
-            if let error = error {
-                print("Error making PUT request: \(error.localizedDescription)")
+            if error != nil {
                 return
             }
             
             if let responseCode = (response as? HTTPURLResponse)?.statusCode, let responseData = responseData {
                 guard responseCode == 201 else {
-                    print("Invalid response code: \(responseCode)")
                     let responseCodeAsString = String(responseCode)
                     completion(responseCodeAsString)
                     return
                 }
                 
                 if let responseJSONData = try? JSONSerialization.jsonObject(with: responseData, options: .allowFragments) {
-                    print("Response JSON data = \(responseJSONData)")
                     let responseDataAsString = responseJSONData as! String
                     completion(responseDataAsString)
                 }
@@ -76,14 +73,12 @@ class ChargerAPI {
         let data = try! JSONSerialization.data(withJSONObject: jsonDictionary, options: .prettyPrinted)
         
         URLSession.shared.uploadTask(with: request, from: data) { (responseData, response, error) in
-            if let error = error {
-                print("Error making PUT request: \(error.localizedDescription)")
+            if error != nil {
                 return
             }
             
             if let responseCode = (response as? HTTPURLResponse)?.statusCode, let responseData = responseData {
                 guard responseCode == 200 else {
-                    print("Invalid response code: \(responseCode)")
                     return
                 }
                 

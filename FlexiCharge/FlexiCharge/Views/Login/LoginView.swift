@@ -65,7 +65,6 @@ struct LoginView: View {
                             RegularButton(action: {
                                 // Log in a user
                                 self.selection = 1
-                                print("Logged in")
                             }, text: "Log in", foregroundColor: Color.white, backgroundColor: Color.primaryGreen)
                         }.background(RoundedRectangle(cornerRadius: 5).fill(Color.primaryGreen))
                         Text("Spacer").hidden()
