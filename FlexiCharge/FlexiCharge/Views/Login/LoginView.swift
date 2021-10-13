@@ -4,7 +4,6 @@
 //
 //  Created by Filip Flodén on 2021-09-13.
 //
-
 import SwiftUI
 
 struct LoginView: View {
@@ -65,34 +64,18 @@ struct LoginView: View {
                                 .padding(.vertical)
                             Spacer()
                             Spacer()
-                            Image("menu-arrow")
-                                .hidden()
-                        }
-                        .frame(width: UsefulValues.screenWidth * 0.95, alignment: .center)
-                        .offset(y: -UsefulValues.screenHeight * 0.03)
-                    }
-                    // Login "form"
-                    VStack {
-                        // Email input field
-                        RegularTextField(input: $emailInput, placeholder: "Email", keyboardType: .emailAddress)
-                            .padding(.vertical)
-                        // Password input field
-                        SecureTextField(input: $passwordInput, placeholder: "Password", keyboardType: .default)
-                            .padding(.vertical)
-                        Spacer()
-                        Spacer()
-                        NavigationLink(destination: ContentView(), tag: 1, selection: $selection) {
-                            RegularButton(action: {
-                                // Log in a user
-                                self.loading = true
-                                self.selection = 1
-                            }, text: "Log in", foregroundColor: Color.white, backgroundColor: Color.primaryGreen)
-                        }.background(RoundedRectangle(cornerRadius: 5).fill(Color.primaryGreen))
-                        Text("Spacer").hidden()
-                        NavigationLink(destination: RecoverPasswordView(rootIsActive: $isActive), isActive: self.$isActive) {
-                            Text("I forgot my password")
-                                .font(Font.system(size: 13,weight: .bold, design: .default))
-                                .foregroundColor(Color.primaryGreen)
+                            NavigationLink(destination: ContentView(), tag: 1, selection: $selection) {
+                                RegularButton(action: {
+                                    // Log in a user
+                                    self.loading = true
+                                    self.selection = 1
+                                }, text: "Log in", foregroundColor: Color.white, backgroundColor: Color.primaryGreen)
+                            }.background(RoundedRectangle(cornerRadius: 5).fill(Color.primaryGreen))
+                            Text("Spacer").hidden()
+                            NavigationLink(destination: RecoverPasswordView(rootIsActive: $isActive), isActive: self.$isActive) {
+                                Text("I forgot my password")
+                                    .font(Font.system(size: 13,weight: .bold, design: .default))
+                                    .foregroundColor(Color.primaryGreen)
                             }
                             .isDetailLink(false)
                             Spacer()
