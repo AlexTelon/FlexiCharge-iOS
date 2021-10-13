@@ -16,7 +16,7 @@ struct ContentView: View {
     @State var results = [Charger]()
     @State var isShowingListOfChargers: Bool = false
     @State var isChargingInProgress: Bool = false
-    @State var isKlarnaPresented: Bool = true
+    @State var isKlarnaPresented: Bool = false
     @State var chargingInProgressID: Int = 0
     @State var isShowingDisconnentButton: Bool = false
     @State var klarnaMessage: String = ""
