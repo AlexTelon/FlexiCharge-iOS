@@ -12,7 +12,6 @@ import CodeScanner
 
 struct ContentView: View {
     let listHeight: CGFloat
-    
     @State var results = [Charger]()
     @State var isShowingListOfChargers: Bool = false
     @State var isChargingInProgress: Bool = false
@@ -25,15 +24,11 @@ struct ContentView: View {
     @State var keyboardHeight: CGFloat = 0
     @State var update = false
     @State var result = [Charger]()
-
-    
     @State private var isShowingScanner: Bool = false
     @State private var notUrl: Bool = false
-    
     @State var centerUser: Bool = false
     @GestureState private var gestureOffset: CGFloat = 0
     @Environment(\.openURL) var openURL
-   
     init() {
         UITableView.appearance().backgroundColor = UIColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 1)
         self.listHeight = UsefulValues.screenHeight / 4
