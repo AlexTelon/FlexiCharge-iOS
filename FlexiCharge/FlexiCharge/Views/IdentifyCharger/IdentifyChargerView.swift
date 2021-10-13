@@ -15,8 +15,9 @@ struct IdentifyChargerView: View {
     @Binding var chargers: [Charger]
     @Binding var offset: CGFloat
     @Binding var klarnaStatus: String
-    @State private var chargerResponse: Bool = false
-    @State private var chargerResponseMessage: String = ""
+    @State private var showAlert: Bool = false
+    @State private var alertTitle: String = ""
+    @State private var alertMessage: String = ""
     @State private var chargerIdLength: Int = 6
     @State private var username: String = ""
     @State private var isEditing: Bool = false
@@ -94,17 +95,30 @@ struct IdentifyChargerView: View {
                     RegularButton(action: {
                         startCharging()
                     }, text: buttonText, foregroundColor: buttonTextColor, backgroundColor: buttonColor)
-                    .disabled(isButtonDisabled)
-                    .opacity(isButtonVisible)
-                    .offset(y: -25)
+                        .disabled(isButtonDisabled)
+                        .opacity(isButtonVisible)
+                        .offset(y: -25)
                 }
             }
             .frame(width: UsefulValues.screenWidth * 0.8)
             .padding(.vertical)
             .padding(.horizontal, 12)
-            .alert(isPresented: $chargerResponse) {
-                Alert(title: Text(chargerResponseMessage), message: Text("Something went wrong"), dismissButton: .default(Text("Dismiss")){chargerResponse = false})
-                        }
+            .alert(isPresented: $showAlert) {
+                Alert(title: Text(alertTitle), message: Text(alertMessage), dismissButton: .default(Text("Dismiss")){showAlert = false})
+            }
+            .onChange(of: klarnaStatus, perform: { _ in
+                if klarnaStatus != "Accepted" {
+                    alertTitle = "Klarna error"
+                    alertMessage = klarnaStatus
+                    showAlert = true
+                } else {
+                    isChargingInProgress = true
+                    chargingInProgressID = Int(chargerIdInput)!
+                    offset = 0
+                    isShowingListOfChargers = false
+                    hideKeyboard()
+                }
+            })
         }
     }
     // Makes sure the entered charger id is not too long or is not all integers
@@ -157,18 +171,11 @@ struct IdentifyChargerView: View {
     func startCharging() {
         ChargerAPI().beginCharging(chargerID: Int(chargerIdInput)!) { response in
             if response != "Accepted" {
-                chargerResponseMessage = response
-                chargerResponse = true
+                alertTitle = response
+                alertMessage = "Something went wrong"
+                showAlert = true
             } else {
-                
                 isKlarnaPresented = true
-//                isChargingInProgress = true
-//                chargingInProgressID = Int(chargerIdInput)!
-//                // TODO: Something  like this  line below needs to dismiss the chargerhubview on startCharging
-//                // ChargerHubView.presentationMode.wrappedValue.dismiss()
-//                offset = 0
-//                isShowingListOfChargers = false
-//                hideKeyboard()
                 //Add functionality to startChargingButton
                 //Send all selected options to API
             }
