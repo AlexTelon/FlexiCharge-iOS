@@ -36,7 +36,6 @@ struct MapView: View {
             }
         }.onChange(of: centerUser, perform: { _ in
             region = manager.region
-            print(centerUser)
         })
     }
 }
@@ -45,12 +44,3 @@ struct MapView_Previews: PreviewProvider {
         MapView(chargers: .constant([Charger(chargerID: 999999, location: [57.778568, 14.163727], chargePointID: 9, serialNumber: "%&(/K€OLC:VP", status: "Available")]), centerUser: .constant(true))
     }
 }
-
-/*struct ContentView: View {
- @State private var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 51.507222, longitude: -0.1275), span: MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5))
-
- var body: some View {
-     Map(coordinateRegion: $region, showsUserLocation: true, userTrackingMode: .constant(.follow))
-         .frame(width: 400, height: 300)
- }
-}*/
