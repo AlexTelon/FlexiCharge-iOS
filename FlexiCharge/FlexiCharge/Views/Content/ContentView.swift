@@ -33,9 +33,7 @@ struct ContentView: View {
     @State var centerUser: Bool = false
     @GestureState private var gestureOffset: CGFloat = 0
     @Environment(\.openURL) var openURL
-    
-    @State var findUser: Bool = false
-    
+   
     init() {
         UITableView.appearance().backgroundColor = UIColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 1)
         self.listHeight = UsefulValues.screenHeight / 4
