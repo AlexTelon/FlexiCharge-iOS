@@ -97,7 +97,7 @@ struct ContentView: View {
                                     Circle()
                                         .fill(Color.menuButtonGray)
                                         .frame(width: UsefulValues.screenWidth * 0.20, height: UsefulValues.screenWidth * 0.20)
-                                    Image("white")
+                                    Image("flexi-charge-logo-light")
                                 }
                             }
                             .disabled(isChargingInProgress)
@@ -157,10 +157,7 @@ struct ContentView: View {
                 InitializeKlarna(isPresented: $isKlarnaPresented, klarnaStatus: $klarnaStatus)
             }
         }.navigationBarHidden(true)
-        .onAppear(perform: loadData)
-        .onChange(of: isChargingInProgress, perform: { _ in
-            loadData()
-        })
+        .onAppear(perform: loadChargers)
     }
     
     func onChange() {
@@ -198,7 +195,7 @@ struct ContentView: View {
         }
     }
     
-    func loadData() {
+    func loadChargers() {
         // Fetches all chargers
         guard let url = URL(string: "http://54.220.194.65:8080/chargers") else { return }
         URLSession.shared.dataTask(with: url) { (data, _, _) in
@@ -207,8 +204,27 @@ struct ContentView: View {
             
             DispatchQueue.main.async {
                 self.result = decodedData
+                updateChargers()
             }
         }.resume()
+    }
+    
+    func updateChargers() {
+        // Fetches chargers to update the map if a change has occured
+        guard let url = URL(string: "http://54.220.194.65:8080/chargers") else { return }
+        DispatchQueue.global(qos: .background).async {
+            URLSession.shared.dataTask(with: url) { (data, _, _) in
+                guard let data = data else { return }
+                let decodedData = try! JSONDecoder().decode([Charger].self, from: data)
+                
+                DispatchQueue.main.async {
+                    if result != decodedData {
+                        self.result = decodedData
+                    }
+                    updateChargers()
+                }
+            }.resume()
+        }
     }
 }
 

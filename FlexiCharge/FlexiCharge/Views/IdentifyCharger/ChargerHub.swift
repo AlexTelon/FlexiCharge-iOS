@@ -16,7 +16,7 @@ struct ChargerHub: Identifiable {
     var distance: String
 }
 
-struct Charger: Decodable, Identifiable {
+struct Charger: Decodable, Identifiable, Equatable {
     var chargerID: Int
     var location: [CGFloat]
     var chargePointID: Int

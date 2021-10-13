@@ -12,38 +12,58 @@ struct LoginView: View {
     let inputCornerRadius: CGFloat = 5
     let emailPlaceholder: String = "Email"
     let passwordPlaceholder: String = "Password"
+    
     @State private var emailInput: String = ""
     @State private var passwordInput: String = ""
+    @State private var selection: Int? = nil
+    @State private var loading: Bool = false
     @State var isActive: Bool = false
-    @State var selection: Int? = nil
+    
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     
     var body: some View {
         NavigationView {
-            ScrollView {
-                VStack {
-                    // Gray design at the top of the screen
-                    ZStack {
-                        Image("top-tilted-rectangle")
-                            .resizable()
-                            .scaledToFit()
-                        HStack {
-                            Button(action: {
-                                self.presentationMode.wrappedValue.dismiss()
-                            }) {
-                                Image("menu-arrow").rotationEffect(.degrees(90))
-                                    .aspectRatio(contentMode: .fit)
+            ZStack {
+                ScrollView {
+                    VStack {
+                        // Gray design at the top of the screen
+                        ZStack {
+                            Image("top-tilted-rectangle")
+                                .resizable()
+                                .scaledToFit()
+                            HStack {
+                                Button(action: {
+                                    self.presentationMode.wrappedValue.dismiss()
+                                }) {
+                                    Image("menu-arrow").rotationEffect(.degrees(90))
+                                        .aspectRatio(contentMode: .fit)
+                                        .foregroundColor(.white)
+                                        .frame(alignment: .leading)
+                                }
+                                Spacer()
+                                Text("Log In")
                                     .foregroundColor(.white)
-                                    .frame(alignment: .leading)
+                                    .font(Font.system(size: 44, weight: .bold, design: .default))
+                                    .scaledToFill()
+                                    .minimumScaleFactor(0.5)
+                                    .lineLimit(1)
+                                Spacer()
+                                Image("menu-arrow")
+                                    .hidden()
                             }
+                            .frame(width: UsefulValues.screenWidth * 0.95, alignment: .center)
+                            .offset(y: -UsefulValues.screenHeight * 0.03)
+                        }
+                        // Login "form"
+                        VStack {
+                            // Email input field
+                            RegularTextField(input: $emailInput, placeholder: "Email", keyboardType: .emailAddress)
+                                .padding(.vertical)
+                            // Password input field
+                            SecureTextField(input: $passwordInput, placeholder: "Password", keyboardType: .default)
+                                .padding(.vertical)
                             Spacer()
-                            Text("Log In")
-                                .foregroundColor(.white)
-                                .font(Font.system(size: 44, weight: .bold, design: .default))
-                                .scaledToFill()
-                                .minimumScaleFactor(0.5)
-                                .lineLimit(1)
                             Spacer()
                             Image("menu-arrow")
                                 .hidden()
@@ -64,6 +84,7 @@ struct LoginView: View {
                         NavigationLink(destination: ContentView(), tag: 1, selection: $selection) {
                             RegularButton(action: {
                                 // Log in a user
+                                self.loading = true
                                 self.selection = 1
                             }, text: "Log in", foregroundColor: Color.white, backgroundColor: Color.primaryGreen)
                         }.background(RoundedRectangle(cornerRadius: 5).fill(Color.primaryGreen))
@@ -72,20 +93,25 @@ struct LoginView: View {
                             Text("I forgot my password")
                                 .font(Font.system(size: 13,weight: .bold, design: .default))
                                 .foregroundColor(Color.primaryGreen)
+                            }
+                            .isDetailLink(false)
+                            Spacer()
                         }
-                        .isDetailLink(false)
-                        Spacer()
-                    }
-                    .frame(width: UsefulValues.screenWidth * 0.8)
-                }.frame(height: UsefulValues.screenHeight)
-            }
-            .edgesIgnoringSafeArea(.top)
-            .frame(minHeight: 0, maxHeight: .infinity)
-            .disableAutocorrection(true)
-            .autocapitalization(.none)
-            .navigationBarHidden(true)
-            .onTapGesture {
-                hideKeyboard()
+                        .frame(width: UsefulValues.screenWidth * 0.8)
+                    }.frame(height: UsefulValues.screenHeight)
+                }
+                .edgesIgnoringSafeArea(.top)
+                .frame(minHeight: 0, maxHeight: .infinity)
+                .disableAutocorrection(true)
+                .autocapitalization(.none)
+                .navigationBarHidden(true)
+                .onTapGesture {
+                    hideKeyboard()
+                }
+                withAnimation(.easeInOut) {
+                    BasicLoadingScreen(imageName: "flexi-charge-logo-color")
+                        .opacity(loading ? 1 : 0)
+                }
             }
         }
         .navigationBarBackButtonHidden(true)
