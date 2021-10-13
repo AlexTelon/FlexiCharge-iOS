@@ -22,7 +22,7 @@ struct TestKlarnaView: View {
             })
         }.frame(width: screenWidth, height: screenHeight)
         .sheet(isPresented: $isPresented) {
-//            ViewController(isPresented: $isPresented, klarnaMessage: $klarnaMessage)
+//            ViewController(isPresented: $isPresented, klarnaStatus: $klarnaStatus)
         }
     }
 }

@@ -11,7 +11,7 @@ import KlarnaMobileSDK
 final class KlarnaSDKIntegration: ObservableObject {
     weak var viewControllerDelegate: ViewControllerDelegate?
     @Published var isKlarnaPaymentDone: Bool = false
-    @Published var klarnaMessage: String = ""
+    @Published var klarnaStatus: String = ""
     private(set) var paymentView: KlarnaPaymentView?
     var result: AnyObject?
     
@@ -116,7 +116,7 @@ extension KlarnaSDKIntegration: KlarnaPaymentEventListener {
             SendKlarnaToken(transactionID: transactionID, authorization_token: token) { _ in
                 DispatchQueue.main.async {
                     self.isKlarnaPaymentDone = true
-                    self.klarnaMessage = "Accepted"
+                    self.klarnaStatus = "Accepted"
                 }
             }
         }
@@ -131,7 +131,7 @@ extension KlarnaSDKIntegration: KlarnaPaymentEventListener {
             SendKlarnaToken(transactionID: transactionID, authorization_token: token) { _ in
                 DispatchQueue.main.async {
                     self.isKlarnaPaymentDone = true
-                    self.klarnaMessage = "Accepted"
+                    self.klarnaStatus = "Accepted"
                 }
             }
         }
@@ -143,7 +143,7 @@ extension KlarnaSDKIntegration: KlarnaPaymentEventListener {
             SendKlarnaToken(transactionID: transactionID, authorization_token: token) { _ in
                 DispatchQueue.main.async {
                     self.isKlarnaPaymentDone = true
-                    self.klarnaMessage = "Accepted"
+                    self.klarnaStatus = "Accepted"
                 }
             }
         }
@@ -155,7 +155,7 @@ extension KlarnaSDKIntegration: KlarnaPaymentEventListener {
     
     func klarnaFailed(inPaymentView paymentView: KlarnaPaymentView, withError error: KlarnaPaymentError) {
         print("KlarnaPaymentViewDelegate paymentView failedWithError: \(error.debugDescription)")
-        klarnaMessage = error.message
+        klarnaStatus = error.message
     }
 }
 

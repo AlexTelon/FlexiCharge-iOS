@@ -26,7 +26,7 @@ class appDelegate: NSObject, UIApplicationDelegate {
         let sendingAppID = options[.sourceApplication]
         print("source application = \(sendingAppID ?? "Unknown")")
         guard let components = NSURLComponents(url: url, resolvingAgainstBaseURL: true),
-            let albumPath = components.path,
+             let albumPath = components.path,
             let params = components.queryItems else {
                 print("Invalid URL or album path missing")
                 return false

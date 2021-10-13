@@ -19,7 +19,7 @@ struct ContentView: View {
     @State var isKlarnaPresented: Bool = false
     @State var chargingInProgressID: Int = 0
     @State var isShowingDisconnentButton: Bool = false
-    @State var klarnaMessage: String = ""
+    @State var klarnaStatus: String = ""
     @State var offset: CGFloat = 0
     @State var lastOffset: CGFloat = 0
     @State var keyboardHeight: CGFloat = 0
@@ -116,7 +116,7 @@ struct ContentView: View {
                         .padding(.horizontal, UsefulValues.screenWidth * 0.1)
                     }
                     let conditionOffset = self.offset + UsefulValues.screenHeight - self.keyboardHeight
-                    IdentifyChargerView(isChargingInProgress: $isChargingInProgress, chargingInProgressID: $chargingInProgressID, chargers: $result, isShowingListOfChargers: $isShowingListOfChargers, offset: $offset, isKlarnaPresented: $isKlarnaPresented, klarnaMessage: $klarnaMessage)
+                    IdentifyChargerView(isChargingInProgress: $isChargingInProgress, chargingInProgressID: $chargingInProgressID, chargers: $result, isShowingListOfChargers: $isShowingListOfChargers, offset: $offset, isKlarnaPresented: $isKlarnaPresented, klarnaStatus: $klarnaStatus)
                         .transition(.move(edge: .bottom))
                         .animation(.easeInOut(duration: 0.2))
                         .offset(y: isShowingListOfChargers ? conditionOffset - listHeight  : conditionOffset)
@@ -153,7 +153,7 @@ struct ContentView: View {
                 .navigationBarHidden(true)
             }.background(Color.primaryDarkGray.ignoresSafeArea(.all))
             .sheet(isPresented: $isKlarnaPresented) {
-                ViewController(isPresented: $isKlarnaPresented, klarnaMessage: $klarnaMessage)
+                ViewController(isPresented: $isKlarnaPresented, klarnaStatus: $klarnaStatus)
             }
         }.navigationBarHidden(true)
         .onAppear(perform: loadData)
