@@ -100,6 +100,7 @@ struct ContentView: View {
                                     Image("white")
                                 }
                             }
+                            .disabled(isChargingInProgress)
                             ZStack {
                                 NavigationLink(destination: SettingsView()) {
                                     ZStack {
