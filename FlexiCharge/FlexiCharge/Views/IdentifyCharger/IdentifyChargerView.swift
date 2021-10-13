@@ -10,9 +10,14 @@ import SwiftUI
 struct IdentifyChargerView: View {
     @Binding var isShowingListOfChargers: Bool
     @Binding var isChargingInProgress: Bool
+    @Binding var isKlarnaPresented: Bool
     @Binding var chargingInProgressID: Int
     @Binding var chargers: [Charger]
     @Binding var offset: CGFloat
+    @Binding var klarnaStatus: String
+    @State private var showAlert: Bool = false
+    @State private var alertTitle: String = ""
+    @State private var alertMessage: String = ""
     @State private var chargerIdLength: Int = 6
     @State private var username: String = ""
     @State private var isEditing: Bool = false
@@ -27,13 +32,15 @@ struct IdentifyChargerView: View {
     @State var keyboardHeight: CGFloat = 0
     
     
-    init(isChargingInProgress: Binding<Bool>, chargingInProgressID: Binding<Int>, chargers: Binding<[Charger]>, isShowingListOfChargers: Binding<Bool>, offset: Binding<CGFloat>) {
+    init(isChargingInProgress: Binding<Bool>, chargingInProgressID: Binding<Int>, chargers: Binding<[Charger]>, isShowingListOfChargers: Binding<Bool>, offset: Binding<CGFloat>, isKlarnaPresented: Binding<Bool>, klarnaStatus: Binding<String>) {
         UITableView.appearance().backgroundColor = UIColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 1)
         self._isShowingListOfChargers = isShowingListOfChargers
         self._isChargingInProgress = isChargingInProgress
         self._chargingInProgressID = chargingInProgressID
+        self._isKlarnaPresented = isKlarnaPresented
         self._chargers = chargers
         self._offset = offset
+        self._klarnaStatus = klarnaStatus
     }
     
     var body: some View {
@@ -88,14 +95,30 @@ struct IdentifyChargerView: View {
                     RegularButton(action: {
                         startCharging()
                     }, text: buttonText, foregroundColor: buttonTextColor, backgroundColor: buttonColor)
-                    .disabled(isButtonDisabled)
-                    .opacity(isButtonVisible)
-                    .offset(y: -25)
+                        .disabled(isButtonDisabled)
+                        .opacity(isButtonVisible)
+                        .offset(y: -25)
                 }
             }
             .frame(width: UsefulValues.screenWidth * 0.8)
             .padding(.vertical)
             .padding(.horizontal, 12)
+            .alert(isPresented: $showAlert) {
+                Alert(title: Text(alertTitle), message: Text(alertMessage), dismissButton: .default(Text("Dismiss")){showAlert = false})
+            }
+            .onChange(of: klarnaStatus, perform: { _ in
+                if klarnaStatus != "Accepted" {
+                    alertTitle = "Klarna error"
+                    alertMessage = klarnaStatus
+                    showAlert = true
+                } else {
+                    isChargingInProgress = true
+                    chargingInProgressID = Int(chargerIdInput)!
+                    offset = 0
+                    isShowingListOfChargers = false
+                    hideKeyboard()
+                }
+            })
         }
     }
     // Makes sure the entered charger id is not too long or is not all integers
@@ -146,14 +169,15 @@ struct IdentifyChargerView: View {
     }
     
     func startCharging() {
-        ChargerAPI().beginCharging(chargerID: Int(chargerIdInput)!)
-        isChargingInProgress = true
-        chargingInProgressID = Int(chargerIdInput)!
-        offset = 0
-        isShowingListOfChargers = false
-        hideKeyboard()
-        //Add functionality to startChargingButton
-        //Send all selected options to API
+        ChargerAPI().beginCharging(chargerID: Int(chargerIdInput)!) { response in
+            if response != "Accepted" {
+                alertTitle = response
+                alertMessage = "Something went wrong"
+                showAlert = true
+            } else {
+                isKlarnaPresented = true
+            }
+        }
     }
 }
 
@@ -162,7 +186,7 @@ struct IdentifyChargerView: View {
 struct IdentifyChargerView_Previews: PreviewProvider {
     @State var preview = false
     static var previews: some View {
-        IdentifyChargerView(isChargingInProgress: .constant(true), chargingInProgressID: .constant(0), chargers: .constant([Charger(chargerID: 999999, location: [57.778568, 14.163727], chargePointID: 9, serialNumber: "%&(/K€OLC:VP", status: "Available")]), isShowingListOfChargers: .constant(false), offset: .constant(0))
+        IdentifyChargerView(isChargingInProgress: .constant(true), chargingInProgressID: .constant(0), chargers: .constant([Charger(chargerID: 999999, location: [57.778568, 14.163727], chargePointID: 9, serialNumber: "%&(/K€OLC:VP", status: "Available")]), isShowingListOfChargers: .constant(false), offset: .constant(0), isKlarnaPresented: .constant(false), klarnaStatus: .constant(""))
     }
 }
 

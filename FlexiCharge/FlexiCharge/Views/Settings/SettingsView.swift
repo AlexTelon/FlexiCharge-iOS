@@ -46,7 +46,7 @@ struct SettingsView: View {
                 Group {
                     /*----------Charging History----------*/
                     // Change NavigationLink to correct page once it is created
-                    NavigationLink(destination: LoginView()) {
+                    NavigationLink(destination: InvoicesView()) {
                         HStack {
                             Text("Charging History")
                                 .font(Font.system(size: 20, design: .default))
@@ -74,7 +74,7 @@ struct SettingsView: View {
                         .background(Color.primaryLightGray)
                     /*----------Account Settings----------*/
                     // Change NavigationLink to correct page once it is created
-                    NavigationLink(destination: ContentView()) {
+                    NavigationLink(destination: InvoicesView()) {
                         HStack {
                             Text("Account Settings")
                                 .font(Font.system(size: 20, design: .default))
@@ -88,7 +88,7 @@ struct SettingsView: View {
                         .background(Color.primaryLightGray)
                     /*----------Name and Address----------*/
                     // Change NavigationLink to correct page once it is created
-                    NavigationLink(destination: ContentView()) {
+                    NavigationLink(destination: InvoicesView()) {
                         HStack {
                             Text("Name and Address")
                                 .font(Font.system(size: 20, design: .default))
@@ -102,7 +102,7 @@ struct SettingsView: View {
                         .background(Color.primaryLightGray)
                     /*----------About----------*/
                     // Change NavigationLink to correct page once it is created
-                    NavigationLink(destination: ContentView()) {
+                    NavigationLink(destination: InvoicesView()) {
                         HStack {
                             Text("About")
                                 .font(Font.system(size: 20, design: .default))

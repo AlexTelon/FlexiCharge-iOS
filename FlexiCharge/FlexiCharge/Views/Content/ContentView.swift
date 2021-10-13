@@ -16,13 +16,16 @@ struct ContentView: View {
     @State var results = [Charger]()
     @State var isShowingListOfChargers: Bool = false
     @State var isChargingInProgress: Bool = false
+    @State var isKlarnaPresented: Bool = false
     @State var chargingInProgressID: Int = 0
     @State var isShowingDisconnentButton: Bool = false
+    @State var klarnaStatus: String = ""
     @State var offset: CGFloat = 0
     @State var lastOffset: CGFloat = 0
     @State var keyboardHeight: CGFloat = 0
     @State var update = false
     @State var result = [Charger]()
+
     
     @State private var isShowingScanner: Bool = false
     @State private var notUrl: Bool = false
@@ -97,9 +100,10 @@ struct ContentView: View {
                                     Circle()
                                         .fill(Color.menuButtonGray)
                                         .frame(width: UsefulValues.screenWidth * 0.20, height: UsefulValues.screenWidth * 0.20)
-                                    Image("white")
+                                    Image("flexi-charge-logo-light")
                                 }
                             }
+                            .disabled(isChargingInProgress)
                             ZStack {
                                 NavigationLink(destination: SettingsView()) {
                                     ZStack {
@@ -116,7 +120,7 @@ struct ContentView: View {
                         .padding(.horizontal, UsefulValues.screenWidth * 0.1)
                     }
                     let conditionOffset = self.offset + UsefulValues.screenHeight - self.keyboardHeight
-                    IdentifyChargerView(isChargingInProgress: $isChargingInProgress, chargingInProgressID: $chargingInProgressID, chargers: $result, isShowingListOfChargers: $isShowingListOfChargers, offset: $offset)
+                    IdentifyChargerView(isChargingInProgress: $isChargingInProgress, chargingInProgressID: $chargingInProgressID, chargers: $result, isShowingListOfChargers: $isShowingListOfChargers, offset: $offset, isKlarnaPresented: $isKlarnaPresented, klarnaStatus: $klarnaStatus)
                         .transition(.move(edge: .bottom))
                         .animation(.easeInOut(duration: 0.2))
                         .offset(y: isShowingListOfChargers ? conditionOffset - listHeight  : conditionOffset)
@@ -152,11 +156,11 @@ struct ContentView: View {
                 }.edgesIgnoringSafeArea(.bottom)
                 .navigationBarHidden(true)
             }.background(Color.primaryDarkGray.ignoresSafeArea(.all))
+            .sheet(isPresented: $isKlarnaPresented) {
+                InitializeKlarna(isPresented: $isKlarnaPresented, klarnaStatus: $klarnaStatus)
+            }
         }.navigationBarHidden(true)
-        .onAppear(perform: loadData)
-        .onChange(of: isChargingInProgress, perform: { _ in
-            loadData()
-        })
+        .onAppear(perform: loadChargers)
     }
     
     func onChange() {
@@ -195,7 +199,7 @@ struct ContentView: View {
         }
     }
     
-    func loadData() {
+    func loadChargers() {
         // Fetches all chargers
         guard let url = URL(string: "http://54.220.194.65:8080/chargers") else { return }
         URLSession.shared.dataTask(with: url) { (data, _, _) in
@@ -204,11 +208,26 @@ struct ContentView: View {
             
             DispatchQueue.main.async {
                 self.result = decodedData
+                updateChargers()
             }
         }.resume()
     }
-    struct Location {
-        var isUserCentered: Bool = false
+    func updateChargers() {
+        // Fetches chargers to update the map if a change has occured
+        guard let url = URL(string: "http://54.220.194.65:8080/chargers") else { return }
+        DispatchQueue.global(qos: .background).async {
+            URLSession.shared.dataTask(with: url) { (data, _, _) in
+                guard let data = data else { return }
+                let decodedData = try! JSONDecoder().decode([Charger].self, from: data)
+                
+                DispatchQueue.main.async {
+                    if result != decodedData {
+                        self.result = decodedData
+                    }
+                    updateChargers()
+                }
+            }.resume()
+        }
     }
 }
 
