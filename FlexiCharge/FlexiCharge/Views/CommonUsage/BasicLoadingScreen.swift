@@ -12,7 +12,7 @@ struct BasicLoadingScreen: View {
     
     var body: some View {
         ZStack {
-            Color.primaryLightGray.opacity(0.2)
+            Color.primaryDarkGray.opacity(0.75)
             VStack {
                 Spacer()
                 Spacer()
