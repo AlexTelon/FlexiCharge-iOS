@@ -4,7 +4,6 @@
 //
 //  Created by Filip Flodén on 2021-09-13.
 //
-
 import SwiftUI
 
 struct LoginView: View {
@@ -70,7 +69,6 @@ struct LoginView: View {
                                     // Log in a user
                                     self.loading = true
                                     self.selection = 1
-                                    print("Logged in")
                                 }, text: "Log in", foregroundColor: Color.white, backgroundColor: Color.primaryGreen)
                             }.background(RoundedRectangle(cornerRadius: 5).fill(Color.primaryGreen))
                             Text("Spacer").hidden()

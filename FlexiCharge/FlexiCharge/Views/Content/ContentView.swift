@@ -16,13 +16,16 @@ struct ContentView: View {
     @State var results = [Charger]()
     @State var isShowingListOfChargers: Bool = false
     @State var isChargingInProgress: Bool = false
+    @State var isKlarnaPresented: Bool = false
     @State var chargingInProgressID: Int = 0
     @State var isShowingDisconnentButton: Bool = false
+    @State var klarnaStatus: String = ""
     @State var offset: CGFloat = 0
     @State var lastOffset: CGFloat = 0
     @State var keyboardHeight: CGFloat = 0
     @State var update = false
     @State var result = [Charger]()
+
     
     @State private var isShowingScanner: Bool = false
     @State private var notUrl: Bool = false
@@ -97,6 +100,7 @@ struct ContentView: View {
                                     Image("flexi-charge-logo-light")
                                 }
                             }
+                            .disabled(isChargingInProgress)
                             ZStack {
                                 NavigationLink(destination: SettingsView()) {
                                     ZStack {
@@ -113,7 +117,7 @@ struct ContentView: View {
                         .padding(.horizontal, UsefulValues.screenWidth * 0.1)
                     }
                     let conditionOffset = self.offset + UsefulValues.screenHeight - self.keyboardHeight
-                    IdentifyChargerView(isChargingInProgress: $isChargingInProgress, chargingInProgressID: $chargingInProgressID, chargers: $result, isShowingListOfChargers: $isShowingListOfChargers, offset: $offset)
+                    IdentifyChargerView(isChargingInProgress: $isChargingInProgress, chargingInProgressID: $chargingInProgressID, chargers: $result, isShowingListOfChargers: $isShowingListOfChargers, offset: $offset, isKlarnaPresented: $isKlarnaPresented, klarnaStatus: $klarnaStatus)
                         .transition(.move(edge: .bottom))
                         .animation(.easeInOut(duration: 0.2))
                         .offset(y: isShowingListOfChargers ? conditionOffset - listHeight  : conditionOffset)
@@ -149,6 +153,9 @@ struct ContentView: View {
                 }.edgesIgnoringSafeArea(.bottom)
                 .navigationBarHidden(true)
             }.background(Color.primaryDarkGray.ignoresSafeArea(.all))
+            .sheet(isPresented: $isKlarnaPresented) {
+                InitializeKlarna(isPresented: $isKlarnaPresented, klarnaStatus: $klarnaStatus)
+            }
         }.navigationBarHidden(true)
         .onAppear(perform: loadChargers)
     }

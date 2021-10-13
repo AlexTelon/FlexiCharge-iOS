@@ -10,12 +10,14 @@ import Combine
 import SwiftUI
 
 class ChargerAPI {
+    var chargerStatus: String = ""
+    
     
     init() {
         
     }
     
-    func beginCharging(chargerID: Int) {
+    func beginCharging(chargerID: Int, completion: @escaping (String) -> Void) -> Void {
         guard let url = URL(string: "http://54.220.194.65:8080/reservations/" + String(chargerID)) else { return }
         
         var request = URLRequest(url: url)
@@ -32,26 +34,26 @@ class ChargerAPI {
             "reservationId": "1",
             "parentIdTag": "1"
         ]
-        
         let data = try! JSONSerialization.data(withJSONObject: jsonDictionary, options: .prettyPrinted)
-        
         URLSession.shared.uploadTask(with: request, from: data) { (responseData, response, error) in
-            if let error = error {
-                print("Error making PUT request: \(error.localizedDescription)")
+            if error != nil {
                 return
             }
             
             if let responseCode = (response as? HTTPURLResponse)?.statusCode, let responseData = responseData {
-                guard responseCode == 200 else {
-                    print("Invalid response code: \(responseCode)")
+                guard responseCode == 201 else {
+                    let responseCodeAsString = String(responseCode)
+                    completion(responseCodeAsString)
                     return
                 }
                 
                 if let responseJSONData = try? JSONSerialization.jsonObject(with: responseData, options: .allowFragments) {
-                    print("Response JSON data = \(responseJSONData)")
+                    let responseDataAsString = responseJSONData as! String
+                    completion(responseDataAsString)
                 }
             }
         }.resume()
+        return
     }
     
     func stopCharging(chargerID: Int) {
@@ -71,14 +73,12 @@ class ChargerAPI {
         let data = try! JSONSerialization.data(withJSONObject: jsonDictionary, options: .prettyPrinted)
         
         URLSession.shared.uploadTask(with: request, from: data) { (responseData, response, error) in
-            if let error = error {
-                print("Error making PUT request: \(error.localizedDescription)")
+            if error != nil {
                 return
             }
             
             if let responseCode = (response as? HTTPURLResponse)?.statusCode, let responseData = responseData {
                 guard responseCode == 200 else {
-                    print("Invalid response code: \(responseCode)")
                     return
                 }
                 

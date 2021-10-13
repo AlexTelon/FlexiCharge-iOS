@@ -22,6 +22,7 @@
 		D34A1AC326F53D0E001EB5D2 /* ChargerHub.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34A1AC226F53D0E001EB5D2 /* ChargerHub.swift */; };
 		D34A1AC526F54304001EB5D2 /* ChargerList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34A1AC426F54304001EB5D2 /* ChargerList.swift */; };
 		D35844E826FB6AB1004F5790 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35844E726FB6AB1004F5790 /* LocationManager.swift */; };
+		D36667712716F1CE002EA995 /* KlarnaMobileSDK in Frameworks */ = {isa = PBXBuildFile; productRef = D36667702716F1CE002EA995 /* KlarnaMobileSDK */; };
 		D3666B2C26FF313100AAA876 /* ChargerHubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3666B2B26FF313100AAA876 /* ChargerHubView.swift */; };
 		D388D13C2706ED85005C1927 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D388D13B2706ED85005C1927 /* Extensions.swift */; };
 		D388D13F270C5AB2005C1927 /* RegularButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D388D13E270C5AB2005C1927 /* RegularButton.swift */; };
@@ -40,6 +41,8 @@
 		D3D6D16926E6286800B77B16 /* FlexiChargeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D6D16826E6286800B77B16 /* FlexiChargeTests.swift */; };
 		D3D6D17426E6286800B77B16 /* FlexiChargeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D6D17326E6286800B77B16 /* FlexiChargeUITests.swift */; };
 		D3D6D18826E629BE00B77B16 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D6D18726E629BE00B77B16 /* ContentView.swift */; };
+		FD58562A270DA9490003F109 /* KlarnaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD585629270DA9490003F109 /* KlarnaView.swift */; };
+		FD58562C270DA97E0003F109 /* KlarnaViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD58562B270DA97E0003F109 /* KlarnaViewModel.swift */; };
 		FD8B4F1526EA11D400B0FDB5 /* IdentifyChargerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD8B4F1426EA11D400B0FDB5 /* IdentifyChargerViewModel.swift */; };
 		FD9BB76C26F8BC7600CBE7E5 /* ChargingInProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD9BB76B26F8BC7600CBE7E5 /* ChargingInProgressView.swift */; };
 		FDDFFF4626EF7C7F004B8EE9 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDDFFF4526EF7C7F004B8EE9 /* SettingsView.swift */; };
@@ -101,6 +104,8 @@
 		D3D6D17326E6286800B77B16 /* FlexiChargeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexiChargeUITests.swift; sourceTree = "<group>"; };
 		D3D6D17526E6286800B77B16 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D3D6D18726E629BE00B77B16 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		FD585629270DA9490003F109 /* KlarnaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KlarnaView.swift; sourceTree = "<group>"; };
+		FD58562B270DA97E0003F109 /* KlarnaViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KlarnaViewModel.swift; sourceTree = "<group>"; };
 		FD8B4F1426EA11D400B0FDB5 /* IdentifyChargerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifyChargerViewModel.swift; sourceTree = "<group>"; };
 		FD9BB76B26F8BC7600CBE7E5 /* ChargingInProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChargingInProgressView.swift; sourceTree = "<group>"; };
 		FDDFFF4526EF7C7F004B8EE9 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
@@ -111,6 +116,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D36667712716F1CE002EA995 /* KlarnaMobileSDK in Frameworks */,
 				D3A2033226F22411007B0D90 /* CodeScanner in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -315,6 +321,7 @@
 		D3D6D18C26E6403400B77B16 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				FD585628270DA8BB0003F109 /* KlarnaPayments */,
 				D388D13D270C5A5C005C1927 /* CommonUsage */,
 				FD9BB76A26F8BC1C00CBE7E5 /* ChargingInProgress */,
 				D3A2033C26F4845C007B0D90 /* Login */,
@@ -327,6 +334,15 @@
 				D366298526E907C20082FAF1 /* Content */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		FD585628270DA8BB0003F109 /* KlarnaPayments */ = {
+			isa = PBXGroup;
+			children = (
+				FD585629270DA9490003F109 /* KlarnaView.swift */,
+				FD58562B270DA97E0003F109 /* KlarnaViewModel.swift */,
+			);
+			path = KlarnaPayments;
 			sourceTree = "<group>";
 		};
 		FD9BB76A26F8BC1C00CBE7E5 /* ChargingInProgress */ = {
@@ -365,6 +381,7 @@
 			name = FlexiCharge;
 			packageProductDependencies = (
 				D3A2033126F22411007B0D90 /* CodeScanner */,
+				D36667702716F1CE002EA995 /* KlarnaMobileSDK */,
 			);
 			productName = FlexiCharge;
 			productReference = D3D6D14E26E6286500B77B16 /* FlexiCharge.app */;
@@ -439,6 +456,7 @@
 			mainGroup = D3D6D14526E6286500B77B16;
 			packageReferences = (
 				D3A2033026F22411007B0D90 /* XCRemoteSwiftPackageReference "CodeScanner" */,
+				D366676F2716F1CE002EA995 /* XCRemoteSwiftPackageReference "klarna-mobile-sdk" */,
 			);
 			productRefGroup = D3D6D14F26E6286500B77B16 /* Products */;
 			projectDirPath = "";
@@ -504,6 +522,7 @@
 				D388D141270C7598005C1927 /* RegularTextField.swift in Sources */,
 				D388D13F270C5AB2005C1927 /* RegularButton.swift in Sources */,
 				65F14A3926F8872A00C9B443 /* SetupUpInvoiceViewModel.swift in Sources */,
+				FD58562C270DA97E0003F109 /* KlarnaViewModel.swift in Sources */,
 				D334B13726EFBBAA000D31E9 /* EmailSentView.swift in Sources */,
 				D327CD6426E64D0D007FC380 /* MapView.swift in Sources */,
 				D3D6D18826E629BE00B77B16 /* ContentView.swift in Sources */,
@@ -512,6 +531,7 @@
 				651A7A6026F879F000A8A16D /* SetUpInvoiceView.swift in Sources */,
 				D3A2033E26F4846B007B0D90 /* LoginView.swift in Sources */,
 				D3D6D15226E6286500B77B16 /* FlexiChargeApp.swift in Sources */,
+				FD58562A270DA9490003F109 /* KlarnaView.swift in Sources */,
 				D327CD6626E65F33007FC380 /* IdentifyChargerView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -599,7 +619,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -654,9 +674,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
@@ -838,6 +859,15 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		D366676F2716F1CE002EA995 /* XCRemoteSwiftPackageReference "klarna-mobile-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/klarna/klarna-mobile-sdk";
+			requirement = {
+				kind = versionRange;
+				maximumVersion = 3.0.0;
+				minimumVersion = 2.0.44;
+			};
+		};
 		D3A2033026F22411007B0D90 /* XCRemoteSwiftPackageReference "CodeScanner" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/twostraws/CodeScanner";
@@ -849,6 +879,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		D36667702716F1CE002EA995 /* KlarnaMobileSDK */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D366676F2716F1CE002EA995 /* XCRemoteSwiftPackageReference "klarna-mobile-sdk" */;
+			productName = KlarnaMobileSDK;
+		};
 		D3A2033126F22411007B0D90 /* CodeScanner */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = D3A2033026F22411007B0D90 /* XCRemoteSwiftPackageReference "CodeScanner" */;
