@@ -15,6 +15,7 @@ struct FlexiChargeApp: App {
         WindowGroup {
             RegisterAccountView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                .preferredColorScheme(.light)
         }
     }
 }
