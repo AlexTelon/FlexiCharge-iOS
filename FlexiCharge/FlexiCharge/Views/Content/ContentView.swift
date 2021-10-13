@@ -12,7 +12,6 @@ import CodeScanner
 
 struct ContentView: View {
     let listHeight: CGFloat
-    
     @State var results = [Charger]()
     @State var isShowingListOfChargers: Bool = false
     @State var isChargingInProgress: Bool = false
@@ -25,14 +24,11 @@ struct ContentView: View {
     @State var keyboardHeight: CGFloat = 0
     @State var update = false
     @State var result = [Charger]()
-
-    
     @State private var isShowingScanner: Bool = false
     @State private var notUrl: Bool = false
-    
+    @State var centerUser: Bool = false
     @GestureState private var gestureOffset: CGFloat = 0
     @Environment(\.openURL) var openURL
-    
     init() {
         UITableView.appearance().backgroundColor = UIColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 1)
         self.listHeight = UsefulValues.screenHeight / 4
@@ -42,7 +38,7 @@ struct ContentView: View {
         NavigationView {
             Group {
                 ZStack(alignment: .bottom) {
-                    MapView(chargers: $result)
+                    MapView(chargers: $result, centerUser: $centerUser)
                         .frame(minHeight: 0, maxHeight: .infinity)
                         .edgesIgnoringSafeArea(.all)
                         .onTapGesture {
@@ -171,6 +167,7 @@ struct ContentView: View {
     }
     func findUserOnMap() {
         // Find the user on the map
+        centerUser.toggle()
     }
     
     func hideKeyboard() {
@@ -208,7 +205,6 @@ struct ContentView: View {
             }
         }.resume()
     }
-    
     func updateChargers() {
         // Fetches chargers to update the map if a change has occured
         guard let url = URL(string: "http://54.220.194.65:8080/chargers") else { return }
