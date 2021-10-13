@@ -58,7 +58,7 @@ final class KlarnaSDKIntegration: ObservableObject {
         self.paymentView!.initialize(clientToken: result!["client_token"] as! String, returnUrl: URL(string:"flexiChargeUrl://")!)
     }
     
-    func SendKlarnaToken(transactionID: Int, authorization_token: String, completion: @escaping (String) -> Void) {
+    func SendKlarnaToken(transactionID: Int, authorization_token: String, completion: @escaping (String) -> Void){
         guard let url = URL(string: "http://54.220.194.65:8080/transactions/order") else { return }
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
@@ -79,10 +79,16 @@ final class KlarnaSDKIntegration: ObservableObject {
             if let responseCode = (response as? HTTPURLResponse)?.statusCode, let responseData = responseData {
                 guard responseCode == 201 else {
                     print("Invalid response code: \(responseCode)")
+                    let responseCodeAsString = String(responseCode)
+                    completion(responseCodeAsString)
                     return
                 }
                 if let responseJSONData = try? JSONSerialization.jsonObject(with: responseData, options: .allowFragments) {
                     print("Response JSON data = \(responseJSONData)")
+                    DispatchQueue.main.async {
+                        let responseDataAsString = responseJSONData as! String
+                        completion(responseDataAsString)
+                    }
                 }
             }
         }.resume()
