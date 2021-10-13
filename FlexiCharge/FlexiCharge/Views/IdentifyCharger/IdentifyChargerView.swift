@@ -14,14 +14,15 @@ struct IdentifyChargerView: View {
     @Binding var chargingInProgressID: Int
     @Binding var chargers: [Charger]
     @Binding var offset: CGFloat
+    @Binding var chargerIdInput: String
     @Binding var klarnaStatus: String
+    
     @State private var showAlert: Bool = false
     @State private var alertTitle: String = ""
     @State private var alertMessage: String = ""
     @State private var chargerIdLength: Int = 6
     @State private var username: String = ""
     @State private var isEditing: Bool = false
-    @State private var chargerIdInput: String = ""
     @State private var buttonText: String = ""
     @State private var buttonColor: Color = .white
     @State private var isButtonDisabled: Bool = true
@@ -32,7 +33,7 @@ struct IdentifyChargerView: View {
     @State var keyboardHeight: CGFloat = 0
     
     
-    init(isChargingInProgress: Binding<Bool>, chargingInProgressID: Binding<Int>, chargers: Binding<[Charger]>, isShowingListOfChargers: Binding<Bool>, offset: Binding<CGFloat>, isKlarnaPresented: Binding<Bool>, klarnaStatus: Binding<String>) {
+    init(isChargingInProgress: Binding<Bool>, chargingInProgressID: Binding<Int>, chargers: Binding<[Charger]>, isShowingListOfChargers: Binding<Bool>, offset: Binding<CGFloat>, chargerIdInput: Binding<String>, isKlarnaPresented: Binding<Bool>, klarnaStatus: Binding<String>) {
         UITableView.appearance().backgroundColor = UIColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 1)
         self._isShowingListOfChargers = isShowingListOfChargers
         self._isChargingInProgress = isChargingInProgress
@@ -40,6 +41,7 @@ struct IdentifyChargerView: View {
         self._isKlarnaPresented = isKlarnaPresented
         self._chargers = chargers
         self._offset = offset
+        self._chargerIdInput = chargerIdInput
         self._klarnaStatus = klarnaStatus
     }
     
@@ -186,7 +188,7 @@ struct IdentifyChargerView: View {
 struct IdentifyChargerView_Previews: PreviewProvider {
     @State var preview = false
     static var previews: some View {
-        IdentifyChargerView(isChargingInProgress: .constant(true), chargingInProgressID: .constant(0), chargers: .constant([Charger(chargerID: 999999, location: [57.778568, 14.163727], chargePointID: 9, serialNumber: "%&(/K€OLC:VP", status: "Available")]), isShowingListOfChargers: .constant(false), offset: .constant(0), isKlarnaPresented: .constant(false), klarnaStatus: .constant(""))
+        IdentifyChargerView(isChargingInProgress: .constant(true), chargingInProgressID: .constant(0), chargers: .constant([Charger(chargerID: 999999, location: [57.778568, 14.163727], chargePointID: 9, serialNumber: "%&(/K€OLC:VP", status: "Available")]), isShowingListOfChargers: .constant(false), offset: .constant(0), chargerIdInput: .constant("999999"), isKlarnaPresented: .constant(false), klarnaStatus: .constant(""))
     }
 }
 

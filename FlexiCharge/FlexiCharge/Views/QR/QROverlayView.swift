@@ -8,6 +8,11 @@
 import SwiftUI
 
 struct QROverlayView: View {
+    @Binding var isShowingScanner: Bool
+    @Binding var alertTitle: String
+    @Binding var alertMessage: String
+    @Binding var showAlert: Bool
+    
     let gridNetY: ClosedRange<Int> = 0...3
     let gridNetX: ClosedRange<Int> = 0...2
     
@@ -33,11 +38,21 @@ struct QROverlayView: View {
                 .opacity(1)
                 .multilineTextAlignment(.center)
         }
+        .alert(isPresented: $showAlert) {
+            Alert(
+                title: Text(alertTitle),
+                message: Text(alertMessage),
+                dismissButton: .default(Text("Dismiss")) {
+                    showAlert = false
+                    isShowingScanner = false
+                }
+            )
+        }
     }
 }
 
 struct QROverlayView_Previews: PreviewProvider {
     static var previews: some View {
-        QROverlayView()
+        QROverlayView(isShowingScanner: .constant(false), alertTitle: .constant("Title"), alertMessage: .constant("Message"), showAlert: .constant(false))
     }
 }
