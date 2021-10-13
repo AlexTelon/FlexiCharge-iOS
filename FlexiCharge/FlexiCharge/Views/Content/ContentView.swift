@@ -14,6 +14,7 @@ struct ContentView: View {
     let listHeight: CGFloat
     @State var results = [Charger]()
     @State var isShowingListOfChargers: Bool = false
+    @State var chargerIdInput: String = ""
     @State var isChargingInProgress: Bool = false
     @State var isKlarnaPresented: Bool = false
     @State var chargingInProgressID: Int = 0
@@ -24,9 +25,12 @@ struct ContentView: View {
     @State var keyboardHeight: CGFloat = 0
     @State var update = false
     @State var result = [Charger]()
-    @State private var isShowingScanner: Bool = false
-    @State private var notUrl: Bool = false
     @State var centerUser: Bool = false
+    
+    @State private var isShowingScanner: Bool = false
+    @State private var alertTitle: String = ""
+    @State private var alertMessage: String = ""
+    @State private var showAlert: Bool = false
     @GestureState private var gestureOffset: CGFloat = 0
     @Environment(\.openURL) var openURL
     init() {
@@ -82,7 +86,7 @@ struct ContentView: View {
                                 }
                             }).offset(x: UsefulValues.screenWidth * -0.15)
                             .sheet(isPresented: $isShowingScanner) {
-                                CodeScannerView(codeTypes: [.qr], simulatedData: "QR scan", completion: self.handleScan).overlay(QROverlayView())
+                                CodeScannerView(codeTypes: [.qr], simulatedData: "QR scan", completion: self.handleScan).overlay(QROverlayView(isShowingScanner: $isShowingScanner, alertTitle: $alertTitle, alertMessage: $alertMessage, showAlert: $showAlert))
                             }
                             Button(action: {
                                 let maxHeight = UsefulValues.screenHeight / 2.5
@@ -113,7 +117,7 @@ struct ContentView: View {
                         .padding(.horizontal, UsefulValues.screenWidth * 0.1)
                     }
                     let conditionOffset = self.offset + UsefulValues.screenHeight - self.keyboardHeight
-                    IdentifyChargerView(isChargingInProgress: $isChargingInProgress, chargingInProgressID: $chargingInProgressID, chargers: $result, isShowingListOfChargers: $isShowingListOfChargers, offset: $offset, isKlarnaPresented: $isKlarnaPresented, klarnaStatus: $klarnaStatus)
+                    IdentifyChargerView(isChargingInProgress: $isChargingInProgress, chargingInProgressID: $chargingInProgressID, chargers: $result, isShowingListOfChargers: $isShowingListOfChargers, offset: $offset, chargerIdInput: $chargerIdInput, isKlarnaPresented: $isKlarnaPresented, klarnaStatus: $klarnaStatus)
                         .transition(.move(edge: .bottom))
                         .animation(.easeInOut(duration: 0.2))
                         .offset(y: isShowingListOfChargers ? conditionOffset - listHeight  : conditionOffset)
@@ -175,20 +179,25 @@ struct ContentView: View {
     }
     
     func handleScan(result: Result<String, CodeScannerView.ScanError>) {
-        self.isShowingScanner = false
-        
         switch result {
         case .success(let details):
-            //            let details = code
-            if URL(string: details) != nil {
-                openURL(URL(string: details)!)
+            let digitSet = CharacterSet.decimalDigits
+            let id = String(details.unicodeScalars.filter { digitSet.contains($0) })
+            if id.count != 6 {
+                alertTitle = "Scanning failed"
+                alertMessage = "Try entering the chargers id manually"
+                showAlert = true
             } else {
-                notUrl = true
+                self.isShowingScanner = false
+                self.chargerIdInput = id
+                let maxHeight = UsefulValues.screenHeight / 2.5
+                offset = -maxHeight
+                lastOffset = offset
             }
-            print("QR CODE DETAILS", details)
         case .failure(_):
-            print("Scanning failed")
-            notUrl = true
+            alertTitle = "Scanning failed"
+            alertMessage = "Something went wrong when scanning the QR code"
+            showAlert = true
         }
     }
     
