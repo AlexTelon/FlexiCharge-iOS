@@ -44,8 +44,6 @@
 		FD58562C270DA97E0003F109 /* KlarnaViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD58562B270DA97E0003F109 /* KlarnaViewModel.swift */; };
 		FD8B4F1526EA11D400B0FDB5 /* IdentifyChargerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD8B4F1426EA11D400B0FDB5 /* IdentifyChargerViewModel.swift */; };
 		FD9BB76C26F8BC7600CBE7E5 /* ChargingInProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD9BB76B26F8BC7600CBE7E5 /* ChargingInProgressView.swift */; };
-		FDC10174270DB0C7006C7964 /* KlarnaUiViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC10173270DB0C7006C7964 /* KlarnaUiViewExtensions.swift */; };
-		FDC10179270DC1F2006C7964 /* TestKlarnaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC10178270DC1F2006C7964 /* TestKlarnaView.swift */; };
 		FDDFFF4626EF7C7F004B8EE9 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDDFFF4526EF7C7F004B8EE9 /* SettingsView.swift */; };
 /* End PBXBuildFile section */
 
@@ -108,8 +106,6 @@
 		FD58562B270DA97E0003F109 /* KlarnaViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KlarnaViewModel.swift; sourceTree = "<group>"; };
 		FD8B4F1426EA11D400B0FDB5 /* IdentifyChargerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifyChargerViewModel.swift; sourceTree = "<group>"; };
 		FD9BB76B26F8BC7600CBE7E5 /* ChargingInProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChargingInProgressView.swift; sourceTree = "<group>"; };
-		FDC10173270DB0C7006C7964 /* KlarnaUiViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KlarnaUiViewExtensions.swift; sourceTree = "<group>"; };
-		FDC10178270DC1F2006C7964 /* TestKlarnaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestKlarnaView.swift; sourceTree = "<group>"; };
 		FDDFFF4526EF7C7F004B8EE9 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -322,7 +318,6 @@
 		D3D6D18C26E6403400B77B16 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				FDC10177270DC1D2006C7964 /* TestKlarnaViewa */,
 				FD585628270DA8BB0003F109 /* KlarnaPayments */,
 				D388D13D270C5A5C005C1927 /* CommonUsage */,
 				FD9BB76A26F8BC1C00CBE7E5 /* ChargingInProgress */,
@@ -343,7 +338,6 @@
 			children = (
 				FD585629270DA9490003F109 /* KlarnaView.swift */,
 				FD58562B270DA97E0003F109 /* KlarnaViewModel.swift */,
-				FDC10173270DB0C7006C7964 /* KlarnaUiViewExtensions.swift */,
 			);
 			path = KlarnaPayments;
 			sourceTree = "<group>";
@@ -354,14 +348,6 @@
 				FD9BB76B26F8BC7600CBE7E5 /* ChargingInProgressView.swift */,
 			);
 			path = ChargingInProgress;
-			sourceTree = "<group>";
-		};
-		FDC10177270DC1D2006C7964 /* TestKlarnaViewa */ = {
-			isa = PBXGroup;
-			children = (
-				FDC10178270DC1F2006C7964 /* TestKlarnaView.swift */,
-			);
-			path = TestKlarnaViewa;
 			sourceTree = "<group>";
 		};
 		FDDFFF4426EF7C37004B8EE9 /* Settings */ = {
@@ -528,7 +514,6 @@
 				D34A1AC326F53D0E001EB5D2 /* ChargerHub.swift in Sources */,
 				D3A2033826F24025007B0D90 /* QROverlayView.swift in Sources */,
 				D35844E826FB6AB1004F5790 /* LocationManager.swift in Sources */,
-				FDC10179270DC1F2006C7964 /* TestKlarnaView.swift in Sources */,
 				FD8B4F1526EA11D400B0FDB5 /* IdentifyChargerViewModel.swift in Sources */,
 				D388D141270C7598005C1927 /* RegularTextField.swift in Sources */,
 				D388D13F270C5AB2005C1927 /* RegularButton.swift in Sources */,
@@ -538,7 +523,6 @@
 				D327CD6426E64D0D007FC380 /* MapView.swift in Sources */,
 				D3D6D18826E629BE00B77B16 /* ContentView.swift in Sources */,
 				FD9BB76C26F8BC7600CBE7E5 /* ChargingInProgressView.swift in Sources */,
-				FDC10174270DB0C7006C7964 /* KlarnaUiViewExtensions.swift in Sources */,
 				D388D13C2706ED85005C1927 /* Extensions.swift in Sources */,
 				651A7A6026F879F000A8A16D /* SetUpInvoiceView.swift in Sources */,
 				D3A2033E26F4846B007B0D90 /* LoginView.swift in Sources */,

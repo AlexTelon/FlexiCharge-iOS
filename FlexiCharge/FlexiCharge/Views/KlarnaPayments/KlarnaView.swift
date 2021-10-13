@@ -42,14 +42,14 @@ struct KlarnaView: View {
 }
 
 
-struct ViewController: UIViewControllerRepresentable, View {
+struct InitializeKlarna: UIViewControllerRepresentable, View {
     @Binding var isPresented: Bool
     @Binding var klarnaStatus: String
 
-    func makeUIViewController(context: UIViewControllerRepresentableContext<ViewController>) -> UIHostingController<KlarnaView> {
+    func makeUIViewController(context: UIViewControllerRepresentableContext<InitializeKlarna>) -> UIHostingController<KlarnaView> {
         return UIHostingController(rootView: KlarnaView(isPresented: $isPresented, klarnaStatus: $klarnaStatus))
     }
 
-    func updateUIViewController(_ uiViewController: UIHostingController<KlarnaView>, context: UIViewControllerRepresentableContext<ViewController>) {
+    func updateUIViewController(_ uiViewController: UIHostingController<KlarnaView>, context: UIViewControllerRepresentableContext<InitializeKlarna>) {
     }
 }

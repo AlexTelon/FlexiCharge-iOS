@@ -153,7 +153,7 @@ struct ContentView: View {
                 .navigationBarHidden(true)
             }.background(Color.primaryDarkGray.ignoresSafeArea(.all))
             .sheet(isPresented: $isKlarnaPresented) {
-                ViewController(isPresented: $isKlarnaPresented, klarnaStatus: $klarnaStatus)
+                InitializeKlarna(isPresented: $isKlarnaPresented, klarnaStatus: $klarnaStatus)
             }
         }.navigationBarHidden(true)
         .onAppear(perform: loadData)
