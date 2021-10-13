@@ -17,7 +17,6 @@ public protocol ViewControllerDelegate: class {
 struct KlarnaView: View {
     @Binding var isPresented: Bool
     @Binding var klarnaMessage: String
-
     @ObservedObject var sdkIntegration: KlarnaSDKIntegration = KlarnaSDKIntegration()
 
     init(isPresented: Binding<Bool>, klarnaMessage: Binding<String>) {
@@ -54,4 +53,3 @@ struct ViewController: UIViewControllerRepresentable, View {
     func updateUIViewController(_ uiViewController: UIHostingController<KlarnaView>, context: UIViewControllerRepresentableContext<ViewController>) {
     }
 }
-    
