@@ -145,7 +145,7 @@ struct IdentifyChargerView: View {
             isButtonDisabled = false
             isButtonVisible = 1
             buttonTextColor = Color(red: 1.00, green: 1.00, blue: 1.00)
-        } else if status == StatusConstants.CHARGING {
+        } else if status == StatusConstants.CHARGING || status == StatusConstants.RESERVED {
             buttonText = "Charger Occupied"
             buttonColor = Color.primaryRed
             isButtonDisabled = true
@@ -158,7 +158,7 @@ struct IdentifyChargerView: View {
             isButtonVisible = 1
             buttonTextColor = Color.menuButtonGray
         } else {
-            buttonText = "Charger Not Identified"
+            buttonText = "Charger Not Available"
             buttonColor = Color.primaryLightGray
             isButtonDisabled = true
             isButtonVisible = 1
@@ -194,7 +194,7 @@ struct IdentifyChargerView_Previews: PreviewProvider {
 
 struct StatusConstants {
     static let AVAILABLE = "Available"
-    static let PREPARING = "Occupied"
+    static let PREPARING = "Preparing"
     static let CHARGING = "Charging"
     static let SUSPENDEDEVSE = "SuspendedEVSE"
     static let SUSPENDEDEV = "SuspendedEV"
