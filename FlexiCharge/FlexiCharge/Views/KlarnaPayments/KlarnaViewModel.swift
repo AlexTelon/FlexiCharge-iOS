@@ -7,15 +7,19 @@
 
 import Foundation
 import KlarnaMobileSDK
+import SwiftUI
 
 final class KlarnaSDKIntegration: ObservableObject {
     weak var viewControllerDelegate: ViewControllerDelegate?
     @Published var isKlarnaPaymentDone: Bool = false
     @Published var klarnaStatus: String = ""
+    @Published var thisTransactionID: Int?
     private(set) var paymentView: KlarnaPaymentView?
     var result: AnyObject?
     
-    func getKlarnaSession() {
+    func getKlarnaSession(chargerIdInput: Binding<String>) {
+
+        let chargerId: String? = chargerIdInput.wrappedValue
         guard let url = URL(string: "http://54.220.194.65:8080/transactions/session") else { return }
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
@@ -25,11 +29,11 @@ final class KlarnaSDKIntegration: ObservableObject {
         ]
         let jsonDictionary: [String: Any] = [
             "userID": "2i3h52-3kn34k6-2k3n5",
-            "chargerID": 100002
+            "chargerID": chargerId as Any
         ]
         let data = try! JSONSerialization.data(withJSONObject: jsonDictionary, options: .prettyPrinted)
         URLSession.shared.uploadTask(with: request, from: data) { (responseData, response, error) in
-            if let error = error {
+            if error != nil {
                 return
             }
             if let responseCode = (response as? HTTPURLResponse)?.statusCode, let responseData = responseData {
@@ -52,9 +56,9 @@ final class KlarnaSDKIntegration: ObservableObject {
     }
     
     func SendKlarnaToken(transactionID: Int, authorization_token: String, completion: @escaping (String) -> Void){
-        guard let url = URL(string: "http://54.220.194.65:8080/transactions/order") else { return }
+        guard let url = URL(string: "http://54.220.194.65:8080/transactions/start/:" + String(transactionID)) else { return }
         var request = URLRequest(url: url)
-        request.httpMethod = "POST"
+        request.httpMethod = "PUT"
         request.allHTTPHeaderFields = [
             "Content-Type": "application/json",
             "Accept": "application/json"
@@ -65,19 +69,17 @@ final class KlarnaSDKIntegration: ObservableObject {
         ]
         let data = try! JSONSerialization.data(withJSONObject: jsonDictionary, options: .prettyPrinted)
         URLSession.shared.uploadTask(with: request, from: data) { (responseData, response, error) in
-            if let error = error {
+            if error != nil {
                 return
             }
             if let responseCode = (response as? HTTPURLResponse)?.statusCode, let responseData = responseData {
                 guard responseCode == 201 else {
-                    let responseCodeAsString = String(responseCode)
-                    completion(responseCodeAsString)
                     return
                 }
                 if let responseJSONData = try? JSONSerialization.jsonObject(with: responseData, options: .allowFragments) {
                     DispatchQueue.main.async {
-                        let responseDataAsString = responseJSONData as! String
-                        completion(responseDataAsString)
+                        let responseDataAsString = responseJSONData as? String
+                        completion(responseDataAsString ?? "Accepted")
                     }
                 }
             }
@@ -106,6 +108,7 @@ extension KlarnaSDKIntegration: KlarnaPaymentEventListener {
                 DispatchQueue.main.async {
                     self.isKlarnaPaymentDone = true
                     self.klarnaStatus = "Accepted"
+                    self.thisTransactionID = transactionID
                 }
             }
         }
