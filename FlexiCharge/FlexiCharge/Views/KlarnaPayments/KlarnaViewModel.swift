@@ -78,8 +78,8 @@ final class KlarnaSDKIntegration: ObservableObject {
                 }
                 if let responseJSONData = try? JSONSerialization.jsonObject(with: responseData, options: .allowFragments) {
                     DispatchQueue.main.async {
-                        let responseDataAsString = responseJSONData as! String
-                        completion(responseDataAsString)
+                        let responseDataAsString = responseJSONData as? String
+                        completion(responseDataAsString ?? "Accepted")
                     }
                 }
             }
