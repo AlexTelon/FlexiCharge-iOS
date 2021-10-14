@@ -10,25 +10,22 @@ import SwiftUI
 struct ChargerList: View {
     @Binding var isShowingListOfChargers: Bool
     @Binding var chargerIdInput: String
-    var chargers: [Charger]
+    @Binding var chargers: [Charger]
+    @Binding var chargePoints: [ChargerHub]
+    @Binding var chargePointsExt: [ChargerHubExt]
     let listHeight: CGFloat
     let rowHeight: CGFloat = 50 + 12
-    let chargerHubs: [ChargerHub]
     @State var menuHeight: CGFloat = 0
     
     
-    init(isShowingListOfChargers: Binding<Bool>, chargers: [Charger], chargerIdInput: Binding<String>) {
+    init(isShowingListOfChargers: Binding<Bool>, chargePoints: Binding<[ChargerHub]>, chargers: Binding<[Charger]>, chargerIdInput: Binding<String>, chargePointsExt: Binding<[ChargerHubExt]>) {
         UITableView.appearance().backgroundColor = UIColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 1)
         self._isShowingListOfChargers = isShowingListOfChargers
         self._chargerIdInput = chargerIdInput
         self.listHeight = UsefulValues.screenHeight / 4
-        self.chargers = chargers
-        self.chargerHubs  = [
-            ChargerHub(id: 2, chargerLocationName: "Asecs Röd Entre, Jönköping", chargers: self.chargers, distance: "1.1km"),
-            ChargerHub(id: 3, chargerLocationName: "Sjukhusgatan, Jönköping", chargers: self.chargers, distance: "600m"),
-            ChargerHub(id: 4, chargerLocationName: "Asec Entre Am Jönköping", chargers: self.chargers, distance: "1.2km"),
-            ChargerHub(id: 4, chargerLocationName: "Asec Entre Am Jönköping", chargers: self.chargers, distance: "1.2km")
-        ]
+        self._chargers = chargers
+        self._chargePoints  = chargePoints
+        self._chargePointsExt = chargePointsExt
     }
     
     var body: some View {
@@ -56,10 +53,10 @@ struct ChargerList: View {
                             }
                           }
                     List {
-                        ForEach(chargerHubs) { chargerHub in
+                        ForEach($chargePointsExt) { chargePointExt in
                             ZStack {
-                                NavigationLink(destination: ChargerHubView(chargerHub: chargerHub, chargerIdInput: $chargerIdInput, isShowingListOfChargers: $isShowingListOfChargers)) {
-                                    ChargerRowView(chargerHub: chargerHub)
+                                NavigationLink(destination: ChargerHubView(chargePointExt: chargePointExt, chargerIdInput: $chargerIdInput, isShowingListOfChargers: $isShowingListOfChargers)) {
+                                    ChargerRowView(chargerHub: chargePointExt)
                                 }
                             }
                             .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
@@ -75,13 +72,13 @@ struct ChargerList: View {
             .animation(.none)
         }
         .frame(maxHeight: listHeight + menuHeight)
-        .frame(height: isShowingListOfChargers ? CGFloat(chargerHubs.count) * rowHeight > listHeight ? listHeight + menuHeight : CGFloat(chargerHubs.count) * rowHeight + menuHeight : menuHeight)
+        .frame(height: isShowingListOfChargers ? CGFloat(chargePoints.count) * rowHeight > listHeight ? listHeight + menuHeight : CGFloat(chargePoints.count) * rowHeight + menuHeight : menuHeight)
     }
 }
 
 struct ChargerList_Previews: PreviewProvider {
     static var previews: some View {
-        ChargerList(isShowingListOfChargers: .constant(true), chargers: [Charger(chargerID: 999999, location: [57.123, 57.123], chargePointID: 9, serialNumber: "jdiwamgoineawiug", status: "Available")], chargerIdInput: .constant(""))
+        ChargerList(isShowingListOfChargers: .constant(true), chargePoints: .constant([ChargerHub(chargePointID: 9, name: "Name", location: [0, 0], price: "99", klarnaReservationAmount: 300)]), chargers: .constant([Charger(chargerID: 999999, location: [57.123, 57.123], chargePointID: 9, serialNumber: "jdiwamgoineawiug", status: "Available")]), chargerIdInput: .constant(""), chargePointsExt: .constant([ChargerHubExt(chargePointID: 9, name: "Name", location: [0, 0], price: "99", klarnaReservationAmount: 300, chargers: [Charger(chargerID: 999999, location: [0, 0], chargePointID: 99, serialNumber: "!€&/=€IVJA=€", status: "Available")])]))
     }
 }
 

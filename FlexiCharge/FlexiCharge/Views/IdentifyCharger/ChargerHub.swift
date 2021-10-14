@@ -9,11 +9,16 @@ import Foundation
 import Combine
 import SwiftUI
 
-struct ChargerHub: Identifiable {
-    var id: Int
-    var chargerLocationName: String
-    var chargers: [Charger]
-    var distance: String
+struct ChargerHub: Decodable, Identifiable, Equatable {
+    var chargePointID: Int
+    var name: String
+    var location: [CGFloat]
+    var price: String
+    var klarnaReservationAmount: Int
+    
+    var id: Int {
+        chargePointID
+    }
 }
 
 struct Charger: Decodable, Identifiable, Equatable {
@@ -25,5 +30,18 @@ struct Charger: Decodable, Identifiable, Equatable {
     
     var id: Int {
         chargerID
+    }
+}
+
+struct ChargerHubExt: Decodable, Identifiable, Equatable {
+    var chargePointID: Int
+    var name: String
+    var location: [CGFloat]
+    var price: String
+    var klarnaReservationAmount: Int
+    var chargers: [Charger]
+    
+    var id: Int {
+        chargePointID
     }
 }
