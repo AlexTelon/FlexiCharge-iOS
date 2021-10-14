@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ChargerRowView: View {
-    var chargerHub: ChargerHub
+    @Binding var chargerHub: ChargerHubExt
     
     var body: some View {
         ZStack(alignment: .topLeading) {
@@ -17,9 +17,9 @@ struct ChargerRowView: View {
                 .frame(height: 50)
             VStack(alignment: .leading) {
                 HStack {
-                    Text(chargerHub.chargerLocationName)
+                    Text(chargerHub.name)
                     Spacer()
-                    Text(chargerHub.distance)
+                    Text("100m")
                 }
                 HStack {
                     if chargerHub.chargers.count == 0 {
@@ -48,7 +48,7 @@ struct ChargerRowView: View {
 struct ChargerRowView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            ChargerRowView(chargerHub: ChargerHub(id: 1, chargerLocationName: "Kungsgatan 1a, Jönköping", chargers: [Charger(chargerID: 999999, location: [57.778568, 14.163727], chargePointID: 9, serialNumber: "%&(/K€OLC:VP", status: "Available")], distance: "400m"))
+            ChargerRowView(chargerHub: .constant(ChargerHubExt(chargePointID: 9, name: "Jönköping", location: [0, 0], price: "99", klarnaReservationAmount: 300, chargers: [Charger(chargerID: 999999, location: [0, 0], chargePointID: 99, serialNumber: "!€%€/€%=DK=H=€", status: "Available")])))
         }
     }
 }

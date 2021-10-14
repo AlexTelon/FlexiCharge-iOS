@@ -12,7 +12,9 @@ struct IdentifyChargerView: View {
     @Binding var isChargingInProgress: Bool
     @Binding var isKlarnaPresented: Bool
     @Binding var chargingInProgressID: Int
+    @Binding var chargePoints: [ChargerHub]
     @Binding var chargers: [Charger]
+    @Binding var chargePointsExt: [ChargerHubExt]
     @Binding var offset: CGFloat
     @Binding var chargerIdInput: String
     @Binding var klarnaStatus: String
@@ -32,14 +34,15 @@ struct IdentifyChargerView: View {
     @State var value: CGFloat = 0
     @State var keyboardHeight: CGFloat = 0
     
-    
-    init(isChargingInProgress: Binding<Bool>, chargingInProgressID: Binding<Int>, chargers: Binding<[Charger]>, isShowingListOfChargers: Binding<Bool>, offset: Binding<CGFloat>, chargerIdInput: Binding<String>, isKlarnaPresented: Binding<Bool>, klarnaStatus: Binding<String>) {
+    init(isChargingInProgress: Binding<Bool>, chargingInProgressID: Binding<Int>, chargePoints: Binding<[ChargerHub]>, chargers: Binding<[Charger]>, chargePointsExt: Binding<[ChargerHubExt]>, isShowingListOfChargers: Binding<Bool>, offset: Binding<CGFloat>, chargerIdInput: Binding<String>, isKlarnaPresented: Binding<Bool>, klarnaStatus: Binding<String>) {
         UITableView.appearance().backgroundColor = UIColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 1)
         self._isShowingListOfChargers = isShowingListOfChargers
         self._isChargingInProgress = isChargingInProgress
         self._chargingInProgressID = chargingInProgressID
         self._isKlarnaPresented = isKlarnaPresented
+        self._chargePoints = chargePoints
         self._chargers = chargers
+        self._chargePointsExt = chargePointsExt
         self._offset = offset
         self._chargerIdInput = chargerIdInput
         self._klarnaStatus = klarnaStatus
@@ -52,7 +55,7 @@ struct IdentifyChargerView: View {
                 .frame(minHeight: 0, maxHeight: .infinity)
             VStack {
                 
-                ChargerList(isShowingListOfChargers: $isShowingListOfChargers, chargers: chargers, chargerIdInput: $chargerIdInput)
+                ChargerList(isShowingListOfChargers: $isShowingListOfChargers, chargePoints: $chargePoints, chargers: $chargers, chargerIdInput: $chargerIdInput, chargePointsExt: $chargePointsExt)
                 Text("Spacing").hidden()
                 
                 ZStack {
@@ -188,7 +191,7 @@ struct IdentifyChargerView: View {
 struct IdentifyChargerView_Previews: PreviewProvider {
     @State var preview = false
     static var previews: some View {
-        IdentifyChargerView(isChargingInProgress: .constant(true), chargingInProgressID: .constant(0), chargers: .constant([Charger(chargerID: 999999, location: [57.778568, 14.163727], chargePointID: 9, serialNumber: "%&(/K€OLC:VP", status: "Available")]), isShowingListOfChargers: .constant(false), offset: .constant(0), chargerIdInput: .constant("999999"), isKlarnaPresented: .constant(false), klarnaStatus: .constant(""))
+        IdentifyChargerView(isChargingInProgress: .constant(true), chargingInProgressID: .constant(0), chargePoints: .constant([ChargerHub(chargePointID: 9, name: "Name", location: [0, 0], price: "99", klarnaReservationAmount: 300)]), chargers: .constant([Charger(chargerID: 999999, location: [57.778568, 14.163727], chargePointID: 9, serialNumber: "%&(/K€OLC:VP", status: "Available")]), chargePointsExt: .constant([ChargerHubExt(chargePointID: 9, name: "Name", location: [0, 0], price: "99", klarnaReservationAmount: 300, chargers: [Charger(chargerID: 999999, location: [0, 0], chargePointID: 99, serialNumber: "!2O#!INDSG)", status: "Available")])]), isShowingListOfChargers: .constant(false), offset: .constant(0), chargerIdInput: .constant("999999"), isKlarnaPresented: .constant(false), klarnaStatus: .constant(""))
     }
 }
 

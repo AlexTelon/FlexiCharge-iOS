@@ -49,7 +49,7 @@ struct ChargerInfoBox: View {
 }
 
 struct ChargerHubView: View {
-    var chargerHub: ChargerHub
+    @Binding var chargePointExt: ChargerHubExt
     @Binding var chargerIdInput: String
     @Binding var isShowingListOfChargers: Bool
     
@@ -74,7 +74,7 @@ struct ChargerHubView: View {
                         .frame(alignment: .leading)
                 }
                 Spacer()
-                Text(chargerHub.chargerLocationName)
+                Text(chargePointExt.name)
                     .foregroundColor(.white)
                     .font(Font.system(size: 17, design: .default))
                     .scaledToFill()
@@ -102,7 +102,7 @@ struct ChargerHubView: View {
             .padding(.top, 7)
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 20) {
-                    ForEach(chargerHub.chargers) { charger in
+                    ForEach(chargePointExt.chargers) { charger in
                         ChargerInfoBox(charger: charger)
                             .border(selectedCharger?.chargerID == charger.chargerID ? Color.primaryGreen : Color.clear, width: 3)
                             .cornerRadius(5)
@@ -203,7 +203,7 @@ struct ChargerHubView: View {
 
 struct ChargerHubView_Previews: PreviewProvider {
     static var previews: some View {
-        ChargerHubView(chargerHub: ChargerHub(id: 2, chargerLocationName: "Asecs Röd Entre, Jönköping ", chargers: [Charger(chargerID: 111111, location: [12.12, 12.12], chargePointID: 1, serialNumber: "miabsginaow", status: "Occupied")], distance: "1.1km"), chargerIdInput: .constant(""), isShowingListOfChargers: .constant(false))
+        ChargerHubView(chargePointExt: .constant(ChargerHubExt(chargePointID: 9, name: "Jönköping", location: [0, 0], price: "99", klarnaReservationAmount: 300, chargers: [Charger(chargerID: 999999, location: [0, 0], chargePointID: 99, serialNumber: "!)%I&)€JHI", status: "Available")])), chargerIdInput: .constant(""), isShowingListOfChargers: .constant(false))
     }
 }
 
