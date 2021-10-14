@@ -693,7 +693,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"FlexiCharge/Preview Content\"";
-				DEVELOPMENT_TEAM = 63ES69XEGU;
+				DEVELOPMENT_TEAM = S87W9XZJ58;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = FlexiCharge/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -701,7 +701,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = AbstractConnoisseurs.FlexiCharge;
+				PRODUCT_BUNDLE_IDENTIFIER = AbstractConnoisseurs1.FlexiCharge;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
@@ -717,7 +717,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"FlexiCharge/Preview Content\"";
-				DEVELOPMENT_TEAM = 63ES69XEGU;
+				DEVELOPMENT_TEAM = S87W9XZJ58;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = FlexiCharge/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -725,7 +725,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = AbstractConnoisseurs.FlexiCharge;
+				PRODUCT_BUNDLE_IDENTIFIER = AbstractConnoisseurs1.FlexiCharge;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;

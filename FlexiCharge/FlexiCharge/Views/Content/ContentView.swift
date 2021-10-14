@@ -26,6 +26,7 @@ struct ContentView: View {
     @State var update = false
     @State var result = [Charger]()
     @State var centerUser: Bool = false
+    @State var transactionID: Int = 0
     
     @State private var isShowingScanner: Bool = false
     @State private var alertTitle: String = ""
@@ -154,7 +155,7 @@ struct ContentView: View {
                 .navigationBarHidden(true)
             }.background(Color.primaryDarkGray.ignoresSafeArea(.all))
             .sheet(isPresented: $isKlarnaPresented) {
-                InitializeKlarna(isPresented: $isKlarnaPresented, klarnaStatus: $klarnaStatus)
+                InitializeKlarna(isPresented: $isKlarnaPresented, klarnaStatus: $klarnaStatus, chargerIdInput: $chargerIdInput, transactionID: $transactionID)
             }
         }.navigationBarHidden(true)
         .onAppear(perform: loadChargers)
