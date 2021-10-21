@@ -54,7 +54,6 @@ struct IdentifyChargerView: View {
                 .fill(Color.primaryDarkGray)
                 .frame(minHeight: 0, maxHeight: .infinity)
             VStack {
-                
                 ChargerList(isShowingListOfChargers: $isShowingListOfChargers, chargePoints: $chargePoints, chargers: $chargers, chargerIdInput: $chargerIdInput, chargePointsExt: $chargePointsExt)
                 Text("Spacing").hidden()
                 
