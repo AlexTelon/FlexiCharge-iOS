@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		63D0ABBF28D0BB5F00897868 /* AccountAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D0ABBE28D0BB5F00897868 /* AccountAPI.swift */; };
 		651A7A5B26EF490000A8A16D /* RegisterAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651A7A5A26EF490000A8A16D /* RegisterAccountView.swift */; };
 		651A7A5D26EF4A0300A8A16D /* RegisterAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651A7A5C26EF4A0300A8A16D /* RegisterAccountViewModel.swift */; };
 		651A7A6026F879F000A8A16D /* SetUpInvoiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651A7A5F26F879F000A8A16D /* SetUpInvoiceView.swift */; };
@@ -66,6 +67,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		63D0ABBE28D0BB5F00897868 /* AccountAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountAPI.swift; sourceTree = SOURCE_ROOT; };
 		651A7A5A26EF490000A8A16D /* RegisterAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterAccountView.swift; sourceTree = "<group>"; };
 		651A7A5C26EF4A0300A8A16D /* RegisterAccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterAccountViewModel.swift; sourceTree = "<group>"; };
 		651A7A5F26F879F000A8A16D /* SetUpInvoiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUpInvoiceView.swift; sourceTree = "<group>"; };
@@ -169,6 +171,7 @@
 			isa = PBXGroup;
 			children = (
 				D3A1D66926FB3B0900B71BCA /* ChargerAPI.swift */,
+				63D0ABBE28D0BB5F00897868 /* AccountAPI.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -530,6 +533,7 @@
 				D334B13726EFBBAA000D31E9 /* EmailSentView.swift in Sources */,
 				D327CD6426E64D0D007FC380 /* MapView.swift in Sources */,
 				D3D6D18826E629BE00B77B16 /* ContentView.swift in Sources */,
+				63D0ABBF28D0BB5F00897868 /* AccountAPI.swift in Sources */,
 				FD9BB76C26F8BC7600CBE7E5 /* ChargingInProgressView.swift in Sources */,
 				D388D13C2706ED85005C1927 /* Extensions.swift in Sources */,
 				651A7A6026F879F000A8A16D /* SetUpInvoiceView.swift in Sources */,
