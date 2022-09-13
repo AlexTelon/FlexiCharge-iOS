@@ -82,7 +82,12 @@ struct RegisterAccountView: View {
                                     RegularButton(action: {
                                         //TO BE DEVELOPED: register user if all validations are fine
                                         validationText = validateInputs(email: email, mobileNumber: mobileNumber, password: password, TOSCheckBox: tosCheckBox)
-                                        self.selection = 1
+                                        
+                                        //
+                                        if(validationText.isEmpty){
+                                            
+                                            self.selection = 1
+                                        }
                                     }, text: "Register", foregroundColor: Color.white, backgroundColor: Color.primaryGreen)
                                 }.background(RoundedRectangle(cornerRadius: 5).fill(Color.primaryGreen))
                                 Text("Spacer").hidden()
