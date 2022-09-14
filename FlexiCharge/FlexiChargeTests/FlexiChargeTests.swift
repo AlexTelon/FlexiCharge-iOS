@@ -9,6 +9,8 @@ import XCTest
 @testable import FlexiCharge
 
 class FlexiChargeTests: XCTestCase {
+    
+    var accountApiModel = AccountAPI()
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -28,6 +30,18 @@ class FlexiChargeTests: XCTestCase {
         self.measure {
             // Put the code you want to measure the time of here.
         }
+    }
+    
+    func testRegisterUser() throws {
+        
+        
+        
+        accountApiModel.registerAccount(username: "Bob1337", password: "Kalleballe123.", email: "sandranissan@outlook.com", firstName: "Sandra", surName: "Nissan"){ someData in
+            print("AccountApiModel is done")
+            print(someData)
+            
+        }
+        
     }
 
 }
