@@ -10,12 +10,23 @@ import SwiftUI
 @main
 struct FlexiChargeApp: App {
     let persistenceController = PersistenceController.shared
-
+    @StateObject var AccountApi = AccountAPI()
+    
     var body: some Scene {
         WindowGroup {
-            RegisterAccountView()
+            startView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
                 .preferredColorScheme(.light)
         }
+
+    }
+    func startView() -> some View{
+        if (AccountApi.isLoggedIn){
+            return AnyView(ContentView())
+        }
+        else{
+            return AnyView(RegisterAccountView())
+        }
     }
 }
+
