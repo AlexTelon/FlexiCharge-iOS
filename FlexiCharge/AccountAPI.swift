@@ -10,81 +10,97 @@ import Combine
 import SwiftUI
 
 class AccountAPI : ObservableObject {
-    @Published var isLoggedIn : Bool = true
+    @Published var isLoggedIn : Bool = false
+    //var errorMessge = ""
     
     init() {
         
     }
     
-    func beginCharging(chargerID: Int, completion: @escaping (String) -> Void) -> Void {
-        guard let url = URL(string: "http://54.220.194.65:8080/reservations/" + String(chargerID)) else { return }
+    func getRegisterResponseErrors(statusCode: Int, message: String, errorDescription: String) -> String {
         
-        var request = URLRequest(url: url)
-        request.httpMethod = "PUT"
-        request.allHTTPHeaderFields = [
-            "Content-Type": "application/json",
-            "Accept": "application/json"
-        ]
+        var errorMessage = ""
         
-        let jsonDictionary: [String: String] = [
-            "chargerId": String(chargerID),
-            "connectorId": "1",
-            "idTag": "1",
-            "reservationId": "1",
-            "parentIdTag": "1"
-        ]
-        let data = try! JSONSerialization.data(withJSONObject: jsonDictionary, options: .prettyPrinted)
-        URLSession.shared.uploadTask(with: request, from: data) { (responseData, response, error) in
-            if error != nil {
-                return
-            }
+        if(statusCode == 400){
             
-            if let responseCode = (response as? HTTPURLResponse)?.statusCode, let responseData = responseData {
-                guard responseCode == 201 else {
-                    let responseCodeAsString = String(responseCode)
-                    completion(responseCodeAsString)
-                    return
-                }
+            if(errorDescription == "InvalidPasswordException" ){
+                let start = message.index(message.startIndex, offsetBy: 38)
+                let end = message.index(message.endIndex, offsetBy: 0)
+                let range = start..<end
+                errorMessage = String(message[range])
+                print(errorMessage)
+                //completionHandler("Password must have uppercase characters")
+            }else{
+                errorMessage = message
+                print(errorMessage)
                 
-                if let responseJSONData = try? JSONSerialization.jsonObject(with: responseData, options: .allowFragments) {
-                    let responseDataAsString = responseJSONData as! String
-                    completion(responseDataAsString)
-                }
             }
-        }.resume()
-        return
+        }
+        return errorMessage
     }
     
-    func stopCharging(chargerID: Int) {
-        guard let url = URL(string: "http://54.220.194.65:8080/chargers/" + String(chargerID)) else { return }
+    //completion: @escaping (String)->Void)
+    
+    func registerAccount(username: String, password: String, email: String, firstName: String, surName: String, completionHandler: @escaping (String)->Void) {
         
+        var errorMessage:String = ""
+        
+        let userCredentials: [String: String] = [
+            "username": username,
+            "password": password,
+            "email": email,
+            "name": firstName,
+            "family_name": surName
+        ]
+        
+        //https://jsonplaceholder.typicode.com/posts
+        //http://18.202.253.30:8080/auth/sign-up
+        
+        //Create the HTTP request
+        guard let url = URL(string: "http://18.202.253.30:8080/auth/sign-up") else { return }
         var request = URLRequest(url: url)
-        request.httpMethod = "PUT"
-        request.allHTTPHeaderFields = [
-            "Content-Type": "application/json",
-            "Accept": "application/json"
-        ]
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
-        let jsonDictionary: [String: String] = [
-            "status": StatusConstants.AVAILABLE,
-        ]
+        //parse userCredentials to json format.
+        do{
+            request.httpBody = try JSONSerialization.data(withJSONObject: userCredentials, options: [])
+        }catch let error{
+            print("Error!: \(error)")
+        }
         
-        let data = try! JSONSerialization.data(withJSONObject: jsonDictionary, options: .prettyPrinted)
-        
-        URLSession.shared.uploadTask(with: request, from: data) { (responseData, response, error) in
-            if error != nil {
-                return
+        //make the HTTP request
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                errorMessage = "error when parsing json data"
             }
             
-            if let responseCode = (response as? HTTPURLResponse)?.statusCode, let responseData = responseData {
-                guard responseCode == 200 else {
+            if let data = data {
+                do{
+                    if let response = try JSONSerialization.jsonObject(with: data, options: []) as? [String:Any]{
+                        //Check for error messages in http response
+                        errorMessage = self.getRegisterResponseErrors(statusCode: response["statusCode"] as! Int, message: response["message"] as! String, errorDescription: response["code"] as! String)
+                    }
+
+                }catch{
                     return
                 }
-                
-                if let responseJSONData = try? JSONSerialization.jsonObject(with: responseData, options: .allowFragments) {
-                    print("Response JSON data = \(responseJSONData)")
-                }
             }
+            //send back error message or empty string if there are no errors
+            if(errorMessage.isEmpty){
+                completionHandler(errorMessage)
+            }else{
+                completionHandler(errorMessage)
+            }
+            
+            
         }.resume()
+        
+        
     }
+    
+    func logInUser(username: String, password: String){
+        
+    }
+       
 }

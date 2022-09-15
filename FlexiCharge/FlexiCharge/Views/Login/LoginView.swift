@@ -11,6 +11,7 @@ struct LoginView: View {
     let inputCornerRadius: CGFloat = 5
     let emailPlaceholder: String = "Email"
     let passwordPlaceholder: String = "Password"
+    @StateObject var accountAPI = AccountAPI()
     
     @State private var emailInput: String = ""
     @State private var passwordInput: String = ""

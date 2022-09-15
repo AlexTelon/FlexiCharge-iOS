@@ -17,6 +17,8 @@ final class KlarnaSDKIntegration: ObservableObject {
     private(set) var paymentView: KlarnaPaymentView?
     var result: AnyObject?
     
+    //Du kanske behöver tilldela din sträng ett värde där uppe?   
+    
     func getKlarnaSession(chargerIdInput: Binding<String>) {
 
         let chargerId: String? = chargerIdInput.wrappedValue
