@@ -12,14 +12,20 @@ struct RegisterAccountView: View {
     @State private var mobileNumber = ""
     @State private var password: String = ""
     @State private var repeatPassword: String = ""
+    @State private var username: String = ""
+    @State private var firstName: String = ""
+    @State private var lastName: String = ""
     @State private var isEditing = false
     @State private var inputHeight: CGFloat = 48
     @State private var inputCornerRadius: CGFloat = 5
     @State private var tosCheckBox: Bool = false
     @State private var validEmail: Bool = false
     @State private var validationText: String = ""
+    @State private var registerValidationText: String = ""
     @State private var selection: Int? = nil
     @State private var loading: Bool = false
+    
+    @StateObject var accountAPI = AccountAPI()
     
     var body: some View {
         NavigationView{
@@ -44,12 +50,21 @@ struct RegisterAccountView: View {
                             .offset(y: -UsefulValues.screenHeight * 0.03)
                         }
                         VStack{
+                            /*----------Username----------*/
+                            RegularTextField(input: $username, placeholder: "Username", keyboardType: .default)
+                                .padding(.top)
+                            /*----------First name----------*/
+                            RegularTextField(input: $firstName, placeholder: "First name", keyboardType: .default)
+                                .padding(.top)
+                            /*----------Last name----------*/
+                            RegularTextField(input: $lastName, placeholder: "Last name", keyboardType: .default)
+                                .padding(.top)
                             /*----------Email----------*/
                             RegularTextField(input: $email, placeholder: "Email", keyboardType: .emailAddress)
                                 .padding(.top)
                             /*----------Mobile number----------*/
-                            RegularTextField(input: $mobileNumber, placeholder: "Mobile number", keyboardType: .numberPad)
-                                .padding(.top)
+                            /*RegularTextField(input: $mobileNumber, placeholder: "Mobile number", keyboardType: .numberPad)
+                                .padding(.top)*/
                             /*----------Password----------*/
                             SecureTextField(input: $password, placeholder: "Password", keyboardType: .default)
                                 .padding(.top)
@@ -74,19 +89,23 @@ struct RegisterAccountView: View {
                             Spacer()
                             /*----------Register button and the following text----------*/
                             VStack{
-                                Text(validationText)
+                                Text("\(validationText)\(registerValidationText)")
                                     .foregroundColor(.red)
                                     .padding(.bottom)
-                                //TO BE DEVELOPED: register user if all validations are fine
                                 NavigationLink(destination: LoginView(), tag: 1, selection: $selection) {
                                     RegularButton(action: {
-                                        //TO BE DEVELOPED: register user if all validations are fine
-                                        validationText = validateInputs(email: email, mobileNumber: mobileNumber, password: password, TOSCheckBox: tosCheckBox)
+                                        validationText = validateInputs(username: username,firstName: firstName,lastName: lastName,email: email, password: password, TOSCheckBox: tosCheckBox)
                                         
-                                        //
-                                        if(validationText.isEmpty){
+                                        if(validationText.isEmpty){ accountAPI.registerAccount(username: username, password: password, email: email, firstName: firstName, surName: lastName){ validationErrors in
                                             
-                                            self.selection = 1
+                                            if(validationErrors.isEmpty){
+                                                self.selection = 1
+                                            }else{
+                                                registerValidationText = validationErrors
+                                                print("ValidationText: \(validationErrors)")
+                                            }
+                                        }
+                                                
                                         }
                                     }, text: "Register", foregroundColor: Color.white, backgroundColor: Color.primaryGreen)
                                 }.background(RoundedRectangle(cornerRadius: 5).fill(Color.primaryGreen))

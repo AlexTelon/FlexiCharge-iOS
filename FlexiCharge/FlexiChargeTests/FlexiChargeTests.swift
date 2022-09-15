@@ -34,14 +34,15 @@ class FlexiChargeTests: XCTestCase {
     
     func testRegisterUser() throws {
         
+        print("isLoggedin \(accountApiModel.isLoggedIn)")
         
+//        accountApiModel.registerAccount(username: "Bob1337", password: "Kalleballe123.", email: "olle@sharklasers.com", firstName: "Sandra", surName: "Nissan")
         
-        accountApiModel.registerAccount(username: "Bob1337", password: "Kalleballe123.", email: "sandranissan@outlook.com", firstName: "Sandra", surName: "Nissan"){ someData in
-            print("AccountApiModel is done")
-            print(someData)
-            
-        }
-        
+//        { someData in
+//            print("AccountApiModel is done")
+//            print(someData)
+//
+//        }
     }
 
 }
