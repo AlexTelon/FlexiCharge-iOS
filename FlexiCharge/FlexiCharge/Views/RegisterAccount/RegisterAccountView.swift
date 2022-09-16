@@ -102,7 +102,6 @@ struct RegisterAccountView: View {
                                                 self.selection = 1
                                             }else{
                                                 registerValidationText = validationErrors
-                                                print("ValidationText: \(validationErrors)")
                                             }
                                         }
                                                 

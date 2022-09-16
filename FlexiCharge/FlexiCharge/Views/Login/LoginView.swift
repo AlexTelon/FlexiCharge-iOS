@@ -12,8 +12,10 @@ struct LoginView: View {
     let emailPlaceholder: String = "Email"
     let passwordPlaceholder: String = "Password"
     @StateObject var accountAPI = AccountAPI()
+    @StateObject var accountDetails = AccountDataModel()
+    @State var validationText = ""
     
-    @State private var emailInput: String = ""
+    @State private var usernameInput: String = ""
     @State private var passwordInput: String = ""
     @State private var selection: Int? = nil
     @State private var loading: Bool = false
@@ -58,18 +60,31 @@ struct LoginView: View {
                         // Login "form"
                         VStack {
                             // Email input field
-                            RegularTextField(input: $emailInput, placeholder: "Email", keyboardType: .emailAddress)
+                            RegularTextField(input: $usernameInput, placeholder: "Username", keyboardType: .default)
                                 .padding(.vertical)
                             // Password input field
                             SecureTextField(input: $passwordInput, placeholder: "Password", keyboardType: .default)
                                 .padding(.vertical)
                             Spacer()
                             Spacer()
+                            Text("\(validationText)")
+                                .foregroundColor(.red)
+                                .padding(.bottom)
                             NavigationLink(destination: ContentView(), tag: 1, selection: $selection) {
                                 RegularButton(action: {
                                     // Log in a user
                                     self.loading = true
-                                    self.selection = 1
+                                    accountAPI.logInUser(username: usernameInput, password: passwordInput,  accountDetails: accountDetails){ loginStatus in
+                                        if(loginStatus.isEmpty){
+                                            print("Du loggades in!! :))  \(loginStatus)")
+                                            print("AccessToken: \(accountDetails.accessToken)")
+                                            self.selection = 1
+                                        }else{
+                                            self.loading = false
+                                            validationText = loginStatus
+                                        }
+                                    }
+                                    
                                 }, text: "Log in", foregroundColor: Color.white, backgroundColor: Color.primaryGreen)
                             }.background(RoundedRectangle(cornerRadius: 5).fill(Color.primaryGreen))
                             Text("Spacer").hidden()
