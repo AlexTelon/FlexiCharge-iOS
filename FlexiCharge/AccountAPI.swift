@@ -11,7 +11,7 @@ import SwiftUI
 
 class AccountAPI : ObservableObject {
     @Published var isLoggedIn : Bool = false
-    //var errorMessge = ""
+    //@Published var accountDetails = AccountDataModel()
     
     init() {
         
@@ -93,13 +93,67 @@ class AccountAPI : ObservableObject {
                 completionHandler(errorMessage)
             }
             
-            
         }.resume()
-        
         
     }
     
-    func logInUser(username: String, password: String){
+    
+    func logInUser(username: String, password: String, accountDetails: AccountDataModel ,completionHandler: @escaping (String)->Void){
+        
+        var errorMessage:String = ""
+        let loginCredentials: [String:String] =
+        [
+            "username":username,
+            "password":password
+        ]
+        
+        //create http reqeust
+        guard let url = URL(string: "http://18.202.253.30:8080/auth/sign-in") else { return }
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        
+        //parse ligonCredentials to json format.
+        do{
+            request.httpBody = try JSONSerialization.data(withJSONObject: loginCredentials, options: [])
+        }catch let error{
+            print("Error when parsin json data: \(error)")
+        }
+        
+        
+        //Make http request
+        URLSession.shared.dataTask(with: request){ data, response, error in
+            if error != nil{
+                errorMessage = "request error"
+                completionHandler(errorMessage)
+            }
+            
+            if let data = data{
+                do{
+                    if let response = try JSONSerialization.jsonObject(with: data, options: [])  as? [String: Any] {
+
+                        if(response["code"] as? String != nil ){
+                            errorMessage = response["message"] as! String
+                            completionHandler(errorMessage)
+                        }else{
+                            accountDetails.username = response["username"] as? String ?? ""
+                            accountDetails.firstName = response["name"] as? String ?? ""
+                            accountDetails.email = response["email"] as? String ?? ""
+                            accountDetails.accessToken = response["accessToken"] as? String ?? ""
+                            accountDetails.userId = response["user_id"] as? String ?? ""
+                            accountDetails.lastName = response["family_name"] as? String ?? ""
+                            errorMessage = ""
+                            completionHandler(errorMessage)
+                        }
+                        
+                    }
+                }catch{
+                    print("Error")
+                }
+            }
+           
+        }.resume()
         
     }
        

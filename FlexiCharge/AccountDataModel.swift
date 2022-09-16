@@ -11,14 +11,14 @@ import SwiftUI
 
 
 
-class AccountDataModel: ObservableObject {
+class AccountDataModel: Codable,ObservableObject {
     
-    private var accessToken: String
-    private var email: String
-    private var username: String
-    private var firstName: String
-    private var lastName: String
-    private var userId: String
+    var accessToken: String
+    var email: String
+    var username: String
+    var firstName: String
+    var lastName: String
+    var userId: String
     
     init(){
         accessToken = ""
