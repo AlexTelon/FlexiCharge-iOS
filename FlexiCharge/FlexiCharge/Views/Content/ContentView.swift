@@ -23,11 +23,9 @@ struct ContentView: View {
     @State var lastOffset: CGFloat = 0
     @State var keyboardHeight: CGFloat = 0
     @State var update = false
-    @State var chargers = [Charger]()
-    @State var chargePoints = [ChargerHub]()
-    @State var chargePointsExt = [ChargerHubExt]()
     @State var centerUser: Bool = false
     @State var transactionID: Int = 0
+    @StateObject var ChargerApi = ChargerAPI()
     
     @State private var isShowingScanner: Bool = false
     @State private var alertTitle: String = ""
@@ -44,7 +42,7 @@ struct ContentView: View {
         NavigationView {
             Group {
                 ZStack(alignment: .bottom) {
-                    MapView(chargePoints: $chargePoints, centerUser: $centerUser)
+                    MapView(chargePoints: $ChargerApi.chargePoints, centerUser: $centerUser)
                         .frame(minHeight: 0, maxHeight: .infinity)
                         .edgesIgnoringSafeArea(.all)
                         .onTapGesture {
@@ -119,7 +117,7 @@ struct ContentView: View {
                         .padding(.horizontal, UsefulValues.screenWidth * 0.1)
                     }
                     let conditionOffset = self.offset + UsefulValues.screenHeight - self.keyboardHeight
-                    IdentifyChargerView(isChargingInProgress: $isChargingInProgress, chargingInProgressID: $chargingInProgressID, chargePoints: $chargePoints, chargers: $chargers, chargePointsExt: $chargePointsExt, isShowingListOfChargers: $isShowingListOfChargers, offset: $offset, chargerIdInput: $chargerIdInput, isKlarnaPresented: $isKlarnaPresented, klarnaStatus: $klarnaStatus)
+                    IdentifyChargerView(isChargingInProgress: $isChargingInProgress, chargingInProgressID: $chargingInProgressID, chargePoints: $ChargerApi.chargePoints, chargers: $ChargerApi.chargers, chargePointsExt: $ChargerApi.chargePointsExt, isShowingListOfChargers: $isShowingListOfChargers, offset: $offset, chargerIdInput: $chargerIdInput, isKlarnaPresented: $isKlarnaPresented, klarnaStatus: $klarnaStatus)
                         .transition(.move(edge: .bottom))
                         .animation(.easeInOut(duration: 0.2))
                         .offset(y: isShowingListOfChargers ? conditionOffset - listHeight  : conditionOffset)
@@ -159,7 +157,15 @@ struct ContentView: View {
                 InitializeKlarna(isPresented: $isKlarnaPresented, klarnaStatus: $klarnaStatus, chargerIdInput: $chargerIdInput, transactionID: $transactionID)
             }
         }.navigationBarHidden(true)
-        .onAppear(perform: loadChargePoints)
+            .onAppear(perform: setupChargingPins)
+    }
+    
+    
+    func setupChargingPins(){
+        ChargerApi.loadChargePoints{
+            sortChargePointsExt()
+            ChargerApi.updateChargers()
+        }
     }
     
     func onChange() {
@@ -203,59 +209,12 @@ struct ContentView: View {
         }
     }
     
-    func loadChargePoints() {
-        //Fetches all chargePoints
-        guard let url = URL(string: "http://54.220.194.65:8080/chargePoints") else { return }
-        URLSession.shared.dataTask(with: url) { (data, _, _) in
-            guard let data = data else { return }
-            let decodedData = try! JSONDecoder().decode([ChargerHub].self, from: data)
-            
-            DispatchQueue.main.async {
-                self.chargePoints = decodedData
-                loadChargers()
-                print(decodedData)
-            }
-        }.resume()
-    }
-    
-    func loadChargers() {
-        // Fetches all chargers
-        guard let url = URL(string: "http://54.220.194.65:8080/chargers") else { return }
-        URLSession.shared.dataTask(with: url) { (data, _, _) in
-            guard let data = data else { return }
-            let decodedData = try! JSONDecoder().decode([Charger].self, from: data)
-            
-            DispatchQueue.main.async {
-                self.chargers = decodedData
-                sortChargePointsExt()
-            }
-        }.resume()
-    }
-    
     func sortChargePointsExt() {
-        for chargePoint in self.chargePoints {
-            let chargePointExtChargers = self.chargers.filter( {$0.chargePointID == chargePoint.chargePointID} )
-            self.chargePointsExt.append(ChargerHubExt(chargePointID: chargePoint.chargePointID, name: chargePoint.name, location: chargePoint.location, price: chargePoint.price, klarnaReservationAmount: chargePoint.klarnaReservationAmount, chargers: chargePointExtChargers))
+        for chargePoint in ChargerApi.chargePoints {
+            let chargePointExtChargers = ChargerApi.chargers.filter( {$0.chargePointID == chargePoint.chargePointID} )
+            ChargerApi.chargePointsExt.append(ChargerHubExt(chargePointID: chargePoint.chargePointID, name: chargePoint.name, location: chargePoint.location, price: chargePoint.price, klarnaReservationAmount: chargePoint.klarnaReservationAmount, chargers: chargePointExtChargers))
         }
-        print(self.chargePointsExt)
-    }
-    
-    func updateChargers() {
-        // Fetches chargers to update the map if a change has occured
-        guard let url = URL(string: "http://54.220.194.65:8080/chargers") else { return }
-        DispatchQueue.global(qos: .background).async {
-            URLSession.shared.dataTask(with: url) { (data, _, _) in
-                guard let data = data else { return }
-                let decodedData = try! JSONDecoder().decode([Charger].self, from: data)
-                
-                DispatchQueue.main.async {
-                    if chargers != decodedData {
-                        self.chargers = decodedData
-                    }
-                    updateChargers()
-                }
-            }.resume()
-        }
+        print("sortChargePointsExt")
     }
 }
 
