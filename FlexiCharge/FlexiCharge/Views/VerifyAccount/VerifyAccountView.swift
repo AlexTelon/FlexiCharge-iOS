@@ -16,14 +16,11 @@ struct VerifyAccountView: View {
     let emailPlaceholder: String = "Email"
     let verificationCodePlaceholder: String = "Code"
     @StateObject var accountAPI = AccountAPI()
-    @StateObject var accountDetails = AccountDataModel()
     @State var validationText = ""
-    
+    @Binding var selection: Int?
     @State private var emailInput: String = ""
     @State private var verificationCodeInput: String = ""
-    @State var selection: Int? = nil
     @State private var loading: Bool = false
-    @State var isActive: Bool = false
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
@@ -66,7 +63,6 @@ struct VerifyAccountView: View {
                             Text("\(validationText)")
                                 .foregroundColor(.red)
                                 .padding(.bottom)
-                            NavigationLink(destination: LoginView(), tag: 1, selection: $selection){
                                 RegularButton(action: {
                                     validationText = validateInputs(username: emailInput, validationCode: verificationCodeInput)
 
@@ -74,8 +70,9 @@ struct VerifyAccountView: View {
                                         self.loading = true
                                         accountAPI.verifyAccount(email: emailInput, verificationCode: verificationCodeInput){ verifyStatus in
                                             if(verifyStatus.isEmpty){
+                                                self.loading = false
                                                 print("Verification successful!")
-                                                self.selection = 1
+                                                self.selection = 2
                                             }else{
                                                 self.loading = false
                                                 validationText = verifyStatus
@@ -84,8 +81,6 @@ struct VerifyAccountView: View {
                                     }
                                     
                                 }, text: "Verify account", foregroundColor: Color.white, backgroundColor: Color.primaryGreen)
-                            }
-                            
                             Text("Spacer").hidden()
                             Spacer()
                         }
@@ -108,11 +103,11 @@ struct VerifyAccountView: View {
     }
 }
 
-struct VerifyAccountView_Previews: PreviewProvider {
-    static var previews: some View {
-        VerifyAccountView()
-    }
-}
+//struct VerifyAccountView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        VerifyAccountView(rootIsActive: Binding<Bool> test: false)
+//    }
+//}
 
 
 
