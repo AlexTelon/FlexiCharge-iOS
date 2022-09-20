@@ -14,6 +14,8 @@
 		6592EDF92701BC6900AFB3A1 /* InvoicesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6592EDF82701BC6900AFB3A1 /* InvoicesView.swift */; };
 		6592EDFB2701BCB200AFB3A1 /* InvoicesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6592EDFA2701BCB200AFB3A1 /* InvoicesViewModel.swift */; };
 		65F14A3926F8872A00C9B443 /* SetupUpInvoiceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F14A3826F8872A00C9B443 /* SetupUpInvoiceViewModel.swift */; };
+		C00631B228D9B1FB007D3A9F /* VerifyAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00631B128D9B1FB007D3A9F /* VerifyAccountView.swift */; };
+		C013D40128D9F44F00C6B20E /* VerifyAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C013D40028D9F44F00C6B20E /* VerifyAccountViewModel.swift */; };
 		C0624DD028D462A2007F68D8 /* AccountDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0624DCF28D462A2007F68D8 /* AccountDataModel.swift */; };
 		D312323A2715C95D00BBD1EF /* BasicLoadingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31232392715C95D00BBD1EF /* BasicLoadingScreen.swift */; };
 		D327CD6426E64D0D007FC380 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D327CD6326E64D0D007FC380 /* MapView.swift */; };
@@ -75,6 +77,8 @@
 		6592EDF82701BC6900AFB3A1 /* InvoicesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvoicesView.swift; sourceTree = "<group>"; };
 		6592EDFA2701BCB200AFB3A1 /* InvoicesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvoicesViewModel.swift; sourceTree = "<group>"; };
 		65F14A3826F8872A00C9B443 /* SetupUpInvoiceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupUpInvoiceViewModel.swift; sourceTree = "<group>"; };
+		C00631B128D9B1FB007D3A9F /* VerifyAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyAccountView.swift; sourceTree = "<group>"; };
+		C013D40028D9F44F00C6B20E /* VerifyAccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyAccountViewModel.swift; sourceTree = "<group>"; };
 		C0624DCF28D462A2007F68D8 /* AccountDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDataModel.swift; sourceTree = SOURCE_ROOT; };
 		D31232392715C95D00BBD1EF /* BasicLoadingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicLoadingScreen.swift; sourceTree = "<group>"; };
 		D327CD6326E64D0D007FC380 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
@@ -167,6 +171,15 @@
 				6592EDFA2701BCB200AFB3A1 /* InvoicesViewModel.swift */,
 			);
 			path = Invoices;
+			sourceTree = "<group>";
+		};
+		C00631B028D9B1D4007D3A9F /* VerifyAccount */ = {
+			isa = PBXGroup;
+			children = (
+				C00631B128D9B1FB007D3A9F /* VerifyAccountView.swift */,
+				C013D40028D9F44F00C6B20E /* VerifyAccountViewModel.swift */,
+			);
+			path = VerifyAccount;
 			sourceTree = "<group>";
 		};
 		D311946726E9112E004DCFC8 /* Models */ = {
@@ -327,6 +340,7 @@
 		D3D6D18C26E6403400B77B16 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				C00631B028D9B1D4007D3A9F /* VerifyAccount */,
 				FD585628270DA8BB0003F109 /* KlarnaPayments */,
 				D388D13D270C5A5C005C1927 /* CommonUsage */,
 				FD9BB76A26F8BC1C00CBE7E5 /* ChargingInProgress */,
@@ -517,10 +531,12 @@
 				D34A1AC526F54304001EB5D2 /* ChargerList.swift in Sources */,
 				6592EDFB2701BCB200AFB3A1 /* InvoicesViewModel.swift in Sources */,
 				651A7A5B26EF490000A8A16D /* RegisterAccountView.swift in Sources */,
+				C013D40128D9F44F00C6B20E /* VerifyAccountViewModel.swift in Sources */,
 				651A7A5D26EF4A0300A8A16D /* RegisterAccountViewModel.swift in Sources */,
 				D3A1D66A26FB3B0900B71BCA /* ChargerAPI.swift in Sources */,
 				D334B13526EF9ABE000D31E9 /* RecoverPasswordView.swift in Sources */,
 				D34A1AC326F53D0E001EB5D2 /* ChargerHub.swift in Sources */,
+				C00631B228D9B1FB007D3A9F /* VerifyAccountView.swift in Sources */,
 				D312323A2715C95D00BBD1EF /* BasicLoadingScreen.swift in Sources */,
 				C0624DD028D462A2007F68D8 /* AccountDataModel.swift in Sources */,
 				D3A2033826F24025007B0D90 /* QROverlayView.swift in Sources */,

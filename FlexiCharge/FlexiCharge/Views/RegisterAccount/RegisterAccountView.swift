@@ -22,8 +22,9 @@ struct RegisterAccountView: View {
     @State private var validEmail: Bool = false
     @State private var validationText: String = ""
     @State private var registerValidationText: String = ""
-    @State private var selection: Int? = nil
+    @State var selection: Int? = nil
     @State private var loading: Bool = false
+    
     
     @StateObject var accountAPI = AccountAPI()
     
@@ -92,14 +93,20 @@ struct RegisterAccountView: View {
                                 Text("\(validationText)\(registerValidationText)")
                                     .foregroundColor(.red)
                                     .padding(.bottom)
-                                NavigationLink(destination: LoginView(), tag: 1, selection: $selection) {
+                                NavigationLink(destination: LoginView(), tag: 1, selection: $selection){
+                                    EmptyView()
+                                }
+                                NavigationLink(destination: VerifyAccountView(), tag: 2, selection: $selection){
                                     RegularButton(action: {
                                         validationText = validateInputs(username: username,firstName: firstName,lastName: lastName,email: email, password: password, TOSCheckBox: tosCheckBox)
                                         
                                         if(validationText.isEmpty){ accountAPI.registerAccount(username: username, password: password, email: email, firstName: firstName, surName: lastName){ validationErrors in
                                             
+                                            print("validation errors in registerView: \(validationErrors)")
+                                            
                                             if(validationErrors.isEmpty){
-                                                self.selection = 1
+                                                print("Navigating to verifyAccountView")
+                                                self.selection = 2
                                             }else{
                                                 registerValidationText = validationErrors
                                             }
@@ -108,6 +115,7 @@ struct RegisterAccountView: View {
                                         }
                                     }, text: "Register", foregroundColor: Color.white, backgroundColor: Color.primaryGreen)
                                 }.background(RoundedRectangle(cornerRadius: 5).fill(Color.primaryGreen))
+                                
                                 Text("Spacer").hidden()
                                 HStack{
                                     Text("Already have an account?")
@@ -116,10 +124,10 @@ struct RegisterAccountView: View {
                                             .foregroundColor(Color.primaryGreen)
                                     }
                                 }
-                                NavigationLink(destination: ContentView(), tag: 2, selection: $selection) {
+                                NavigationLink(destination: ContentView(), tag: 3, selection: $selection) {
                                     Button(action: {
                                         self.loading = true
-                                        self.selection = 2
+                                        self.selection = 4
                                     }, label: {
                                         Text("Continue as Guest")
                                             .foregroundColor(Color.primaryGreen)
