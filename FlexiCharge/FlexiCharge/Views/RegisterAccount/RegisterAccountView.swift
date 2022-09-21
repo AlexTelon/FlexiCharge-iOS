@@ -94,6 +94,7 @@ struct RegisterAccountView: View {
                                 Text("\(validationText)\(registerValidationText)")
                                     .foregroundColor(.red)
                                     .padding(.bottom)
+                                    .fixedSize(horizontal: false, vertical: true)
                                 NavigationLink(destination: LoginView(), tag: 2, selection: $selection){ EmptyView() }
                                 NavigationLink(destination: VerifyAccountView(selection: $selection), tag: 1, selection: $selection){
                                     RegularButton(action: {

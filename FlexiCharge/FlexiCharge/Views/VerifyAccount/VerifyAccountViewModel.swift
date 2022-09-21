@@ -21,7 +21,10 @@ func validateInputs(username: String, validationCode: String) ->String{
 //            return errorMessage
 //        }
 //    }
-    
+    if(username.contains(" ")){
+        errorMessage = "username contains whitespaces"
+        return errorMessage
+    }
     if(username == ""){
         return "Please provide a username"
         

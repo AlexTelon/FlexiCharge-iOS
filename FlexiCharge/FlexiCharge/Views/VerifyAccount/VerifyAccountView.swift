@@ -63,6 +63,7 @@ struct VerifyAccountView: View {
                             Text("\(validationText)")
                                 .foregroundColor(.red)
                                 .padding(.bottom)
+                                .fixedSize(horizontal: false, vertical: true)
                                 RegularButton(action: {
                                     validationText = validateInputs(username: emailInput, validationCode: verificationCodeInput)
 
