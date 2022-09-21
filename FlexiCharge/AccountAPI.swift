@@ -208,6 +208,7 @@ class AccountAPI : ObservableObject {
                     print("Response 2 message: \(response["message"] as! String)")
                     completionHandler(response["message"] as! String)
                 }
+                
             }catch{
                 completionHandler("HEEEJ Failed to parse data to json")
             }
