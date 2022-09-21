@@ -22,8 +22,10 @@ struct RegisterAccountView: View {
     @State private var validEmail: Bool = false
     @State private var validationText: String = ""
     @State private var registerValidationText: String = ""
-    @State private var selection: Int? = nil
+    @State var selection: Int? = nil
     @State private var loading: Bool = false
+    @State var isActive: Bool = false
+    
     
     @StateObject var accountAPI = AccountAPI()
     
@@ -89,25 +91,37 @@ struct RegisterAccountView: View {
                             Spacer()
                             /*----------Register button and the following text----------*/
                             VStack{
-                                Text("\(validationText)\(registerValidationText)")
+                                Text("\(validationText)")
                                     .foregroundColor(.red)
                                     .padding(.bottom)
-                                NavigationLink(destination: LoginView(), tag: 1, selection: $selection) {
+                                    .fixedSize(horizontal: false, vertical: true)
+                                NavigationLink(destination: LoginView(), tag: 2, selection: $selection){ EmptyView() }
+                                NavigationLink(destination: VerifyAccountView(selection: $selection), tag: 1, selection: $selection){
                                     RegularButton(action: {
                                         validationText = validateInputs(username: username,firstName: firstName,lastName: lastName,email: email, password: password, TOSCheckBox: tosCheckBox)
                                         
                                         if(validationText.isEmpty){ accountAPI.registerAccount(username: username, password: password, email: email, firstName: firstName, surName: lastName){ validationErrors in
                                             
+                                            print("validation errors in registerView: \(validationErrors)")
+                                            
                                             if(validationErrors.isEmpty){
+                                                username = ""
+                                                password = ""
+                                                email = ""
+                                                firstName = ""
+                                                lastName = ""
+                                                validationText = ""
                                                 self.selection = 1
                                             }else{
-                                                registerValidationText = validationErrors
+                                                validationText = validationErrors
                                             }
                                         }
                                                 
                                         }
                                     }, text: "Register", foregroundColor: Color.white, backgroundColor: Color.primaryGreen)
                                 }.background(RoundedRectangle(cornerRadius: 5).fill(Color.primaryGreen))
+                                
+                                
                                 Text("Spacer").hidden()
                                 HStack{
                                     Text("Already have an account?")
@@ -116,10 +130,10 @@ struct RegisterAccountView: View {
                                             .foregroundColor(Color.primaryGreen)
                                     }
                                 }
-                                NavigationLink(destination: ContentView(), tag: 2, selection: $selection) {
+                                NavigationLink(destination: ContentView(), tag: 3, selection: $selection) {
                                     Button(action: {
                                         self.loading = true
-                                        self.selection = 2
+                                        self.selection = 3
                                     }, label: {
                                         Text("Continue as Guest")
                                             .foregroundColor(Color.primaryGreen)

@@ -39,6 +39,11 @@ class AccountAPI : ObservableObject {
         return errorMessage
     }
     
+    
+    func getVerifyAccountResponseErrors(statusCode: String) -> String{
+        return ""
+    }
+    
     //completion: @escaping (String)->Void)
     
     func registerAccount(username: String, password: String, email: String, firstName: String, surName: String, completionHandler: @escaping (String)->Void) {
@@ -71,26 +76,28 @@ class AccountAPI : ObservableObject {
         
         //make the HTTP request
         URLSession.shared.dataTask(with: request) { data, response, error in
-            if let error = error {
-                errorMessage = "error when parsing json data"
+            if error != nil {
+                completionHandler("Something went wrong, try agian.")
             }
             
-            if let data = data {
-                do{
-                    if let response = try JSONSerialization.jsonObject(with: data, options: []) as? [String:Any]{
+            //Fetch http response code
+            guard let httpURLResponse = response as? HTTPURLResponse else { return }
+            let statusCode = httpURLResponse.statusCode
+            do{
+                //If statuscode is 200, account has been created. Call completionHandler to tell register view the call has been completed
+                if statusCode == 200 {
+                    completionHandler(errorMessage)
+                }
+                else{
+                    //Account was not created, parse json data and send back error message.
+                    if let response = try JSONSerialization.jsonObject(with: data!, options: []) as? [String:Any]{
                         //Check for error messages in http response
                         errorMessage = self.getRegisterResponseErrors(statusCode: response["statusCode"] as! Int, message: response["message"] as! String, errorDescription: response["code"] as! String)
                     }
-
-                }catch{
-                    return
+                    completionHandler(errorMessage)
                 }
-            }
-            //send back error message or empty string if there are no errors
-            if(errorMessage.isEmpty){
-                completionHandler(errorMessage)
-            }else{
-                completionHandler(errorMessage)
+            }catch{
+                completionHandler("Error when parsing response data")
             }
             
         }.resume()
@@ -114,7 +121,7 @@ class AccountAPI : ObservableObject {
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
         
-        //parse ligonCredentials to json format.
+        //parse loginCredentials to json format.
         do{
             request.httpBody = try JSONSerialization.data(withJSONObject: loginCredentials, options: [])
         }catch let error{
@@ -122,17 +129,21 @@ class AccountAPI : ObservableObject {
         }
         
         
-        //Make http request
+        //Send http request
         URLSession.shared.dataTask(with: request){ data, response, error in
             if error != nil{
                 errorMessage = "request error"
                 completionHandler(errorMessage)
             }
-            
+            guard let httpURLResponse = response as? HTTPURLResponse else { return }
+            let statusCode = httpURLResponse.statusCode
+            if statusCode == 200{
+                completionHandler(errorMessage)
+            }
             if let data = data{
                 do{
                     if let response = try JSONSerialization.jsonObject(with: data, options: [])  as? [String: Any] {
-
+                        print(response)
                         if(response["code"] as? String != nil ){
                             errorMessage = response["message"] as! String
                             completionHandler(errorMessage)
@@ -154,6 +165,56 @@ class AccountAPI : ObservableObject {
             }
            
         }.resume()
+        
+    }
+    
+    func verifyAccount(email: String, verificationCode: String, completionHandler: @escaping (String)->Void){
+        
+        var errorMessage = ""
+        let verificationInput =
+        [
+            "username": email,
+            "code": verificationCode
+        ]
+        
+        //create http request
+        guard let url = URL(string: "http://18.202.253.30:8080/auth/verify") else { return }
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        //parse verificationInput to json format and add attatch to http request
+        do{
+            request.httpBody = try JSONSerialization.data(withJSONObject: verificationInput, options: [])
+        }catch{
+            completionHandler("Failed to parse to json data")
+        }
+        
+        //Send http request
+        URLSession.shared.dataTask(with: request){ data, response, error in
+            if error != nil{
+                completionHandler("Error when sending http request")
+            }
+            print("Reseponse 1: \(response)")
+            //Fetch http response code
+            guard let httpURLResponse = response as? HTTPURLResponse else { return }
+            let statusCode = httpURLResponse.statusCode
+            if statusCode == 200 {
+                print("Verifiering lyckades!")
+                completionHandler("")
+            }
+            do{
+                if let response = try JSONSerialization.jsonObject(with: data!, options: []) as? [String:Any]{
+                    print("Response 2 message: \(response["message"] as! String)")
+                    completionHandler(response["message"] as! String)
+                }
+                
+            }catch{
+                completionHandler("HEEEJ Failed to parse data to json")
+            }
+            
+        }.resume()
+        
         
     }
        
