@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5595A9DC28DB2B2600C5108C /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5595A9DB28DB2B2600C5108C /* LoginViewModel.swift */; };
 		63D0ABBF28D0BB5F00897868 /* AccountAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D0ABBE28D0BB5F00897868 /* AccountAPI.swift */; };
 		651A7A5B26EF490000A8A16D /* RegisterAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651A7A5A26EF490000A8A16D /* RegisterAccountView.swift */; };
 		651A7A5D26EF4A0300A8A16D /* RegisterAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651A7A5C26EF4A0300A8A16D /* RegisterAccountViewModel.swift */; };
@@ -70,6 +71,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5595A9DB28DB2B2600C5108C /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		63D0ABBE28D0BB5F00897868 /* AccountAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountAPI.swift; sourceTree = SOURCE_ROOT; };
 		651A7A5A26EF490000A8A16D /* RegisterAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterAccountView.swift; sourceTree = "<group>"; };
 		651A7A5C26EF4A0300A8A16D /* RegisterAccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterAccountViewModel.swift; sourceTree = "<group>"; };
@@ -270,6 +272,7 @@
 			isa = PBXGroup;
 			children = (
 				D3A2033D26F4846B007B0D90 /* LoginView.swift */,
+				5595A9DB28DB2B2600C5108C /* LoginViewModel.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -540,6 +543,7 @@
 				D312323A2715C95D00BBD1EF /* BasicLoadingScreen.swift in Sources */,
 				C0624DD028D462A2007F68D8 /* AccountDataModel.swift in Sources */,
 				D3A2033826F24025007B0D90 /* QROverlayView.swift in Sources */,
+				5595A9DC28DB2B2600C5108C /* LoginViewModel.swift in Sources */,
 				D35844E826FB6AB1004F5790 /* LocationManager.swift in Sources */,
 				FD8B4F1526EA11D400B0FDB5 /* IdentifyChargerViewModel.swift in Sources */,
 				D388D141270C7598005C1927 /* RegularTextField.swift in Sources */,

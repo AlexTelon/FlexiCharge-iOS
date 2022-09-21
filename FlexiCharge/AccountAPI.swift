@@ -135,11 +135,15 @@ class AccountAPI : ObservableObject {
                 errorMessage = "request error"
                 completionHandler(errorMessage)
             }
-            
+            guard let httpURLResponse = response as? HTTPURLResponse else { return }
+            let statusCode = httpURLResponse.statusCode
+            if statusCode == 200{
+                completionHandler(errorMessage)
+            }
             if let data = data{
                 do{
                     if let response = try JSONSerialization.jsonObject(with: data, options: [])  as? [String: Any] {
-
+                        print(response)
                         if(response["code"] as? String != nil ){
                             errorMessage = response["message"] as! String
                             completionHandler(errorMessage)

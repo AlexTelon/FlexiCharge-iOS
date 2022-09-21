@@ -72,19 +72,20 @@ struct LoginView: View {
                                 .padding(.bottom)
                             NavigationLink(destination: ContentView(), tag: 1, selection: $selection) {
                                 RegularButton(action: {
-                                    // Log in a user
-                                    self.loading = true
-                                    accountAPI.logInUser(username: usernameInput, password: passwordInput,  accountDetails: accountDetails){ loginStatus in
-                                        if(loginStatus.isEmpty){
-                                            print("Du loggades in!! :))  \(loginStatus)")
-                                            print("AccessToken: \(accountDetails.accessToken)")
-                                            self.selection = 1
-                                        }else{
-                                            self.loading = false
-                                            validationText = loginStatus
+                                    validationText = validateInputs(password: passwordInput, username: usernameInput)
+                                    if(validationText.isEmpty){
+                                        self.loading = true
+                                        accountAPI.logInUser(username: usernameInput, password: passwordInput,  accountDetails: accountDetails){ loginStatus in
+                                            if(loginStatus.isEmpty){
+                                                print("Du loggades in!! :))  \(loginStatus)")
+                                                print("AccessToken: \(accountDetails.accessToken)")
+                                                self.selection = 1
+                                            }else{
+                                                self.loading = false
+                                                validationText = loginStatus
+                                            }
                                         }
                                     }
-                                    
                                 }, text: "Log in", foregroundColor: Color.white, backgroundColor: Color.primaryGreen)
                             }.background(RoundedRectangle(cornerRadius: 5).fill(Color.primaryGreen))
                             Text("Spacer").hidden()
