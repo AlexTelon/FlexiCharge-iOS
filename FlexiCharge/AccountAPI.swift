@@ -10,8 +10,6 @@ import Combine
 import SwiftUI
 
 class AccountAPI : ObservableObject {
-    @Published var isLoggedIn : Bool = false
-    //@Published var accountDetails = AccountDataModel()
     
     init() {
         
@@ -62,7 +60,7 @@ class AccountAPI : ObservableObject {
         //http://18.202.253.30:8080/auth/sign-up
         
         //Create the HTTP request
-        guard let url = URL(string: "http://18.202.253.30:8080/auth/sign-up") else { return }
+        guard let url = URL(string: "\(UsefulValues.apiBaseUrl)/auth/sign-up") else { return }
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -105,7 +103,7 @@ class AccountAPI : ObservableObject {
     }
     
     
-    func logInUser(username: String, password: String, accountDetails: AccountDataModel ,completionHandler: @escaping (String)->Void){
+    func logInUser(username: String, password: String, accountModel: AccountDataModel ,completionHandler: @escaping (String)->Void){
         
         var errorMessage:String = ""
         let loginCredentials: [String:String] =
@@ -115,7 +113,7 @@ class AccountAPI : ObservableObject {
         ]
         
         //create http reqeust
-        guard let url = URL(string: "http://18.202.253.30:8080/auth/sign-in") else { return }
+        guard let url = URL(string: "\(UsefulValues.apiBaseUrl)/auth/sign-in") else { return }
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -148,13 +146,14 @@ class AccountAPI : ObservableObject {
                             errorMessage = response["message"] as! String
                             completionHandler(errorMessage)
                         }else{
-                            accountDetails.username = response["username"] as? String ?? ""
-                            accountDetails.firstName = response["name"] as? String ?? ""
-                            accountDetails.email = response["email"] as? String ?? ""
-                            accountDetails.accessToken = response["accessToken"] as? String ?? ""
-                            accountDetails.userId = response["user_id"] as? String ?? ""
-                            accountDetails.lastName = response["family_name"] as? String ?? ""
+                            accountModel.username = response["username"] as? String ?? ""
+                            accountModel.firstName = response["name"] as? String ?? ""
+                            accountModel.email = response["email"] as? String ?? ""
+                            accountModel.accessToken = response["accessToken"] as? String ?? ""
+                            accountModel.userId = response["user_id"] as? String ?? ""
+                            accountModel.lastName = response["family_name"] as? String ?? ""
                             errorMessage = ""
+                            accountModel.isLoggedIn = true
                             completionHandler(errorMessage)
                         }
                         
@@ -178,7 +177,7 @@ class AccountAPI : ObservableObject {
         ]
         
         //create http request
-        guard let url = URL(string: "http://18.202.253.30:8080/auth/verify") else { return }
+        guard let url = URL(string: "\(UsefulValues.apiBaseUrl)/auth/verify") else { return }
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -210,7 +209,7 @@ class AccountAPI : ObservableObject {
                 }
                 
             }catch{
-                completionHandler("HEEEJ Failed to parse data to json")
+                completionHandler("Failed to parse data to json")
             }
             
         }.resume()

@@ -11,7 +11,6 @@ import SwiftUI
 
 class ChargerAPI: ObservableObject {
     var chargerStatus: String = ""
-    let baseUrl: String = "http://18.202.253.30:8080"
     
     @Published var chargers = [Charger]()
     @Published var chargePoints = [ChargerHub]()
@@ -22,7 +21,7 @@ class ChargerAPI: ObservableObject {
     }
     
     func beginCharging(chargerID: Int, completion: @escaping (String) -> Void) -> Void {
-        guard let url = URL(string: "\(baseUrl)/reservations/" + String(chargerID)) else { return }
+        guard let url = URL(string: "\(UsefulValues.apiBaseUrl)/reservations/" + String(chargerID)) else { return }
         
         var request = URLRequest(url: url)
         request.httpMethod = "PUT"
@@ -61,7 +60,7 @@ class ChargerAPI: ObservableObject {
     }
     
     func stopCharging(chargerID: Int) {
-        guard let url = URL(string: "\(baseUrl)/chargers/" + String(chargerID)) else { return }
+        guard let url = URL(string: "\(UsefulValues.apiBaseUrl)/chargers/" + String(chargerID)) else { return }
         
         var request = URLRequest(url: url)
         request.httpMethod = "PUT"
@@ -95,7 +94,7 @@ class ChargerAPI: ObservableObject {
     
     func loadChargePoints(completionHandler: @escaping() -> Void) {
         //Fetches all chargePoints
-        guard let url = URL(string: "\(baseUrl)/chargePoints") else { return }
+        guard let url = URL(string: "\(UsefulValues.apiBaseUrl)/chargePoints") else { return }
         URLSession.shared.dataTask(with: url) { (data, _, _) in
             guard let data = data else { return }
             let decodedData = try! JSONDecoder().decode([ChargerHub].self, from: data)
@@ -112,7 +111,7 @@ class ChargerAPI: ObservableObject {
 
     func loadChargers(completionHandler: @escaping() -> Void) {
         // Fetches all chargers
-        guard let url = URL(string: "\(baseUrl)/chargers") else { return }
+        guard let url = URL(string: "\(UsefulValues.apiBaseUrl)/chargers") else { return }
         URLSession.shared.dataTask(with: url) { (data, _, _) in
             guard let data = data else { return }
             let decodedData = try! JSONDecoder().decode([Charger].self, from: data)
@@ -127,7 +126,7 @@ class ChargerAPI: ObservableObject {
 
     func updateChargers() {
         // Fetches chargers to update the map if a change has occured
-        guard let url = URL(string: "\(baseUrl)/chargers") else { return }
+        guard let url = URL(string: "\(UsefulValues.apiBaseUrl)/chargers") else { return }
         DispatchQueue.global(qos: .background).async {
             URLSession.shared.dataTask(with: url) { (data, _, _) in
                 guard let data = data else { return }

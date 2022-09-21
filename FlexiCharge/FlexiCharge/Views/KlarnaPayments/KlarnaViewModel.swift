@@ -17,12 +17,12 @@ final class KlarnaSDKIntegration: ObservableObject {
     private(set) var paymentView: KlarnaPaymentView?
     var result: AnyObject?
     
-    //Du kanske behöver tilldela din sträng ett värde där uppe?   
+    //Du kanske behöver tilldela din sträng ett värde där uppe?
     
     func getKlarnaSession(chargerIdInput: Binding<String>) {
 
         let chargerId: String? = chargerIdInput.wrappedValue
-        guard let url = URL(string: "http://54.220.194.65:8080/transactions/session") else { return }
+        guard let url = URL(string: "\(UsefulValues.apiBaseUrl)/transactions/session") else { return }
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.allHTTPHeaderFields = [
@@ -58,7 +58,7 @@ final class KlarnaSDKIntegration: ObservableObject {
     }
     
     func SendKlarnaToken(transactionID: Int, authorization_token: String, completion: @escaping (String) -> Void){
-        guard let url = URL(string: "http://54.220.194.65:8080/transactions/start/:" + String(transactionID)) else { return }
+        guard let url = URL(string: "\(UsefulValues.apiBaseUrl)/transactions/start/:" + String(transactionID)) else { return }
         var request = URLRequest(url: url)
         request.httpMethod = "PUT"
         request.allHTTPHeaderFields = [

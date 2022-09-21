@@ -12,7 +12,7 @@ struct LoginView: View {
     let emailPlaceholder: String = "Email"
     let passwordPlaceholder: String = "Password"
     @StateObject var accountAPI = AccountAPI()
-    @StateObject var accountDetails = AccountDataModel()
+    @EnvironmentObject var accountModel: AccountDataModel
     @State var validationText = ""
     
     @State private var usernameInput: String = ""
@@ -75,10 +75,11 @@ struct LoginView: View {
                                     validationText = validateInputs(password: passwordInput, username: usernameInput)
                                     if(validationText.isEmpty){
                                         self.loading = true
-                                        accountAPI.logInUser(username: usernameInput, password: passwordInput,  accountDetails: accountDetails){ loginStatus in
+                                        accountAPI.logInUser(username: usernameInput, password: passwordInput,  accountModel: accountModel){ loginStatus in
                                             if(loginStatus.isEmpty){
                                                 print("Du loggades in!! :))  \(loginStatus)")
-                                                print("AccessToken: \(accountDetails.accessToken)")
+                                                print("AccessToken: \(accountModel.accessToken)")
+                                                print("ISLOGGEDIN: ",accountModel.isLoggedIn)
                                                 self.selection = 1
                                             }else{
                                                 self.loading = false
