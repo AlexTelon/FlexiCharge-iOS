@@ -91,7 +91,7 @@ struct RegisterAccountView: View {
                             Spacer()
                             /*----------Register button and the following text----------*/
                             VStack{
-                                Text("\(validationText)\(registerValidationText)")
+                                Text("\(validationText)")
                                     .foregroundColor(.red)
                                     .padding(.bottom)
                                     .fixedSize(horizontal: false, vertical: true)
@@ -110,9 +110,10 @@ struct RegisterAccountView: View {
                                                 email = ""
                                                 firstName = ""
                                                 lastName = ""
+                                                validationText = ""
                                                 self.selection = 1
                                             }else{
-                                                registerValidationText = validationErrors
+                                                validationText = validationErrors
                                             }
                                         }
                                                 

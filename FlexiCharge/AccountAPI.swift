@@ -187,7 +187,7 @@ class AccountAPI : ObservableObject {
         do{
             request.httpBody = try JSONSerialization.data(withJSONObject: verificationInput, options: [])
         }catch{
-            errorMessage = "Failed to parse to json data"
+            completionHandler("Failed to parse to json data")
         }
         
         //Send http request
@@ -195,7 +195,7 @@ class AccountAPI : ObservableObject {
             if error != nil{
                 completionHandler("Error when sending http request")
             }
-            
+            print("Reseponse 1: \(response)")
             //Fetch http response code
             guard let httpURLResponse = response as? HTTPURLResponse else { return }
             let statusCode = httpURLResponse.statusCode
@@ -205,15 +205,11 @@ class AccountAPI : ObservableObject {
             }
             do{
                 if let response = try JSONSerialization.jsonObject(with: data!, options: []) as? [String:Any]{
+                    print("Response 2 message: \(response["message"] as! String)")
                     completionHandler(response["message"] as! String)
                 }
             }catch{
-                errorMessage = "HEEEJ Failed to parse data to json"
-            }
-            if(errorMessage.isEmpty){
-                completionHandler("")
-            }else{
-                completionHandler(errorMessage)
+                completionHandler("HEEEJ Failed to parse data to json")
             }
             
         }.resume()
