@@ -1,25 +1,23 @@
 {
-  "object": {
-    "pins": [
-      {
-        "package": "CodeScanner",
-        "repositoryURL": "https://github.com/twostraws/CodeScanner",
-        "state": {
-          "branch": null,
-          "revision": "a2144ddaa7c43a6ee00873edd4cc7815ad97942f",
-          "version": "1.0.7"
-        }
-      },
-      {
-        "package": "KlarnaMobileSDK",
-        "repositoryURL": "https://github.com/klarna/klarna-mobile-sdk",
-        "state": {
-          "branch": null,
-          "revision": "ed9b015819ce3ecb96d7bb39b1fb2fdb4b0fe0f5",
-          "version": "2.0.44"
-        }
+  "pins" : [
+    {
+      "identity" : "codescanner",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/twostraws/CodeScanner",
+      "state" : {
+        "revision" : "a2144ddaa7c43a6ee00873edd4cc7815ad97942f",
+        "version" : "1.0.7"
       }
-    ]
-  },
-  "version": 1
+    },
+    {
+      "identity" : "klarna-mobile-sdk",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/klarna/klarna-mobile-sdk",
+      "state" : {
+        "revision" : "ed9b015819ce3ecb96d7bb39b1fb2fdb4b0fe0f5",
+        "version" : "2.0.44"
+      }
+    }
+  ],
+  "version" : 2
 }

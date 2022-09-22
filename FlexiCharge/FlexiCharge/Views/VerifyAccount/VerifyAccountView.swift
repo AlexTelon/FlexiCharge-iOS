@@ -1,25 +1,26 @@
 //
-//  LoginView.swift
+//  VerifyAccountView.swift
 //  FlexiCharge
 //
-//  Created by Filip Flodén on 2021-09-13.
+//  Created by david Wennerblom on 2022-09-20.
 //
+
 import SwiftUI
 
-struct LoginView: View {
+
+
+struct VerifyAccountView: View {
+    
     let inputHeight: CGFloat = 48
     let inputCornerRadius: CGFloat = 5
-    let emailPlaceholder: String = "Email"
-    let passwordPlaceholder: String = "Password"
+    let emailPlaceholder: String = "Username"
+    let verificationCodePlaceholder: String = "Verification code"
     @StateObject var accountAPI = AccountAPI()
-    @StateObject var accountDetails = AccountDataModel()
     @State var validationText = ""
-    
-    @State private var usernameInput: String = ""
-    @State private var passwordInput: String = ""
-    @State private var selection: Int? = nil
+    @Binding var selection: Int?
+    @State private var emailInput: String = ""
+    @State private var verificationCodeInput: String = ""
     @State private var loading: Bool = false
-    @State var isActive: Bool = false
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
@@ -27,7 +28,7 @@ struct LoginView: View {
     var body: some View {
         NavigationView {
             ZStack {
-                ScrollView {
+                VStack {
                     VStack {
                         // Gray design at the top of the screen
                         ZStack {
@@ -35,16 +36,8 @@ struct LoginView: View {
                                 .resizable()
                                 .scaledToFit()
                             HStack {
-                                Button(action: {
-                                    self.presentationMode.wrappedValue.dismiss()
-                                }) {
-                                    Image("menu-arrow").rotationEffect(.degrees(90))
-                                        .aspectRatio(contentMode: .fit)
-                                        .foregroundColor(.white)
-                                        .frame(alignment: .leading)
-                                }
                                 Spacer()
-                                Text("Log In")
+                                Text("Verify account")
                                     .foregroundColor(.white)
                                     .font(Font.system(size: 44, weight: .bold, design: .default))
                                     .scaledToFill()
@@ -60,41 +53,36 @@ struct LoginView: View {
                         // Login "form"
                         VStack {
                             // Email input field
-                            RegularTextField(input: $usernameInput, placeholder: "Username", keyboardType: .default)
+                            RegularTextField(input: $emailInput, placeholder: emailPlaceholder, keyboardType: .default)
                                 .padding(.vertical)
                             // Password input field
-                            SecureTextField(input: $passwordInput, placeholder: "Password", keyboardType: .default)
+                            RegularTextField(input: $verificationCodeInput, placeholder: verificationCodePlaceholder, keyboardType: .default)
                                 .padding(.vertical)
                             Spacer()
                             Spacer()
                             Text("\(validationText)")
                                 .foregroundColor(.red)
                                 .padding(.bottom)
-                            NavigationLink(destination: ContentView(), tag: 1, selection: $selection) {
+                                .fixedSize(horizontal: false, vertical: true)
                                 RegularButton(action: {
-                                    validationText = validateInputs(password: passwordInput, username: usernameInput)
+                                    validationText = validateInputs(username: emailInput, validationCode: verificationCodeInput)
+
                                     if(validationText.isEmpty){
                                         self.loading = true
-                                        accountAPI.logInUser(username: usernameInput, password: passwordInput,  accountDetails: accountDetails){ loginStatus in
-                                            if(loginStatus.isEmpty){
-                                                print("Du loggades in!! :))  \(loginStatus)")
-                                                print("AccessToken: \(accountDetails.accessToken)")
-                                                self.selection = 1
+                                        accountAPI.verifyAccount(email: emailInput, verificationCode: verificationCodeInput){ verifyStatus in
+                                            if(verifyStatus.isEmpty){
+                                                self.loading = false
+                                                print("Verification successful!")
+                                                self.selection = 2
                                             }else{
                                                 self.loading = false
-                                                validationText = loginStatus
+                                                validationText = verifyStatus
                                             }
                                         }
                                     }
-                                }, text: "Log in", foregroundColor: Color.white, backgroundColor: Color.primaryGreen)
-                            }.background(RoundedRectangle(cornerRadius: 5).fill(Color.primaryGreen))
+                                    
+                                }, text: "Verify account", foregroundColor: Color.white, backgroundColor: Color.primaryGreen)
                             Text("Spacer").hidden()
-                            NavigationLink(destination: RecoverPasswordView(rootIsActive: $isActive), isActive: self.$isActive) {
-                                Text("I forgot my password")
-                                    .font(Font.system(size: 13,weight: .bold, design: .default))
-                                    .foregroundColor(Color.primaryGreen)
-                            }
-                            .isDetailLink(false)
                             Spacer()
                         }
                         .frame(width: UsefulValues.screenWidth * 0.8)
@@ -105,9 +93,6 @@ struct LoginView: View {
                 .disableAutocorrection(true)
                 .autocapitalization(.none)
                 .navigationBarHidden(true)
-                .onTapGesture {
-                    hideKeyboard()
-                }
                 withAnimation(.easeInOut) {
                     BasicLoadingScreen(imageName: "flexi-charge-logo-color")
                         .opacity(loading ? 1 : 0)
@@ -117,14 +102,22 @@ struct LoginView: View {
         .navigationBarBackButtonHidden(true)
         .navigationBarHidden(true)
     }
-    
-    func hideKeyboard() {
-        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-    }
 }
 
-struct LoginView_Previews: PreviewProvider {
-    static var previews: some View {
-        LoginView()
-    }
-}
+//struct VerifyAccountView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        VerifyAccountView(rootIsActive: Binding<Bool> test: false)
+//    }
+//}
+
+
+
+
+//Button(action: {
+//    self.presentationMode.wrappedValue.dismiss()
+//}) {
+//    Image("menu-arrow").rotationEffect(.degrees(90))
+//        .aspectRatio(contentMode: .fit)
+//        .foregroundColor(.white)
+//        .frame(alignment: .leading)
+//}

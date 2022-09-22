@@ -12,14 +12,22 @@ struct RegisterAccountView: View {
     @State private var mobileNumber = ""
     @State private var password: String = ""
     @State private var repeatPassword: String = ""
+    @State private var username: String = ""
+    @State private var firstName: String = ""
+    @State private var lastName: String = ""
     @State private var isEditing = false
     @State private var inputHeight: CGFloat = 48
     @State private var inputCornerRadius: CGFloat = 5
     @State private var tosCheckBox: Bool = false
     @State private var validEmail: Bool = false
     @State private var validationText: String = ""
-    @State private var selection: Int? = nil
+    @State private var registerValidationText: String = ""
+    @State var selection: Int? = nil
     @State private var loading: Bool = false
+    @State var isActive: Bool = false
+    
+    
+    @StateObject var accountAPI = AccountAPI()
     
     var body: some View {
         NavigationView{
@@ -44,18 +52,27 @@ struct RegisterAccountView: View {
                             .offset(y: -UsefulValues.screenHeight * 0.03)
                         }
                         VStack{
+                            /*----------Username----------*/
+                            RegularTextField(input: $username, placeholder: "Username", keyboardType: .default)
+                                .padding(.top)
+                            /*----------First name----------*/
+                            RegularTextField(input: $firstName, placeholder: "First name", keyboardType: .default)
+                                .padding(.top)
+                            /*----------Last name----------*/
+                            RegularTextField(input: $lastName, placeholder: "Last name", keyboardType: .default)
+                                .padding(.top)
                             /*----------Email----------*/
                             RegularTextField(input: $email, placeholder: "Email", keyboardType: .emailAddress)
                                 .padding(.top)
                             /*----------Mobile number----------*/
-                            RegularTextField(input: $mobileNumber, placeholder: "Mobile number", keyboardType: .numberPad)
-                                .padding(.top)
+                            /*RegularTextField(input: $mobileNumber, placeholder: "Mobile number", keyboardType: .numberPad)
+                                .padding(.top)*/
                             /*----------Password----------*/
                             SecureTextField(input: $password, placeholder: "Password", keyboardType: .default)
                                 .padding(.top)
                             /*----------Repeat password----------*/
-                            /* SecureTextField(input: $repeatPassword, placeholder: "Repeat password", keyboardType: .default)
-                             .padding(.top) */
+                            /*SecureTextField(input: $repeatPassword, placeholder: "Repeat password", keyboardType: .default)*/
+                             .padding(.top)
                             /*----------Checkbox----------*/
                             HStack{
                                 Button(action: {tosCheckBox.toggle()}, label: {
@@ -74,22 +91,37 @@ struct RegisterAccountView: View {
                             Spacer()
                             /*----------Register button and the following text----------*/
                             VStack{
-                                Text(validationText)
+                                Text("\(validationText)")
                                     .foregroundColor(.red)
                                     .padding(.bottom)
-                                //TO BE DEVELOPED: register user if all validations are fine
-                                NavigationLink(destination: LoginView(), tag: 1, selection: $selection) {
+                                    .fixedSize(horizontal: false, vertical: true)
+                                NavigationLink(destination: LoginView(), tag: 2, selection: $selection){ EmptyView() }
+                                NavigationLink(destination: VerifyAccountView(selection: $selection), tag: 1, selection: $selection){
                                     RegularButton(action: {
-                                        //TO BE DEVELOPED: register user if all validations are fine
-                                        validationText = validateInputs(email: email, mobileNumber: mobileNumber, password: password, TOSCheckBox: tosCheckBox)
+                                        validationText = validateInputs(username: username,firstName: firstName,lastName: lastName,email: email, password: password, TOSCheckBox: tosCheckBox)
                                         
-                                        //
-                                        if(validationText.isEmpty){
+                                        if(validationText.isEmpty){ accountAPI.registerAccount(username: username, password: password, email: email, firstName: firstName, surName: lastName){ validationErrors in
                                             
-                                            self.selection = 1
+                                            print("validation errors in registerView: \(validationErrors)")
+                                            
+                                            if(validationErrors.isEmpty){
+                                                username = ""
+                                                password = ""
+                                                email = ""
+                                                firstName = ""
+                                                lastName = ""
+                                                validationText = ""
+                                                self.selection = 1
+                                            }else{
+                                                validationText = validationErrors
+                                            }
+                                        }
+                                                
                                         }
                                     }, text: "Register", foregroundColor: Color.white, backgroundColor: Color.primaryGreen)
                                 }.background(RoundedRectangle(cornerRadius: 5).fill(Color.primaryGreen))
+                                
+                                
                                 Text("Spacer").hidden()
                                 HStack{
                                     Text("Already have an account?")
@@ -98,10 +130,10 @@ struct RegisterAccountView: View {
                                             .foregroundColor(Color.primaryGreen)
                                     }
                                 }
-                                NavigationLink(destination: ContentView(), tag: 2, selection: $selection) {
+                                NavigationLink(destination: ContentView(), tag: 3, selection: $selection) {
                                     Button(action: {
                                         self.loading = true
-                                        self.selection = 2
+                                        self.selection = 3
                                     }, label: {
                                         Text("Continue as Guest")
                                             .foregroundColor(Color.primaryGreen)
@@ -111,7 +143,7 @@ struct RegisterAccountView: View {
                             }
                             Spacer()
                         }.frame(width: UsefulValues.screenWidth * 0.8)
-                    }.frame(height: UsefulValues.screenHeight)
+                    }
                 }
                 .edgesIgnoringSafeArea(.top)
                 .navigationBarHidden(true)
