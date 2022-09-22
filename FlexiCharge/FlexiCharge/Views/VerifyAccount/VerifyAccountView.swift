@@ -13,8 +13,8 @@ struct VerifyAccountView: View {
     
     let inputHeight: CGFloat = 48
     let inputCornerRadius: CGFloat = 5
-    let emailPlaceholder: String = "Email"
-    let verificationCodePlaceholder: String = "Code"
+    let emailPlaceholder: String = "Username"
+    let verificationCodePlaceholder: String = "Verification code"
     @StateObject var accountAPI = AccountAPI()
     @State var validationText = ""
     @Binding var selection: Int?
@@ -56,7 +56,7 @@ struct VerifyAccountView: View {
                             RegularTextField(input: $emailInput, placeholder: emailPlaceholder, keyboardType: .default)
                                 .padding(.vertical)
                             // Password input field
-                            SecureTextField(input: $verificationCodeInput, placeholder: verificationCodePlaceholder, keyboardType: .default)
+                            RegularTextField(input: $verificationCodeInput, placeholder: verificationCodePlaceholder, keyboardType: .default)
                                 .padding(.vertical)
                             Spacer()
                             Spacer()

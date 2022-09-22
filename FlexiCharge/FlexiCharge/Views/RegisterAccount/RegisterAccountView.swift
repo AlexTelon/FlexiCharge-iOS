@@ -71,7 +71,7 @@ struct RegisterAccountView: View {
                             SecureTextField(input: $password, placeholder: "Password", keyboardType: .default)
                                 .padding(.top)
                             /*----------Repeat password----------*/
-                            SecureTextField(input: $repeatPassword, placeholder: "Repeat password", keyboardType: .default)
+                            /*SecureTextField(input: $repeatPassword, placeholder: "Repeat password", keyboardType: .default)*/
                              .padding(.top)
                             /*----------Checkbox----------*/
                             HStack{
