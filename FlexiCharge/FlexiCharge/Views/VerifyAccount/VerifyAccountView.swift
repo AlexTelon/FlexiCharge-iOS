@@ -28,7 +28,7 @@ struct VerifyAccountView: View {
     var body: some View {
         NavigationView {
             ZStack {
-                ScrollView {
+                VStack {
                     VStack {
                         // Gray design at the top of the screen
                         ZStack {

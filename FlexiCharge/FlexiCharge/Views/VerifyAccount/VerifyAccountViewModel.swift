@@ -31,7 +31,7 @@ func validateInputs(username: String, validationCode: String) ->String{
     }
     
     if(validationCode == ""){
-        return "Please provide a first name"
+        return "Please provide the verification code"
     }
     return errorMessage
 }
