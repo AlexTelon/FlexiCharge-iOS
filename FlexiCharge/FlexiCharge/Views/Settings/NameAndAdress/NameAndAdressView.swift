@@ -42,9 +42,9 @@ struct NameAndAdressView: View {
                 .frame(width: UsefulValues.screenWidth * 0.8)
             }
             Spacer()
-            Text("Click here to view or change your name and adress")
+            Text("Do you want to change/view your name and adress?")
                 .multilineTextAlignment(.center)
-            
+            Link("Click here!", destination: URL(string: "http://flexicharge-my-pages.s3-website-eu-west-1.amazonaws.com/")!)
         } .edgesIgnoringSafeArea(.top)
         Spacer()
         .edgesIgnoringSafeArea(.top)
