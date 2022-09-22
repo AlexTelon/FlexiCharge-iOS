@@ -71,8 +71,8 @@ struct RegisterAccountView: View {
                             SecureTextField(input: $password, placeholder: "Password", keyboardType: .default)
                                 .padding(.top)
                             /*----------Repeat password----------*/
-                            /* SecureTextField(input: $repeatPassword, placeholder: "Repeat password", keyboardType: .default)
-                             .padding(.top) */
+                            SecureTextField(input: $repeatPassword, placeholder: "Repeat password", keyboardType: .default)
+                             .padding(.top)
                             /*----------Checkbox----------*/
                             HStack{
                                 Button(action: {tosCheckBox.toggle()}, label: {
@@ -143,7 +143,7 @@ struct RegisterAccountView: View {
                             }
                             Spacer()
                         }.frame(width: UsefulValues.screenWidth * 0.8)
-                    }.frame(height: UsefulValues.screenHeight)
+                    }
                 }
                 .edgesIgnoringSafeArea(.top)
                 .navigationBarHidden(true)
