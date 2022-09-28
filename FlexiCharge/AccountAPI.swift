@@ -216,5 +216,84 @@ class AccountAPI : ObservableObject {
         
         
     }
-       
+    
+    func forgotPassword(email: String, completionHandler: @escaping (String)->Void){
+        
+        var errorMessage = ""
+        
+        //create http request
+        guard let url = URL(string: "\(UsefulValues.apiBaseUrl)/auth/forgot-password/\(email)") else { return }
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        //Send http request
+        URLSession.shared.dataTask(with: request){ data, response, error in
+            if error != nil{
+                completionHandler("Error when sending http request")
+            }
+            
+            //Fetch http response code
+            guard let httpURLResponse = response as? HTTPURLResponse else { return }
+            let statusCode = httpURLResponse.statusCode
+            if statusCode == 200 {
+                print("Email skickades!")
+                completionHandler(String(statusCode))
+            }
+            
+        }.resume()
+        
+        
+    }
+    
+    func confirmForgotPassword(email: String, password: String, verificationCode: String, completionHandler: @escaping (String)->Void){
+        
+        var errorMessage = ""
+        let verificationInput =
+        [
+            "username": email,
+            "password": password,
+            "confirmationCode": verificationCode
+        ]
+        
+        //create http request
+        guard let url = URL(string: "\(UsefulValues.apiBaseUrl)/auth/verify") else { return }
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        //parse verificationInput to json format and add attatch to http request
+        do{
+            request.httpBody = try JSONSerialization.data(withJSONObject: verificationInput, options: [])
+        }catch{
+            completionHandler("Failed to parse to json data")
+        }
+        
+        //Send http request
+        URLSession.shared.dataTask(with: request){ data, response, error in
+            if error != nil{
+                completionHandler("Error when sending http request")
+            }
+            print("Reseponse 1: \(response)")
+            //Fetch http response code
+            guard let httpURLResponse = response as? HTTPURLResponse else { return }
+            let statusCode = httpURLResponse.statusCode
+            if statusCode == 200 {
+                print("Verifiering lyckades!")
+                completionHandler("")
+            }
+            do{
+                if let response = try JSONSerialization.jsonObject(with: data!, options: []) as? [String:Any]{
+                    print("Response 2 message: \(response["message"] as! String)")
+                    completionHandler(response["message"] as! String)
+                }
+                
+            }catch{
+                completionHandler("Failed to parse data to json")
+            }
+            
+        }.resume()
+        
+        
+    }
 }
