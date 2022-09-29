@@ -28,24 +28,25 @@ struct SetupInvoicingView: View {
         NavigationView{
             ZStack {
                 ScrollView {
-                    VStack {
-                        ZStack {
-                            Image("topShapeRegister")
-                                .resizable()
-                                .scaledToFit()
-                            HStack {
-                                Spacer()
-                                Text("Setup Invoicing")
-                                    .foregroundColor(.white)
-                                    .font(Font.system(size: 40, weight: .bold, design: .default))
-                                    .scaledToFill()
-                                    .minimumScaleFactor(0.5)
-                                    .lineLimit(1)
-                                    .frame(width: UsefulValues.screenWidth * 0.8, alignment: .center)
-                                Spacer()
-                            }
-                            .offset(y: -UsefulValues.screenHeight * 0.03)
+                    ZStack {
+                        Image("topShapeRegister")
+                            .resizable()
+                            .scaledToFit()
+                        HStack {
+                            Spacer()
+                            Text("Setup Invoicing")
+                                .foregroundColor(.white)
+                                .font(Font.system(size: 40, weight: .bold, design: .default))
+                                .scaledToFill()
+                                .minimumScaleFactor(0.5)
+                                .lineLimit(1)
+                                .frame(width: UsefulValues.screenWidth * 0.8, alignment: .center)
+                            Spacer()
                         }
+                        .frame(width: UsefulValues.screenWidth * 0.95, alignment: .center)
+                        .offset(y: -UsefulValues.screenHeight * 0.03)
+                    }
+                    VStack {
                         VStack{
                             Text("Invoices are the quickest way to start charging and manage your payments.")
                             Spacer()
@@ -88,6 +89,8 @@ struct SetupInvoicingView: View {
             }
             .autocapitalization(.none)
             .disableAutocorrection(true)
+            .navigationBarBackButtonHidden(true)
+            .navigationBarHidden(true)
         
         }
     }
