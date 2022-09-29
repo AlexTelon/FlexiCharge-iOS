@@ -52,21 +52,9 @@ struct RegisterAccountView: View {
                             .offset(y: -UsefulValues.screenHeight * 0.03)
                         }
                         VStack{
-                            /*----------Username----------*/
-                            RegularTextField(input: $username, placeholder: "Username", keyboardType: .default)
-                                .padding(.top)
-                            /*----------First name----------*/
-                            RegularTextField(input: $firstName, placeholder: "First name", keyboardType: .default)
-                                .padding(.top)
-                            /*----------Last name----------*/
-                            RegularTextField(input: $lastName, placeholder: "Last name", keyboardType: .default)
-                                .padding(.top)
                             /*----------Email----------*/
                             RegularTextField(input: $email, placeholder: "Email", keyboardType: .emailAddress)
                                 .padding(.top)
-                            /*----------Mobile number----------*/
-                            /*RegularTextField(input: $mobileNumber, placeholder: "Mobile number", keyboardType: .numberPad)
-                                .padding(.top)*/
                             /*----------Password----------*/
                             SecureTextField(input: $password, placeholder: "Password", keyboardType: .default)
                                 .padding(.top)
@@ -98,9 +86,9 @@ struct RegisterAccountView: View {
                                 NavigationLink(destination: LoginView(), tag: 2, selection: $selection){ EmptyView() }
                                 NavigationLink(destination: VerifyAccountView(selection: $selection), tag: 1, selection: $selection){
                                     RegularButton(action: {
-                                        validationText = validateInputs(username: username,firstName: firstName,lastName: lastName,email: email, password: password, TOSCheckBox: tosCheckBox)
+                                        validationText = validateInputs(email: email, password: password, TOSCheckBox: tosCheckBox)
                                         
-                                        if(validationText.isEmpty){ accountAPI.registerAccount(username: username, password: password, email: email, firstName: firstName, surName: lastName){ validationErrors in
+                                        if(validationText.isEmpty){ accountAPI.registerAccount(email: email, password: password){ validationErrors in
                                             
                                             print("validation errors in registerView: \(validationErrors)")
                                             
