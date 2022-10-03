@@ -11,12 +11,13 @@ struct ChooseNewPassword: View {
     @Binding var email: String
     @Binding var shouldPopToRootView: Bool
     @State var password: String = ""
-    @State var confirmPassword: String = ""
     @State var verificationCode: String = ""
     let inputHeight: CGFloat = 48
     let inputCornerRadius: CGFloat = 5
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @StateObject var accountAPI = AccountAPI()
+    @State var validationText = ""
+    @State var selection: Int? = nil
     
     var body: some View {
         VStack {
@@ -41,20 +42,41 @@ struct ChooseNewPassword: View {
                     .padding(.vertical, 2)
                 Spacer()
                 SecureTextField(input: $password, placeholder: "New password", keyboardType: .default)
-                Spacer()
-                SecureTextField(input: $confirmPassword, placeholder: "Confirm password", keyboardType: .default)
+                    .foregroundColor(
+                            password == "" ? Color.black : validatePassword(password: password) ? Color.primaryGreen : Color.primaryRed
+                    )
                 Spacer()
                 RegularTextField(input: $verificationCode, placeholder: "Verification code", keyboardType: .default)
+                    .foregroundColor(
+                            verificationCode == "" ? Color.black : validateVerificationCode(verificationCode: verificationCode) ? Color.primaryGreen : Color.primaryRed
+                    )
                 Spacer()
-                RegularButton(action: {
-                    self.presentationMode.wrappedValue.dismiss()
-                    self.shouldPopToRootView = false
-                }, text: "Back to log in", foregroundColor: Color.white, backgroundColor: Color.primaryGreen)
+                Text("\(validationText)")
+                    .foregroundColor(.red)
+                    .padding(.bottom)
+                NavigationLink(destination: LoginView(), tag: 2, selection: $selection){
+                    RegularButton(action: {
+                        accountAPI.confirmForgotPassword(email: email, password: password, verificationCode: verificationCode) { response in
+                            if response == "200"{
+                                selection = 2
+                            }
+                            else{
+                                validationText = response
+                                print("Misslyckades")
+                            }
+                        }
+                    }, text: "Confirm password", foregroundColor: Color.white, backgroundColor: Color.primaryGreen)
+                }
                 .padding()
                 HStack {
                     Text("Didn’t get your email?")
                     Button(action: {
-                        // TODO: send a new recover email
+                        accountAPI.forgotPassword(email: email) { response in
+                            if response != "200"{
+                                validationText = response
+                                print("Misslyckades")
+                            }
+                        }
                         
                     }, label: {
                         Text("Send Again")
@@ -62,11 +84,51 @@ struct ChooseNewPassword: View {
                     })
                 }
                 .font(.subheadline)
-                Spacer()
             }
             .frame(width: UsefulValues.screenWidth * 0.8)
         }
         .navigationBarHidden(true)
         .edgesIgnoringSafeArea(.top)
+    }
+    
+    func validatePassword(password: String)->Bool{
+        
+        var validPassword: Bool = false
+        
+        let specialCharacters = CharacterSet.punctuationCharacters
+        let upperCaseCharacters = CharacterSet.uppercaseLetters
+        let lowerCaseCharacters = CharacterSet.lowercaseLetters
+        
+        let hasSpecialCharacter = password.description.rangeOfCharacter(from: specialCharacters)
+        let hasUppercaseCharacter = password.description.rangeOfCharacter(from: upperCaseCharacters)
+        let hasLowerCasecharacters = password.description.rangeOfCharacter(from: lowerCaseCharacters)
+        
+        
+        //Checks for special characters, uppercase characters and lowercase characters
+        validPassword = hasSpecialCharacter != nil ? true : false
+        validPassword = hasUppercaseCharacter != nil ? true : false
+        validPassword = hasLowerCasecharacters != nil ? true : false
+        
+        //Checks if password is atleast 8 characters
+        if password.count <= 8 /*|| repeavalidPasswordtedPassword.count < 7*/ {
+            validPassword = false
+        }
+        return validPassword
+    }
+    
+    func validateVerificationCode(verificationCode: String)->Bool{
+        
+        var validVerificationCode: Bool = false
+        
+        //Checks if code isNumber
+        var isNumber: Bool {
+            CharacterSet(charactersIn: verificationCode).isSubset(of: CharacterSet.decimalDigits)
+        }
+        
+        //Checks if password is atleast 8 characters
+        if verificationCode.count <= 5  && isNumber {
+            validVerificationCode = false
+        }
+        return validVerificationCode
     }
 }

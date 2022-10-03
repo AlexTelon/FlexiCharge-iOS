@@ -257,7 +257,7 @@ class AccountAPI : ObservableObject {
         ]
         
         //create http request
-        guard let url = URL(string: "\(UsefulValues.apiBaseUrl)/auth/verify") else { return }
+        guard let url = URL(string: "\(UsefulValues.apiBaseUrl)/auth/confirm-forgot-password") else { return }
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -280,7 +280,7 @@ class AccountAPI : ObservableObject {
             let statusCode = httpURLResponse.statusCode
             if statusCode == 200 {
                 print("Verifiering lyckades!")
-                completionHandler("")
+                completionHandler(String(statusCode))
             }
             do{
                 if let response = try JSONSerialization.jsonObject(with: data!, options: []) as? [String:Any]{

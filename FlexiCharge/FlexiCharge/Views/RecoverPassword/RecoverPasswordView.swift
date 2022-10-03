@@ -17,6 +17,7 @@ struct RecoverPasswordView: View {
     @State private var selection: Int? = nil
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @StateObject var accountAPI = AccountAPI()
+    @State var validationText = ""
 
     
     var body: some View {
@@ -53,6 +54,9 @@ struct RecoverPasswordView: View {
                 .foregroundColor(
                         emailInput == "" ? Color.black :
                             validateEmail(email: emailInput) == "" ? Color.primaryGreen : Color.primaryRed)
+                .onChange(of: emailInput) { newValue in
+                    validationText = validateEmail(email: newValue)
+                }
             Text("Please provide the email address you used to register.\nWe will send you an email\nwith a link to reset your password")
                 .multilineTextAlignment(.center)
                 .font(.subheadline)
@@ -60,7 +64,9 @@ struct RecoverPasswordView: View {
                 .padding(.horizontal, 2)
                 .frame(width: UsefulValues.screenWidth * 0.8)
             Spacer()
-            Spacer()
+            Text("\(validationText)")
+                .foregroundColor(.red)
+                .padding(.bottom)
             NavigationLink(destination: ChooseNewPassword(email: $emailInput, shouldPopToRootView: $rootIsActive), tag: 1, selection: $selection) {
                 // TODO: send email to recover  password
                 RegularButton(action: {
@@ -69,6 +75,7 @@ struct RecoverPasswordView: View {
                             self.selection = 1
                         }
                         else{
+                            validationText = response
                             print("Misslyckades")
                         }
                     }
