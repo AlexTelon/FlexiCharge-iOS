@@ -27,15 +27,20 @@ func validatePassword(password: String)->Bool{
     
     let specialCharacters = CharacterSet.punctuationCharacters
     let upperCaseCharacters = CharacterSet.uppercaseLetters
+    let lowerCaseCharacters = CharacterSet.lowercaseLetters
     
     let hasSpecialCharacter = password.description.rangeOfCharacter(from: specialCharacters)
     let hasUppercaseCharacter = password.description.rangeOfCharacter(from: upperCaseCharacters)
+    let hasLowerCasecharacters = password.description.rangeOfCharacter(from: lowerCaseCharacters)
     
     
+    //Checks for special characters, uppercase characters and lowercase characters
     validPassword = hasSpecialCharacter != nil ? true : false
     validPassword = hasUppercaseCharacter != nil ? true : false
+    validPassword = hasLowerCasecharacters != nil ? true : false
     
-    if password.count < 8 /*|| repeavalidPasswordtedPassword.count < 7*/ {
+    //Checks if password is atleast 8 characters
+    if password.count <= 8 /*|| repeavalidPasswordtedPassword.count < 7*/ {
         validPassword = false
     }
     return validPassword
