@@ -9,6 +9,7 @@ import Foundation
 
 
 func validateEmail(email: String)->Bool{
+    
     if email.count < 100 {
         let emailFormat = "(?:[\\p{L}0-9!#$%\\&'*+/=?\\^_`{|}~-]+(?:\\.[\\p{L}0-9!#$%\\&'*+/=?\\^_`{|}" + "~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\" + "x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[\\p{L}0-9](?:[a-" + "z0-9-]*[\\p{L}0-9])?\\.)+[\\p{L}0-9](?:[\\p{L}0-9-]*[\\p{L}0-9])?|\\[(?:(?:25[0-5" + "]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-" + "9][0-9]?|[\\p{L}0-9-]*[\\p{L}0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21" + "-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])"
         
@@ -21,10 +22,23 @@ func validateEmail(email: String)->Bool{
 }
 
 func validatePassword(password: String)->Bool{
-    if password.count < 8 /*|| repeatedPassword.count < 7*/ {
-        return false
+    
+    var validPassword: Bool = false
+    
+    let specialCharacters = CharacterSet.punctuationCharacters
+    let upperCaseCharacters = CharacterSet.uppercaseLetters
+    
+    let hasSpecialCharacter = password.description.rangeOfCharacter(from: specialCharacters)
+    let hasUppercaseCharacter = password.description.rangeOfCharacter(from: upperCaseCharacters)
+    
+    
+    validPassword = hasSpecialCharacter != nil ? true : false
+    validPassword = hasUppercaseCharacter != nil ? true : false
+    
+    if password.count < 8 /*|| repeavalidPasswordtedPassword.count < 7*/ {
+        validPassword = false
     }
-    return true
+    return validPassword
 }
     
 

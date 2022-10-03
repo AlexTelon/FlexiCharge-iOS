@@ -185,7 +185,7 @@ class AccountAPI : ObservableObject {
         //Send http request
         URLSession.shared.dataTask(with: request){ data, response, error in
             if error != nil{
-                completionHandler("Error when sending http request")
+                completionHandler("Something went wrong, try agian.")
             }
             //Fetch http response code
             guard let httpURLResponse = response as? HTTPURLResponse else { return }
@@ -201,7 +201,7 @@ class AccountAPI : ObservableObject {
                 }
                 
             }catch{
-                completionHandler("HEEEJ Failed to parse data to json")
+                completionHandler("Failed to parse data to json")
             }
             
         }.resume()
