@@ -20,6 +20,7 @@ struct RegisterAccountView: View {
     @State private var inputCornerRadius: CGFloat = 5
     @State private var tosCheckBox: Bool = false
     @State private var validEmail: Bool = false
+    @State private var validPassword: Bool = false
     @State private var validationText: String = ""
     @State private var registerValidationText: String = ""
     @State var selection: Int? = nil
@@ -55,9 +56,11 @@ struct RegisterAccountView: View {
                             /*----------Email----------*/
                             RegularTextField(input: $email, placeholder: "Email", keyboardType: .emailAddress)
                                 .padding(.top)
+                                .foregroundColor(email == "" ? Color.black : validateEmail(email: email) == false ? Color.primaryRed : Color.primaryGreen)
                             /*----------Password----------*/
                             SecureTextField(input: $password, placeholder: "Password", keyboardType: .default)
                                 .padding(.top)
+                                .foregroundColor(password == "" ? Color.black : validatePassword(password: password) == false ? Color.primaryRed : Color.primaryGreen)
                             /*----------Repeat password----------*/
                             /*SecureTextField(input: $repeatPassword, placeholder: "Repeat password", keyboardType: .default)*/
                              .padding(.top)

@@ -129,7 +129,7 @@ class AccountAPI : ObservableObject {
         //Send http request
         URLSession.shared.dataTask(with: request){ data, response, error in
             if error != nil{
-                errorMessage = "request error"
+                errorMessage = "Something went wrong, try agian."
                 completionHandler(errorMessage)
             }
             guard let httpURLResponse = response as? HTTPURLResponse else { return }
@@ -163,7 +163,6 @@ class AccountAPI : ObservableObject {
     
     func verifyAccount(email: String, verificationCode: String, completionHandler: @escaping (String)->Void){
         
-        var errorMessage = ""
         let verificationInput =
         [
             "username": email,
@@ -188,7 +187,6 @@ class AccountAPI : ObservableObject {
             if error != nil{
                 completionHandler("Error when sending http request")
             }
-            print("Reseponse 1: \(response)")
             //Fetch http response code
             guard let httpURLResponse = response as? HTTPURLResponse else { return }
             let statusCode = httpURLResponse.statusCode
