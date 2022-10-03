@@ -46,16 +46,13 @@ class AccountAPI : ObservableObject {
     
     //completion: @escaping (String)->Void)
     
-    func registerAccount(username: String, password: String, email: String, firstName: String, surName: String, completionHandler: @escaping (String)->Void) {
+    func registerAccount(email: String, password: String,completionHandler: @escaping (String)->Void) {
         
         var errorMessage:String = ""
         
         let userCredentials: [String: String] = [
-            "username": username,
-            "password": password,
-            "email": email,
-            "name": firstName,
-            "family_name": surName
+            "username": email,
+            "password": password
         ]
         
         //https://jsonplaceholder.typicode.com/posts
@@ -105,12 +102,12 @@ class AccountAPI : ObservableObject {
     }
     
     
-    func logInUser(username: String, password: String, accountDetails: AccountDataModel ,completionHandler: @escaping (String)->Void){
+    func logInUser(email: String, password: String, accountDetails: AccountDataModel ,completionHandler: @escaping (String)->Void){
         
         var errorMessage:String = ""
         let loginCredentials: [String:String] =
         [
-            "username":username,
+            "username":email,
             "password":password
         ]
         
@@ -132,7 +129,7 @@ class AccountAPI : ObservableObject {
         //Send http request
         URLSession.shared.dataTask(with: request){ data, response, error in
             if error != nil{
-                errorMessage = "request error"
+                errorMessage = "Something went wrong, try agian."
                 completionHandler(errorMessage)
             }
             guard let httpURLResponse = response as? HTTPURLResponse else { return }
@@ -148,12 +145,8 @@ class AccountAPI : ObservableObject {
                             errorMessage = response["message"] as! String
                             completionHandler(errorMessage)
                         }else{
-                            accountDetails.username = response["username"] as? String ?? ""
-                            accountDetails.firstName = response["name"] as? String ?? ""
                             accountDetails.email = response["email"] as? String ?? ""
                             accountDetails.accessToken = response["accessToken"] as? String ?? ""
-                            accountDetails.userId = response["user_id"] as? String ?? ""
-                            accountDetails.lastName = response["family_name"] as? String ?? ""
                             errorMessage = ""
                             completionHandler(errorMessage)
                         }
@@ -170,7 +163,6 @@ class AccountAPI : ObservableObject {
     
     func verifyAccount(email: String, verificationCode: String, completionHandler: @escaping (String)->Void){
         
-        var errorMessage = ""
         let verificationInput =
         [
             "username": email,
@@ -193,9 +185,8 @@ class AccountAPI : ObservableObject {
         //Send http request
         URLSession.shared.dataTask(with: request){ data, response, error in
             if error != nil{
-                completionHandler("Error when sending http request")
+                completionHandler("Something went wrong, try agian.")
             }
-            print("Reseponse 1: \(response)")
             //Fetch http response code
             guard let httpURLResponse = response as? HTTPURLResponse else { return }
             let statusCode = httpURLResponse.statusCode
@@ -210,7 +201,7 @@ class AccountAPI : ObservableObject {
                 }
                 
             }catch{
-                completionHandler("HEEEJ Failed to parse data to json")
+                completionHandler("Failed to parse data to json")
             }
             
         }.resume()
