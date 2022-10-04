@@ -68,8 +68,8 @@ struct RegisterAccountView: View {
                                     validPassword = validatePassword(password: _password)
                                 }
                             /*----------Repeat password----------*/
-                            /*SecureTextField(input: $repeatPassword, placeholder: "Repeat password", keyboardType: .default)*/
-                             .padding(.top)
+                            /*SecureTextField(input: $repeatPassword, placeholder: "Repeat password", keyboardType: .default)
+                             .padding(.top)*/
                             /*----------Checkbox----------*/
                             HStack{
                                 Button(action: {tosCheckBox.toggle()}, label: {
