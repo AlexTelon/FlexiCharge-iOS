@@ -57,19 +57,15 @@ struct RegisterAccountView: View {
                             RegularTextField(input: $email, placeholder: "Email", keyboardType: .emailAddress)
                                 .padding(.top)
                                 .foregroundColor(email == "" ? Color.black : validateEmail(email: email) == false ? Color.primaryRed : Color.primaryGreen)
+                                .onChange(of: password){ _password in
+                                    validPassword = validatePassword(password: _password)
+                                }
                             /*----------Password----------*/
                             SecureTextField(input: $password, placeholder: "Password", keyboardType: .default)
                                 .padding(.top)
                                 .foregroundColor(password == "" ? Color.black : validatePassword(password: password) == false ? Color.primaryRed : Color.primaryGreen)
                                 .onChange(of: password){ _password in
-                                    print(_password)
-                                    if(validatePassword(password: _password)){
-                                        print("Validpassword \(validPassword)")
-                                        validPassword = true
-                                    }else{
-                                        print("Validpassword \(validPassword)")
-                                        validPassword = false
-                                    }
+                                    validPassword = validatePassword(password: _password)
                                 }
                             /*----------Repeat password----------*/
                             /*SecureTextField(input: $repeatPassword, placeholder: "Repeat password", keyboardType: .default)*/
@@ -121,7 +117,7 @@ struct RegisterAccountView: View {
                                         }
                                     }, text: "Register", foregroundColor: Color.white, backgroundColor: validatePassword(password: password) == false ? Color.primaryDarkGray : Color.primaryGreen)
                                 }.background(RoundedRectangle(cornerRadius: 5).fill(Color.primaryGreen))
-                                .disabled(!validatePassword(password: password))
+                                    .disabled(!validatePassword(password: password) && !validateEmail(email: email))
                                 
                                 
                                 Text("Spacer").hidden()
