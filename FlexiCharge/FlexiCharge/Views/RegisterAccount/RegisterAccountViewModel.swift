@@ -8,21 +8,23 @@
 import Foundation
 
 
-func validateEmail(email: String)->Bool{
-    
+func validateEmail(email: String)->String{
+    var errorMessage: String = ""
     if email.count < 100 {
         let emailFormat = "(?:[\\p{L}0-9!#$%\\&'*+/=?\\^_`{|}~-]+(?:\\.[\\p{L}0-9!#$%\\&'*+/=?\\^_`{|}" + "~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\" + "x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[\\p{L}0-9](?:[a-" + "z0-9-]*[\\p{L}0-9])?\\.)+[\\p{L}0-9](?:[\\p{L}0-9-]*[\\p{L}0-9])?|\\[(?:(?:25[0-5" + "]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-" + "9][0-9]?|[\\p{L}0-9-]*[\\p{L}0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21" + "-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])"
         
         let emailPredicate = NSPredicate(format:"SELF MATCHES %@", emailFormat)
         if !(emailPredicate.evaluate(with: email)){
-            return false
+            errorMessage = "Invalid email adress format"
         }
+    }else{
+        errorMessage = "Invalid email adress format"
     }
-    return true
+    return errorMessage
 }
 
-func validatePassword(password: String)->Bool{
-    
+func validatePassword(password: String)->String{
+    var errorMessages: String = ""
     var validPassword: Bool = false
     
     let specialCharacters = CharacterSet.punctuationCharacters
@@ -40,18 +42,21 @@ func validatePassword(password: String)->Bool{
         validPassword = hasUppercaseCharacter != nil ? true : false
         if validPassword{
             validPassword = hasLowerCasecharacters != nil ? true : false
+            if !validPassword{
+                errorMessages = "Password must contain lowercase characters"
+            }
         }else{
-            return false
+            errorMessages = "Password must contain uppercase character"
         }
     }else{
-        return false
+        errorMessages = "Password must contain atleast 1 special character"
     }
     
     //Checks if password is atleast 8 characters
     if password.count <= 8 /*|| repeavalidPasswordtedPassword.count < 7*/ {
-        validPassword = false
+        errorMessages = "Password must be atleast 8 characters"
     }
-    return validPassword
+    return errorMessages
 }
     
 
