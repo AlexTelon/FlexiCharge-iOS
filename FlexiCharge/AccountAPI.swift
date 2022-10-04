@@ -279,17 +279,8 @@ class AccountAPI : ObservableObject {
             guard let httpURLResponse = response as? HTTPURLResponse else { return }
             let statusCode = httpURLResponse.statusCode
             if statusCode == 200 {
-                print("Verifiering lyckades!")
+                print("Password reset lyckades!")
                 completionHandler(String(statusCode))
-            }
-            do{
-                if let response = try JSONSerialization.jsonObject(with: data!, options: []) as? [String:Any]{
-                    print("Response 2 message: \(response["message"] as! String)")
-                    completionHandler(response["message"] as! String)
-                }
-                
-            }catch{
-                completionHandler("Failed to parse data to json")
             }
             
         }.resume()

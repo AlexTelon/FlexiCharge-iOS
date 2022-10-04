@@ -17,6 +17,8 @@ struct ChooseNewPassword: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @StateObject var accountAPI = AccountAPI()
     @State var validationText = ""
+    @State var validationPasswordText = ""
+    @State var validationVerificationCodeText = ""
     @State var selection: Int? = nil
     
     var body: some View {
@@ -32,24 +34,40 @@ struct ChooseNewPassword: View {
                     .font(Font.system(size: 36, weight: .bold, design: .default))
             }
             VStack {
-                Text("An email with a link to reset your password, has been sent to the following address…")
-                    .multilineTextAlignment(.center)
-                    .font(.subheadline)
-                    .padding(.top)
-                    .padding(.horizontal, 2)
-                Text(email)
-                    .underline()
-                    .padding(.vertical, 2)
+                Group {
+                    Text("An email with a link to reset your password, has been sent to the following address…")
+                        .multilineTextAlignment(.center)
+                        .font(.subheadline)
+                        .padding(.top)
+                        .padding(.horizontal, 2)
+                    Text(email)
+                        .underline()
+                        .padding(.vertical, 2)
+                }
                 Spacer()
-                SecureTextField(input: $password, placeholder: "New password", keyboardType: .default)
-                    .foregroundColor(
-                            password == "" ? Color.black : validatePassword(password: password) ? Color.primaryGreen : Color.primaryRed
-                    )
-                Spacer()
-                RegularTextField(input: $verificationCode, placeholder: "Verification code", keyboardType: .default)
-                    .foregroundColor(
-                            verificationCode == "" ? Color.black : validateVerificationCode(verificationCode: verificationCode) ? Color.primaryGreen : Color.primaryRed
-                    )
+                Group{
+                    SecureTextField(input: $password, placeholder: "New password", keyboardType: .default)
+                        .foregroundColor(
+                                password == "" ? Color.black : validatePassword(password: password) == "" ? Color.black : Color.primaryRed
+                        )
+                        .onChange(of: password) { newValue in
+                            validationPasswordText = validatePassword(password: newValue)
+                        }
+                    Text("\(validationPasswordText)")
+                        .foregroundColor(.red)
+                        .padding(.bottom)
+                    Spacer()
+                    RegularTextField(input: $verificationCode, placeholder: "Verification code", keyboardType: .default)
+                        .foregroundColor(
+                                verificationCode == "" ? Color.black : validateVerificationCode(verificationCode: verificationCode) == "" ? Color.black : Color.primaryRed
+                        )
+                        .onChange(of: verificationCode) { newValue in
+                            validationVerificationCodeText = validateVerificationCode(verificationCode: verificationCode)
+                        }
+                    Text("\(validationVerificationCodeText)")
+                        .foregroundColor(.red)
+                        .padding(.bottom)
+                }
                 Spacer()
                 Text("\(validationText)")
                     .foregroundColor(.red)
@@ -65,8 +83,9 @@ struct ChooseNewPassword: View {
                                 print("Misslyckades")
                             }
                         }
-                    }, text: "Confirm password", foregroundColor: Color.white, backgroundColor: Color.primaryGreen)
+                    }, text: "Confirm password", foregroundColor: Color.white, backgroundColor: validatePassword(password: password) == "" && validateVerificationCode(verificationCode: verificationCode) == "" ? Color.primaryGreen : Color.primaryDarkGray)
                 }
+                .disabled(validatePassword(password: password) != "" && validateVerificationCode(verificationCode: verificationCode) != "")
                 .padding()
                 HStack {
                     Text("Didn’t get your email?")
@@ -91,8 +110,8 @@ struct ChooseNewPassword: View {
         .edgesIgnoringSafeArea(.top)
     }
     
-    func validatePassword(password: String)->Bool{
-        
+    func validatePassword(password: String)->String{
+        var errorMessages: String = ""
         var validPassword: Bool = false
         
         let specialCharacters = CharacterSet.punctuationCharacters
@@ -106,19 +125,30 @@ struct ChooseNewPassword: View {
         
         //Checks for special characters, uppercase characters and lowercase characters
         validPassword = hasSpecialCharacter != nil ? true : false
-        validPassword = hasUppercaseCharacter != nil ? true : false
-        validPassword = hasLowerCasecharacters != nil ? true : false
+        if validPassword{
+            validPassword = hasUppercaseCharacter != nil ? true : false
+            if validPassword{
+                validPassword = hasLowerCasecharacters != nil ? true : false
+                if !validPassword{
+                    errorMessages = "Password must contain lowercase characters"
+                }
+            }else{
+                errorMessages = "Password must contain uppercase character"
+            }
+        }else{
+            errorMessages = "Password must contain atleast 1 special character"
+        }
         
         //Checks if password is atleast 8 characters
         if password.count <= 8 /*|| repeavalidPasswordtedPassword.count < 7*/ {
-            validPassword = false
+            errorMessages = "Password must be atleast 8 characters"
         }
-        return validPassword
+        return errorMessages
     }
     
-    func validateVerificationCode(verificationCode: String)->Bool{
+    func validateVerificationCode(verificationCode: String)->String{
         
-        var validVerificationCode: Bool = false
+        var errorMessage = ""
         
         //Checks if code isNumber
         var isNumber: Bool {
@@ -126,9 +156,14 @@ struct ChooseNewPassword: View {
         }
         
         //Checks if password is atleast 8 characters
-        if verificationCode.count <= 5  && isNumber {
-            validVerificationCode = false
-        }
-        return validVerificationCode
+            if verificationCode.count < 5 {
+                errorMessage = "Must be more than 5 characters"
+            }
+            else{
+                if !isNumber {
+                    errorMessage = "Must consist of digits"
+                }
+            }
+        return errorMessage
     }
 }

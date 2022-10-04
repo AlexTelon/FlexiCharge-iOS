@@ -53,7 +53,7 @@ struct RecoverPasswordView: View {
             RegularTextField(input: $emailInput, placeholder: "Email", keyboardType: .emailAddress)
                 .foregroundColor(
                         emailInput == "" ? Color.black :
-                            validateEmail(email: emailInput) == "" ? Color.primaryGreen : Color.primaryRed)
+                            validateEmail(email: emailInput) == "" ? Color.black : Color.primaryRed)
                 .onChange(of: emailInput) { newValue in
                     validationText = validateEmail(email: newValue)
                 }
