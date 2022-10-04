@@ -120,6 +120,8 @@ struct RegisterAccountView: View {
                                     Button(action: {
                                         self.loading = true
                                         self.selection = 2
+                                        UserDefaults.standard.set(false, forKey: "isLoggedIn")
+                                        UserDefaults.standard.synchronize()
                                     }, label: {
                                         Text("Continue as Guest")
                                             .foregroundColor(Color.primaryGreen)
@@ -144,6 +146,13 @@ struct RegisterAccountView: View {
             .autocapitalization(.none)
             .disableAutocorrection(true)
         }
+        .onAppear(perform: setLoggedInToFalse)
+        .navigationBarBackButtonHidden(true)
+    }
+    
+    func setLoggedInToFalse() {
+        UserDefaults.standard.set(false, forKey: "isLoggedIn")
+        UserDefaults.standard.synchronize()
     }
     
     func hideKeyboard() {

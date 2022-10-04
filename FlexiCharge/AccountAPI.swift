@@ -39,6 +39,14 @@ class AccountAPI : ObservableObject {
         return errorMessage
     }
     
+    func saveLoggedState() {
+
+        let def = UserDefaults.standard
+        def.set(true, forKey: "isLoggedIn") // save true flag to UserDefaults
+        def.synchronize()
+
+    }
+    
     //completion: @escaping (String)->Void)
     
     func registerAccount(username: String, password: String, email: String, firstName: String, surName: String, completionHandler: @escaping (String)->Void) {
@@ -145,6 +153,7 @@ class AccountAPI : ObservableObject {
                             accountDetails.lastName = response["family_name"] as? String ?? ""
                             errorMessage = ""
                             completionHandler(errorMessage)
+                            self.saveLoggedState()
                         }
                         
                     }
