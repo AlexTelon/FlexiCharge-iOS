@@ -39,10 +39,12 @@ class AccountAPI : ObservableObject {
         return errorMessage
     }
     
-    
-    func getVerifyAccountResponseErrors(statusCode: String) -> String{
-        return ""
-    }
+    func saveLoggedState() {
+
+        let def = UserDefaults.standard
+        def.set(true, forKey: "isLoggedIn") // save true flag to UserDefaults
+        def.synchronize()
+     }
     
     //completion: @escaping (String)->Void)
     
@@ -149,6 +151,7 @@ class AccountAPI : ObservableObject {
                             accountDetails.accessToken = response["accessToken"] as? String ?? ""
                             errorMessage = ""
                             completionHandler(errorMessage)
+                            self.saveLoggedState()
                         }
                         
                     }

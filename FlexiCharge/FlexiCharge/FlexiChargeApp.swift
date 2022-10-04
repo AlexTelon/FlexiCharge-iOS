@@ -21,7 +21,7 @@ struct FlexiChargeApp: App {
 
     }
     func startView() -> some View{
-        if (AccountApi.isLoggedIn){
+        if (UserDefaults.standard.bool(forKey: "isLoggedIn")){
             return AnyView(ContentView())
         }
         else{
