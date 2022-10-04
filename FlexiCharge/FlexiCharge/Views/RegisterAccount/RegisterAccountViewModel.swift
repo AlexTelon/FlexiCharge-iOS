@@ -36,8 +36,16 @@ func validatePassword(password: String)->Bool{
     
     //Checks for special characters, uppercase characters and lowercase characters
     validPassword = hasSpecialCharacter != nil ? true : false
-    validPassword = hasUppercaseCharacter != nil ? true : false
-    validPassword = hasLowerCasecharacters != nil ? true : false
+    if validPassword{
+        validPassword = hasUppercaseCharacter != nil ? true : false
+        if validPassword{
+            validPassword = hasLowerCasecharacters != nil ? true : false
+        }else{
+            return false
+        }
+    }else{
+        return false
+    }
     
     //Checks if password is atleast 8 characters
     if password.count <= 8 /*|| repeavalidPasswordtedPassword.count < 7*/ {

@@ -61,6 +61,16 @@ struct RegisterAccountView: View {
                             SecureTextField(input: $password, placeholder: "Password", keyboardType: .default)
                                 .padding(.top)
                                 .foregroundColor(password == "" ? Color.black : validatePassword(password: password) == false ? Color.primaryRed : Color.primaryGreen)
+                                .onChange(of: password){ _password in
+                                    print(_password)
+                                    if(validatePassword(password: _password)){
+                                        print("Validpassword \(validPassword)")
+                                        validPassword = true
+                                    }else{
+                                        print("Validpassword \(validPassword)")
+                                        validPassword = false
+                                    }
+                                }
                             /*----------Repeat password----------*/
                             /*SecureTextField(input: $repeatPassword, placeholder: "Repeat password", keyboardType: .default)*/
                              .padding(.top)
@@ -109,8 +119,9 @@ struct RegisterAccountView: View {
                                         }
                                                 
                                         }
-                                    }, text: "Register", foregroundColor: Color.white, backgroundColor: Color.primaryGreen)
+                                    }, text: "Register", foregroundColor: Color.white, backgroundColor: validatePassword(password: password) == false ? Color.primaryDarkGray : Color.primaryGreen)
                                 }.background(RoundedRectangle(cornerRadius: 5).fill(Color.primaryGreen))
+                                .disabled(!validatePassword(password: password))
                                 
                                 
                                 Text("Spacer").hidden()
