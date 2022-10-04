@@ -77,7 +77,7 @@ struct SettingsView: View {
                         .background(Color.primaryLightGray)
                     /*----------Account Settings----------*/
                     // Change NavigationLink to correct page once it is created
-                    NavigationLink(destination: InvoicesView()) {
+                    NavigationLink(destination: AccountSettingsView()) {
                         HStack {
                             Text("Account Settings")
                                 .font(Font.system(size: 20, design: .default))
@@ -91,7 +91,7 @@ struct SettingsView: View {
                         .background(Color.primaryLightGray)
                     /*----------Name and Address----------*/
                     // Change NavigationLink to correct page once it is created
-                    NavigationLink(destination: InvoicesView()) {
+                    NavigationLink(destination: NameAndAdressView()) {
                         HStack {
                             Text("Name and Address")
                                 .font(Font.system(size: 20, design: .default))

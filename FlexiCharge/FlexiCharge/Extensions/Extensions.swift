@@ -15,3 +15,10 @@ extension Color {
     static let menuButtonGray = Color("menu-button-gray")
     static let primaryLightGray = Color("primary-light-gray")
 }
+
+
+extension String{
+    public var hasWhiteSpace: Bool {
+        return self.contains(" ")
+    }
+}
