@@ -13,10 +13,12 @@ struct VerifyAccountView: View {
     
     let inputHeight: CGFloat = 48
     let inputCornerRadius: CGFloat = 5
-    let emailPlaceholder: String = "Username"
+    let emailPlaceholder: String = "Email"
     let verificationCodePlaceholder: String = "Verification code"
     @StateObject var accountAPI = AccountAPI()
     @State var validationText = ""
+    @State var emailValidationText = ""
+    @State var verificationCodeValidationText = ""
     @Binding var selection: Int?
     @State private var emailInput: String = ""
     @State private var verificationCodeInput: String = ""
@@ -50,14 +52,35 @@ struct VerifyAccountView: View {
                             .frame(width: UsefulValues.screenWidth * 0.95, alignment: .center)
                             .offset(y: -UsefulValues.screenHeight * 0.03)
                         }
-                        // Login "form"
                         VStack {
                             // Email input field
                             RegularTextField(input: $emailInput, placeholder: emailPlaceholder, keyboardType: .default)
                                 .padding(.vertical)
-                            // Password input field
+                                .foregroundColor(emailInput == "" ? Color.black : validateEmail(email: emailInput) != "" ? Color.primaryRed : Color.primaryGreen)
+                                .onChange(of: emailInput){ _email in
+                                    emailValidationText = validateEmail(email: emailInput)
+                                    if(_email == ""){
+                                        emailValidationText = ""
+                                    }
+                                }
+                            Text("\(emailValidationText)")
+                                .foregroundColor(.red)
+                                .padding(.bottom)
+                                .fixedSize(horizontal: false, vertical: true)
+                            //Verification code input field
                             RegularTextField(input: $verificationCodeInput, placeholder: verificationCodePlaceholder, keyboardType: .default)
                                 .padding(.vertical)
+                                .foregroundColor(verificationCodeInput == "" ? Color.black : validateVerificationCode(verificationCode: verificationCodeInput) != "" ? Color.primaryRed : Color.primaryGreen)
+                                .onChange(of: verificationCodeInput){ _verificationCode in
+                                    verificationCodeValidationText = validateVerificationCode(verificationCode: verificationCodeInput)
+                                    if(_verificationCode == ""){
+                                        validationText = ""
+                                    }
+                                }
+                            Text("\(verificationCodeValidationText)")
+                                .foregroundColor(.red)
+                                .padding(.bottom)
+                                .fixedSize(horizontal: false, vertical: true)
                             Spacer()
                             Spacer()
                             Text("\(validationText)")
@@ -65,23 +88,19 @@ struct VerifyAccountView: View {
                                 .padding(.bottom)
                                 .fixedSize(horizontal: false, vertical: true)
                                 RegularButton(action: {
-                                    validationText = validateInputs(username: emailInput, validationCode: verificationCodeInput)
-
-                                    if(validationText.isEmpty){
-                                        self.loading = true
-                                        accountAPI.verifyAccount(email: emailInput, verificationCode: verificationCodeInput){ verifyStatus in
-                                            if(verifyStatus.isEmpty){
-                                                self.loading = false
-                                                print("Verification successful!")
-                                                self.selection = 2
-                                            }else{
-                                                self.loading = false
-                                                validationText = verifyStatus
-                                            }
+                                    self.loading = true
+                                    accountAPI.verifyAccount(email: emailInput, verificationCode: verificationCodeInput){ verifyStatus in
+                                        if(verifyStatus.isEmpty){
+                                            self.loading = false
+                                            print("Verification successful!")
+                                            self.selection = 2
+                                        }else{
+                                            self.loading = false
+                                            validationText = verifyStatus
                                         }
                                     }
-                                    
                                 }, text: "Verify account", foregroundColor: Color.white, backgroundColor: Color.primaryGreen)
+                                .disabled(validateVerificationCode(verificationCode: verificationCodeInput) != "")
                             Text("Spacer").hidden()
                             Spacer()
                         }
