@@ -37,13 +37,6 @@ class AccountAPI : ObservableObject {
         return errorMessage
     }
     
-    func saveLoggedState() {
-
-        let def = UserDefaults.standard
-        def.set(true, forKey: "isLoggedIn") // save true flag to UserDefaults
-        def.synchronize()
-     }
-    
     //completion: @escaping (String)->Void)
     
     func registerAccount(email: String, password: String,completionHandler: @escaping (String)->Void) {
@@ -149,9 +142,8 @@ class AccountAPI : ObservableObject {
                             accountDetails.email = response["email"] as? String ?? ""
                             accountDetails.accessToken = response["accessToken"] as? String ?? ""
                             errorMessage = ""
-//                            accountModel.isLoggedIn = true
+                            accountDetails.saveLoggedState()
                             completionHandler(errorMessage)
-                            self.saveLoggedState()
                         }
                         
                     }
@@ -164,7 +156,7 @@ class AccountAPI : ObservableObject {
         
     }
     
-    func verifyAccount(email: String, verificationCode: String, completionHandler: @escaping (String)->Void){
+    func verifyAccount(email: String, verificationCode: String, accountDetails: AccountDataModel, completionHandler: @escaping (String)->Void){
         
         let verificationInput =
         [
@@ -195,6 +187,8 @@ class AccountAPI : ObservableObject {
             let statusCode = httpURLResponse.statusCode
             if statusCode == 200 {
                 print("Verifiering lyckades!")
+                accountDetails.saveLoggedState()
+                
                 completionHandler("")
             }
             do{
@@ -208,7 +202,6 @@ class AccountAPI : ObservableObject {
             }
             
         }.resume()
-        
         
     }
     
