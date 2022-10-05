@@ -149,7 +149,7 @@ class AccountAPI : ObservableObject {
                             accountDetails.email = response["email"] as? String ?? ""
                             accountDetails.accessToken = response["accessToken"] as? String ?? ""
                             errorMessage = ""
-                            accountModel.isLoggedIn = true
+//                            accountModel.isLoggedIn = true
                             completionHandler(errorMessage)
                             self.saveLoggedState()
                         }
