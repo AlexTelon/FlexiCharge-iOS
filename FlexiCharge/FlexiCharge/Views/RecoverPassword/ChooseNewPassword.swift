@@ -28,10 +28,25 @@ struct ChooseNewPassword: View {
                 Image("top-tilted-rectangle")
                     .resizable()
                     .scaledToFit()
-                Text("Choose New\nPassword")
-                    .multilineTextAlignment(.center)
-                    .foregroundColor(.white)
-                    .font(Font.system(size: 36, weight: .bold, design: .default))
+                HStack{
+                    Button(action: {
+                        self.presentationMode.wrappedValue.dismiss()
+                    }) {
+                        Image("menu-arrow").rotationEffect(.degrees(90))
+                            .aspectRatio(contentMode: .fit)
+                            .foregroundColor(.white)
+                            .frame(alignment: .topLeading)
+                    }
+                    Spacer()
+                    Text("Choose New\nPassword")
+                        .multilineTextAlignment(.center)
+                        .foregroundColor(.white)
+                        .font(Font.system(size: 36, weight: .bold, design: .default))
+                    Spacer()
+                    Image("menu-arrow")
+                        .hidden()
+                }.frame(width: UsefulValues.screenWidth * 0.95, alignment: .center)
+                .offset(y: -UsefulValues.screenHeight * 0.03)
             }
             VStack {
                 Group {

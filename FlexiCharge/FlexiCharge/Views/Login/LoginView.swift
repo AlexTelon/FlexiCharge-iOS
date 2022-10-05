@@ -75,7 +75,7 @@ struct LoginView: View {
                                     validationText = validateInputs(password: passwordInput, username: emailInput)
                                     if(validationText.isEmpty){
                                         self.loading = true
-                                        accountAPI.logInUser(email: emailInput, password: passwordInput,  accountDetails: accountDetails){ loginStatus in
+                                        accountAPI.logInUser(email: emailInput, password: passwordInput,  accountDetails: accountModel){ loginStatus in
                                             if(loginStatus.isEmpty){
                                                 print("Du loggades in!! :))  \(loginStatus)")
                                                 print("AccessToken: \(accountModel.accessToken)")
