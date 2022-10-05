@@ -70,7 +70,7 @@ struct LoginView: View {
                             Text("\(validationText)")
                                 .foregroundColor(.red)
                                 .padding(.bottom)
-                            NavigationLink(destination: SetupInvoicingView(selection: $selection), tag: 1, selection: $selection) { //ändra tillbaka till contentView()!
+                            NavigationLink(destination: ContentView(), tag: 1, selection: $selection) {
                                 RegularButton(action: {
                                     validationText = validateInputs(password: passwordInput, username: emailInput)
                                     if(validationText.isEmpty){
