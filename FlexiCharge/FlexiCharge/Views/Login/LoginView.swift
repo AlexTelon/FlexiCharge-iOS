@@ -79,7 +79,7 @@ struct LoginView: View {
                             Text("\(validationText)")
                                 .foregroundColor(.red)
                                 .padding(.bottom)
-                            NavigationLink(destination: SetupInvoicingView(), tag: 1, selection: $selection) { //ändra tillbaka till contentView()!
+                            NavigationLink(destination: ContentView(), tag: 1, selection: $selection) {
                                 RegularButton(action: {
                                     self.loading = true
                                     accountAPI.logInUser(email: emailInput, password: passwordInput,  accountDetails: accountModel){ loginStatus in

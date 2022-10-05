@@ -188,18 +188,19 @@ class AccountAPI : ObservableObject {
             if statusCode == 200 {
                 print("Verifiering lyckades!")
                 accountDetails.saveLoggedState()
-                
                 completionHandler("")
-            }
-            do{
-                if let response = try JSONSerialization.jsonObject(with: data!, options: []) as? [String:Any]{
-                    print("Response 2 message: \(response["message"] as! String)")
-                    completionHandler(response["message"] as! String)
+            }else{
+                do{
+                    if let response = try JSONSerialization.jsonObject(with: data!, options: []) as? [String:Any]{
+                        print("Response 2 message: \(response["message"] as! String)")
+                        completionHandler(response["message"] as! String)
+                    }
+                    
+                }catch{
+                    completionHandler("Failed to parse data to json")
                 }
-                
-            }catch{
-                completionHandler("Failed to parse data to json")
             }
+            
             
         }.resume()
         
