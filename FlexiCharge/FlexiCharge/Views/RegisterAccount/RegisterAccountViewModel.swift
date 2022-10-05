@@ -30,24 +30,35 @@ func validatePassword(password: String)->String{
     let specialCharacters = CharacterSet.punctuationCharacters
     let upperCaseCharacters = CharacterSet.uppercaseLetters
     let lowerCaseCharacters = CharacterSet.lowercaseLetters
+    let numbers = CharacterSet.decimalDigits
     
     let hasSpecialCharacter = password.description.rangeOfCharacter(from: specialCharacters)
     let hasUppercaseCharacter = password.description.rangeOfCharacter(from: upperCaseCharacters)
     let hasLowerCasecharacters = password.description.rangeOfCharacter(from: lowerCaseCharacters)
+    let hasNumber = password.description.rangeOfCharacter(from: numbers)
     
     
     //Checks for special characters, uppercase characters and lowercase characters
     validPassword = hasSpecialCharacter != nil ? true : false
     if validPassword{
+        
         validPassword = hasUppercaseCharacter != nil ? true : false
         if validPassword{
+            
             validPassword = hasLowerCasecharacters != nil ? true : false
-            if !validPassword{
+            if validPassword{
+                validPassword = hasNumber != nil ? true : false
+                if !validPassword{
+                    errorMessages = "Password must contain a number"
+                }
+            }else{
                 errorMessages = "Password must contain lowercase characters"
             }
+            
         }else{
             errorMessages = "Password must contain uppercase character"
         }
+        
     }else{
         errorMessages = "Password must contain atleast 1 special character"
     }
