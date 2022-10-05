@@ -149,7 +149,7 @@ class AccountAPI : ObservableObject {
                             accountDetails.email = response["email"] as? String ?? ""
                             accountDetails.accessToken = response["accessToken"] as? String ?? ""
                             errorMessage = ""
-                            accountModel.isLoggedIn = true
+                            //accountModel.isLoggedIn = true
                             completionHandler(errorMessage)
                             self.saveLoggedState()
                         }
@@ -196,16 +196,18 @@ class AccountAPI : ObservableObject {
             if statusCode == 200 {
                 print("Verifiering lyckades!")
                 completionHandler("")
-            }
-            do{
-                if let response = try JSONSerialization.jsonObject(with: data!, options: []) as? [String:Any]{
-                    print("Response 2 message: \(response["message"] as! String)")
-                    completionHandler(response["message"] as! String)
+            }else{
+                do{
+                    if let response = try JSONSerialization.jsonObject(with: data!, options: []) as? [String:Any]{
+                        print("Response 2 message: \(response["message"] as! String)")
+                        completionHandler(response["message"] as! String)
+                    }
+                    
+                }catch{
+                    completionHandler("Failed to parse data to json")
                 }
-                
-            }catch{
-                completionHandler("Failed to parse data to json")
             }
+            
             
         }.resume()
         

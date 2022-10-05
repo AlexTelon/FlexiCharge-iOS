@@ -70,12 +70,12 @@ struct LoginView: View {
                             Text("\(validationText)")
                                 .foregroundColor(.red)
                                 .padding(.bottom)
-                            NavigationLink(destination: SetupInvoicingView(), tag: 1, selection: $selection) { //ändra tillbaka till contentView()!
+                            NavigationLink(destination: SetupInvoicingView(selection: $selection), tag: 1, selection: $selection) { //ändra tillbaka till contentView()!
                                 RegularButton(action: {
                                     validationText = validateInputs(password: passwordInput, username: emailInput)
                                     if(validationText.isEmpty){
                                         self.loading = true
-                                        accountAPI.logInUser(email: emailInput, password: passwordInput,  accountDetails: accountDetails){ loginStatus in
+                                        accountAPI.logInUser(email: emailInput, password: passwordInput,  accountDetails: accountModel){ loginStatus in
                                             if(loginStatus.isEmpty){
                                                 print("Du loggades in!! :))  \(loginStatus)")
                                                 print("AccessToken: \(accountModel.accessToken)")

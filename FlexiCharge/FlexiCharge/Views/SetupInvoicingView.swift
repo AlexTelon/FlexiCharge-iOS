@@ -17,10 +17,9 @@ struct SetupInvoicingView: View {
     @State private var validEmail: Bool = false
     @State private var validationText: String = ""
     @State private var registerValidationText: String = ""
-    @State var selection: Int? = nil
     @State private var loading: Bool = false
     @State var isActive: Bool = false
-    
+    @Binding var selection: Int?
     
     @StateObject var accountAPI = AccountAPI()
     
@@ -67,7 +66,14 @@ struct SetupInvoicingView: View {
                                 RegularButton(action: {print("test")} ,text: "Continue", foregroundColor: Color.white, backgroundColor: Color.primaryGreen)
                             }.background(RoundedRectangle(cornerRadius: 5).fill(Color.primaryGreen))
                                 Spacer()
-                            Text("No thanks")
+                            Button(action: {
+                                self.selection = 3
+                                
+                            },label:{
+                                Text("No Thanks")
+                                .foregroundColor(Color.primaryGreen)
+                            })
+                            
                                 .font(Font.system(size: 13,weight: .bold, design: .default))
                                 .foregroundColor(Color.primaryGreen)
                             }
