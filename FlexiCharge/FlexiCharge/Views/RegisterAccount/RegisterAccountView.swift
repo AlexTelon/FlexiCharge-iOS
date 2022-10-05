@@ -112,7 +112,8 @@ struct RegisterAccountView: View {
                                 NavigationLink(destination: LoginView(), tag: 2, selection: $selection){ EmptyView() }
                                 NavigationLink(destination: VerifyAccountView(selection: $selection), tag: 1, selection: $selection){
                                     RegularButton(action: {
-                                        validationText = validateInputs(email: email, password: password, TOSCheckBox: tosCheckBox)
+                                        
+                                        validationText = validateCheckBox(checkBox: tosCheckBox)
                                         
                                         if(validationText.isEmpty){ accountAPI.registerAccount(email: email, password: password){ validationErrors in
                                             
