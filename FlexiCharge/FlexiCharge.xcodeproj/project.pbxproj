@@ -19,6 +19,7 @@
 		6592EDF92701BC6900AFB3A1 /* InvoicesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6592EDF82701BC6900AFB3A1 /* InvoicesView.swift */; };
 		6592EDFB2701BCB200AFB3A1 /* InvoicesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6592EDFA2701BCB200AFB3A1 /* InvoicesViewModel.swift */; };
 		65F14A3926F8872A00C9B443 /* SetupUpInvoiceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F14A3826F8872A00C9B443 /* SetupUpInvoiceViewModel.swift */; };
+		68762AA128E478D8007BCA90 /* ChooseNewPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68762AA028E478D8007BCA90 /* ChooseNewPassword.swift */; };
 		C00631B228D9B1FB007D3A9F /* VerifyAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00631B128D9B1FB007D3A9F /* VerifyAccountView.swift */; };
 		C013D40128D9F44F00C6B20E /* VerifyAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C013D40028D9F44F00C6B20E /* VerifyAccountViewModel.swift */; };
 		C0624DD028D462A2007F68D8 /* AccountDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0624DCF28D462A2007F68D8 /* AccountDataModel.swift */; };
@@ -26,7 +27,6 @@
 		D327CD6426E64D0D007FC380 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D327CD6326E64D0D007FC380 /* MapView.swift */; };
 		D327CD6626E65F33007FC380 /* IdentifyChargerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D327CD6526E65F32007FC380 /* IdentifyChargerView.swift */; };
 		D334B13526EF9ABE000D31E9 /* RecoverPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D334B13426EF9ABE000D31E9 /* RecoverPasswordView.swift */; };
-		D334B13726EFBBAA000D31E9 /* EmailSentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D334B13626EFBBAA000D31E9 /* EmailSentView.swift */; };
 		D34A1AC126F52E89001EB5D2 /* ChargerRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34A1AC026F52E89001EB5D2 /* ChargerRowView.swift */; };
 		D34A1AC326F53D0E001EB5D2 /* ChargerHub.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34A1AC226F53D0E001EB5D2 /* ChargerHub.swift */; };
 		D34A1AC526F54304001EB5D2 /* ChargerList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34A1AC426F54304001EB5D2 /* ChargerList.swift */; };
@@ -87,6 +87,7 @@
 		6592EDF82701BC6900AFB3A1 /* InvoicesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvoicesView.swift; sourceTree = "<group>"; };
 		6592EDFA2701BCB200AFB3A1 /* InvoicesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvoicesViewModel.swift; sourceTree = "<group>"; };
 		65F14A3826F8872A00C9B443 /* SetupUpInvoiceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupUpInvoiceViewModel.swift; sourceTree = "<group>"; };
+		68762AA028E478D8007BCA90 /* ChooseNewPassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseNewPassword.swift; sourceTree = "<group>"; };
 		C00631B128D9B1FB007D3A9F /* VerifyAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyAccountView.swift; sourceTree = "<group>"; };
 		C013D40028D9F44F00C6B20E /* VerifyAccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyAccountViewModel.swift; sourceTree = "<group>"; };
 		C0624DCF28D462A2007F68D8 /* AccountDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDataModel.swift; sourceTree = SOURCE_ROOT; };
@@ -94,7 +95,6 @@
 		D327CD6326E64D0D007FC380 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		D327CD6526E65F32007FC380 /* IdentifyChargerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifyChargerView.swift; sourceTree = "<group>"; };
 		D334B13426EF9ABE000D31E9 /* RecoverPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoverPasswordView.swift; sourceTree = "<group>"; };
-		D334B13626EFBBAA000D31E9 /* EmailSentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailSentView.swift; sourceTree = "<group>"; };
 		D34A1AC026F52E89001EB5D2 /* ChargerRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChargerRowView.swift; sourceTree = "<group>"; };
 		D34A1AC226F53D0E001EB5D2 /* ChargerHub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChargerHub.swift; sourceTree = "<group>"; };
 		D34A1AC426F54304001EB5D2 /* ChargerList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChargerList.swift; sourceTree = "<group>"; };
@@ -231,7 +231,7 @@
 			isa = PBXGroup;
 			children = (
 				D334B13426EF9ABE000D31E9 /* RecoverPasswordView.swift */,
-				D334B13626EFBBAA000D31E9 /* EmailSentView.swift */,
+				68762AA028E478D8007BCA90 /* ChooseNewPassword.swift */,
 			);
 			path = RecoverPassword;
 			sourceTree = "<group>";
@@ -592,10 +592,10 @@
 				FD8B4F1526EA11D400B0FDB5 /* IdentifyChargerViewModel.swift in Sources */,
 				6390B6BC28E46DF200E75BDB /* SetupInvoicingViewModel.swift in Sources */,
 				65F14A3926F8872A00C9B443 /* SetupUpInvoiceViewModel.swift in Sources */,
-				D334B13726EFBBAA000D31E9 /* EmailSentView.swift in Sources */,
 				6380083A28D1F5F200184E3F /* AccountSettingsView.swift in Sources */,
 				D327CD6426E64D0D007FC380 /* MapView.swift in Sources */,
 				D3D6D18826E629BE00B77B16 /* ContentView.swift in Sources */,
+				68762AA128E478D8007BCA90 /* ChooseNewPassword.swift in Sources */,
 				63D0ABBF28D0BB5F00897868 /* AccountAPI.swift in Sources */,
 				FD9BB76C26F8BC7600CBE7E5 /* ChargingInProgressView.swift in Sources */,
 				D388D13C2706ED85005C1927 /* Extensions.swift in Sources */,

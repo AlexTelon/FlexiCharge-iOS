@@ -11,7 +11,7 @@ import SwiftUI
 
 
 
-class AccountDataModel: Codable,ObservableObject {
+class AccountDataModel: ObservableObject {
     
     var accessToken: String
     var email: String
@@ -19,6 +19,7 @@ class AccountDataModel: Codable,ObservableObject {
     var firstName: String
     var lastName: String
     var userId: String
+    @Published var isLoggedIn: Bool
     
     init(){
         accessToken = ""
@@ -27,6 +28,7 @@ class AccountDataModel: Codable,ObservableObject {
         firstName = ""
         lastName = ""
         userId = ""
+        isLoggedIn = false
     }
     
     

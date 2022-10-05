@@ -10,8 +10,6 @@ import Combine
 import SwiftUI
 
 class AccountAPI : ObservableObject {
-    @Published var isLoggedIn : Bool = false
-    //@Published var accountDetails = AccountDataModel()
     
     init() {
         
@@ -61,7 +59,7 @@ class AccountAPI : ObservableObject {
         //http://18.202.253.30:8080/auth/sign-up
         
         //Create the HTTP request
-        guard let url = URL(string: "http://18.202.253.30:8080/auth/sign-up") else { return }
+        guard let url = URL(string: "\(UsefulValues.apiBaseUrl)/auth/sign-up") else { return }
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -104,6 +102,7 @@ class AccountAPI : ObservableObject {
     }
     
     
+
     func logInUser(email: String, password: String, accountDetails: AccountDataModel ,completionHandler: @escaping (String)->Void){
         
         var errorMessage:String = ""
@@ -114,7 +113,7 @@ class AccountAPI : ObservableObject {
         ]
         
         //create http reqeust
-        guard let url = URL(string: "http://18.202.253.30:8080/auth/sign-in") else { return }
+        guard let url = URL(string: "\(UsefulValues.apiBaseUrl)/auth/sign-in") else { return }
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -150,6 +149,7 @@ class AccountAPI : ObservableObject {
                             accountDetails.email = response["email"] as? String ?? ""
                             accountDetails.accessToken = response["accessToken"] as? String ?? ""
                             errorMessage = ""
+                            accountModel.isLoggedIn = true
                             completionHandler(errorMessage)
                             self.saveLoggedState()
                         }
@@ -173,7 +173,7 @@ class AccountAPI : ObservableObject {
         ]
         
         //create http request
-        guard let url = URL(string: "http://18.202.253.30:8080/auth/verify") else { return }
+        guard let url = URL(string: "\(UsefulValues.apiBaseUrl)/auth/verify") else { return }
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -211,5 +211,75 @@ class AccountAPI : ObservableObject {
         
         
     }
-       
+    
+    func forgotPassword(email: String, completionHandler: @escaping (String)->Void){
+        
+        var errorMessage = ""
+        
+        //create http request
+        guard let url = URL(string: "\(UsefulValues.apiBaseUrl)/auth/forgot-password/\(email)") else { return }
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        //Send http request
+        URLSession.shared.dataTask(with: request){ data, response, error in
+            if error != nil{
+                completionHandler("Error when sending http request")
+            }
+            
+            //Fetch http response code
+            guard let httpURLResponse = response as? HTTPURLResponse else { return }
+            let statusCode = httpURLResponse.statusCode
+            if statusCode == 200 {
+                print("Email skickades!")
+                completionHandler(String(statusCode))
+            }
+            
+        }.resume()
+        
+        
+    }
+    
+    func confirmForgotPassword(email: String, password: String, verificationCode: String, completionHandler: @escaping (String)->Void){
+        
+        var errorMessage = ""
+        let verificationInput =
+        [
+            "username": email,
+            "password": password,
+            "confirmationCode": verificationCode
+        ]
+        
+        //create http request
+        guard let url = URL(string: "\(UsefulValues.apiBaseUrl)/auth/confirm-forgot-password") else { return }
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        //parse verificationInput to json format and add attatch to http request
+        do{
+            request.httpBody = try JSONSerialization.data(withJSONObject: verificationInput, options: [])
+        }catch{
+            completionHandler("Failed to parse to json data")
+        }
+        
+        //Send http request
+        URLSession.shared.dataTask(with: request){ data, response, error in
+            if error != nil{
+                completionHandler("Error when sending http request")
+            }
+            print("Reseponse 1: \(response)")
+            //Fetch http response code
+            guard let httpURLResponse = response as? HTTPURLResponse else { return }
+            let statusCode = httpURLResponse.statusCode
+            if statusCode == 200 {
+                print("Password reset lyckades!")
+                completionHandler(String(statusCode))
+            }
+            
+        }.resume()
+        
+        
+    }
 }
