@@ -15,7 +15,7 @@ struct LoginView: View {
     @EnvironmentObject var accountModel: AccountDataModel
     @State var validationText = ""
     
-    @State private var usernameInput: String = ""
+    @State private var emailInput: String = ""
     @State private var passwordInput: String = ""
     @State private var selection: Int? = nil
     @State private var loading: Bool = false
@@ -60,7 +60,7 @@ struct LoginView: View {
                         // Login "form"
                         VStack {
                             // Email input field
-                            RegularTextField(input: $usernameInput, placeholder: "Username", keyboardType: .default)
+                            RegularTextField(input: $emailInput, placeholder: "Username", keyboardType: .default)
                                 .padding(.vertical)
                             // Password input field
                             SecureTextField(input: $passwordInput, placeholder: "Password", keyboardType: .default)
@@ -70,12 +70,12 @@ struct LoginView: View {
                             Text("\(validationText)")
                                 .foregroundColor(.red)
                                 .padding(.bottom)
-                            NavigationLink(destination: ContentView(), tag: 1, selection: $selection) {
+                            NavigationLink(destination: SetupInvoicingView(), tag: 1, selection: $selection) { //ändra tillbaka till contentView()!
                                 RegularButton(action: {
-                                    validationText = validateInputs(password: passwordInput, username: usernameInput)
+                                    validationText = validateInputs(password: passwordInput, username: emailInput)
                                     if(validationText.isEmpty){
                                         self.loading = true
-                                        accountAPI.logInUser(username: usernameInput, password: passwordInput,  accountModel: accountModel){ loginStatus in
+                                        accountAPI.logInUser(email: emailInput, password: passwordInput,  accountDetails: accountDetails){ loginStatus in
                                             if(loginStatus.isEmpty){
                                                 print("Du loggades in!! :))  \(loginStatus)")
                                                 print("AccessToken: \(accountModel.accessToken)")

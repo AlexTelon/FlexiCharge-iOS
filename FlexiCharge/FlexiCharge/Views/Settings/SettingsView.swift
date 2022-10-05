@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct SettingsView: View {
+    @State private var selection: Int? = nil
+    @StateObject var AccountApi = AccountAPI()
+    @StateObject var accountDetails = AccountDataModel()
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     /*----------Header and custom back button----------*/
@@ -74,7 +77,7 @@ struct SettingsView: View {
                         .background(Color.primaryLightGray)
                     /*----------Account Settings----------*/
                     // Change NavigationLink to correct page once it is created
-                    NavigationLink(destination: InvoicesView()) {
+                    NavigationLink(destination: AccountSettingsView()) {
                         HStack {
                             Text("Account Settings")
                                 .font(Font.system(size: 20, design: .default))
@@ -88,7 +91,7 @@ struct SettingsView: View {
                         .background(Color.primaryLightGray)
                     /*----------Name and Address----------*/
                     // Change NavigationLink to correct page once it is created
-                    NavigationLink(destination: InvoicesView()) {
+                    NavigationLink(destination: NameAndAdressView()) {
                         HStack {
                             Text("Name and Address")
                                 .font(Font.system(size: 20, design: .default))
@@ -117,17 +120,23 @@ struct SettingsView: View {
                 }.frame(width: UsefulValues.screenWidth * 0.8)
                 Spacer()
                 /*----------Log out button----------*/
-                Button(action: {
-                    // TODO: add log out functionality
-                }, label: {
-                    Text("Log out")
-                        .font(Font.system(size: 20, weight: .bold, design:.default))
-                        .frame(width: UsefulValues.screenWidth * 0.8, height: 48)
-                })
-                .background(Color.primaryRed)
-                .foregroundColor(.white)
-                .cornerRadius(5)
-                Text("Spacing").hidden()
+                let isLoggedIn = UserDefaults.standard.bool(forKey: "isLoggedIn")
+                if isLoggedIn{
+                    NavigationLink(destination: RegisterAccountView(), tag: 1, selection: $selection) {
+                        RegularButton(action: {
+                            self.selection = 1
+                        }, text: "Log out", foregroundColor: Color.white, backgroundColor: Color.primaryRed)
+                        
+                    }
+                    .cornerRadius(5)
+                    Text("Spacing").hidden()
+                } else {
+                    RegularButton(action: {
+                        // do nothing
+                    }, text: "Not logged in", foregroundColor: Color.white, backgroundColor: Color.gray)
+                    .cornerRadius(5)
+                    Text("Spacing").hidden()
+                }
             }
         }
         .edgesIgnoringSafeArea(.top)

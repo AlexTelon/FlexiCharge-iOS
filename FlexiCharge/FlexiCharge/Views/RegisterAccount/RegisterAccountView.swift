@@ -20,6 +20,9 @@ struct RegisterAccountView: View {
     @State private var inputCornerRadius: CGFloat = 5
     @State private var tosCheckBox: Bool = false
     @State private var validEmail: Bool = false
+    @State private var validPassword: Bool = false
+    @State private var emailValidationText: String = ""
+    @State private var passwordValidationText: String = ""
     @State private var validationText: String = ""
     @State private var registerValidationText: String = ""
     @State var selection: Int? = nil
@@ -52,27 +55,37 @@ struct RegisterAccountView: View {
                             .offset(y: -UsefulValues.screenHeight * 0.03)
                         }
                         VStack{
-                            /*----------Username----------*/
-                            RegularTextField(input: $username, placeholder: "Username", keyboardType: .default)
-                                .padding(.top)
-                            /*----------First name----------*/
-                            RegularTextField(input: $firstName, placeholder: "First name", keyboardType: .default)
-                                .padding(.top)
-                            /*----------Last name----------*/
-                            RegularTextField(input: $lastName, placeholder: "Last name", keyboardType: .default)
-                                .padding(.top)
                             /*----------Email----------*/
                             RegularTextField(input: $email, placeholder: "Email", keyboardType: .emailAddress)
                                 .padding(.top)
-                            /*----------Mobile number----------*/
-                            /*RegularTextField(input: $mobileNumber, placeholder: "Mobile number", keyboardType: .numberPad)
-                                .padding(.top)*/
+                                .foregroundColor(email == "" ? Color.black : validateEmail(email: email) != "" ? Color.primaryRed : Color.primaryGreen)
+                                .onChange(of: email){ _email in
+                                    emailValidationText = validateEmail(email: _email)
+                                    if(_email == ""){
+                                        emailValidationText = ""
+                                    }
+                                }
+                            Text("\(emailValidationText)")
+                                .foregroundColor(.red)
+                                .padding(.bottom)
+                                .fixedSize(horizontal: false, vertical: true)
                             /*----------Password----------*/
                             SecureTextField(input: $password, placeholder: "Password", keyboardType: .default)
                                 .padding(.top)
+                                .foregroundColor(password == "" ? Color.black : validatePassword(password: password) != "" ? Color.primaryRed : Color.primaryGreen)
+                                .onChange(of: password){ _password in
+                                    passwordValidationText = validatePassword(password: _password)
+                                    if(_password == ""){
+                                        passwordValidationText = ""
+                                    }
+                                }
+                            Text("\(passwordValidationText)")
+                                .foregroundColor(.red)
+                                .padding(.bottom)
+                                .fixedSize(horizontal: false, vertical: true)
                             /*----------Repeat password----------*/
-                            /* SecureTextField(input: $repeatPassword, placeholder: "Repeat password", keyboardType: .default)
-                             .padding(.top) */
+                            /*SecureTextField(input: $repeatPassword, placeholder: "Repeat password", keyboardType: .default)
+                             .padding(.top)*/
                             /*----------Checkbox----------*/
                             HStack{
                                 Button(action: {tosCheckBox.toggle()}, label: {
@@ -98,9 +111,9 @@ struct RegisterAccountView: View {
                                 NavigationLink(destination: LoginView(), tag: 2, selection: $selection){ EmptyView() }
                                 NavigationLink(destination: VerifyAccountView(selection: $selection), tag: 1, selection: $selection){
                                     RegularButton(action: {
-                                        validationText = validateInputs(username: username,firstName: firstName,lastName: lastName,email: email, password: password, TOSCheckBox: tosCheckBox)
+                                        validationText = validateInputs(email: email, password: password, TOSCheckBox: tosCheckBox)
                                         
-                                        if(validationText.isEmpty){ accountAPI.registerAccount(username: username, password: password, email: email, firstName: firstName, surName: lastName){ validationErrors in
+                                        if(validationText.isEmpty){ accountAPI.registerAccount(email: email, password: password){ validationErrors in
                                             
                                             print("validation errors in registerView: \(validationErrors)")
                                             
@@ -118,8 +131,9 @@ struct RegisterAccountView: View {
                                         }
                                                 
                                         }
-                                    }, text: "Register", foregroundColor: Color.white, backgroundColor: Color.primaryGreen)
+                                    }, text: "Register", foregroundColor: Color.white, backgroundColor: validatePassword(password: password) != "" ? Color.primaryDarkGray : Color.primaryGreen)
                                 }.background(RoundedRectangle(cornerRadius: 5).fill(Color.primaryGreen))
+                                    .disabled(validatePassword(password: password) != "" && validateEmail(email: email) != "")
                                 
                                 
                                 Text("Spacer").hidden()
@@ -133,7 +147,13 @@ struct RegisterAccountView: View {
                                 NavigationLink(destination: ContentView(), tag: 3, selection: $selection) {
                                     Button(action: {
                                         self.loading = true
+
+                                        self.selection = 2
+                                        UserDefaults.standard.set(false, forKey: "isLoggedIn")
+                                        UserDefaults.standard.synchronize()
+
                                         self.selection = 3
+                                        
                                     }, label: {
                                         Text("Continue as Guest")
                                             .foregroundColor(Color.primaryGreen)
@@ -143,7 +163,7 @@ struct RegisterAccountView: View {
                             }
                             Spacer()
                         }.frame(width: UsefulValues.screenWidth * 0.8)
-                    }.frame(height: UsefulValues.screenHeight)
+                    }
                 }
                 .edgesIgnoringSafeArea(.top)
                 .navigationBarHidden(true)
@@ -158,6 +178,13 @@ struct RegisterAccountView: View {
             .autocapitalization(.none)
             .disableAutocorrection(true)
         }
+        .onAppear(perform: setLoggedInToFalse)
+        .navigationBarBackButtonHidden(true)
+    }
+    
+    func setLoggedInToFalse() {
+        UserDefaults.standard.set(false, forKey: "isLoggedIn")
+        UserDefaults.standard.synchronize()
     }
     
     func hideKeyboard() {
