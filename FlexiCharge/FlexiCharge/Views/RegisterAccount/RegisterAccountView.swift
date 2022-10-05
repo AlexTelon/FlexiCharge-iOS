@@ -21,6 +21,8 @@ struct RegisterAccountView: View {
     @State private var tosCheckBox: Bool = false
     @State private var validEmail: Bool = false
     @State private var validPassword: Bool = false
+    @State private var emailValidationText: String = ""
+    @State private var passwordValidationText: String = ""
     @State private var validationText: String = ""
     @State private var registerValidationText: String = ""
     @State var selection: Int? = nil
@@ -56,17 +58,31 @@ struct RegisterAccountView: View {
                             /*----------Email----------*/
                             RegularTextField(input: $email, placeholder: "Email", keyboardType: .emailAddress)
                                 .padding(.top)
-                                .foregroundColor(email == "" ? Color.black : validateEmail(email: email) == false ? Color.primaryRed : Color.primaryGreen)
-                                .onChange(of: password){ _password in
-                                    validPassword = validatePassword(password: _password)
+                                .foregroundColor(email == "" ? Color.black : validateEmail(email: email) != "" ? Color.primaryRed : Color.primaryGreen)
+                                .onChange(of: email){ _email in
+                                    emailValidationText = validateEmail(email: _email)
+                                    if(_email == ""){
+                                        emailValidationText = ""
+                                    }
                                 }
+                            Text("\(emailValidationText)")
+                                .foregroundColor(.red)
+                                .padding(.bottom)
+                                .fixedSize(horizontal: false, vertical: true)
                             /*----------Password----------*/
                             SecureTextField(input: $password, placeholder: "Password", keyboardType: .default)
                                 .padding(.top)
-                                .foregroundColor(password == "" ? Color.black : validatePassword(password: password) == false ? Color.primaryRed : Color.primaryGreen)
+                                .foregroundColor(password == "" ? Color.black : validatePassword(password: password) != "" ? Color.primaryRed : Color.primaryGreen)
                                 .onChange(of: password){ _password in
-                                    validPassword = validatePassword(password: _password)
+                                    passwordValidationText = validatePassword(password: _password)
+                                    if(_password == ""){
+                                        passwordValidationText = ""
+                                    }
                                 }
+                            Text("\(passwordValidationText)")
+                                .foregroundColor(.red)
+                                .padding(.bottom)
+                                .fixedSize(horizontal: false, vertical: true)
                             /*----------Repeat password----------*/
                             /*SecureTextField(input: $repeatPassword, placeholder: "Repeat password", keyboardType: .default)
                              .padding(.top)*/
@@ -115,9 +131,9 @@ struct RegisterAccountView: View {
                                         }
                                                 
                                         }
-                                    }, text: "Register", foregroundColor: Color.white, backgroundColor: validatePassword(password: password) == false ? Color.primaryDarkGray : Color.primaryGreen)
+                                    }, text: "Register", foregroundColor: Color.white, backgroundColor: validatePassword(password: password) != "" ? Color.primaryDarkGray : Color.primaryGreen)
                                 }.background(RoundedRectangle(cornerRadius: 5).fill(Color.primaryGreen))
-                                    .disabled(!validatePassword(password: password) && !validateEmail(email: email))
+                                    .disabled(validatePassword(password: password) != "" && validateEmail(email: email) != "")
                                 
                                 
                                 Text("Spacer").hidden()
