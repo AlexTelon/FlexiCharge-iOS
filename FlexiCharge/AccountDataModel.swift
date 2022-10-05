@@ -3,7 +3,7 @@
 //  FlexiCharge
 //
 //  Created by david Wennerblom on 2022-09-16.
-//
+        //
 
 import Foundation
 import Combine
@@ -19,7 +19,6 @@ class AccountDataModel: ObservableObject {
     var firstName: String
     var lastName: String
     var userId: String
-    @Published var isLoggedIn: Bool
     
     init(){
         accessToken = ""
@@ -28,7 +27,17 @@ class AccountDataModel: ObservableObject {
         firstName = ""
         lastName = ""
         userId = ""
-        isLoggedIn = false
+    }
+    
+    func saveLoggedState() {
+        let def = UserDefaults.standard
+        def.set(true, forKey: "isLoggedIn") // save true flag to UserDefaults
+        def.synchronize()
+     }
+    
+    func setLoggedInToFalse() {
+        UserDefaults.standard.set(false, forKey: "isLoggedIn")
+        UserDefaults.standard.synchronize()
     }
     
     

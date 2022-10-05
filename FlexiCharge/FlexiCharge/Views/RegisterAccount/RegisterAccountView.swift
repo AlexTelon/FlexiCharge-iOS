@@ -31,6 +31,7 @@ struct RegisterAccountView: View {
     
     
     @StateObject var accountAPI = AccountAPI()
+    @EnvironmentObject var accountModel: AccountDataModel
     
     var body: some View {
         NavigationView{
@@ -147,13 +148,8 @@ struct RegisterAccountView: View {
                                 NavigationLink(destination: ContentView(), tag: 3, selection: $selection) {
                                     Button(action: {
                                         self.loading = true
-
-                                        self.selection = 2
-                                        UserDefaults.standard.set(false, forKey: "isLoggedIn")
-                                        UserDefaults.standard.synchronize()
-
+                                        accountModel.setLoggedInToFalse()
                                         self.selection = 3
-                                        
                                     }, label: {
                                         Text("Continue as Guest")
                                             .foregroundColor(Color.primaryGreen)
@@ -178,13 +174,7 @@ struct RegisterAccountView: View {
             .autocapitalization(.none)
             .disableAutocorrection(true)
         }
-        .onAppear(perform: setLoggedInToFalse)
         .navigationBarBackButtonHidden(true)
-    }
-    
-    func setLoggedInToFalse() {
-        UserDefaults.standard.set(false, forKey: "isLoggedIn")
-        UserDefaults.standard.synchronize()
     }
     
     func hideKeyboard() {

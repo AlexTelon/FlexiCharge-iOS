@@ -78,8 +78,6 @@ struct LoginView: View {
                                         accountAPI.logInUser(email: emailInput, password: passwordInput,  accountDetails: accountModel){ loginStatus in
                                             if(loginStatus.isEmpty){
                                                 print("Du loggades in!! :))  \(loginStatus)")
-                                                print("AccessToken: \(accountModel.accessToken)")
-                                                print("ISLOGGEDIN: ",accountModel.isLoggedIn)
                                                 self.selection = 1
                                             }else{
                                                 self.loading = false

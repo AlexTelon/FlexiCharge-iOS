@@ -16,6 +16,7 @@ struct VerifyAccountView: View {
     let emailPlaceholder: String = "Username"
     let verificationCodePlaceholder: String = "Verification code"
     @StateObject var accountAPI = AccountAPI()
+    @EnvironmentObject var accountModel: AccountDataModel
     @State var validationText = ""
     @Binding var selection: Int?
     @State private var emailInput: String = ""
@@ -69,7 +70,7 @@ struct VerifyAccountView: View {
 
                                     if(validationText.isEmpty){
                                         self.loading = true
-                                        accountAPI.verifyAccount(email: emailInput, verificationCode: verificationCodeInput){ verifyStatus in
+                                        accountAPI.verifyAccount(email: emailInput, verificationCode: verificationCodeInput, accountDetails: accountModel){ verifyStatus in
                                             if(verifyStatus.isEmpty){
                                                 self.loading = false
                                                 print("Verification successful!")
