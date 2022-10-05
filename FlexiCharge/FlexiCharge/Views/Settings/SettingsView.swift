@@ -10,7 +10,7 @@ import SwiftUI
 struct SettingsView: View {
     @State private var selection: Int? = nil
     @StateObject var AccountApi = AccountAPI()
-    @StateObject var accountDetails = AccountDataModel()
+    @EnvironmentObject var accountModel: AccountDataModel
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     /*----------Header and custom back button----------*/
@@ -120,23 +120,18 @@ struct SettingsView: View {
                 }.frame(width: UsefulValues.screenWidth * 0.8)
                 Spacer()
                 /*----------Log out button----------*/
-                let isLoggedIn = UserDefaults.standard.bool(forKey: "isLoggedIn")
-                if isLoggedIn{
-                    NavigationLink(destination: RegisterAccountView(), tag: 1, selection: $selection) {
-                        RegularButton(action: {
-                            self.selection = 1
-                        }, text: "Log out", foregroundColor: Color.white, backgroundColor: Color.primaryRed)
-                        
-                    }
-                    .cornerRadius(5)
-                    Text("Spacing").hidden()
-                } else {
+                NavigationLink(destination: LoginView(), tag: 1, selection: $selection) {
                     RegularButton(action: {
-                        // do nothing
-                    }, text: "Not logged in", foregroundColor: Color.white, backgroundColor: Color.gray)
-                    .cornerRadius(5)
-                    Text("Spacing").hidden()
+                        accountModel.setLoggedInToFalse()
+                        self.selection = 1
+                    },
+                      text: UserDefaults.standard.bool(forKey: "isLoggedIn") ? "Log out" : "Not loged in",
+                      foregroundColor: Color.white,
+                      backgroundColor: UserDefaults.standard.bool(forKey: "isLoggedIn") ? Color.primaryRed : Color.primaryDarkGray)
                 }
+                .disabled(UserDefaults.standard.bool(forKey: "isLoggedIn") == false)
+                .cornerRadius(5)
+                Text("Spacing").hidden()
             }
         }
         .edgesIgnoringSafeArea(.top)

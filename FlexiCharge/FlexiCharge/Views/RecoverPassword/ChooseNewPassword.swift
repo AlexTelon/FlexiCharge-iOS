@@ -28,10 +28,25 @@ struct ChooseNewPassword: View {
                 Image("top-tilted-rectangle")
                     .resizable()
                     .scaledToFit()
-                Text("Choose New\nPassword")
-                    .multilineTextAlignment(.center)
-                    .foregroundColor(.white)
-                    .font(Font.system(size: 36, weight: .bold, design: .default))
+                HStack{
+                    Button(action: {
+                        self.presentationMode.wrappedValue.dismiss()
+                    }) {
+                        Image("menu-arrow").rotationEffect(.degrees(90))
+                            .aspectRatio(contentMode: .fit)
+                            .foregroundColor(.white)
+                            .frame(alignment: .topLeading)
+                    }
+                    Spacer()
+                    Text("Choose New\nPassword")
+                        .multilineTextAlignment(.center)
+                        .foregroundColor(.white)
+                        .font(Font.system(size: 36, weight: .bold, design: .default))
+                    Spacer()
+                    Image("menu-arrow")
+                        .hidden()
+                }.frame(width: UsefulValues.screenWidth * 0.95, alignment: .center)
+                .offset(y: -UsefulValues.screenHeight * 0.03)
             }
             VStack {
                 Group {
@@ -48,7 +63,7 @@ struct ChooseNewPassword: View {
                 Group{
                     SecureTextField(input: $password, placeholder: "New password", keyboardType: .default)
                         .foregroundColor(
-                                password == "" ? Color.black : validatePassword(password: password) == "" ? Color.black : Color.primaryRed
+                            password == "" ? Color.black : validatePassword(password: password) == "" ? Color.black : Color.primaryRed
                         )
                         .onChange(of: password) { newValue in
                             validationPasswordText = validatePassword(password: newValue)
@@ -59,7 +74,7 @@ struct ChooseNewPassword: View {
                     Spacer()
                     RegularTextField(input: $verificationCode, placeholder: "Verification code", keyboardType: .default)
                         .foregroundColor(
-                                verificationCode == "" ? Color.black : validateVerificationCode(verificationCode: verificationCode) == "" ? Color.black : Color.primaryRed
+                            verificationCode == "" ? Color.black : validateVerificationCode(verificationCode: verificationCode) == "" ? Color.black : Color.primaryRed
                         )
                         .onChange(of: verificationCode) { newValue in
                             validationVerificationCodeText = validateVerificationCode(verificationCode: verificationCode)
@@ -108,62 +123,5 @@ struct ChooseNewPassword: View {
         }
         .navigationBarHidden(true)
         .edgesIgnoringSafeArea(.top)
-    }
-    
-    func validatePassword(password: String)->String{
-        var errorMessages: String = ""
-        var validPassword: Bool = false
-        
-        let specialCharacters = CharacterSet.punctuationCharacters
-        let upperCaseCharacters = CharacterSet.uppercaseLetters
-        let lowerCaseCharacters = CharacterSet.lowercaseLetters
-        
-        let hasSpecialCharacter = password.description.rangeOfCharacter(from: specialCharacters)
-        let hasUppercaseCharacter = password.description.rangeOfCharacter(from: upperCaseCharacters)
-        let hasLowerCasecharacters = password.description.rangeOfCharacter(from: lowerCaseCharacters)
-        
-        
-        //Checks for special characters, uppercase characters and lowercase characters
-        validPassword = hasSpecialCharacter != nil ? true : false
-        if validPassword{
-            validPassword = hasUppercaseCharacter != nil ? true : false
-            if validPassword{
-                validPassword = hasLowerCasecharacters != nil ? true : false
-                if !validPassword{
-                    errorMessages = "Password must contain lowercase characters"
-                }
-            }else{
-                errorMessages = "Password must contain uppercase character"
-            }
-        }else{
-            errorMessages = "Password must contain atleast 1 special character"
-        }
-        
-        //Checks if password is atleast 8 characters
-        if password.count <= 8 /*|| repeavalidPasswordtedPassword.count < 7*/ {
-            errorMessages = "Password must be atleast 8 characters"
-        }
-        return errorMessages
-    }
-    
-    func validateVerificationCode(verificationCode: String)->String{
-        
-        var errorMessage = ""
-        
-        //Checks if code isNumber
-        var isNumber: Bool {
-            CharacterSet(charactersIn: verificationCode).isSubset(of: CharacterSet.decimalDigits)
-        }
-        
-        //Checks if password is atleast 8 characters
-            if verificationCode.count < 5 {
-                errorMessage = "Must be more than 5 characters"
-            }
-            else{
-                if !isNumber {
-                    errorMessage = "Must consist of digits"
-                }
-            }
-        return errorMessage
     }
 }

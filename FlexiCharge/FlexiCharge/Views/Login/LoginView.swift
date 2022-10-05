@@ -14,7 +14,7 @@ struct LoginView: View {
     @StateObject var accountAPI = AccountAPI()
     @EnvironmentObject var accountModel: AccountDataModel
     @State var validationText = ""
-    
+    @State var emailValidationText = ""
     @State private var emailInput: String = ""
     @State private var passwordInput: String = ""
     @State private var selection: Int? = nil
@@ -60,9 +60,18 @@ struct LoginView: View {
                         // Login "form"
                         VStack {
                             // Email input field
-                            RegularTextField(input: $emailInput, placeholder: "Username", keyboardType: .default)
+                            RegularTextField(input: $emailInput, placeholder: "Email", keyboardType: .default)
                                 .padding(.vertical)
-                            // Password input field
+                                .foregroundColor(emailInput == "" ? Color.black : validateEmail(email: emailInput) != "" ? Color.primaryRed : Color.primaryGreen)
+                                .onChange(of: emailInput){ _email in
+                                    emailValidationText = validateEmail(email: emailInput)
+                                    if(_email == ""){
+                                        emailValidationText = ""
+                                    }
+                                }
+                            Text("\(emailValidationText)")
+                                .foregroundColor(.red)
+                                .fixedSize(horizontal: false, vertical: true)
                             SecureTextField(input: $passwordInput, placeholder: "Password", keyboardType: .default)
                                 .padding(.vertical)
                             Spacer()
@@ -72,19 +81,16 @@ struct LoginView: View {
                                 .padding(.bottom)
                             NavigationLink(destination: ContentView(), tag: 1, selection: $selection) {
                                 RegularButton(action: {
-                                    validationText = validateInputs(password: passwordInput, username: emailInput)
-                                    if(validationText.isEmpty){
-                                        self.loading = true
-                                        accountAPI.logInUser(email: emailInput, password: passwordInput,  accountDetails: accountModel){ loginStatus in
-                                            if(loginStatus.isEmpty){
-                                                print("Du loggades in!! :))  \(loginStatus)")
-                                                print("AccessToken: \(accountModel.accessToken)")
-                                                print("ISLOGGEDIN: ",accountModel.isLoggedIn)
-                                                self.selection = 1
-                                            }else{
-                                                self.loading = false
-                                                validationText = loginStatus
-                                            }
+                                    self.loading = true
+                                    accountAPI.logInUser(email: emailInput, password: passwordInput,  accountDetails: accountModel){ loginStatus in
+                                        if(loginStatus.isEmpty){
+                                            print("Du loggades in!! :))  \(loginStatus)")
+                                            print("AccessToken: \(accountModel.accessToken)")
+                                            print("ISLOGGEDIN: ",accountModel.isLoggedIn)
+                                            self.selection = 1
+                                        }else{
+                                            self.loading = false
+                                            validationText = loginStatus
                                         }
                                     }
                                 }, text: "Log in", foregroundColor: Color.white, backgroundColor: Color.primaryGreen)
