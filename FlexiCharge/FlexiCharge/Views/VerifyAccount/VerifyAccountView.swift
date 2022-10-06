@@ -69,7 +69,7 @@ struct VerifyAccountView: View {
                                 .padding(.bottom)
                                 .fixedSize(horizontal: false, vertical: true)
                             //Verification code input field
-                            RegularTextField(input: $verificationCodeInput, placeholder: verificationCodePlaceholder, keyboardType: .default)
+                            RegularTextField(input: $verificationCodeInput, placeholder: verificationCodePlaceholder, keyboardType: .numberPad)
                                 .padding(.vertical)
                                 .foregroundColor(verificationCodeInput == "" ? Color.black : validateVerificationCode(verificationCode: verificationCodeInput) != "" ? Color.primaryRed : Color.black)
                                 .onChange(of: verificationCodeInput){ _verificationCode in

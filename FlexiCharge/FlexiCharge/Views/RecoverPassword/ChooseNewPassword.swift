@@ -72,7 +72,7 @@ struct ChooseNewPassword: View {
                         .foregroundColor(.red)
                         .padding(.bottom)
                     Spacer()
-                    RegularTextField(input: $verificationCode, placeholder: "Verification code", keyboardType: .default)
+                    RegularTextField(input: $verificationCode, placeholder: "Verification code", keyboardType: .numberPad)
                         .foregroundColor(
                             verificationCode == "" ? Color.black : validateVerificationCode(verificationCode: verificationCode) == "" ? Color.black : Color.primaryRed
                         )
