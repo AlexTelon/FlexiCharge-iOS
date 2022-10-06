@@ -87,7 +87,7 @@ struct ChooseNewPassword: View {
                 Text("\(validationText)")
                     .foregroundColor(.red)
                     .padding(.bottom)
-                NavigationLink(destination: LoginView(), tag: 2, selection: $selection){
+                NavigationLink(destination: RegisterAccountView(), tag: 2, selection: $selection){
                     RegularButton(action: {
                         accountAPI.confirmForgotPassword(email: email, password: password, verificationCode: verificationCode) { response in
                             if response == "200"{
