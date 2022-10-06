@@ -62,7 +62,7 @@ struct LoginView: View {
                             // Email input field
                             RegularTextField(input: $emailInput, placeholder: "Email", keyboardType: .emailAddress)
                                 .padding(.vertical)
-                                .foregroundColor(emailInput == "" ? Color.black : validateEmail(email: emailInput) != "" ? Color.primaryRed : Color.primaryGreen)
+                                .foregroundColor(emailInput == "" ? Color.black : validateEmail(email: emailInput) != "" ? Color.primaryRed : Color.black)
                                 .onChange(of: emailInput){ _email in
                                     emailValidationText = validateEmail(email: emailInput)
                                     if(_email == ""){
@@ -92,8 +92,9 @@ struct LoginView: View {
                                             validationText = loginStatus
                                         }
                                     }
-                                }, text: "Log in", foregroundColor: Color.white, backgroundColor: Color.primaryGreen)
+                                }, text: "Log in", foregroundColor: Color.white, backgroundColor: passwordNotEmpty(input: passwordInput) == "" && validateEmail(email: emailInput) == "" ? Color.primaryGreen : Color.primaryDarkGray)
                             }.background(RoundedRectangle(cornerRadius: 5).fill(Color.primaryGreen))
+                            .disabled(passwordNotEmpty(input: passwordInput) == "" && validateEmail(email: emailInput) != "")
                             Text("Spacer").hidden()
                             NavigationLink(destination: RecoverPasswordView(rootIsActive: $isActive), isActive: self.$isActive) {
                                 Text("I forgot my password")

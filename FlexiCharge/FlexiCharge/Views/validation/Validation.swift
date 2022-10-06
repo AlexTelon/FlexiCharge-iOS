@@ -80,6 +80,14 @@ func validateCheckBox(checkBox: Bool)->String{
     return errorMessage
 }
 
+func passwordNotEmpty(input: String)->String{
+    var errorMessage: String = ""
+    if input.isEmpty{
+        errorMessage = "Password cant be empty"
+    }
+    return errorMessage
+}
+
 func validateVerificationCode(verificationCode: String)->String{
     
     var errorMessage = ""

@@ -57,7 +57,7 @@ struct VerifyAccountView: View {
                             // Email input field
                             RegularTextField(input: $emailInput, placeholder: emailPlaceholder, keyboardType: .default)
                                 .padding(.vertical)
-                                .foregroundColor(emailInput == "" ? Color.black : validateEmail(email: emailInput) != "" ? Color.primaryRed : Color.primaryGreen)
+                                .foregroundColor(emailInput == "" ? Color.black : validateEmail(email: emailInput) != "" ? Color.primaryRed : Color.black)
                                 .onChange(of: emailInput){ _email in
                                     emailValidationText = validateEmail(email: emailInput)
                                     if(_email == ""){
@@ -71,7 +71,7 @@ struct VerifyAccountView: View {
                             //Verification code input field
                             RegularTextField(input: $verificationCodeInput, placeholder: verificationCodePlaceholder, keyboardType: .default)
                                 .padding(.vertical)
-                                .foregroundColor(verificationCodeInput == "" ? Color.black : validateVerificationCode(verificationCode: verificationCodeInput) != "" ? Color.primaryRed : Color.primaryGreen)
+                                .foregroundColor(verificationCodeInput == "" ? Color.black : validateVerificationCode(verificationCode: verificationCodeInput) != "" ? Color.primaryRed : Color.black)
                                 .onChange(of: verificationCodeInput){ _verificationCode in
                                     verificationCodeValidationText = validateVerificationCode(verificationCode: verificationCodeInput)
                                     if(_verificationCode == ""){
@@ -100,8 +100,8 @@ struct VerifyAccountView: View {
                                             validationText = verifyStatus
                                         }
                                     }
-                                }, text: "Verify account", foregroundColor: Color.white, backgroundColor: Color.primaryGreen)
-                                .disabled(validateVerificationCode(verificationCode: verificationCodeInput) != "")
+                                }, text: "Verify account", foregroundColor: Color.white, backgroundColor: validateVerificationCode(verificationCode: verificationCodeInput) == "" && validateEmail(email: emailInput) == "" ? Color.primaryGreen : Color.primaryDarkGray)
+                                .disabled(validateVerificationCode(verificationCode: verificationCodeInput) != "" && validateEmail(email: emailInput) != "")
                             Text("Spacer").hidden()
                             Spacer()
                         }

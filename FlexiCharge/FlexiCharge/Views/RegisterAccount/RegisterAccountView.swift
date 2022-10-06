@@ -59,7 +59,7 @@ struct RegisterAccountView: View {
                             /*----------Email----------*/
                             RegularTextField(input: $email, placeholder: "Email", keyboardType: .emailAddress)
                                 .padding(.top)
-                                .foregroundColor(email == "" ? Color.black : validateEmail(email: email) != "" ? Color.primaryRed : Color.primaryGreen)
+                                .foregroundColor(email == "" ? Color.black : validateEmail(email: email) != "" ? Color.primaryRed : Color.black)
                                 .onChange(of: email){ _email in
                                     emailValidationText = validateEmail(email: _email)
                                     if(_email == ""){
@@ -73,7 +73,7 @@ struct RegisterAccountView: View {
                             /*----------Password----------*/
                             SecureTextField(input: $password, placeholder: "Password", keyboardType: .default)
                                 .padding(.top)
-                                .foregroundColor(password == "" ? Color.black : validatePassword(password: password) != "" ? Color.primaryRed : Color.primaryGreen)
+                                .foregroundColor(password == "" ? Color.black : validatePassword(password: password) != "" ? Color.primaryRed : Color.black)
                                 .onChange(of: password){ _password in
                                     passwordValidationText = validatePassword(password: _password)
                                     if(_password == ""){
