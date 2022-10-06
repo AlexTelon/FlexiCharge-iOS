@@ -120,7 +120,7 @@ struct SettingsView: View {
                 }.frame(width: UsefulValues.screenWidth * 0.8)
                 Spacer()
                 /*----------Log out button----------*/
-                NavigationLink(destination: LoginView(), tag: 1, selection: $selection) {
+                NavigationLink(destination: RegisterAccountView(), tag: 1, selection: $selection) {
                     RegularButton(action: {
                         accountModel.setLoggedInToFalse()
                         self.selection = 1
