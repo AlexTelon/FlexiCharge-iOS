@@ -30,14 +30,17 @@ class AccountDataModel: ObservableObject {
     }
     
     func saveLoggedState() {
-        let def = UserDefaults.standard
-        def.set(true, forKey: "isLoggedIn") // save true flag to UserDefaults
-        def.synchronize()
+        UserDefaults.standard.set(true, forKey: "isLoggedIn") // save true flag to UserDefaults
+        UserDefaults.standard.synchronize()
      }
     
     func setLoggedInToFalse() {
         UserDefaults.standard.set(false, forKey: "isLoggedIn")
         UserDefaults.standard.synchronize()
+    }
+    
+    func getLoggedInStatus() -> Bool {
+        return UserDefaults.standard.bool(forKey: "isLoggedIn")
     }
     
     

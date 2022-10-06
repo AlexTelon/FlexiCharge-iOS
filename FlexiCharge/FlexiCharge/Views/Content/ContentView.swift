@@ -26,6 +26,7 @@ struct ContentView: View {
     @State var centerUser: Bool = false
     @State var transactionID: Int = 0
     @StateObject var ChargerApi = ChargerAPI()
+    @EnvironmentObject var accountModel: AccountDataModel
     
     @State private var isShowingScanner: Bool = false
     @State private var alertTitle: String = ""
@@ -102,16 +103,32 @@ struct ContentView: View {
                             }
                             .disabled(isChargingInProgress)
                             ZStack {
-                                NavigationLink(destination: SettingsView()) {
-                                    ZStack {
-                                        Circle()
-                                            .fill(Color.menuButtonGray)
-                                            .frame(width: UsefulValues.screenWidth * 0.15, height: UsefulValues.screenWidth * 0.15)
-                                        Image("person")
-                                            .resizable()
-                                            .frame(width: UsefulValues.screenWidth * 0.07, height: UsefulValues.screenWidth * 0.07, alignment: .center)
+                                let loggedIn = accountModel.getLoggedInStatus()
+                                if loggedIn {
+                                    NavigationLink(destination: SettingsView()) {
+                                        ZStack {
+                                            Circle()
+                                                .fill(Color.menuButtonGray)
+                                                .frame(width: UsefulValues.screenWidth * 0.15, height: UsefulValues.screenWidth * 0.15)
+                                            Image("person")
+                                                .resizable()
+                                                .frame(width: UsefulValues.screenWidth * 0.07, height: UsefulValues.screenWidth * 0.07, alignment: .center)
+                                        }
                                     }
                                 }
+                                else {
+                                    NavigationLink(destination: RegisterAccountView()) {
+                                        ZStack {
+                                            Circle()
+                                                .fill(Color.menuButtonGray)
+                                                .frame(width: UsefulValues.screenWidth * 0.15, height: UsefulValues.screenWidth * 0.15)
+                                            Image("person")
+                                                .resizable()
+                                                .frame(width: UsefulValues.screenWidth * 0.07, height: UsefulValues.screenWidth * 0.07, alignment: .center)
+                                        }
+                                    }
+                                }
+                                
                             }.offset(x: UsefulValues.screenWidth * 0.15)
                         }.padding(.bottom, UsefulValues.screenHeight * 0.05)
                         .padding(.horizontal, UsefulValues.screenWidth * 0.1)
