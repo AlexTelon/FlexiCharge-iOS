@@ -55,7 +55,7 @@ struct VerifyAccountView: View {
                         }
                         VStack {
                             // Email input field
-                            RegularTextField(input: $emailInput, placeholder: emailPlaceholder, keyboardType: .default)
+                            RegularTextField(input: $emailInput, placeholder: emailPlaceholder, keyboardType: .emailAddress)
                                 .padding(.vertical)
                                 .foregroundColor(emailInput == "" ? Color.black : validateEmail(email: emailInput) != "" ? Color.primaryRed : Color.black)
                                 .onChange(of: emailInput){ _email in
