@@ -123,5 +123,8 @@ struct ChooseNewPassword: View {
         }
         .navigationBarHidden(true)
         .edgesIgnoringSafeArea(.top)
+        .onTapGesture {
+            hideKeyboard()
+        }
     }
 }

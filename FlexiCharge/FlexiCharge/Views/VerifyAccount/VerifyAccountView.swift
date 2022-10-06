@@ -113,6 +113,9 @@ struct VerifyAccountView: View {
                 .disableAutocorrection(true)
                 .autocapitalization(.none)
                 .navigationBarHidden(true)
+                .onTapGesture {
+                    hideKeyboard()
+                }
                 withAnimation(.easeInOut) {
                     BasicLoadingScreen(imageName: "flexi-charge-logo-color")
                         .opacity(loading ? 1 : 0)
