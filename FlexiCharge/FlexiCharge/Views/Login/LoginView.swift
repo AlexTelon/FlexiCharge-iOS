@@ -60,7 +60,7 @@ struct LoginView: View {
                         // Login "form"
                         VStack {
                             // Email input field
-                            RegularTextField(input: $emailInput, placeholder: "Email", keyboardType: .default)
+                            RegularTextField(input: $emailInput, placeholder: "Email", keyboardType: .emailAddress)
                                 .padding(.vertical)
                                 .foregroundColor(emailInput == "" ? Color.black : validateEmail(email: emailInput) != "" ? Color.primaryRed : Color.primaryGreen)
                                 .onChange(of: emailInput){ _email in
@@ -86,7 +86,6 @@ struct LoginView: View {
                                         if(loginStatus.isEmpty){
                                             print("Du loggades in!! :))  \(loginStatus)")
                                             print("AccessToken: \(accountModel.accessToken)")
-                                            print("ISLOGGEDIN: ",accountModel.isLoggedIn)
                                             self.selection = 1
                                         }else{
                                             self.loading = false

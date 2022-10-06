@@ -90,7 +90,7 @@ struct VerifyAccountView: View {
                                 .fixedSize(horizontal: false, vertical: true)
                                 RegularButton(action: {
                                     self.loading = true
-                                    accountAPI.verifyAccount(email: emailInput, verificationCode: verificationCodeInput){ verifyStatus in
+                                    accountAPI.verifyAccount(email: emailInput, verificationCode: verificationCodeInput, accountDetails: accountModel){ verifyStatus in
                                         if(verifyStatus.isEmpty){
                                             self.loading = false
                                             print("Verification successful!")
