@@ -93,6 +93,7 @@ struct ContentView: View {
                                 let maxHeight = UsefulValues.screenHeight / 2.5
                                 offset = -maxHeight
                                 lastOffset = offset
+                                print("flexi logo clicked")
                             }){
                                 ZStack {
                                     Circle()

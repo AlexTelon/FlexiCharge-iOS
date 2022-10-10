@@ -66,6 +66,7 @@ struct ChargerHubView: View {
             Text("").hidden()
             HStack {
                 Button(action: {
+                    chargerIdInput = ""
                     self.presentationMode.wrappedValue.dismiss()
                 }) {
                     Image("menu-arrow").rotationEffect(.degrees(90))
@@ -194,6 +195,7 @@ struct ChargerHubView: View {
             Spacer()
         }
         .onChange(of: isShowingListOfChargers, perform: { _ in
+            chargerIdInput = ""
             self.presentationMode.wrappedValue.dismiss()
         })
         .background(Color.primaryDarkGray)
