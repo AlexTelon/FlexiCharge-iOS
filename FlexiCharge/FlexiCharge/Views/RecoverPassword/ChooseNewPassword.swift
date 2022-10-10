@@ -61,17 +61,6 @@ struct ChooseNewPassword: View {
                 }
                 Spacer()
                 Group{
-                    SecureTextField(input: $password, placeholder: "New password", keyboardType: .default)
-                        .foregroundColor(
-                            password == "" ? Color.black : validatePassword(password: password) == "" ? Color.black : Color.primaryRed
-                        )
-                        .onChange(of: password) { newValue in
-                            validationPasswordText = validatePassword(password: newValue)
-                        }
-                    Text("\(validationPasswordText)")
-                        .foregroundColor(.red)
-                        .padding(.bottom)
-                    Spacer()
                     RegularTextField(input: $verificationCode, placeholder: "Verification code", keyboardType: .numberPad)
                         .foregroundColor(
                             verificationCode == "" ? Color.black : validateVerificationCode(verificationCode: verificationCode) == "" ? Color.black : Color.primaryRed
@@ -80,6 +69,17 @@ struct ChooseNewPassword: View {
                             validationVerificationCodeText = validateVerificationCode(verificationCode: verificationCode)
                         }
                     Text("\(validationVerificationCodeText)")
+                        .foregroundColor(.red)
+                        .padding(.bottom)
+                    Spacer()
+                    SecureTextField(input: $password, placeholder: "New password", keyboardType: .default)
+                        .foregroundColor(
+                            password == "" ? Color.black : validatePassword(password: password) == "" ? Color.black : Color.primaryRed
+                        )
+                        .onChange(of: password) { newValue in
+                            validationPasswordText = validatePassword(password: newValue)
+                        }
+                    Text("\(validationPasswordText)")
                         .foregroundColor(.red)
                         .padding(.bottom)
                 }
