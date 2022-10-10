@@ -173,7 +173,7 @@ struct ChargerHubView: View {
                 }
                 ZStack {
                     RoundedRectangle(cornerRadius: 5)
-                        .fill(Color.white)
+                        .fill(Color.gray)
                     VStack {
                         Text("Invoice")
                             .font(.system(size: 18))
@@ -187,6 +187,7 @@ struct ChargerHubView: View {
                 .onTapGesture {
                     self.selectedPayment = PaymentOptions.INVOICE
                 }
+                .disabled(true)
             }
             .frame(maxWidth: UsefulValues.screenWidth * 0.82)
             .foregroundColor(.black)
