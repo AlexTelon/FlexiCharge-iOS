@@ -39,7 +39,7 @@ class AccountAPI : ObservableObject {
     
     //completion: @escaping (String)->Void)
     
-    func registerAccount(email: String, password: String,completionHandler: @escaping (String)->Void) {
+    func registerAccount(email: String, password: String, completionHandler: @escaping (String)->Void) {
         
         var errorMessage:String = ""
         
