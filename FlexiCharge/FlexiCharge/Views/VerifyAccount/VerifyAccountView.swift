@@ -92,9 +92,10 @@ struct VerifyAccountView: View {
                                     self.loading = true
                                     accountAPI.verifyAccount(email: emailInput, verificationCode: verificationCodeInput, accountDetails: accountModel){ verifyStatus in
                                         if(verifyStatus.isEmpty){
+                                            accountModel.setLoggedInToFalse()
                                             self.loading = false
                                             print("Verification successful!")
-                                            self.selection = 2
+                                            self.selection = 4
                                         } else{
                                             self.loading = false
                                             validationText = verifyStatus

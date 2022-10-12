@@ -111,6 +111,7 @@ struct RegisterAccountView: View {
                                     .fixedSize(horizontal: false, vertical: true)
                                 NavigationLink(destination: SetupInvoicingView(selection: $selection), tag: 2, selection: $selection){ EmptyView() }
                                 NavigationLink(destination: ContentView(), tag: 3, selection: $selection){ EmptyView() }
+                                NavigationLink(destination: LoginView(), tag: 4, selection: $selection){ EmptyView() }
                                 NavigationLink(destination: VerifyAccountView(selection: $selection), tag: 1, selection: $selection){
                                     RegularButton(action: {
                                         

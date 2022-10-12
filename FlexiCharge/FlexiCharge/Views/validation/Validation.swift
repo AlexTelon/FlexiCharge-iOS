@@ -99,7 +99,7 @@ func validateVerificationCode(verificationCode: String)->String{
     
     //Checks if password is atleast 8 characters
         if verificationCode.count < 6 {
-            errorMessage = "Must be more than 6 characters"
+            errorMessage = "Must be 6 characters"
         }
         else{
             if !isNumber {

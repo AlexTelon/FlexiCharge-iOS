@@ -66,6 +66,7 @@ struct ChargerHubView: View {
             Text("").hidden()
             HStack {
                 Button(action: {
+                    chargerIdInput = ""
                     self.presentationMode.wrappedValue.dismiss()
                 }) {
                     Image("menu-arrow").rotationEffect(.degrees(90))
@@ -173,7 +174,7 @@ struct ChargerHubView: View {
                 }
                 ZStack {
                     RoundedRectangle(cornerRadius: 5)
-                        .fill(Color.white)
+                        .fill(Color.gray)
                     VStack {
                         Text("Invoice")
                             .font(.system(size: 18))
@@ -187,12 +188,14 @@ struct ChargerHubView: View {
                 .onTapGesture {
                     self.selectedPayment = PaymentOptions.INVOICE
                 }
+                .disabled(true)
             }
             .frame(maxWidth: UsefulValues.screenWidth * 0.82)
             .foregroundColor(.black)
             Spacer()
         }
         .onChange(of: isShowingListOfChargers, perform: { _ in
+            chargerIdInput = ""
             self.presentationMode.wrappedValue.dismiss()
         })
         .background(Color.primaryDarkGray)
