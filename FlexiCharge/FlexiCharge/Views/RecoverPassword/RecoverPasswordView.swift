@@ -9,14 +9,16 @@ import SwiftUI
 
 struct RecoverPasswordView: View {
     @Binding var rootIsActive: Bool
-
+    
     let inputHeight: CGFloat = 48
     let inputCornerRadius: CGFloat = 5
     let emailPlaceholder: String = "Email"
     @State private var emailInput: String = ""
     @State private var selection: Int? = nil
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-
+    @StateObject var accountAPI = AccountAPI()
+    @State var validationText = ""
+    
     
     var body: some View {
         VStack {
@@ -37,7 +39,7 @@ struct RecoverPasswordView: View {
                     Spacer()
                     Text("Recover\nPassword")
                         .foregroundColor(.white)
-                        .font(Font.system(size: 44, weight: .bold, design: .default))
+                        .font(Font.system(size: 36, weight: .bold, design: .default))
                         .scaledToFill()
                         .minimumScaleFactor(0.5)
                         .lineLimit(2)
@@ -46,9 +48,15 @@ struct RecoverPasswordView: View {
                     Image("menu-arrow")
                         .hidden()
                 }.frame(width: UsefulValues.screenWidth * 0.95, alignment: .center)
-                .offset(y: -UsefulValues.screenHeight * 0.03)
+                    .offset(y: -UsefulValues.screenHeight * 0.03)
             }
             RegularTextField(input: $emailInput, placeholder: "Email", keyboardType: .emailAddress)
+                .foregroundColor(
+                    emailInput == "" ? Color.black :
+                        validateEmail(email: emailInput) == "" ? Color.black : Color.primaryRed)
+                .onChange(of: emailInput) { newValue in
+                    validationText = validateEmail(email: newValue)
+                }
             Text("Please provide the email address you used to register.\nWe will send you an email\nwith a link to reset your password")
                 .multilineTextAlignment(.center)
                 .font(.subheadline)
@@ -56,29 +64,43 @@ struct RecoverPasswordView: View {
                 .padding(.horizontal, 2)
                 .frame(width: UsefulValues.screenWidth * 0.8)
             Spacer()
-            Spacer()
-            NavigationLink(destination: EmailSentView(email: $emailInput, shouldPopToRootView: $rootIsActive), tag: 1, selection: $selection) {
+            Text("\(validationText)")
+                .foregroundColor(.red)
+                .padding(.bottom)
+            NavigationLink(destination: ChooseNewPassword(email: $emailInput, shouldPopToRootView: $rootIsActive), tag: 1, selection: $selection) {
                 // TODO: send email to recover  password
                 RegularButton(action: {
-                    self.selection = 1
-                }, text: "Send", foregroundColor: Color.white, backgroundColor: Color.primaryGreen)
-            }.background(RoundedRectangle(cornerRadius: 5).fill(Color.primaryGreen))
+                    accountAPI.forgotPassword(email: emailInput) { response in
+                        if response == "200"{
+                            self.selection = 1
+                        }
+                        else{
+                            validationText = response
+                            print("Misslyckades")
+                        }
+                    }
+                }, text: "Send", foregroundColor: Color.white, backgroundColor: validateEmail(email: emailInput) == "" ? Color.primaryGreen : Color.primaryDarkGray)
+            }
+            .background(RoundedRectangle(cornerRadius: 5))
+            .disabled(validateEmail(email: emailInput) != "")
             .padding()
             Spacer()
         }.edgesIgnoringSafeArea(.top)
-        .autocapitalization(.none)
-        .disableAutocorrection(true)
-        .navigationBarBackButtonHidden(true)
-        .navigationBarHidden(true)
-        .onTapGesture {
-            hideKeyboard()
-        }
+            .autocapitalization(.none)
+            .disableAutocorrection(true)
+            .navigationBarBackButtonHidden(true)
+            .navigationBarHidden(true)
+            .onTapGesture {
+                hideKeyboard()
+            }
     }
     
     func hideKeyboard() {
         UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
     }
 }
+
+
 
 struct RecoverPasswordView_Previews: PreviewProvider {
     @Binding var rootIsActive: Bool

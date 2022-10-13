@@ -9,16 +9,19 @@ import Foundation
 import Combine
 import SwiftUI
 
-class ChargerAPI {
+class ChargerAPI: ObservableObject {
     var chargerStatus: String = ""
     
+    @Published var chargers = [Charger]()
+    @Published var chargePoints = [ChargerHub]()
+    @Published var chargePointsExt = [ChargerHubExt]()
     
     init() {
         
     }
     
     func beginCharging(chargerID: Int, completion: @escaping (String) -> Void) -> Void {
-        guard let url = URL(string: "http://54.220.194.65:8080/reservations/" + String(chargerID)) else { return }
+        guard let url = URL(string: "\(UsefulValues.apiBaseUrl)/reservations/" + String(chargerID)) else { return }
         
         var request = URLRequest(url: url)
         request.httpMethod = "PUT"
@@ -57,7 +60,7 @@ class ChargerAPI {
     }
     
     func stopCharging(chargerID: Int) {
-        guard let url = URL(string: "http://54.220.194.65:8080/chargers/" + String(chargerID)) else { return }
+        guard let url = URL(string: "\(UsefulValues.apiBaseUrl)/chargers/" + String(chargerID)) else { return }
         
         var request = URLRequest(url: url)
         request.httpMethod = "PUT"
@@ -88,4 +91,55 @@ class ChargerAPI {
             }
         }.resume()
     }
+    
+    func loadChargePoints(completionHandler: @escaping() -> Void) {
+        //Fetches all chargePoints
+        guard let url = URL(string: "\(UsefulValues.apiBaseUrl)/chargePoints") else { return }
+        URLSession.shared.dataTask(with: url) { (data, _, _) in
+            guard let data = data else { return }
+            let decodedData = try! JSONDecoder().decode([ChargerHub].self, from: data)
+
+            DispatchQueue.main.async {
+                self.chargePoints = decodedData
+                print("loadChargePoints")
+                self.loadChargers{
+                    completionHandler()
+                }
+            }
+        }.resume()
+    }
+
+    func loadChargers(completionHandler: @escaping() -> Void) {
+        // Fetches all chargers
+        guard let url = URL(string: "\(UsefulValues.apiBaseUrl)/chargers") else { return }
+        URLSession.shared.dataTask(with: url) { (data, _, _) in
+            guard let data = data else { return }
+            let decodedData = try! JSONDecoder().decode([Charger].self, from: data)
+
+            DispatchQueue.main.async {
+                self.chargers = decodedData
+                print("loadChargers")
+                completionHandler()
+            }
+        }.resume()
+    }
+
+    func updateChargers() {
+        // Fetches chargers to update the map if a change has occured
+        guard let url = URL(string: "\(UsefulValues.apiBaseUrl)/chargers") else { return }
+        DispatchQueue.global(qos: .background).async {
+            URLSession.shared.dataTask(with: url) { (data, _, _) in
+                guard let data = data else { return }
+                let decodedData = try! JSONDecoder().decode([Charger].self, from: data)
+
+                DispatchQueue.main.async {
+                    if self.chargers != decodedData {
+                        self.chargers = decodedData
+                    }
+                    self.updateChargers()
+                }
+            }.resume()
+        }
+    }
 }
+

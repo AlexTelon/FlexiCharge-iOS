@@ -7,17 +7,24 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6380083828D1F5BE00184E3F /* NameAndAdressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6380083728D1F5BE00184E3F /* NameAndAdressView.swift */; };
+		6380083A28D1F5F200184E3F /* AccountSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6380083928D1F5F200184E3F /* AccountSettingsView.swift */; };
+		6390B6B928E46DCB00E75BDB /* SetupInvoicingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6390B6B828E46DCB00E75BDB /* SetupInvoicingView.swift */; };
+		6390B6BC28E46DF200E75BDB /* SetupInvoicingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6390B6BB28E46DF200E75BDB /* SetupInvoicingViewModel.swift */; };
+		63D0ABBF28D0BB5F00897868 /* AccountAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D0ABBE28D0BB5F00897868 /* AccountAPI.swift */; };
 		651A7A5B26EF490000A8A16D /* RegisterAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651A7A5A26EF490000A8A16D /* RegisterAccountView.swift */; };
-		651A7A5D26EF4A0300A8A16D /* RegisterAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651A7A5C26EF4A0300A8A16D /* RegisterAccountViewModel.swift */; };
 		651A7A6026F879F000A8A16D /* SetUpInvoiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651A7A5F26F879F000A8A16D /* SetUpInvoiceView.swift */; };
 		6592EDF92701BC6900AFB3A1 /* InvoicesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6592EDF82701BC6900AFB3A1 /* InvoicesView.swift */; };
 		6592EDFB2701BCB200AFB3A1 /* InvoicesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6592EDFA2701BCB200AFB3A1 /* InvoicesViewModel.swift */; };
 		65F14A3926F8872A00C9B443 /* SetupUpInvoiceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F14A3826F8872A00C9B443 /* SetupUpInvoiceViewModel.swift */; };
+		68762AA128E478D8007BCA90 /* ChooseNewPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68762AA028E478D8007BCA90 /* ChooseNewPassword.swift */; };
+		C00631B228D9B1FB007D3A9F /* VerifyAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00631B128D9B1FB007D3A9F /* VerifyAccountView.swift */; };
+		C00771D228ED852500FC791C /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00771D128ED852500FC791C /* Validation.swift */; };
+		C0624DD028D462A2007F68D8 /* AccountDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0624DCF28D462A2007F68D8 /* AccountDataModel.swift */; };
 		D312323A2715C95D00BBD1EF /* BasicLoadingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31232392715C95D00BBD1EF /* BasicLoadingScreen.swift */; };
 		D327CD6426E64D0D007FC380 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D327CD6326E64D0D007FC380 /* MapView.swift */; };
 		D327CD6626E65F33007FC380 /* IdentifyChargerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D327CD6526E65F32007FC380 /* IdentifyChargerView.swift */; };
 		D334B13526EF9ABE000D31E9 /* RecoverPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D334B13426EF9ABE000D31E9 /* RecoverPasswordView.swift */; };
-		D334B13726EFBBAA000D31E9 /* EmailSentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D334B13626EFBBAA000D31E9 /* EmailSentView.swift */; };
 		D34A1AC126F52E89001EB5D2 /* ChargerRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34A1AC026F52E89001EB5D2 /* ChargerRowView.swift */; };
 		D34A1AC326F53D0E001EB5D2 /* ChargerHub.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34A1AC226F53D0E001EB5D2 /* ChargerHub.swift */; };
 		D34A1AC526F54304001EB5D2 /* ChargerList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34A1AC426F54304001EB5D2 /* ChargerList.swift */; };
@@ -66,17 +73,24 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6380083728D1F5BE00184E3F /* NameAndAdressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameAndAdressView.swift; sourceTree = "<group>"; };
+		6380083928D1F5F200184E3F /* AccountSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSettingsView.swift; sourceTree = "<group>"; };
+		6390B6B828E46DCB00E75BDB /* SetupInvoicingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupInvoicingView.swift; sourceTree = "<group>"; };
+		6390B6BB28E46DF200E75BDB /* SetupInvoicingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupInvoicingViewModel.swift; sourceTree = "<group>"; };
+		63D0ABBE28D0BB5F00897868 /* AccountAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountAPI.swift; sourceTree = SOURCE_ROOT; };
 		651A7A5A26EF490000A8A16D /* RegisterAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterAccountView.swift; sourceTree = "<group>"; };
-		651A7A5C26EF4A0300A8A16D /* RegisterAccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterAccountViewModel.swift; sourceTree = "<group>"; };
 		651A7A5F26F879F000A8A16D /* SetUpInvoiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUpInvoiceView.swift; sourceTree = "<group>"; };
 		6592EDF82701BC6900AFB3A1 /* InvoicesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvoicesView.swift; sourceTree = "<group>"; };
 		6592EDFA2701BCB200AFB3A1 /* InvoicesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvoicesViewModel.swift; sourceTree = "<group>"; };
 		65F14A3826F8872A00C9B443 /* SetupUpInvoiceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupUpInvoiceViewModel.swift; sourceTree = "<group>"; };
+		68762AA028E478D8007BCA90 /* ChooseNewPassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseNewPassword.swift; sourceTree = "<group>"; };
+		C00631B128D9B1FB007D3A9F /* VerifyAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyAccountView.swift; sourceTree = "<group>"; };
+		C00771D128ED852500FC791C /* Validation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validation.swift; sourceTree = "<group>"; };
+		C0624DCF28D462A2007F68D8 /* AccountDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDataModel.swift; sourceTree = SOURCE_ROOT; };
 		D31232392715C95D00BBD1EF /* BasicLoadingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicLoadingScreen.swift; sourceTree = "<group>"; };
 		D327CD6326E64D0D007FC380 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		D327CD6526E65F32007FC380 /* IdentifyChargerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifyChargerView.swift; sourceTree = "<group>"; };
 		D334B13426EF9ABE000D31E9 /* RecoverPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoverPasswordView.swift; sourceTree = "<group>"; };
-		D334B13626EFBBAA000D31E9 /* EmailSentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailSentView.swift; sourceTree = "<group>"; };
 		D34A1AC026F52E89001EB5D2 /* ChargerRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChargerRowView.swift; sourceTree = "<group>"; };
 		D34A1AC226F53D0E001EB5D2 /* ChargerHub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChargerHub.swift; sourceTree = "<group>"; };
 		D34A1AC426F54304001EB5D2 /* ChargerList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChargerList.swift; sourceTree = "<group>"; };
@@ -138,11 +152,35 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6380083528D1F0C700184E3F /* AccountSettings  */ = {
+			isa = PBXGroup;
+			children = (
+				6380083928D1F5F200184E3F /* AccountSettingsView.swift */,
+			);
+			path = "AccountSettings ";
+			sourceTree = "<group>";
+		};
+		6380083628D1F3C600184E3F /* NameAndAdress */ = {
+			isa = PBXGroup;
+			children = (
+				6380083728D1F5BE00184E3F /* NameAndAdressView.swift */,
+			);
+			path = NameAndAdress;
+			sourceTree = "<group>";
+		};
+		6390B6B728E46D6000E75BDB /* SetupInvoicing */ = {
+			isa = PBXGroup;
+			children = (
+				6390B6B828E46DCB00E75BDB /* SetupInvoicingView.swift */,
+				6390B6BB28E46DF200E75BDB /* SetupInvoicingViewModel.swift */,
+			);
+			name = SetupInvoicing;
+			sourceTree = "<group>";
+		};
 		651A7A5926EF48C900A8A16D /* RegisterAccount */ = {
 			isa = PBXGroup;
 			children = (
 				651A7A5A26EF490000A8A16D /* RegisterAccountView.swift */,
-				651A7A5C26EF4A0300A8A16D /* RegisterAccountViewModel.swift */,
 			);
 			path = RegisterAccount;
 			sourceTree = "<group>";
@@ -165,10 +203,28 @@
 			path = Invoices;
 			sourceTree = "<group>";
 		};
+		C00631B028D9B1D4007D3A9F /* VerifyAccount */ = {
+			isa = PBXGroup;
+			children = (
+				C00631B128D9B1FB007D3A9F /* VerifyAccountView.swift */,
+			);
+			path = VerifyAccount;
+			sourceTree = "<group>";
+		};
+		C00771D028ED850800FC791C /* validation */ = {
+			isa = PBXGroup;
+			children = (
+				C00771D128ED852500FC791C /* Validation.swift */,
+			);
+			path = validation;
+			sourceTree = "<group>";
+		};
 		D311946726E9112E004DCFC8 /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				D3A1D66926FB3B0900B71BCA /* ChargerAPI.swift */,
+				63D0ABBE28D0BB5F00897868 /* AccountAPI.swift */,
+				C0624DCF28D462A2007F68D8 /* AccountDataModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -177,7 +233,7 @@
 			isa = PBXGroup;
 			children = (
 				D334B13426EF9ABE000D31E9 /* RecoverPasswordView.swift */,
-				D334B13626EFBBAA000D31E9 /* EmailSentView.swift */,
+				68762AA028E478D8007BCA90 /* ChooseNewPassword.swift */,
 			);
 			path = RecoverPassword;
 			sourceTree = "<group>";
@@ -321,10 +377,13 @@
 		D3D6D18C26E6403400B77B16 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				C00771D028ED850800FC791C /* validation */,
+				D3A2033C26F4845C007B0D90 /* Login */,
+				6390B6B728E46D6000E75BDB /* SetupInvoicing */,
+				C00631B028D9B1D4007D3A9F /* VerifyAccount */,
 				FD585628270DA8BB0003F109 /* KlarnaPayments */,
 				D388D13D270C5A5C005C1927 /* CommonUsage */,
 				FD9BB76A26F8BC1C00CBE7E5 /* ChargingInProgress */,
-				D3A2033C26F4845C007B0D90 /* Login */,
 				651A7A5926EF48C900A8A16D /* RegisterAccount */,
 				D3A2033626F2400C007B0D90 /* QR */,
 				FDDFFF4426EF7C37004B8EE9 /* Settings */,
@@ -356,6 +415,8 @@
 		FDDFFF4426EF7C37004B8EE9 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				6380083628D1F3C600184E3F /* NameAndAdress */,
+				6380083528D1F0C700184E3F /* AccountSettings  */,
 				6592EDF62701BBF900AFB3A1 /* Invoices */,
 				651A7A5E26F879CC00A8A16D /* SetupInvoice */,
 				FDDFFF4526EF7C7F004B8EE9 /* SettingsView.swift */,
@@ -502,6 +563,7 @@
 			files = (
 				D3D6D15B26E6286700B77B16 /* Persistence.swift in Sources */,
 				D3666B2C26FF313100AAA876 /* ChargerHubView.swift in Sources */,
+				6380083828D1F5BE00184E3F /* NameAndAdressView.swift in Sources */,
 				D388D144270C777C005C1927 /* UsefulValues.swift in Sources */,
 				FDDFFF4626EF7C7F004B8EE9 /* SettingsView.swift in Sources */,
 				D34A1AC126F52E89001EB5D2 /* ChargerRowView.swift in Sources */,
@@ -511,11 +573,12 @@
 				D34A1AC526F54304001EB5D2 /* ChargerList.swift in Sources */,
 				6592EDFB2701BCB200AFB3A1 /* InvoicesViewModel.swift in Sources */,
 				651A7A5B26EF490000A8A16D /* RegisterAccountView.swift in Sources */,
-				651A7A5D26EF4A0300A8A16D /* RegisterAccountViewModel.swift in Sources */,
 				D3A1D66A26FB3B0900B71BCA /* ChargerAPI.swift in Sources */,
 				D334B13526EF9ABE000D31E9 /* RecoverPasswordView.swift in Sources */,
 				D34A1AC326F53D0E001EB5D2 /* ChargerHub.swift in Sources */,
+				C00631B228D9B1FB007D3A9F /* VerifyAccountView.swift in Sources */,
 				D312323A2715C95D00BBD1EF /* BasicLoadingScreen.swift in Sources */,
+				C0624DD028D462A2007F68D8 /* AccountDataModel.swift in Sources */,
 				D3A2033826F24025007B0D90 /* QROverlayView.swift in Sources */,
 				D35844E826FB6AB1004F5790 /* LocationManager.swift in Sources */,
 				FD8B4F1526EA11D400B0FDB5 /* IdentifyChargerViewModel.swift in Sources */,
@@ -526,15 +589,20 @@
 				D3A2033826F24025007B0D90 /* QROverlayView.swift in Sources */,
 				D35844E826FB6AB1004F5790 /* LocationManager.swift in Sources */,
 				FD8B4F1526EA11D400B0FDB5 /* IdentifyChargerViewModel.swift in Sources */,
+				C00771D228ED852500FC791C /* Validation.swift in Sources */,
+				6390B6BC28E46DF200E75BDB /* SetupInvoicingViewModel.swift in Sources */,
 				65F14A3926F8872A00C9B443 /* SetupUpInvoiceViewModel.swift in Sources */,
-				D334B13726EFBBAA000D31E9 /* EmailSentView.swift in Sources */,
+				6380083A28D1F5F200184E3F /* AccountSettingsView.swift in Sources */,
 				D327CD6426E64D0D007FC380 /* MapView.swift in Sources */,
 				D3D6D18826E629BE00B77B16 /* ContentView.swift in Sources */,
+				68762AA128E478D8007BCA90 /* ChooseNewPassword.swift in Sources */,
+				63D0ABBF28D0BB5F00897868 /* AccountAPI.swift in Sources */,
 				FD9BB76C26F8BC7600CBE7E5 /* ChargingInProgressView.swift in Sources */,
 				D388D13C2706ED85005C1927 /* Extensions.swift in Sources */,
 				651A7A6026F879F000A8A16D /* SetUpInvoiceView.swift in Sources */,
 				D3A2033E26F4846B007B0D90 /* LoginView.swift in Sources */,
 				D3D6D15226E6286500B77B16 /* FlexiChargeApp.swift in Sources */,
+				6390B6B928E46DCB00E75BDB /* SetupInvoicingView.swift in Sources */,
 				FD58562A270DA9490003F109 /* KlarnaView.swift in Sources */,
 				D327CD6626E65F33007FC380 /* IdentifyChargerView.swift in Sources */,
 			);
@@ -697,7 +765,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"FlexiCharge/Preview Content\"";
-				DEVELOPMENT_TEAM = S87W9XZJ58;
+				DEVELOPMENT_TEAM = 943Z656FH5;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = FlexiCharge/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -705,7 +773,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = AbstractConnoisseurs1.FlexiCharge;
+				PRODUCT_BUNDLE_IDENTIFIER = AbstractConnoisseurs1.FlexiChargee;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
@@ -721,7 +789,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"FlexiCharge/Preview Content\"";
-				DEVELOPMENT_TEAM = S87W9XZJ58;
+				DEVELOPMENT_TEAM = 943Z656FH5;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = FlexiCharge/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -729,7 +797,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = AbstractConnoisseurs1.FlexiCharge;
+				PRODUCT_BUNDLE_IDENTIFIER = AbstractConnoisseurs1.FlexiChargee;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;

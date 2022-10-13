@@ -10,12 +10,25 @@ import SwiftUI
 @main
 struct FlexiChargeApp: App {
     let persistenceController = PersistenceController.shared
-
+    @StateObject var accountModel = AccountDataModel()
+    
     var body: some Scene {
         WindowGroup {
-            RegisterAccountView()
+            startView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
                 .preferredColorScheme(.light)
+                .environmentObject(accountModel)
+        }
+
+    }
+    func startView() -> some View{
+
+        if (UserDefaults.standard.bool(forKey: "isLoggedIn")){
+            return AnyView(ContentView())
+        }
+        else{
+            return AnyView(RegisterAccountView())
         }
     }
 }
+
