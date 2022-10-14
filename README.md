@@ -24,4 +24,4 @@ Pressing the big button at the bottom will present the user with a list chargers
 Payments will be done mainly using Klarna.
 
 <h2 id="account">Account</h2>
-Of course we wan't the option for users to create and log in with an account, but so far only the views are implemented but ready to be connected with a backend.
+It is possible to register, login, logout and recover password.
